@@ -463,7 +463,7 @@
 								
 								<!-- Gain_* -->
 								<xsl:for-each select="exslt:node-set($gains)/*">
-									<xsl:variable name="gain" select="my:getGain($this, @name)"/>
+									<xsl:variable name="gain" select="my:getGain($this, concat('Gain_', my:tolower(@name)))"/>
 									<xsl:choose>
 										<xsl:when test="@name='Gain_wellness'">
 											<TD class="decimal"><xsl:value-of select="format-number($gain, '0.00')"/></TD>
