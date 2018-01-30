@@ -1,11 +1,48 @@
-
 <HTML>
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/css/theme.blue.css">
 <STYLE>
+					.CellWithComment{
+						position:relative;
+					}
+
+					.CellComment{
+						display:none;
+						position:absolute; 
+						z-index:100;
+						border:1px;
+						background-color: black;
+						color: #fff;
+						border-style:solid;
+						border-width:1px;
+						border-color:#fff;
+						padding:3px;
+						top: 100%;
+						left:20px;
+						opacity: 0;
+						transition: opacity 1s;
+					}
+
+					.CellWithComment:hover span.CellComment{
+						display:block;
+						opacity: 1;
+					}
+					
+					.CellComment::after {
+						content: " ";
+						position: absolute;
+						bottom: 100%;  /* At the top of the tooltip */
+						left: 20px;
+						margin-left: -5px;
+						border-width: 5px;
+						border-style: solid;
+						border-color: transparent transparent black transparent;
+					}
+					
 					td.integer { text-align: right; }
 					td.decimal { text-align: right; white-space: nowrap; }
+					td.name { text-align: left; white-space: nowrap; }
 				
 					/* TABLE BACKGROUND color (match the original theme) */
 					table.hover-highlight td:before,
@@ -156,7 +193,7 @@
 				</script>
 </HEAD>
 <BODY><TABLE class="tablesorter hover-highlight focus-highlight">
-<CAPTION>Food and Drinks</CAPTION>
+<CAPTION>Food and Drinks (<a href="foodPlus.xsl" target="_blank">xslt</a>)</CAPTION>
 <THEAD><TR>
 <TH>Item</TH>
 <TH>food</TH>
@@ -166,23 +203,65 @@
 <TH>stamina</TH>
 <TH>water</TH>
 <TH>wellness</TH>
-<TH>Harvested?</TH>
-<TH>Green Thumb Level</TH>
-<TH>Food per Wellness</TH>
-<TH>Creative Mode</TH>
-<TH>Hand</TH>
-<TH>chemistryStation</TH>
-<TH>BigCampFire</TH>
-<TH>Stoves</TH>
-<TH>campfire</TH>
-<TH>foodPrepTable</TH>
-<TH>bbqgrill</TH>
-<TH>mortarAndPestle</TH>
-<TH>woodenBarrels</TH>
+<TH class="name CellWithComment">Harvested?<span class="CellComment">
+												[Harvested?]
+												</span>
+</TH>
+<TH class="name CellWithComment">Green Thumb Level<span class="CellComment">
+												[Green Thumb Level]
+												</span>
+</TH>
+<TH class="name CellWithComment">Food per Wellness<span class="CellComment">
+												[Food per Wellness]
+												</span>
+</TH>
+<TH class="name CellWithComment">Creative Mode<span class="CellComment">
+												[Creative Mode]
+												</span>
+</TH>
+<TH class="name CellWithComment">Hand<span class="CellComment">
+												[Hand]
+												</span>
+</TH>
+<TH class="name CellWithComment">Chemistry Station<span class="CellComment">
+												[chemistryStation]
+												 With the proper equipment you can work far more efficiently than on a campfire.<br/> [ Crafted in Advanced Workbench. ]</span>
+</TH>
+<TH class="name CellWithComment">Advanced Campfire<span class="CellComment">
+												[BigCampFire]
+												 This campfire is better built and can cook many more recipes than the smaller campfire</span>
+</TH>
+<TH class="name CellWithComment">Stoves<span class="CellComment">
+												[Stoves]
+												</span>
+</TH>
+<TH class="name CellWithComment">Campfire<span class="CellComment">
+												[campfire]
+												 Useful to cook food and warm up. Unlock more recipes by adding a cooking pot, cooking grill or beaker.</span>
+</TH>
+<TH class="name CellWithComment">Food Prep Table<span class="CellComment">
+												[foodPrepTable]
+												 This table can be used to prepare certain types of food</span>
+</TH>
+<TH class="name CellWithComment">Barbecue Grill<span class="CellComment">
+												[bbqgrill]
+												 Just like those down home cookouts you and the boys used to have minus the boys.</span>
+</TH>
+<TH class="name CellWithComment">Mortar and Pestle<span class="CellComment">
+												[mortarAndPestle]
+												 A mashing tool that is perfect for creating seeds and other dry items.<br/> [ Crafted in Forge and Advanced Forge. ]</span>
+</TH>
+<TH class="name CellWithComment">Fermenting Barrel<span class="CellComment">
+												[woodenBarrels]
+												 Used in the production of alcohol and fertilizer.<br/> [ Crafted in Advanced Workbench. ]</span>
+</TH>
 </TR></THEAD>
 <TBODY>
 <TR>
-<TD>AdminFood</TD>
+<TD class="name CellWithComment">AdminFood<span class="CellComment">
+										[AdminFood]
+										</span>
+</TD>
 <TD class="integer">80</TD>
 <TD class="integer">0</TD>
 <TD class="integer">80</TD>
@@ -205,7 +284,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>Apple</TD>
+<TD class="name CellWithComment">Apple<span class="CellComment">
+										[Apple]
+										</span>
+</TD>
 <TD class="integer">2</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -228,7 +310,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>appleCider</TD>
+<TD class="name CellWithComment">Apple Cider<span class="CellComment">
+										[appleCider]
+										 This cider made from apples is great to give you a boost while out working but be careful not too drink too much of it</span>
+</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -251,7 +336,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>applePie</TD>
+<TD class="name CellWithComment">Apple Pie<span class="CellComment">
+										[applePie]
+										 Delicious homemade apple pie just like Mom used to make.<br/> [ Crafted in Stoves. ]</span>
+</TD>
 <TD class="integer">15</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -274,7 +362,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>bacon</TD>
+<TD class="name CellWithComment">Bacon<span class="CellComment">
+										[bacon]
+										 Tasty bacon goes good with EVERYTHING.<br/> [ Crafted in Advanced Campfire and Stoves with a Frying Pan. ] </span>
+</TD>
 <TD class="integer">8</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -297,7 +388,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>baconAndEggs</TD>
+<TD class="name CellWithComment">Bacon and Eggs<span class="CellComment">
+										[baconAndEggs]
+										 Bacon and eggs will really fill you up and boost your wellness. Cholesterol is the least of your worries now.<br/> [ Crafted in Food Prep Table. ]</span>
+</TD>
 <TD class="integer">17</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -320,7 +414,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>baconEggSandwich</TD>
+<TD class="name CellWithComment">Bacon Egg Sandwich<span class="CellComment">
+										[baconEggSandwich]
+										</span>
+</TD>
 <TD class="integer">25</TD>
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
@@ -343,7 +440,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>bagChips</TD>
+<TD class="name CellWithComment">Bag of Chips<span class="CellComment">
+										[bagChips]
+										 A bag of crispy salted potato chips.</span>
+</TD>
 <TD class="integer">5</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -366,7 +466,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>bagChipsHot</TD>
+<TD class="name CellWithComment">Bag of Spicy Chips<span class="CellComment">
+										[bagChipsHot]
+										 A bag of crispy salted potato chips. They're hot and best eaten with a drink at the ready.</span>
+</TD>
 <TD class="integer">7</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -389,7 +492,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>bakedPotato</TD>
+<TD class="name CellWithComment">Baked Potato<span class="CellComment">
+										[bakedPotato]
+										 A nutritious baked potato full of carbohydrates. Great for couch potatoes too.<br/> [ Crafted in Advanced Campfire with a Cooking Grill and Stoves. ]</span>
+</TD>
 <TD class="integer">9</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -412,7 +518,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>beer</TD>
+<TD class="name CellWithComment">Beer<span class="CellComment">
+										[beer]
+										 Gain stamina, bravado and stun immunity all in one bottle of this tasty home brewed beer. Just like grandpa used to make.</span>
+</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -435,7 +544,10 @@
 <TD>Yes</TD>
 </TR>
 <TR>
-<TD>blueberries</TD>
+<TD class="name CellWithComment">Blueberries<span class="CellComment">
+										[blueberries]
+										 Blueberries can be eaten, used to make pies or turned into blueberry seeds.</span>
+</TD>
 <TD class="integer">1</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -458,30 +570,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>blueberryJam</TD>
-<TD class="integer">12</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">20</TD>
-<TD class="integer">12</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>BlueberryPancakes</TD>
+<TD class="name CellWithComment">Blueberry Pancakes<span class="CellComment">
+										[BlueberryPancakes]
+										 Delicious blueberry pancakes.<br/> [ Crafted in Stoves with a Frying Pan. ]</span>
+</TD>
 <TD class="integer">8</TD>
 <TD class="integer">0</TD>
 <TD class="integer">2</TD>
@@ -504,7 +596,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>blueberryPie</TD>
+<TD class="name CellWithComment">Blueberry Pie<span class="CellComment">
+										[blueberryPie]
+										 This homemade blueberry pie is nutritious and raises your wellness. Mmm...just like Grandma used to make.<br/> [ Crafted in Stoves with a Frying Pan. ]</span>
+</TD>
 <TD class="integer">14</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -527,7 +622,36 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>BlueberryYogurt</TD>
+<TD class="name CellWithComment">Blueberry Rum<span class="CellComment">
+										[Rum]
+										 Drinking before noon makes you a pirate not an alcholic!</span>
+</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">25</TD>
+<TD class="integer">5</TD>
+<TD class="decimal">-0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">-25.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Blueberry Yogurt<span class="CellComment">
+										[BlueberryYogurt]
+										 Ah the better kind of yogurt.<br/> [ Crafted in Stoves. ]</span>
+</TD>
 <TD class="integer">9</TD>
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
@@ -550,1025 +674,16 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>boiledMeat</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.30</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">33.3333</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>boiledPasta</TD>
-<TD class="integer">15</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-5</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>bottledRiverWater</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">15</TD>
-<TD class="integer">5</TD>
-<TD class="integer">15</TD>
-<TD class="decimal">-0.10</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>bottledWater</TD>
-<TD class="integer">0</TD>
+<TD class="name CellWithComment">blueberryJam<span class="CellComment">
+										[blueberryJam]
+										 Delicious blueberry jam made with blueberries and water.<br/> [ Crafted in Mortar and Pestle. ]</span>
+</TD>
+<TD class="integer">12</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">20</TD>
-<TD class="integer">20</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">N/A</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>bottleOfMurkyWater</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">15</TD>
-<TD class="integer">5</TD>
-<TD class="integer">10</TD>
-<TD class="decimal">-0.10</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>bowlChili</TD>
-<TD class="integer">20</TD>
-<TD class="integer">30</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-10</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>bowlMiso</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">20</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>bowlMurkyWater</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">15</TD>
-<TD class="integer">5</TD>
-<TD class="integer">15</TD>
-<TD class="decimal">-0.10</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>bowlPasta</TD>
-<TD class="integer">14</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>bowlRamenNoodles</TD>
-<TD class="integer">14</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">3</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>bowlSoup</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">20</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>bowlStock</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">20</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>bowlWater</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">20</TD>
-<TD class="integer">20</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">N/A</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>Bread</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.15</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">66.6667</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canBeef</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-10</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canBoiledWater</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">20</TD>
-<TD class="integer">20</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">N/A</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canCatfood</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-2</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canChicken</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-10</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canChili</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-5</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canDogfood</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-2</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>candyBar</TD>
-<TD class="integer">3</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canHam</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-5</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canLamb</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-10</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canMiso</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canMurkyWater</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">15</TD>
-<TD class="integer">5</TD>
-<TD class="integer">15</TD>
-<TD class="decimal">-0.15</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canPasta</TD>
-<TD class="integer">7</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canPears</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canPeas</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canSalmon</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-5</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canSoup</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canStock</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>canTuna</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-2</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>carrot</TD>
-<TD class="integer">4</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>Yes</TD>
-<TD>4</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>carrotCake</TD>
-<TD class="integer">20</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-5</TD>
-<TD class="decimal">0.30</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">66.6667</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>carrotJuise</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">1</TD>
-<TD class="integer">0</TD>
-<TD class="integer">15</TD>
-<TD class="integer">15</TD>
-<TD class="decimal">0.20</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>charredMeat</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-5</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>Cheese</TD>
-<TD class="integer">3</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>Cheeseburger</TD>
-<TD class="integer">28</TD>
-<TD class="integer">0</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-1</TD>
-<TD class="decimal">0.60</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">46.6667</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>cherryJuice</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">1</TD>
-<TD class="integer">0</TD>
-<TD class="integer">15</TD>
-<TD class="integer">15</TD>
-<TD class="decimal">0.20</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>coffee</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">100</TD>
-<TD class="integer">-10</TD>
-<TD class="decimal">-0.10</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>corn</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>Yes</TD>
-<TD>2</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>cornBread</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.15</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">33.3333</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>cornbreadJam</TD>
-<TD class="integer">6</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.10</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">60.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>cornGrilled</TD>
-<TD class="integer">6</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">3</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.15</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">40.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>cornMeal</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-10</TD>
+<TD class="integer">12</TD>
 <TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
@@ -1585,191 +700,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>cornOnTheCob</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.15</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">33.3333</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>Crackers</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-1</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>CrackersAndCheese</TD>
-<TD class="integer">8</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-1</TD>
-<TD class="decimal">0.15</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">53.3333</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>creamedCorn</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">4</TD>
-<TD class="integer">10</TD>
-<TD class="decimal">0.15</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">13.3333</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>cucumber</TD>
-<TD class="integer">1</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">3</TD>
-<TD class="decimal">0.00</TD>
-<TD>Yes</TD>
-<TD>4</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>deerHead</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">30</TD>
-<TD class="integer">-20</TD>
-<TD class="integer">-5</TD>
-<TD class="decimal">-1.00</TD>
-<TD>Yes</TD>
-<TD>N/A</TD>
-<TD class="decimal">-10.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>Dough</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">-0.10</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">-20.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>egg</TD>
-<TD class="integer">3</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">30</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>eggboiled</TD>
+<TD class="name CellWithComment">Boiled Egg<span class="CellComment">
+										[eggboiled]
+										 A boiled egg can fill you up and offers a small wellness boost.<br/> [ Crafted in Advanced Campfire and Stoves. ]</span>
+</TD>
 <TD class="integer">6</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -1792,19 +726,152 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>foodHoney</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="name CellWithComment">Boiled Meat<span class="CellComment">
+										[boiledMeat]
+										 While not as yummy as grilled meat, boiling is an efficient way to prepare a meal.</span>
+</TD>
 <TD class="integer">10</TD>
 <TD class="integer">0</TD>
-<TD class="decimal">0.10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">20.0000</TD>
+<TD class="decimal">33.3333</TD>
 <TD>All</TD>
 <TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Boiled Pasta<span class="CellComment">
+										[boiledPasta]
+										 Wouldnt it be great if you had some sauce?<br/> [ Crafted in Stoves with a Frying Pan. ]</span>
+</TD>
+<TD class="integer">15</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Boiled Water<span class="CellComment">
+										[canBoiledWater]
+										 Boiled water is safe to drink. Probably.<br/> [ Crafted in Advanced Campfire and Stoves. ]</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Bottled Murky Water<span class="CellComment">
+										[bottledRiverWater]
+										 Disgusting murky water but it's the apocalypse. You can't be picky. Boil at a campfire to purify it.<br/> [ Crafted in Advanced Campfire and Stoves. ]</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">5</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">-0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Bottled Water<span class="CellComment">
+										[bottledWater]
+										 Fresh bottled water. Well as fresh as you can get in the apocalypse.<br/> [ Crafted in Advanced Campfire and Stoves. ]</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Bowl of Chili<span class="CellComment">
+										[bowlChili]
+										</span>
+</TD>
+<TD class="integer">20</TD>
+<TD class="integer">30</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-10</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1815,16 +882,19 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>foodYuccaFruit</TD>
-<TD class="integer">1</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="name CellWithComment">Bowl of Miso<span class="CellComment">
+										[bowlMiso]
+										</span>
+</TD>
+<TD class="integer">10</TD>
 <TD class="integer">0</TD>
 <TD class="integer">2</TD>
 <TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
 <TD class="decimal">0.00</TD>
-<TD>Yes</TD>
-<TD>1</TD>
+<TD>No</TD>
+<TD>N/A</TD>
 <TD class="decimal">Only Food</TD>
 <TD>All</TD>
 <TD>No</TD>
@@ -1838,83 +908,17 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>foodYuccaJuice</TD>
+<TD class="name CellWithComment">Bowl of Murky Water<span class="CellComment">
+										[bowlMurkyWater]
+										</span>
+</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">30</TD>
 <TD class="integer">15</TD>
-<TD class="decimal">0.10</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>friedEggs</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">4</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-1</TD>
-<TD class="decimal">0.10</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">100.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>friedPotato</TD>
-<TD class="integer">12</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-1</TD>
-<TD class="decimal">0.15</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">80.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>goldenRodTea</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">40</TD>
-<TD class="integer">20</TD>
-<TD class="decimal">0.10</TD>
+<TD class="integer">5</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">-0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
 <TD class="decimal">Only Wellness</TD>
@@ -1930,113 +934,50 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>grilledMeat</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-2</TD>
-<TD class="decimal">0.20</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">50.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>grillSteak</TD>
-<TD class="integer">23</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-2</TD>
-<TD class="decimal">0.20</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">115.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>Hamburger</TD>
-<TD class="integer">28</TD>
-<TD class="integer">0</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-1</TD>
-<TD class="decimal">0.50</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">56.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>hamSandwich</TD>
-<TD class="integer">12</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.40</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">30.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>hash</TD>
+<TD class="name CellWithComment">Bowl of Pasta<span class="CellComment">
+										[bowlPasta]
+										</span>
+</TD>
 <TD class="integer">14</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">5</TD>
 <TD class="integer">0</TD>
-<TD class="decimal">0.20</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">70.0000</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Bowl of Ramen<span class="CellComment">
+										[bowlRamenNoodles]
+										 A nice warm bowl of ramen noodles. Shame you have no crackers.</span>
+</TD>
+<TD class="integer">14</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2045,44 +986,76 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>honeyHam</TD>
-<TD class="integer">22</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.40</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">55.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>marinatedTomatoes</TD>
-<TD class="integer">12</TD>
+<TD class="name CellWithComment">Bowl of Soup<span class="CellComment">
+										[bowlSoup]
+										</span>
+</TD>
+<TD class="integer">10</TD>
 <TD class="integer">0</TD>
 <TD class="integer">2</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">4</TD>
-<TD class="decimal">0.10</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">120.0000</TD>
+<TD class="decimal">Only Food</TD>
 <TD>All</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Bowl of Stock<span class="CellComment">
+										[bowlStock]
+										</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Bowl of Water<span class="CellComment">
+										[bowlWater]
+										 A bowl of clean water. Great for making food but could be drunk if in a pinch.<br/> [ Crafted in Advanced Campfire and Stoves. ]</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>Yes</TD>
 <TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2091,7 +1064,36 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>mealBreakfast</TD>
+<TD class="name CellWithComment">Bread<span class="CellComment">
+										[Bread]
+										</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">66.6667</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Breakfast Meal<span class="CellComment">
+										[mealBreakfast]
+										</span>
+</TD>
 <TD class="integer">38</TD>
 <TD class="integer">0</TD>
 <TD class="integer">10</TD>
@@ -2114,289 +1116,16 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>mealDinner</TD>
-<TD class="integer">40</TD>
-<TD class="integer">0</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.70</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">57.1429</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>meatStew</TD>
-<TD class="integer">30</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="name CellWithComment">Can of Cat Food<span class="CellComment">
+										[canCatfood]
+										 A can of Meow Chow is a delicacy. For cats. You are not eating this, are you?</span>
+</TD>
 <TD class="integer">5</TD>
-<TD class="decimal">0.50</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">60.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>megaCrush</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">8</TD>
-<TD class="decimal">-0.10</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>moldyBread</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">30</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">-1.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">-5.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>MRE</TD>
-<TD class="integer">70</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.30</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">233.3333</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>mushroomGrilled</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">1</TD>
-<TD class="integer">0</TD>
-<TD class="integer">3</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.15</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">33.3333</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>mushrooms</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>Yes</TD>
-<TD>2</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>Omelet</TD>
-<TD class="integer">21</TD>
-<TD class="integer">0</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.20</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">105.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>Pancakes</TD>
-<TD class="integer">8</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-1</TD>
-<TD class="decimal">0.30</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">26.6667</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>pickles</TD>
-<TD class="integer">12</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">1</TD>
-<TD class="decimal">0.40</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">30.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>Pizza</TD>
-<TD class="integer">28</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-2</TD>
-<TD class="decimal">0.80</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">35.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>potato</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>Yes</TD>
-<TD>2</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>potatoChips</TD>
-<TD class="integer">3</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">-1</TD>
 <TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
@@ -2404,29 +1133,6 @@
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>PurifiedWater</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">30</TD>
-<TD class="integer">60</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">N/A</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2436,17 +1142,20 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>ramenNoodles</TD>
-<TD class="integer">3</TD>
+<TD class="name CellWithComment">Can of Chili<span class="CellComment">
+										[canChili]
+										 Stash Chili goes down smooth but watch out for the fiery finish Paco.</span>
+</TD>
+<TD class="integer">10</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-5</TD>
-<TD class="decimal">0.05</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">60.0000</TD>
+<TD class="decimal">Only Food</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2459,17 +1168,46 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>rawMeat</TD>
+<TD class="name CellWithComment">Can of Dog Food<span class="CellComment">
+										[canDogfood]
+										 You always wished for the life of a dog. Enjoy!</span>
+</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-2</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Can of Ham<span class="CellComment">
+										[canHam]
+										 A can of high quality Shamway ham the number 1 maker of meat-like products. The lunch of champions.</span>
+</TD>
 <TD class="integer">10</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">30</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="decimal">-0.50</TD>
-<TD>Yes</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">-20.0000</TD>
+<TD class="decimal">Only Food</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2482,14 +1220,43 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>redTea</TD>
+<TD class="name CellWithComment">Can of Miso<span class="CellComment">
+										[canMiso]
+										 It's time to soup it up with some Miso soup mmm mmm good.</span>
+</TD>
+<TD class="integer">5</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">40</TD>
-<TD class="integer">20</TD>
-<TD class="decimal">0.10</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Can of Murky Water<span class="CellComment">
+										[canMurkyWater]
+										 Not so appealing but it will have to do. Can be boiled at camfire to purify it.<br/> [ Crafted in Advanced Campfire and Stoves. ]</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">5</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">-0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
 <TD class="decimal">Only Wellness</TD>
@@ -2497,7 +1264,33 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>Yes</TD>
+<TD>No</TD>
 <TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Can of Pasta<span class="CellComment">
+										[canPasta]
+										 Now that's Italian! Che figata!</span>
+</TD>
+<TD class="integer">7</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2505,17 +1298,72 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>rottingFlesh</TD>
-<TD class="integer">10</TD>
+<TD class="name CellWithComment">Can of Pears<span class="CellComment">
+										[canPears]
+										 Maintain that perfect pear shape by eating canned pears.</span>
+</TD>
+<TD class="integer">5</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">30</TD>
-<TD class="integer">-20</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Can of Peas<span class="CellComment">
+										[canPeas]
+										 You and your can of peas will be like two peas in a pod and you'll get your daily vegetables.</span>
+</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Can of Salmon<span class="CellComment">
+										[canSalmon]
+										 Enjoy this healthy can of salmon.</span>
+</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
 <TD class="integer">-5</TD>
-<TD class="decimal">-5.00</TD>
-<TD>Yes</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">-2.0000</TD>
+<TD class="decimal">Only Food</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2528,40 +1376,20 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>rottingHarvest</TD>
+<TD class="name CellWithComment">Can of Soda<span class="CellComment">
+										[soda]
+										 A can of soda is full of sugar so it may give you a boost but boy does it still make you a bit thirsty</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
 <TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">30</TD>
-<TD class="integer">-20</TD>
-<TD class="integer">-5</TD>
-<TD class="decimal">-1.00</TD>
-<TD>Yes</TD>
-<TD>N/A</TD>
-<TD class="decimal">-10.0000</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>Rum</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">25</TD>
-<TD class="integer">5</TD>
-<TD class="decimal">-0.20</TD>
+<TD class="integer">6</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">-25.0000</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2574,17 +1402,20 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>sauerkraut</TD>
-<TD class="integer">10</TD>
+<TD class="name CellWithComment">Can of Stock<span class="CellComment">
+										[canStock]
+										 Stock up on stock or you could eat it now.</span>
+</TD>
+<TD class="integer">5</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">1</TD>
-<TD class="decimal">0.30</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">33.3333</TD>
+<TD class="decimal">Only Food</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2597,7 +1428,36 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>scoobySnack</TD>
+<TD class="name CellWithComment">Can of Tuna<span class="CellComment">
+										[canTuna]
+										 A can of tuna or better known as the chicken of the wasteland.</span>
+</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-2</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Carrot<span class="CellComment">
+										[carrot]
+										 Carrot can be eaten, used to make pies or turned into carrot seeds.</span>
+</TD>
 <TD class="integer">4</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -2605,146 +1465,8 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>scrambledEggs</TD>
-<TD class="integer">8</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>shamSandwich</TD>
-<TD class="integer">8</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">-0.15</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">-53.3333</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
 <TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>slicedCheese</TD>
-<TD class="integer">1</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>slicedHam</TD>
-<TD class="integer">3</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>slicedrawMeat</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">30</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>snoBalls</TD>
-<TD class="integer">3</TD>
-<TD class="integer">0</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
+<TD>4</TD>
 <TD class="decimal">Only Food</TD>
 <TD>All</TD>
 <TD>No</TD>
@@ -2758,228 +1480,102 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>snowberryPlant</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>Yes</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>soda</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">10</TD>
-<TD class="integer">6</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">N/A</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>soupChicken</TD>
-<TD class="integer">14</TD>
-<TD class="integer">0</TD>
+<TD class="name CellWithComment">Carrot Cake<span class="CellComment">
+										[carrotCake]
+										 This homemade carrot cake is nutritious and raises your wellness. Mmm...just like Grandma used to make.</span>
+</TD>
 <TD class="integer">20</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">3</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>soupChunkyBeef</TD>
-<TD class="integer">14</TD>
-<TD class="integer">0</TD>
-<TD class="integer">20</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">3</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>soupLamb</TD>
-<TD class="integer">14</TD>
-<TD class="integer">0</TD>
-<TD class="integer">20</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">3</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>soupMushroom</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">20</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">6</TD>
-<TD class="decimal">0.05</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">200.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>soupPea</TD>
-<TD class="integer">10</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">3</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>SoyBeans</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="decimal">0.00</TD>
-<TD>Yes</TD>
-<TD>3</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>SoyMilk</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">5</TD>
-<TD class="integer">10</TD>
-<TD class="decimal">0.00</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">N/A</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>Spaghetti</TD>
-<TD class="integer">28</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-5</TD>
-<TD class="decimal">0.70</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">40.0000</TD>
+<TD class="decimal">66.6667</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">carrot Juice<span class="CellComment">
+										[carrotJuise]
+										</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Charred Meat<span class="CellComment">
+										[charredMeat]
+										 Charred meat is better than raw meat. It will dehydrate you but boost your wellness.<br/> [ Crafted in Advanced Campfire and Stoves and Barbecue Grill. ]</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Cheese<span class="CellComment">
+										[Cheese]
+										 Delicious cheddar cheese.<br/> [ Crafted in Advanced Campfire and Stoves. ]</span>
+</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
 <TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2988,30 +1584,166 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>steakSandwich</TD>
-<TD class="integer">25</TD>
+<TD class="name CellWithComment">Cheeseburger<span class="CellComment">
+										[Cheeseburger]
+										</span>
+</TD>
+<TD class="integer">28</TD>
 <TD class="integer">0</TD>
 <TD class="integer">2</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-1</TD>
-<TD class="decimal">0.50</TD>
+<TD class="decimal">0.60</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">50.0000</TD>
+<TD class="decimal">46.6667</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">cherryJuice<span class="CellComment">
+										[cherryJuice]
+										</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
 <TR>
-<TD>stewChunkyMeat</TD>
+<TD class="name CellWithComment">Chicken Ration<span class="CellComment">
+										[canChicken]
+										 Tastes like chicken. Well, really old synthetic chicken with dirt on it.</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-10</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Chicken Soup<span class="CellComment">
+										[canSoup]
+										 Chicken soup can keep the body and the soul together.</span>
+</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Chicken Soup<span class="CellComment">
+										[soupChicken]
+										</span>
+</TD>
+<TD class="integer">14</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Chunky Beef Soup<span class="CellComment">
+										[soupChunkyBeef]
+										</span>
+</TD>
+<TD class="integer">14</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Chunky Meat Stew<span class="CellComment">
+										[stewChunkyMeat]
+										 This stew is full of chunky meats making it very fulfilling if not very healthy.<br/> [ Crafted in Advanced Campfire and Stoves. ]</span>
+</TD>
 <TD class="integer">25</TD>
 <TD class="integer">0</TD>
 <TD class="integer">1</TD>
@@ -3034,13 +1766,68 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>sugar</TD>
-<TD class="integer">-3</TD>
+<TD class="name CellWithComment">Coffee<span class="CellComment">
+										[coffee]
+										 Coffee gives you energy, keeps your stamina up and helps you stay warm for a limited time.</span>
+</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">-8</TD>
+<TD class="integer">100</TD>
+<TD class="integer">-10</TD>
+<TD class="decimal">-0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Corn Bread<span class="CellComment">
+										[cornBread]
+										 A piece of corn bread can fill you up and improve your wellness.<br/> [ Crafted in Advanced Campfire and Advanced Campfire and Stoves with a Frying Pan. ]</span>
+</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">33.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Corn Meal<span class="CellComment">
+										[cornMeal]
+										 Corn meal is used in several recipes at the campfire.<br/> [ Crafted in Mortar and Pestle. ]</span>
+</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-10</TD>
 <TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
@@ -3053,17 +1840,46 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Corn on the Cob<span class="CellComment">
+										[cornOnTheCob]
+										 Corn on the cob can fill you up and up your wellness.<br/> [ Crafted in Advanced Campfire and Stoves. ]</span>
+</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">33.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
 <TR>
-<TD>Tequila</TD>
+<TD class="name CellWithComment">Corn Whiskey<span class="CellComment">
+										[Whiskey]
+										 Warning!!! Too much makes your clothes fall off!</span>
+</TD>
 <TD class="integer">5</TD>
 <TD class="integer">0</TD>
-<TD class="integer">6</TD>
+<TD class="integer">1</TD>
 <TD class="integer">0</TD>
-<TD class="integer">25</TD>
-<TD class="integer">25</TD>
+<TD class="integer">45</TD>
+<TD class="integer">8</TD>
 <TD class="decimal">-0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
@@ -3080,63 +1896,98 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>Tomato</TD>
-<TD class="integer">2</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">1</TD>
-<TD class="decimal">0.00</TD>
-<TD>Yes</TD>
-<TD>3</TD>
-<TD class="decimal">Only Food</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>tomatoJuice</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">1</TD>
-<TD class="integer">0</TD>
-<TD class="integer">15</TD>
-<TD class="integer">15</TD>
-<TD class="decimal">0.20</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>tomatoSoup</TD>
+<TD class="name CellWithComment">Cornbread and Jam<span class="CellComment">
+										[cornbreadJam]
+										 This cornbread has been smeared with a nice layer of blueberry jam.<br/> [ Crafted in Food Prep Table with a Butcher's Knife. ]</span>
+</TD>
 <TD class="integer">6</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">60.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Crackers<span class="CellComment">
+										[Crackers]
+										 A bit dry and goes better with cheese.<br/> [ Crafted in Advanced Campfire with a Cooking Grill and Stoves. ]</span>
+</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Crackers N' Cheese<span class="CellComment">
+										[CrackersAndCheese]
+										 A nice quick snack.<br/> [ Crafted in Advanced Campfire with a Cooking Grill and Food Prep Table. ]</span>
+</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">53.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Creamed Corn<span class="CellComment">
+										[creamedCorn]
+										</span>
+</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
 <TD class="integer">5</TD>
-<TD class="integer">2</TD>
-<TD class="decimal">0.20</TD>
+<TD class="integer">0</TD>
+<TD class="integer">4</TD>
+<TD class="integer">10</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">30.0000</TD>
+<TD class="decimal">13.3333</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3149,17 +2000,124 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>tunaSandwich</TD>
-<TD class="integer">17</TD>
+<TD class="name CellWithComment">Cucumber<span class="CellComment">
+										[cucumber]
+										 Cucumber can be eaten, used to make pies or turned into cucumber seeds.</span>
+</TD>
+<TD class="integer">1</TD>
 <TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>4</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Deer Head<span class="CellComment">
+										[deerHead]
+										 Well you DID kill it you may as well take this and display it for everyone to admire</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">-20</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">-1.00</TD>
+<TD>Yes</TD>
+<TD>N/A</TD>
+<TD class="decimal">-10.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Dinner Meal<span class="CellComment">
+										[mealDinner]
+										</span>
+</TD>
+<TD class="integer">40</TD>
+<TD class="integer">0</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.70</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">57.1429</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Dirty Water<span class="CellComment">
+										[bottleOfMurkyWater]
+										 Not so appealing but it will have to do. Cant be boiled so you must purify it with tablets.</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">5</TD>
+<TD class="integer">10</TD>
+<TD class="decimal">-0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Dough<span class="CellComment">
+										[Dough]
+										 Dough made from flour can be used in other foods.<br/> [ Crafted in Food Prep Table with a Wooden Club. ]</span>
+</TD>
 <TD class="integer">2</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="decimal">0.20</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">-0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">85.0000</TD>
+<TD class="decimal">-20.0000</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3172,12 +2130,41 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>twinkies</TD>
+<TD class="name CellWithComment">Ear of Corn<span class="CellComment">
+										[corn]
+										 An ear of corn can be eaten or used to make corn seed, corn meal, corn on the cob, stews and more.</span>
+</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>2</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Egg<span class="CellComment">
+										[egg]
+										 Eggs can be eaten raw but should be cooked.</span>
+</TD>
 <TD class="integer">3</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
+<TD class="integer">30</TD>
 <TD class="integer">0</TD>
-<TD class="integer">8</TD>
 <TD class="integer">0</TD>
 <TD class="decimal">0.00</TD>
 <TD>No</TD>
@@ -3195,66 +2182,257 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>vegetableJuice</TD>
+<TD class="name CellWithComment">Fried Eggs<span class="CellComment">
+										[scrambledEggs]
+										 Fried Eggs are a great way to start the morning off if you are low on meat.<br/> [ Crafted in Advanced Campfire and Stoves with a Frying Pan. ]</span>
+</TD>
+<TD class="integer">8</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">1</TD>
 <TD class="integer">0</TD>
-<TD class="integer">15</TD>
-<TD class="integer">18</TD>
-<TD class="decimal">0.30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Fried Eggs<span class="CellComment">
+										[friedEggs]
+										 Just Fried Eggs.<br/> [ Crafted in Stoves with a Frying Pan. ]</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">4</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">100.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Fried Potato<span class="CellComment">
+										[friedPotato]
+										 What can be better than potato? FRIED potato of course.<br/> [ Crafted in Stoves with a Frying Pan. ]</span>
+</TD>
+<TD class="integer">12</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">80.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Golden Rod Tea<span class="CellComment">
+										[goldenRodTea]
+										 Got dysentery? This bottle of sweet goldenrod tea will cure it.<br/> [ Crafted in Advanced Campfire and Stoves. ]</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">40</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
 <TD class="decimal">Only Wellness</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
 <TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
 <TR>
-<TD>vegetableLunch</TD>
-<TD class="integer">12</TD>
+<TD class="name CellWithComment">Grilled Corn<span class="CellComment">
+										[cornGrilled]
+										 Sweat and tasty grilled corn.<br/> [ Crafted in Barbecue Grill. ]</span>
+</TD>
+<TD class="integer">6</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">10</TD>
 <TD class="integer">3</TD>
-<TD class="decimal">0.25</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">48.0000</TD>
+<TD class="decimal">40.0000</TD>
 <TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
 <TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
 <TR>
-<TD>vegetableStew</TD>
+<TD class="name CellWithComment">Grilled Meat<span class="CellComment">
+										[grilledMeat]
+										 Meat! Meat on fire! Good! Nutritious, filling and will boost your wellness.</span>
+</TD>
 <TD class="integer">10</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
+<TD class="integer">-2</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">50.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Grilled Mushroom<span class="CellComment">
+										[mushroomGrilled]
+										 Even mushrooms are better when cooked on a grill.<br/> [ Crafted in Barbecue Grill. ]</span>
+</TD>
+<TD class="integer">5</TD>
 <TD class="integer">0</TD>
-<TD class="decimal">0.30</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
 <TD class="decimal">33.3333</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Grilled Steak<span class="CellComment">
+										[grillSteak]
+										</span>
+</TD>
+<TD class="integer">23</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-2</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">115.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Ham Sandwich<span class="CellComment">
+										[hamSandwich]
+										</span>
+</TD>
+<TD class="integer">12</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.40</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">30.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Hamburger<span class="CellComment">
+										[Hamburger]
+										</span>
+</TD>
+<TD class="integer">28</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.50</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">56.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
 <TD>Yes</TD>
 <TD>Yes</TD>
 <TD>No</TD>
@@ -3264,17 +2442,46 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>vinegar</TD>
+<TD class="name CellWithComment">hash<span class="CellComment">
+										[hash]
+										 Delicious hash is the first thing you want to smell in the morning.<br/> [ Crafted in Stoves. ]</span>
+</TD>
+<TD class="integer">14</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">-30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">70.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Hersheys Bar<span class="CellComment">
+										[candyBar]
+										 Diabeetus what diabeetus. This is the apocalypse so have at it and shove that candy in your mouth like there is no tomorrow.</span>
+</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">N/A</TD>
+<TD class="decimal">Only Food</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3284,10 +2491,533 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 </TR>
 <TR>
-<TD>Vodka</TD>
+<TD class="name CellWithComment">Homemade Potato Chip<span class="CellComment">
+										[potatoChips]
+										 A gentle reminder of the finer things in life.</span>
+</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Honey Ham<span class="CellComment">
+										[honeyHam]
+										 Delicious honey glazed ham.<br/> [ Crafted in Advanced Campfire with a Cooking Grill and Stoves with a Frying Pan. ]</span>
+</TD>
+<TD class="integer">22</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.40</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">55.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Jar of Honey<span class="CellComment">
+										[foodHoney]
+										 Honey is one of mother nature's miracles, it restores stamina, gives wellness & can cure the first stage of an infection.</span>
+</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">20.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Lamb Rations<span class="CellComment">
+										[canLamb]
+										 Lamb rations are great when the world has ended and you're on the lamb.</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-10</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Lamb Soup<span class="CellComment">
+										[soupLamb]
+										</span>
+</TD>
+<TD class="integer">14</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Large Beef Ration<span class="CellComment">
+										[canBeef]
+										 It's not from your favorite steakhouse but this can of beef will fill you up. Bon appetit!</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-10</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Marinated Tomatoes<span class="CellComment">
+										[marinatedTomatoes]
+										 Unlesh yor inner Ragu and make dishes like Grandma used to make before she had her face eaten off.<br/> [ Crafted in Stoves. ]</span>
+</TD>
+<TD class="integer">12</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">4</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">120.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Meat Stew<span class="CellComment">
+										[meatStew]
+										 A survivor isn't worth his salt if he can't make a meat stew. Raises wellness, too!</span>
+</TD>
+<TD class="integer">30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="decimal">0.50</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">60.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Mega Crush<span class="CellComment">
+										[megaCrush]
+										 Crush your enemies and your thirst with Mega Crush! It's got electrolytes!</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">8</TD>
+<TD class="decimal">-0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Moldy Bread<span class="CellComment">
+										[moldyBread]
+										 Eat at your own risk. Can be used to craft antibiotics.<br/> [ Crafted in Chemistry Station. ]</span>
+</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">-1.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">-5.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">MRE<span class="CellComment">
+										[MRE]
+										 A rare military ready to eat meal.</span>
+</TD>
+<TD class="integer">70</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">233.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Mushroom Soup<span class="CellComment">
+										[soupMushroom]
+										</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">6</TD>
+<TD class="decimal">0.05</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">200.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Mushrooms<span class="CellComment">
+										[mushrooms]
+										 Mushrooms can be safely eaten uncooked or used in several recipes at the campfire.</span>
+</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>2</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Old Sham Sandwich<span class="CellComment">
+										[shamSandwich]
+										 A really old sham sandwich made by Shamway. It will take away the hunger but there's a risk that comes with it.</span>
+</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">-0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">-53.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Omelet<span class="CellComment">
+										[Omelet]
+										 This is a delicious way to eat eggs and is sure to fill you up.<br/> [ Crafted in Advanced Campfire and Stoves with a Frying Pan. ]</span>
+</TD>
+<TD class="integer">21</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">105.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Pancakes<span class="CellComment">
+										[Pancakes]
+										 Delicious pancakes.<br/> [ Crafted in Advanced Campfire with a Cooking Grill and Stoves with a Frying Pan. ]</span>
+</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">26.6667</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Pea Soup<span class="CellComment">
+										[soupPea]
+										</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Pickles<span class="CellComment">
+										[pickles]
+										 You used to LOVE pickles and now with all this time to yourself you can love them even more.<br/> [ Crafted in Food Prep Table. ] </span>
+</TD>
+<TD class="integer">12</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="decimal">0.40</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">30.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Pizza<span class="CellComment">
+										[Pizza]
+										 Who doesnt love pizza.<br/> [ Crafted in Stoves with a Frying Pan. ]</span>
+</TD>
+<TD class="integer">28</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-2</TD>
+<TD class="decimal">0.80</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">35.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Potato<span class="CellComment">
+										[potato]
+										 Potatoes can be eaten, crafted into seeds or used in several recipes at the campfire.</span>
+</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>2</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Potato Vodka<span class="CellComment">
+										[Vodka]
+										 Speak fluent Russian in minutes!</span>
+</TD>
 <TD class="integer">6</TD>
 <TD class="integer">0</TD>
 <TD class="integer">8</TD>
@@ -3310,7 +3040,712 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>warmbowlChili</TD>
+<TD class="name CellWithComment">Purified Water<span class="CellComment">
+										[PurifiedWater]
+										 A full bottle of the cleanest water you will ever see.</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">60</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Ramen Noodles<span class="CellComment">
+										[ramenNoodles]
+										 A bag of ramen noodles. These have kept many college students alive during harsh times.</span>
+</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.05</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">60.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Raw Meat<span class="CellComment">
+										[rawMeat]
+										 Raw meat can be cooked as is to make a limited number of recipes or can be sliced on a Food Prep Table to make more variety of recipes.</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">-0.50</TD>
+<TD>Yes</TD>
+<TD>N/A</TD>
+<TD class="decimal">-20.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Red Tea<span class="CellComment">
+										[redTea]
+										 An ancient Chinese secret, red tea is known for its natural cooling, stamina and re-hydration effects.</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">40</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Rotten Harvest<span class="CellComment">
+										[rottingHarvest]
+										 Sometimes you just get a bad harvest but at least you can use it for fertilizer and your compost. You can create rotting harvest by letting certain veggies rot.</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">-20</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">-1.00</TD>
+<TD>Yes</TD>
+<TD>N/A</TD>
+<TD class="decimal">-10.0000</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Rotting Flesh<span class="CellComment">
+										[rottingFlesh]
+										 You can eat it but it is probably better used to make fertilizer in a cement mixer.</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">-20</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">-5.00</TD>
+<TD>Yes</TD>
+<TD>N/A</TD>
+<TD class="decimal">-2.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Salad<span class="CellComment">
+										[vegetableLunch]
+										 Toss a few veggies into a bowl and you too can claim you eat healthy</span>
+</TD>
+<TD class="integer">12</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">10</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.25</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">48.0000</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">sauerkraut<span class="CellComment">
+										[sauerkraut]
+										 Delicious Kraut</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">33.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Scooby Snacks<span class="CellComment">
+										[scoobySnack]
+										 Like there's times I'll do anything for a Scoobie Snack</span>
+</TD>
+<TD class="integer">4</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Sliced Cheese<span class="CellComment">
+										[slicedCheese]
+										 Great for sandwiches and goes great on crackers.<br/> [ Crafted in Food Prep Table with a Butcher's Knife. ]</span>
+</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Sliced Ham<span class="CellComment">
+										[slicedHam]
+										 Sliced ham that is great for sandwiches.<br/> [ Crafted in Food Prep Table with a Butcher's Knife. ]</span>
+</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Sliced Raw Meat<span class="CellComment">
+										[slicedrawMeat]
+										 This sliced meat can be used in different recipes to make something delicious</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Sno Balls<span class="CellComment">
+										[snoBalls]
+										 Sno Balls? Where's the fucking Twinkies?</span>
+</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Snowberry<span class="CellComment">
+										[snowberryPlant]
+										 Snowberries can easily be mistaken for blueberries but are only borderline edible.</span>
+</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Soy Beans<span class="CellComment">
+										[SoyBeans]
+										 Soy beans can be used to make Soy Milk.</span>
+</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>3</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Soy Milk<span class="CellComment">
+										[SoyMilk]
+										 Great for making cheese yogurt or cooking pasteries.<br/> [ Crafted in Advanced Campfire with a Beaker and Stoves. ]</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="integer">10</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Spaghetti<span class="CellComment">
+										[Spaghetti]
+										</span>
+</TD>
+<TD class="integer">28</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.70</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">40.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Steak Sandwich<span class="CellComment">
+										[steakSandwich]
+										</span>
+</TD>
+<TD class="integer">25</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.50</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">50.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Sugar<span class="CellComment">
+										[sugar]
+										 Sweet sugar</span>
+</TD>
+<TD class="integer">-3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-8</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Tomato<span class="CellComment">
+										[Tomato]
+										</span>
+</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>3</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Tomato Juice<span class="CellComment">
+										[tomatoJuice]
+										 Juice can cool you, hydrate you, and give you the stamina of a sexual tyrannosaurus.</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Tomato Soup<span class="CellComment">
+										[tomatoSoup]
+										 Tomato soup can keep the body and the soul together.<br/> [ Crafted in Advanced Campfire and Stoves. ]</span>
+</TD>
+<TD class="integer">6</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="integer">2</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">30.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Tuna Sandwich<span class="CellComment">
+										[tunaSandwich]
+										</span>
+</TD>
+<TD class="integer">17</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">85.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Twinkies<span class="CellComment">
+										[twinkies]
+										 Seems like you made it here before Tallahassee did so enjoy the spongy, yellow, delicious bastards.</span>
+</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Vegetable Drink<span class="CellComment">
+										[vegetableJuice]
+										 Nothing like a vegetable concoction to make you feel whole again.<br/> [ Crafted in Food Prep Table. ]</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">18</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Vegetable Stew<span class="CellComment">
+										[vegetableStew]
+										 Your mom always said eat your vegetables. Now's your chance to make her happy and guess what? They're good for you.<br/> [ Crafted in Advanced Campfire and Stoves. ]</span>
+</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">33.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Vinegar<span class="CellComment">
+										[vinegar]
+										 Vinegar is a very common ingredient for many recipes.<br/> [ Crafted in Fermenting Barrel. ]</span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Warm Bowl of Chili<span class="CellComment">
+										[warmbowlChili]
+										</span>
+</TD>
 <TD class="integer">23</TD>
 <TD class="integer">33</TD>
 <TD class="integer">13</TD>
@@ -3333,7 +3768,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>warmbowlMiso</TD>
+<TD class="name CellWithComment">Warm Bowl of Miso<span class="CellComment">
+										[warmbowlMiso]
+										</span>
+</TD>
 <TD class="integer">15</TD>
 <TD class="integer">0</TD>
 <TD class="integer">2</TD>
@@ -3356,7 +3794,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>warmbowlPasta</TD>
+<TD class="name CellWithComment">Warm Bowl of Pasta<span class="CellComment">
+										[warmbowlPasta]
+										</span>
+</TD>
 <TD class="integer">18</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -3379,7 +3820,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>warmbowlSoup</TD>
+<TD class="name CellWithComment">Warm Bowl of Stock<span class="CellComment">
+										[warmbowlStock]
+										</span>
+</TD>
 <TD class="integer">13</TD>
 <TD class="integer">0</TD>
 <TD class="integer">5</TD>
@@ -3402,30 +3846,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>warmbowlStock</TD>
-<TD class="integer">13</TD>
-<TD class="integer">0</TD>
-<TD class="integer">5</TD>
-<TD class="integer">0</TD>
-<TD class="integer">0</TD>
-<TD class="integer">18</TD>
-<TD class="decimal">0.20</TD>
-<TD>No</TD>
-<TD>N/A</TD>
-<TD class="decimal">65.0000</TD>
-<TD>All</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>Yes</TD>
-<TD>Yes</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-</TR>
-<TR>
-<TD>warmsoupChicken</TD>
+<TD class="name CellWithComment">Warm Chicken Soup<span class="CellComment">
+										[warmsoupChicken]
+										</span>
+</TD>
 <TD class="integer">15</TD>
 <TD class="integer">0</TD>
 <TD class="integer">25</TD>
@@ -3448,7 +3872,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>warmsoupChunkyBeef</TD>
+<TD class="name CellWithComment">Warm Chunky Beef Soup<span class="CellComment">
+										[warmsoupChunkyBeef]
+										</span>
+</TD>
 <TD class="integer">15</TD>
 <TD class="integer">0</TD>
 <TD class="integer">23</TD>
@@ -3471,7 +3898,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>warmsoupLamb</TD>
+<TD class="name CellWithComment">Warm Lamb Soup<span class="CellComment">
+										[warmsoupLamb]
+										</span>
+</TD>
 <TD class="integer">15</TD>
 <TD class="integer">0</TD>
 <TD class="integer">13</TD>
@@ -3494,7 +3924,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>warmsoupPea</TD>
+<TD class="name CellWithComment">Warm Pea Soup<span class="CellComment">
+										[warmsoupPea]
+										</span>
+</TD>
 <TD class="integer">13</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -3517,22 +3950,25 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>Whiskey</TD>
+<TD class="name CellWithComment">Warm Soup<span class="CellComment">
+										[warmbowlSoup]
+										</span>
+</TD>
+<TD class="integer">13</TD>
+<TD class="integer">0</TD>
 <TD class="integer">5</TD>
 <TD class="integer">0</TD>
-<TD class="integer">1</TD>
 <TD class="integer">0</TD>
-<TD class="integer">45</TD>
-<TD class="integer">8</TD>
-<TD class="decimal">-0.20</TD>
+<TD class="integer">18</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">-25.0000</TD>
+<TD class="decimal">65.0000</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3540,7 +3976,10 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>Yogurt</TD>
+<TD class="name CellWithComment">Yogurt<span class="CellComment">
+										[Yogurt]
+										 Plain yogurt but it will do.<br/> [ Crafted in Stoves. ]</span>
+</TD>
 <TD class="integer">8</TD>
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
@@ -3563,7 +4002,36 @@
 <TD>No</TD>
 </TR>
 <TR>
-<TD>yuccaCocktail</TD>
+<TD class="name CellWithComment">Yuca Tequila<span class="CellComment">
+										[Tequila]
+										 Might not cure you but give it a shot!</span>
+</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">6</TD>
+<TD class="integer">0</TD>
+<TD class="integer">25</TD>
+<TD class="integer">25</TD>
+<TD class="decimal">-0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">-25.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Yucca Cocktail<span class="CellComment">
+										[yuccaCocktail]
+										 Lorem ipsum dolor sit amet</span>
+</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
@@ -3576,6 +4044,58 @@
 <TD class="decimal">Only Wellness</TD>
 <TD>Dev</TD>
 <TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Yucca Fruit<span class="CellComment">
+										[foodYuccaFruit]
+										 Yucca fruit is edible and can be juiced to gain a bit of water. It is harvested from cacti and yucca plants.</span>
+</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>1</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD class="name CellWithComment">Yucca Juice<span class="CellComment">
+										[foodYuccaJuice]
+										 Yucca juice can cool you, hydrate you, and give you the stamina of a sexual tyrannosaurus. </span>
+</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
