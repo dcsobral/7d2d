@@ -1,0 +1,3590 @@
+
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/css/theme.blue.css">
+<STYLE>
+					td.integer { text-align: right; }
+					td.decimal { text-align: right; white-space: nowrap; }
+				
+					/* TABLE BACKGROUND color (match the original theme) */
+					table.hover-highlight td:before,
+					table.focus-highlight td:before {
+					  background: #fff;
+					}
+
+					/* ODD ZEBRA STRIPE color (needs zebra widget) */
+					.hover-highlight .odd td:before, .hover-highlight .odd th:before,
+					.focus-highlight .odd td:before, .focus-highlight .odd th:before {
+					  background: #ebf2fa;
+					}
+					/* EVEN ZEBRA STRIPE color (needs zebra widget) */
+					.hover-highlight .even td:before, .hover-highlight .even th:before,
+					.focus-highlight .even td:before, .focus-highlight .even th:before {
+					  background-color: #fff;
+					}
+
+					/* FOCUS ROW highlight color (touch devices) */
+					.focus-highlight td:focus::before, .focus-highlight th:focus::before {
+					  background-color: lightblue;
+					}
+					/* FOCUS COLUMN highlight color (touch devices) */
+					.focus-highlight td:focus::after, .focus-highlight th:focus::after {
+					  background-color: lightblue;
+					}
+					/* FOCUS CELL highlight color */
+					.focus-highlight th:focus, .focus-highlight td:focus,
+					.focus-highlight .even th:focus, .focus-highlight .even td:focus,
+					.focus-highlight .odd th:focus, .focus-highlight .odd td:focus {
+					  background-color: #d9d9d9;
+					  color: #333;
+					}
+
+					/* HOVER ROW highlight colors */
+					table.hover-highlight tbody > tr:hover > td, /* override tablesorter theme row hover */
+					table.hover-highlight tbody > tr.odd:hover > td,
+					table.hover-highlight tbody > tr.even:hover > td {
+					  background-color: #ffa;
+					}
+					/* HOVER COLUMN highlight colors */
+					.hover-highlight tbody tr td:hover::after,
+					.hover-highlight tbody tr th:hover::after {
+					  background-color: #ffa;
+					}
+
+					/* ************************************************* */
+					/* **** No need to modify the definitions below **** */
+					/* ************************************************* */
+					.focus-highlight td:focus::after, .focus-highlight th:focus::after,
+					.hover-highlight td:hover::after, .hover-highlight th:hover::after {
+					  content: '';
+					  position: absolute;
+					  width: 100%;
+					  height: 999em;
+					  left: 0;
+					  top: -555em;
+					  z-index: -1;
+					}
+					.focus-highlight td:focus::before, .focus-highlight th:focus::before {
+					  content: '';
+					  position: absolute;
+					  width: 999em;
+					  height: 100%;
+					  left: -555em;
+					  top: 0;
+					  z-index: -2;
+					}
+					/* required styles */
+					.hover-highlight,
+					.focus-highlight {
+					  overflow: hidden;
+					}
+					.hover-highlight td, .hover-highlight th,
+					.focus-highlight td, .focus-highlight th {
+					  position: relative;
+					  outline: 0;
+					}
+					/* override the tablesorter theme styling */
+					table.hover-highlight, table.hover-highlight tbody > tr > td,
+					table.focus-highlight, table.focus-highlight tbody > tr > td,
+					/* override zebra styling */
+					table.hover-highlight tbody tr.even > th,
+					table.hover-highlight tbody tr.even > td,
+					table.hover-highlight tbody tr.odd > th,
+					table.hover-highlight tbody tr.odd > td,
+					table.focus-highlight tbody tr.even > th,
+					table.focus-highlight tbody tr.even > td,
+					table.focus-highlight tbody tr.odd > th,
+					table.focus-highlight tbody tr.odd > td {
+					  background: transparent;
+					}
+					/* table background positioned under the highlight */
+					table.hover-highlight td:before,
+					table.focus-highlight td:before {
+					  content: '';
+					  position: absolute;
+					  width: 100%;
+					  height: 100%;
+					  left: 0;
+					  top: 0;
+					  z-index: -3;
+					}
+				</STYLE>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/js/jquery.tablesorter.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/js/jquery.tablesorter.widgets.min.js"></script><script>
+					$(function() {
+
+					  // Extend the themes to change any of the default class names
+					  $.extend($.tablesorter.themes.jui, {
+						table        : 'ui-widget ui-widget-content ui-corner-all',
+						caption      : 'ui-widget-content',
+						header       : 'ui-widget-header ui-corner-all ui-state-default',
+						sortNone     : '',
+						sortAsc      : '',
+						sortDesc     : '',
+						active       : 'ui-state-active',
+						hover        : 'ui-state-hover',
+						icons        : 'ui-icon',
+						iconSortNone : 'ui-icon-carat-2-n-s ui-icon-caret-2-n-s',
+						iconSortAsc  : 'ui-icon-carat-1-n ui-icon-caret-1-n',
+						iconSortDesc : 'ui-icon-carat-1-s ui-icon-caret-1-s',
+						filterRow    : '',
+						footerRow    : '',
+						footerCells  : '',
+						even         : 'ui-widget-content',
+						odd          : 'ui-state-default'
+					  });
+
+					  $("table").tablesorter({
+						theme : 'blue',
+						headerTemplate : '{content} {icon}',
+						widgets : ['filter', 'zebra'],
+						widgetOptions : {
+						  zebra   : ["even", "odd"],
+						}
+					  });
+					  
+						if ( $('.focus-highlight').length ) {
+							$('.focus-highlight').find('td, th')
+							  .attr('tabindex', '1')
+							  // add touch device support
+							  .on('touchstart', function() {
+								$(this).focus();
+							  });
+						}
+
+					});
+				</script>
+</HEAD>
+<BODY><TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Food and Drinks</CAPTION>
+<THEAD><TR>
+<TH>Item</TH>
+<TH>food</TH>
+<TH>gas</TH>
+<TH>health</TH>
+<TH>sickness</TH>
+<TH>stamina</TH>
+<TH>water</TH>
+<TH>wellness</TH>
+<TH>Harvested?</TH>
+<TH>Green Thumb Level</TH>
+<TH>Food per Wellness</TH>
+<TH>Creative Mode</TH>
+<TH>Hand</TH>
+<TH>chemistryStation</TH>
+<TH>BigCampFire</TH>
+<TH>Stoves</TH>
+<TH>campfire</TH>
+<TH>foodPrepTable</TH>
+<TH>bbqgrill</TH>
+<TH>mortarAndPestle</TH>
+<TH>woodenBarrels</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD>AdminFood</TD>
+<TD class="integer">80</TD>
+<TD class="integer">0</TD>
+<TD class="integer">80</TD>
+<TD class="integer">0</TD>
+<TD class="integer">80</TD>
+<TD class="integer">80</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>Dev</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Apple</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="decimal">0.07</TD>
+<TD>Yes</TD>
+<TD>4</TD>
+<TD class="decimal">29.8507</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>appleCider</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">25</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>applePie</TD>
+<TD class="integer">15</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">50.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bacon</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>baconAndEggs</TD>
+<TD class="integer">17</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">56.6667</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>baconEggSandwich</TD>
+<TD class="integer">25</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.40</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">62.5000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bagChips</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bagChipsHot</TD>
+<TD class="integer">7</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bakedPotato</TD>
+<TD class="integer">9</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">60.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>beer</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">-0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+</TR>
+<TR>
+<TD>blueberries</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>2</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>blueberryJam</TD>
+<TD class="integer">12</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">12</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>BlueberryPancakes</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.40</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">20.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>blueberryPie</TD>
+<TD class="integer">14</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">46.6667</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>BlueberryYogurt</TD>
+<TD class="integer">9</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">30.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>boiledMeat</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">33.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>boiledPasta</TD>
+<TD class="integer">15</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bottledRiverWater</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">5</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">-0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bottledWater</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bottleOfMurkyWater</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">5</TD>
+<TD class="integer">10</TD>
+<TD class="decimal">-0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bowlChili</TD>
+<TD class="integer">20</TD>
+<TD class="integer">30</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-10</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bowlMiso</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bowlMurkyWater</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">5</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">-0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bowlPasta</TD>
+<TD class="integer">14</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bowlRamenNoodles</TD>
+<TD class="integer">14</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bowlSoup</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bowlStock</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>bowlWater</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Bread</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">66.6667</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canBeef</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-10</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canBoiledWater</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canCatfood</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-2</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canChicken</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-10</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canChili</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canDogfood</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-2</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>candyBar</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canHam</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canLamb</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-10</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canMiso</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canMurkyWater</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">5</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">-0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canPasta</TD>
+<TD class="integer">7</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canPears</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canPeas</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canSalmon</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canSoup</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canStock</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>canTuna</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-2</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>carrot</TD>
+<TD class="integer">4</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>4</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>carrotCake</TD>
+<TD class="integer">20</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">66.6667</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>carrotJuise</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>charredMeat</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Cheese</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Cheeseburger</TD>
+<TD class="integer">28</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.60</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">46.6667</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>cherryJuice</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>coffee</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">100</TD>
+<TD class="integer">-10</TD>
+<TD class="decimal">-0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>corn</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>2</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>cornBread</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">33.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>cornbreadJam</TD>
+<TD class="integer">6</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">60.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>cornGrilled</TD>
+<TD class="integer">6</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">40.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>cornMeal</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-10</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>cornOnTheCob</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">33.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Crackers</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>CrackersAndCheese</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">53.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>creamedCorn</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">4</TD>
+<TD class="integer">10</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">13.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>cucumber</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>4</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>deerHead</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">-20</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">-1.00</TD>
+<TD>Yes</TD>
+<TD>N/A</TD>
+<TD class="decimal">-10.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Dough</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">-0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">-20.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>egg</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>eggboiled</TD>
+<TD class="integer">6</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">60.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>foodHoney</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">20.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>foodYuccaFruit</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>1</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>foodYuccaJuice</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>friedEggs</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">4</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">100.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>friedPotato</TD>
+<TD class="integer">12</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">80.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>goldenRodTea</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">40</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>grilledMeat</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-2</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">50.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>grillSteak</TD>
+<TD class="integer">23</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-2</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">115.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Hamburger</TD>
+<TD class="integer">28</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.50</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">56.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>hamSandwich</TD>
+<TD class="integer">12</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.40</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">30.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>hash</TD>
+<TD class="integer">14</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">70.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>honeyHam</TD>
+<TD class="integer">22</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.40</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">55.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>marinatedTomatoes</TD>
+<TD class="integer">12</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">4</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">120.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>mealBreakfast</TD>
+<TD class="integer">38</TD>
+<TD class="integer">0</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.70</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">54.2857</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>mealDinner</TD>
+<TD class="integer">40</TD>
+<TD class="integer">0</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.70</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">57.1429</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>meatStew</TD>
+<TD class="integer">30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="decimal">0.50</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">60.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>megaCrush</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">8</TD>
+<TD class="decimal">-0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>moldyBread</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">-1.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">-5.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>MRE</TD>
+<TD class="integer">70</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">233.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>mushroomGrilled</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">33.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>mushrooms</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>2</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Omelet</TD>
+<TD class="integer">21</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">105.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Pancakes</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">26.6667</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>pickles</TD>
+<TD class="integer">12</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="decimal">0.40</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">30.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Pizza</TD>
+<TD class="integer">28</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-2</TD>
+<TD class="decimal">0.80</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">35.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>potato</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>2</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>potatoChips</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>PurifiedWater</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">60</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>ramenNoodles</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.05</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">60.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>rawMeat</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">-0.50</TD>
+<TD>Yes</TD>
+<TD>N/A</TD>
+<TD class="decimal">-20.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>redTea</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">40</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>rottingFlesh</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">-20</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">-5.00</TD>
+<TD>Yes</TD>
+<TD>N/A</TD>
+<TD class="decimal">-2.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>rottingHarvest</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">-20</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">-1.00</TD>
+<TD>Yes</TD>
+<TD>N/A</TD>
+<TD class="decimal">-10.0000</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Rum</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">25</TD>
+<TD class="integer">5</TD>
+<TD class="decimal">-0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">-25.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>sauerkraut</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">33.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>scoobySnack</TD>
+<TD class="integer">4</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>scrambledEggs</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>shamSandwich</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">-0.15</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">-53.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>slicedCheese</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>slicedHam</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>slicedrawMeat</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>snoBalls</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>snowberryPlant</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>soda</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">10</TD>
+<TD class="integer">6</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>soupChicken</TD>
+<TD class="integer">14</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>soupChunkyBeef</TD>
+<TD class="integer">14</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>soupLamb</TD>
+<TD class="integer">14</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>soupMushroom</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">6</TD>
+<TD class="decimal">0.05</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">200.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>soupPea</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>SoyBeans</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>3</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>SoyMilk</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="integer">10</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Spaghetti</TD>
+<TD class="integer">28</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">0.70</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">40.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>steakSandwich</TD>
+<TD class="integer">25</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-1</TD>
+<TD class="decimal">0.50</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">50.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>stewChunkyMeat</TD>
+<TD class="integer">25</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">125.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>sugar</TD>
+<TD class="integer">-3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-8</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Tequila</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">6</TD>
+<TD class="integer">0</TD>
+<TD class="integer">25</TD>
+<TD class="integer">25</TD>
+<TD class="decimal">-0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">-25.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Tomato</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="decimal">0.00</TD>
+<TD>Yes</TD>
+<TD>3</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>tomatoJuice</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">15</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>tomatoSoup</TD>
+<TD class="integer">6</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="integer">2</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">30.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>tunaSandwich</TD>
+<TD class="integer">17</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">85.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>twinkies</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>vegetableJuice</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">15</TD>
+<TD class="integer">18</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>vegetableLunch</TD>
+<TD class="integer">12</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">10</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.25</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">48.0000</TD>
+<TD>All</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>vegetableStew</TD>
+<TD class="integer">10</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.30</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">33.3333</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>vinegar</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-30</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">N/A</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+</TR>
+<TR>
+<TD>Vodka</TD>
+<TD class="integer">6</TD>
+<TD class="integer">0</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="integer">45</TD>
+<TD class="integer">-5</TD>
+<TD class="decimal">-0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">-30.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>warmbowlChili</TD>
+<TD class="integer">23</TD>
+<TD class="integer">33</TD>
+<TD class="integer">13</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">-13</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">115.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>warmbowlMiso</TD>
+<TD class="integer">15</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.00</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Food</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>warmbowlPasta</TD>
+<TD class="integer">18</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">90.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>warmbowlSoup</TD>
+<TD class="integer">13</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">18</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">65.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>warmbowlStock</TD>
+<TD class="integer">13</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">18</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">65.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>warmsoupChicken</TD>
+<TD class="integer">15</TD>
+<TD class="integer">0</TD>
+<TD class="integer">25</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">75.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>warmsoupChunkyBeef</TD>
+<TD class="integer">15</TD>
+<TD class="integer">0</TD>
+<TD class="integer">23</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">6</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">75.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>warmsoupLamb</TD>
+<TD class="integer">15</TD>
+<TD class="integer">0</TD>
+<TD class="integer">13</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">5</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">75.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>warmsoupPea</TD>
+<TD class="integer">13</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">65.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Whiskey</TD>
+<TD class="integer">5</TD>
+<TD class="integer">0</TD>
+<TD class="integer">1</TD>
+<TD class="integer">0</TD>
+<TD class="integer">45</TD>
+<TD class="integer">8</TD>
+<TD class="decimal">-0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">-25.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>Yogurt</TD>
+<TD class="integer">8</TD>
+<TD class="integer">0</TD>
+<TD class="integer">3</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">2</TD>
+<TD class="decimal">0.20</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">40.0000</TD>
+<TD>All</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>Yes</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+<TR>
+<TD>yuccaCocktail</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">0</TD>
+<TD class="integer">40</TD>
+<TD class="integer">20</TD>
+<TD class="decimal">0.10</TD>
+<TD>No</TD>
+<TD>N/A</TD>
+<TD class="decimal">Only Wellness</TD>
+<TD>Dev</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+<TD>No</TD>
+</TR>
+</TBODY>
+</TABLE></BODY>
+</HTML>
