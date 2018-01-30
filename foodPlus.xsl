@@ -171,21 +171,45 @@
 	<xsl:variable name="gains">
 		<xsl:for-each select="//property[starts-with(@name,'Gain_') and count(. | key('property', @name)[1]) = 1]">
 			<xsl:sort select="@name"/>
-			<xsl:copy-of select="."/>
+			<xsl:variable name="name" select="substring-after(@name, '_')"/>
+			<xsl:element name="gainings">
+				<xsl:attribute name="name">
+					<xsl:value-of select="concat(translate(substring($name,1,1), $lowercase, $uppercase), substring($name, 2))"/>
+				</xsl:attribute>
+				<xsl:attribute name="desc">
+					<xsl:choose>
+						<xsl:when test="$name='food' or $name='water'">
+							Amount of <xsl:value-of select="$name"/> gained (72 <xsl:value-of select="$name"/> is 100%).
+						</xsl:when>
+						<xsl:otherwise>
+							Amount of <xsl:value-of select="$name"/> gained.
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
+			</xsl:element>
 		</xsl:for-each>
 	</xsl:variable>
 
 	<xsl:variable name="craftAreas" select="$recipes/recipes/recipe[@craft_area and count(. | key('craftArea', @craft_area)[1]) = 1]"/>
 	<xsl:variable name="foodCraftAreas">
 		<xsl:if test="$recipes/recipes/recipe[not(@craft_area) and my:isFood(@name)]">
-			<craftArea name="Hand"/>
+			<craftArea name="Hand" desc="Things crafted in your own inventory"/>
 		</xsl:if>
 		<xsl:for-each select="$craftAreas">
-			<xsl:sort select="@name"/>
+			<xsl:sort select="my:translate(@craft_area)"/>
 			<xsl:if test="key('craftArea', @craft_area)[my:isFood(@name)]">
 				<xsl:element name="craftArea">
 					<xsl:attribute name="name">
-						<xsl:value-of select="@craft_area"/>
+						<xsl:value-of select="my:translate(@craft_area)"/>
+					</xsl:attribute>
+
+					<xsl:variable name="craftAreaDesc" select="concat(@craft_area, 'Desc')"/>
+					<xsl:variable name="comment" select="my:translate($craftAreaDesc)"/>
+					<xsl:attribute name="desc">
+						[<xsl:value-of select="@craft_area"/>]
+						<xsl:if test="not($comment=$craftAreaDesc)">
+							<xsl:text> </xsl:text><xsl:value-of select="str:replace($comment, '\n', '&lt;br/>')" disable-output-escaping="yes"/>
+						</xsl:if>
 					</xsl:attribute>
 				</xsl:element>
 			</xsl:if>
@@ -194,10 +218,10 @@
 
 	<xsl:variable name="otherFields">
 		<!--<x name="Crafted?"/>-->
-		<x name="Harvested?"/>
-		<x name="Green Thumb Level"/>
-		<x name="Food per Wellness"/>
-		<x name="Creative Mode"/>
+		<x name="Harvested?" desc="Plants, animal products, minerals."/>
+		<x name="Green Thumb Level" desc="Green Thumb level required to make seeds for it."/>
+		<x name="Food per Wellness" desc="Food gained per wellness point."/>
+		<x name="Creative Mode" desc="Where it appears on the creative menu."/>
 	</xsl:variable>
 
 	<xsl:variable name="fields" select="exslt:node-set($gains)/*|exslt:node-set($otherFields)/*|exslt:node-set($foodCraftAreas)/*"/>
@@ -410,27 +434,12 @@
 						<TR>
 							<TH>Item</TH>
 							<xsl:for-each select="$fields">
-								<xsl:variable name="field" select="@name"/>
-								<xsl:choose>
-									<xsl:when test="contains($field, '_')">
-										<TH>
-											<xsl:value-of select="substring-after($field, '_')"/>
-										</TH>
-									</xsl:when>
-									<xsl:otherwise>
-										<xsl:variable name="fieldDesc" select="concat($field, 'Desc')"/>
-										<xsl:variable name="comment" select="my:translate($fieldDesc)"/>
-										<TH class="name CellWithComment">
-											<xsl:value-of select="my:translate($field)"/>
-											<span class="CellComment">
-												[<xsl:value-of select="$field"/>]
-												<xsl:if test="not($comment=$fieldDesc)">
-												<xsl:text> </xsl:text><xsl:value-of select="str:replace($comment, '\n', '&lt;br/>')" disable-output-escaping="yes"/>
-												</xsl:if>
-											</span>
-										</TH>
-									</xsl:otherwise>
-								</xsl:choose>
+								<TH class="name CellWithComment">
+									<xsl:value-of select="@name"/>
+									<span class="CellComment">
+										<xsl:value-of select="@desc" disable-output-escaping="yes"/>
+									</span>
+								</TH>
 							</xsl:for-each>
 						</TR>
 					</THEAD>

@@ -6,7 +6,7 @@ a collection, once I put other stuff here!
 For now:
 
 * [Ravenhearst's Food&Drinks Table](food.html) - A nice interactive table, generated from 7d2d's XML by
-* [Food&Drinks Table Generator](foodPlus.xsl) - An XSLT that generates the above table automatically from items.xml
+* [Food&Drinks Table Generator](https://github.com/dcsobral/7d2d/tree/master/7d2d/foodPlus.xsl) - An XSLT that generates the above table automatically from items.xml
 * [Medieval Tower Prefab](https://github.com/dcsobral/7d2d/tree/master/7d2d/Mods/Prefabs/xcostum_medieval_tower/) - A prefab for 7d2d; better grab it from git
 
 All XSLTs provided are XSLT 1.0 with EXSLT extensions (such as provided by libxml2 or xmlstarlet). They should be run
