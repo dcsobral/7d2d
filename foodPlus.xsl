@@ -4,8 +4,11 @@
 				xmlns:math="http://exslt.org/math"
 				xmlns:dyn="http://exslt.org/dynamic"
 				xmlns:func="http://exslt.org/functions"
+				xmlns:str="http://exslt.org/strings"
 				xmlns:my="http://www.w3.org/2001/XMLSchema"
-                version="1.0" extension-element-prefixes="exslt math dyn my func">
+                version="1.0" extension-element-prefixes="exslt math dyn my func str">
+				
+	<xsl:param name="language" select="'NONE'"/>
 	<xsl:output method="html" omit-xml-declaration="yes" indent="yes"/>
 	<xsl:strip-space elements="*"/>
 
@@ -133,12 +136,31 @@
 		<xsl:param name="text"/>
 		<func:result select="translate($text, $uppercase, $lowercase)"/>
 	</func:function>
+	
+	<func:function name="my:translate">
+		<xsl:param name="key"/>
+		<func:result>
+			<xsl:variable name="translations" select="$localization/records/record[Key/text()=$key]"/>
+			<xsl:variable name="query" select="concat('$translations/', $language, '/text()')"/>
+			<xsl:variable name="translation" select="dyn:evaluate($query)"/>
+			<xsl:choose>
+				<xsl:when test="$translation">
+					<xsl:value-of select="$translation"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$key"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</func:result>
+	</func:function>
 
 	<!-- Input files -->
 	<xsl:variable name="items" select="document('items.xml')"/>
 	<xsl:variable name="recipes" select="document('recipes.xml')"/>
 	<xsl:variable name="blocks" select="document('blocks.xml')"/>
 	<xsl:variable name="progression" select="document('progression.xml')"/>
+	<!-- Remove need for this var! -->
+	<xsl:variable name="localization" select="document('Localization.xml')"/>
 	<xsl:variable name="foods" select="$items/items/item[my:group(.)='Food/Cooking' and my:canBeEaten(.)]"/>
 	<xsl:variable name="harvest" select="$blocks//drop[@event='Harvest']|document('entityclasses.xml')//drop[@event='Harvest']"/>
     <xsl:variable name="greenThumb" select="$progression//perk[@name='Green Thumb']/recipe"/>
@@ -185,8 +207,46 @@
 			<HEAD>
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/css/theme.blue.css"/>
 				<STYLE>
+					.CellWithComment{
+						position:relative;
+					}
+
+					.CellComment{
+						display:none;
+						position:absolute; 
+						z-index:100;
+						border:1px;
+						background-color: black;
+						color: #fff;
+						border-style:solid;
+						border-width:1px;
+						border-color:#fff;
+						padding:3px;
+						top: 100%;
+						left:20px;
+						opacity: 0;
+						transition: opacity 1s;
+					}
+
+					.CellWithComment:hover span.CellComment{
+						display:block;
+						opacity: 1;
+					}
+					
+					.CellComment::after {
+						content: " ";
+						position: absolute;
+						bottom: 100%;  /* At the top of the tooltip */
+						left: 20px;
+						margin-left: -5px;
+						border-width: 5px;
+						border-style: solid;
+						border-color: transparent transparent black transparent;
+					}
+					
 					td.integer { text-align: right; }
 					td.decimal { text-align: right; white-space: nowrap; }
+					td.name { text-align: left; white-space: nowrap; }
 				
 					/* TABLE BACKGROUND color (match the original theme) */
 					table.hover-highlight td:before,
@@ -345,17 +405,30 @@
 			</HEAD>
 			<BODY>
 				<TABLE class="tablesorter hover-highlight focus-highlight">
-					<CAPTION>Food and Drinks</CAPTION>
+					<CAPTION>Food and Drinks (<a href="foodPlus.xsl" target="_blank">xslt</a>)</CAPTION>
 					<THEAD>
 						<TR>
 							<TH>Item</TH>
 							<xsl:for-each select="$fields">
+								<xsl:variable name="field" select="@name"/>
 								<xsl:choose>
-									<xsl:when test="contains(@name, '_')">
-										<TH><xsl:value-of select="substring-after(@name, '_')"/></TH>
+									<xsl:when test="contains($field, '_')">
+										<TH>
+											<xsl:value-of select="substring-after($field, '_')"/>
+										</TH>
 									</xsl:when>
 									<xsl:otherwise>
-										<TH><xsl:value-of select="@name"/></TH>
+										<xsl:variable name="fieldDesc" select="concat($field, 'Desc')"/>
+										<xsl:variable name="comment" select="my:translate($fieldDesc)"/>
+										<TH class="name CellWithComment">
+											<xsl:value-of select="my:translate($field)"/>
+											<span class="CellComment">
+												[<xsl:value-of select="$field"/>]
+												<xsl:if test="not($comment=$fieldDesc)">
+												<xsl:text> </xsl:text><xsl:value-of select="str:replace($comment, '\n', '&lt;br/>')" disable-output-escaping="yes"/>
+												</xsl:if>
+											</span>
+										</TH>
 									</xsl:otherwise>
 								</xsl:choose>
 							</xsl:for-each>
@@ -363,11 +436,21 @@
 					</THEAD>
 					<TBODY>
 						<xsl:for-each select="$foods">
-							<xsl:sort select="my:tolower(@name)"/>
+							<xsl:sort select="my:tolower(my:translate(@name))"/>
 							<xsl:variable name="this" select="."/>
 							<TR>
 								<!-- Name -->
-								<TD><xsl:value-of select="@name"/></TD>
+								<xsl:variable name="nameDesc" select="concat(@name, 'Desc')"/>
+								<xsl:variable name="comment" select="my:translate($nameDesc)"/>
+								<TD class="name CellWithComment">
+									<xsl:value-of select="my:translate(@name)"/>
+									<span class="CellComment">
+										[<xsl:value-of select="@name"/>]
+										<xsl:if test="not($comment=$nameDesc)">
+										<xsl:text> </xsl:text><xsl:value-of select="str:replace($comment, '\n', '&lt;br/>')" disable-output-escaping="yes"/>
+										</xsl:if>
+									</span>
+								</TD>
 								
 								<!-- Gain_* -->
 								<xsl:for-each select="exslt:node-set($gains)/*">
