@@ -150,8 +150,8 @@
 					  background-color: #ffa;
 					}
 					/* HOVER COLUMN highlight colors */
-					.hover-highlight tbody tr td:hover::after,
-					.hover-highlight tbody tr th:hover::after {
+					.hover-highlight tbody tr td:not(:first-child):hover::after,
+					.hover-highlight thead tr th:not(:first-child):hover::after {
 					  background-color: #ffa;
 					}
 
