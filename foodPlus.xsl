@@ -343,6 +343,39 @@
 						border-color: transparent transparent black transparent;
 					}
 					
+					.CellComment-last {
+						display:none;
+						position:absolute; 
+						z-index:100;
+						border:1px;
+						background-color: black;
+						color: #fff;
+						border-style:solid;
+						border-width:1px;
+						border-color:#fff;
+						padding:3px;
+						bottom: 100%;
+						left:20px;
+						opacity: 0;
+						transition: opacity 1s;
+					}
+
+					.CellWithComment:hover div.CellComment-last {
+						display:block;
+						opacity: 1;
+					}
+					
+					.CellComment-last::after {
+						content: " ";
+						position: absolute;
+						top: 100%;  /* At the bottom of the tooltip */
+						left: 20px;
+						margin-left: -5px;
+						border-width: 5px;
+						border-style: solid;
+						border-color: transparent transparent black transparent;
+					}
+					
 					.dialog {
 						display:none;
 					}
@@ -539,11 +572,12 @@
 			</HEAD>
 			<BODY>
 				<TABLE class="tablesorter hover-highlight focus-highlight">
-					<CAPTION>Food and Drinks (<a href="foodPlus.xsl" target="_blank">xslt</a>)</CAPTION>
+					<CAPTION>Food and Drinks (<a href="https://github.com/dcsobral/7d2d/blob/master/foodPlus.xsl" target="_blank">xslt</a>)</CAPTION>
 					<THEAD>
 						<TR>
 							<TH>Item</TH>
 							<xsl:for-each select="$fields">
+								<!-- Add a style for the comment of the last field in the header -->
 								<xsl:choose>
 									<xsl:when test="@name='Creative Mode'">
 										<TH class="name CellWithComment" data-value="All|Player">
@@ -586,12 +620,24 @@
 								<xsl:variable name="comment" select="my:translate($descriptionKey)"/>
 								<TD class="name CellWithComment">
 									<xsl:value-of select="my:translate(@name)"/>
-									<div class="CellComment">
-										<xsl:text>[</xsl:text><xsl:value-of select="@name"/><xsl:text>]</xsl:text>
-										<xsl:if test="not($descriptionKey='No Description') and not ($comment=$descriptionKey)">
-										<xsl:text> </xsl:text><xsl:value-of select="str:replace($comment, '\n', '&lt;br/>')" disable-output-escaping="yes"/>
-										</xsl:if>
-									</div>
+									<xsl:choose>
+										<xsl:when test="position()=last()">
+											<div class="CellComment-last">
+												<xsl:text>[</xsl:text><xsl:value-of select="@name"/><xsl:text>]</xsl:text>
+												<xsl:if test="not($descriptionKey='No Description') and not ($comment=$descriptionKey)">
+												<xsl:text> </xsl:text><xsl:value-of select="str:replace($comment, '\n', '&lt;br/>')" disable-output-escaping="yes"/>
+												</xsl:if>
+											</div>
+										</xsl:when>
+										<xsl:otherwise>
+											<div class="CellComment">
+												<xsl:text>[</xsl:text><xsl:value-of select="@name"/><xsl:text>]</xsl:text>
+												<xsl:if test="not($descriptionKey='No Description') and not ($comment=$descriptionKey)">
+												<xsl:text> </xsl:text><xsl:value-of select="str:replace($comment, '\n', '&lt;br/>')" disable-output-escaping="yes"/>
+												</xsl:if>
+											</div>
+										</xsl:otherwise>
+									</xsl:choose>
 								</TD>
 								
 								<!-- Gain_* -->
