@@ -274,7 +274,7 @@
 	<xsl:template match="/">
 		<HTML>
 			<HEAD>
-				<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/cupertino/jquery-ui.css" type="text/css"/>
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.min.css" type="text/css"/>
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/css/theme.blue.css" type="text/css"/>
 				<STYLE>
 				    .tablesorter-blue-header {
