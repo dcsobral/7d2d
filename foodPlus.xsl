@@ -221,7 +221,7 @@
 		<x name="Harvested?" desc="Plants, animal products, minerals."/>
 		<x name="Green Thumb Level" desc="Green Thumb level required to make seeds for it."/>
 		<x name="Food per Wellness" desc="Food gained per wellness point."/>
-		<x name="Creative Mode" desc="Where it appears on the creative menu."/>
+		<x name="Creative Mode" desc="Where it appears on the creative menu.&lt;BR/>Options are All, Player, Dev and None."/>
 	</xsl:variable>
 
 	<xsl:variable name="fields" select="exslt:node-set($gains)/*|exslt:node-set($otherFields)/*|exslt:node-set($foodCraftAreas)/*"/>
@@ -409,8 +409,9 @@
 					  $("table").tablesorter({
 						theme : 'blue',
 						headerTemplate : '{content} {icon}',
-						widgets : ['filter', 'zebra'],
+						widgets : ['filter', 'zebra', 'stickyHeaders'],
 						widgetOptions : {
+						  filter_defaultAttrib : 'data-value',
 						  zebra   : ["even", "odd"],
 						}
 					  });
@@ -425,6 +426,8 @@
 						}
 
 					});
+					
+					$('table').stickyTableHeaders();
 				</script>
 			</HEAD>
 			<BODY>
@@ -434,12 +437,24 @@
 						<TR>
 							<TH>Item</TH>
 							<xsl:for-each select="$fields">
-								<TH class="name CellWithComment">
-									<xsl:value-of select="@name"/>
-									<span class="CellComment">
-										<xsl:value-of select="@desc" disable-output-escaping="yes"/>
-									</span>
-								</TH>
+								<xsl:choose>
+									<xsl:when test="@name='Creative Mode'">
+										<TH class="name CellWithComment" data-value="All|Player">
+											<xsl:value-of select="@name"/>
+											<span class="CellComment">
+												<xsl:value-of select="@desc" disable-output-escaping="yes"/>
+											</span>
+										</TH>
+									</xsl:when>
+									<xsl:otherwise>
+										<TH class="name CellWithComment">
+											<xsl:value-of select="@name"/>
+											<span class="CellComment">
+												<xsl:value-of select="@desc" disable-output-escaping="yes"/>
+											</span>
+										</TH>
+									</xsl:otherwise>
+								</xsl:choose>
 							</xsl:for-each>
 						</TR>
 					</THEAD>

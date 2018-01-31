@@ -174,8 +174,9 @@
 					  $("table").tablesorter({
 						theme : 'blue',
 						headerTemplate : '{content} {icon}',
-						widgets : ['filter', 'zebra'],
+						widgets : ['filter', 'zebra', 'stickyHeaders'],
 						widgetOptions : {
+						  filter_defaultAttrib : 'data-value',
 						  zebra   : ["even", "odd"],
 						}
 					  });
@@ -190,6 +191,8 @@
 						}
 
 					});
+					
+					$('table').stickyTableHeaders();
 				</script>
 </HEAD>
 <BODY><TABLE class="tablesorter hover-highlight focus-highlight">
@@ -230,7 +233,7 @@
 </TH>
 <TH class="name CellWithComment">Food per Wellness<span class="CellComment">Food gained per wellness point.</span>
 </TH>
-<TH class="name CellWithComment">Creative Mode<span class="CellComment">Where it appears on the creative menu.</span>
+<TH class="name CellWithComment" data-value="All|Player">Creative Mode<span class="CellComment">Where it appears on the creative menu.<BR/>Options are All, Player, Dev and None.</span>
 </TH>
 <TH class="name CellWithComment">Hand<span class="CellComment">Things crafted in your own inventory</span>
 </TH>
