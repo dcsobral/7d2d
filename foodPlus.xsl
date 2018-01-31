@@ -176,6 +176,9 @@
 				<xsl:attribute name="name">
 					<xsl:value-of select="concat(translate(substring($name,1,1), $lowercase, $uppercase), substring($name, 2))"/>
 				</xsl:attribute>
+				<xsl:attribute name="key">
+					<xsl:value-of select="@name"/>
+				</xsl:attribute>
 				<xsl:attribute name="desc">
 					<xsl:choose>
 						<xsl:when test="$name='food' or $name='water'">
@@ -202,6 +205,9 @@
 					<xsl:attribute name="name">
 						<xsl:value-of select="my:translate(@craft_area)"/>
 					</xsl:attribute>
+					<xsl:attribute name="key">
+						<xsl:value-of select="@craft_area"/>
+					</xsl:attribute>
 
 					<xsl:variable name="craftAreaDesc" select="concat(@craft_area, 'Desc')"/>
 					<xsl:variable name="comment" select="my:translate($craftAreaDesc)"/>
@@ -211,6 +217,9 @@
 							<xsl:text> </xsl:text><xsl:value-of select="str:replace($comment, '\n', '&lt;br/>')" disable-output-escaping="yes"/>
 						</xsl:if>
 					</xsl:attribute>
+					<xsl:attribute name="class">
+						<xsl:text>filter-select</xsl:text>
+					</xsl:attribute>
 				</xsl:element>
 			</xsl:if>
 		</xsl:for-each>
@@ -218,9 +227,9 @@
 
 	<xsl:variable name="otherFields">
 		<!--<x name="Crafted?"/>-->
-		<x name="Harvested?" desc="Plants, animal products, minerals."/>
-		<x name="Green Thumb Level" desc="Green Thumb level required to make seeds for it."/>
-		<x name="Food per Wellness" desc="Food gained per wellness point."/>
+		<x name="Harvested?" desc="Plants, animal products, minerals." class="filter-select"/>
+		<x name="Green Thumb Level" desc="Green Thumb level required to make seeds for it." class="mixed"/>
+		<x name="Wellness Efficiency" desc="Measure of how much wellness is gained by unit of food or water. The smaller the value, the more you gain wellness before being &quot;full&quot;. Only computed for positive wellness." class="mixed"/>
 		<x name="Creative Mode" desc="Where it appears on the creative menu.&lt;BR/>Options are All, Player, Dev and None."/>
 	</xsl:variable>
 
@@ -413,6 +422,12 @@
 						widgetOptions : {
 						  filter_defaultAttrib : 'data-value',
 						  zebra   : ["even", "odd"],
+						  filter_functions: {
+							".mixed" : {
+								"Present"      : function(e, n, f, i, $r, c, data) { return !isNaN(e); },
+								"N/A"          : function(e, n, f, i, $r, c, data) { return isNaN(e); },
+							},
+						  },
 						}
 					  });
 					  
@@ -426,8 +441,6 @@
 						}
 
 					});
-					
-					$('table').stickyTableHeaders();
 				</script>
 			</HEAD>
 			<BODY>
@@ -440,6 +453,17 @@
 								<xsl:choose>
 									<xsl:when test="@name='Creative Mode'">
 										<TH class="name CellWithComment" data-value="All|Player">
+											<xsl:value-of select="@name"/>
+											<span class="CellComment">
+												<xsl:value-of select="@desc" disable-output-escaping="yes"/>
+											</span>
+										</TH>
+									</xsl:when>
+									<xsl:when test="@class">
+										<TH>
+											<xsl:attribute name="class">
+												<xsl:value-of select="concat('name CellWithComment ', @class)"/>
+											</xsl:attribute>
 											<xsl:value-of select="@name"/>
 											<span class="CellComment">
 												<xsl:value-of select="@desc" disable-output-escaping="yes"/>
@@ -478,9 +502,9 @@
 								
 								<!-- Gain_* -->
 								<xsl:for-each select="exslt:node-set($gains)/*">
-									<xsl:variable name="gain" select="my:getGain($this, concat('Gain_', my:tolower(@name)))"/>
+									<xsl:variable name="gain" select="my:getGain($this, @key)"/>
 									<xsl:choose>
-										<xsl:when test="@name='Gain_wellness'">
+										<xsl:when test="@name='Wellness'">
 											<TD class="decimal"><xsl:value-of select="format-number($gain, '0.00')"/></TD>
 										</xsl:when>
 										<xsl:otherwise>
@@ -530,19 +554,15 @@
 								<!-- Food/Wellness -->
 								<TD class="decimal">
 									<xsl:variable name="food" select="my:getGain($this, 'Gain_food')"/>
+									<xsl:variable name="water" select="my:getGain($this, 'Gain_water')"/>
+									<xsl:variable name="dividend" select="math:max(str:tokenize(concat($food, ' ', $water)))"/>
 									<xsl:variable name="wellness" select="my:getGain($this, 'Gain_wellness')"/>
 									<xsl:choose>
-										<xsl:when test="$food=0 and $wellness=0">
-											<xsl:text>N/A</xsl:text>
-										</xsl:when>
-										<xsl:when test="$food=0">
-											<xsl:text>Only Wellness</xsl:text>
-										</xsl:when>
-										<xsl:when test="$wellness=0">
-											<xsl:text>Only Food</xsl:text>
+										<xsl:when test="$wellness>0">
+											<xsl:value-of select="format-number($dividend div $wellness, '0.00')"/>
 										</xsl:when>
 										<xsl:otherwise>
-											<xsl:value-of select="format-number($food div $wellness, '0.0000')"/>
+											<xsl:text>N/A</xsl:text>
 										</xsl:otherwise>
 									</xsl:choose>
 								</TD>
@@ -554,7 +574,7 @@
 								
 								<!-- Craft areas -->
 								<xsl:for-each select="exslt:node-set($foodCraftAreas)/*">
-									<xsl:variable name="craftArea" select="@name"/>
+									<xsl:variable name="craftArea" select="@key"/>
 									<xsl:for-each select="$recipes">
 										<TD>
 											<xsl:choose>

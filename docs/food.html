@@ -178,6 +178,12 @@
 						widgetOptions : {
 						  filter_defaultAttrib : 'data-value',
 						  zebra   : ["even", "odd"],
+						  filter_functions: {
+							".mixed" : {
+								"Present"      : function(e, n, f, i, $r, c, data) { return !isNaN(e); },
+								"N/A"          : function(e, n, f, i, $r, c, data) { return isNaN(e); },
+							},
+						  },
 						}
 					  });
 					  
@@ -191,8 +197,6 @@
 						}
 
 					});
-					
-					$('table').stickyTableHeaders();
 				</script>
 </HEAD>
 <BODY><TABLE class="tablesorter hover-highlight focus-highlight">
@@ -227,45 +231,45 @@
 							Amount of wellness gained.
 						</span>
 </TH>
-<TH class="name CellWithComment">Harvested?<span class="CellComment">Plants, animal products, minerals.</span>
+<TH class="name CellWithComment filter-select">Harvested?<span class="CellComment">Plants, animal products, minerals.</span>
 </TH>
-<TH class="name CellWithComment">Green Thumb Level<span class="CellComment">Green Thumb level required to make seeds for it.</span>
+<TH class="name CellWithComment mixed">Green Thumb Level<span class="CellComment">Green Thumb level required to make seeds for it.</span>
 </TH>
-<TH class="name CellWithComment">Food per Wellness<span class="CellComment">Food gained per wellness point.</span>
+<TH class="name CellWithComment mixed">Wellness Efficiency<span class="CellComment">Measure of how much wellness is gained by unit of food or water. The smaller the value, the more you gain wellness before being "full". Only computed for positive wellness.</span>
 </TH>
 <TH class="name CellWithComment" data-value="All|Player">Creative Mode<span class="CellComment">Where it appears on the creative menu.<BR/>Options are All, Player, Dev and None.</span>
 </TH>
 <TH class="name CellWithComment">Hand<span class="CellComment">Things crafted in your own inventory</span>
 </TH>
-<TH class="name CellWithComment">Advanced Campfire<span class="CellComment">
+<TH class="name CellWithComment filter-select">Advanced Campfire<span class="CellComment">
 						[BigCampFire]
 						 This campfire is better built and can cook many more recipes than the smaller campfire</span>
 </TH>
-<TH class="name CellWithComment">Barbecue Grill<span class="CellComment">
+<TH class="name CellWithComment filter-select">Barbecue Grill<span class="CellComment">
 						[bbqgrill]
 						 Just like those down home cookouts you and the boys used to have minus the boys.</span>
 </TH>
-<TH class="name CellWithComment">Campfire<span class="CellComment">
+<TH class="name CellWithComment filter-select">Campfire<span class="CellComment">
 						[campfire]
 						 Useful to cook food and warm up. Unlock more recipes by adding a cooking pot, cooking grill or beaker.</span>
 </TH>
-<TH class="name CellWithComment">Chemistry Station<span class="CellComment">
+<TH class="name CellWithComment filter-select">Chemistry Station<span class="CellComment">
 						[chemistryStation]
 						 With the proper equipment you can work far more efficiently than on a campfire.<br/> [ Crafted in Advanced Workbench. ]</span>
 </TH>
-<TH class="name CellWithComment">Fermenting Barrel<span class="CellComment">
+<TH class="name CellWithComment filter-select">Fermenting Barrel<span class="CellComment">
 						[woodenBarrels]
 						 Used in the production of alcohol and fertilizer.<br/> [ Crafted in Advanced Workbench. ]</span>
 </TH>
-<TH class="name CellWithComment">Food Prep Table<span class="CellComment">
+<TH class="name CellWithComment filter-select">Food Prep Table<span class="CellComment">
 						[foodPrepTable]
 						 This table can be used to prepare certain types of food</span>
 </TH>
-<TH class="name CellWithComment">Mortar and Pestle<span class="CellComment">
+<TH class="name CellWithComment filter-select">Mortar and Pestle<span class="CellComment">
 						[mortarAndPestle]
 						 A mashing tool that is perfect for creating seeds and other dry items.<br/> [ Crafted in Forge and Advanced Forge. ]</span>
 </TH>
-<TH class="name CellWithComment">Stoves<span class="CellComment">
+<TH class="name CellWithComment filter-select">Stoves<span class="CellComment">
 						[Stoves]
 						</span>
 </TH>
@@ -282,10 +286,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">80</TD>
 <TD class="integer">80</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>Dev</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -308,10 +312,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">1</TD>
-<TD class="integer">0.067</TD>
+<TD class="decimal">0.07</TD>
 <TD>Yes</TD>
 <TD>4</TD>
-<TD class="decimal">29.8507</TD>
+<TD class="decimal">29.85</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -334,12 +338,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">20</TD>
 <TD class="integer">25</TD>
-<TD class="integer">0.15</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">166.67</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -360,10 +364,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.3</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">50.0000</TD>
+<TD class="decimal">50.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -386,13 +390,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -412,10 +416,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.3</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">56.6667</TD>
+<TD class="decimal">56.67</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -423,7 +427,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -438,10 +442,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.4</TD>
+<TD class="decimal">0.40</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">62.5000</TD>
+<TD class="decimal">62.50</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -449,7 +453,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -464,10 +468,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -490,10 +494,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -516,13 +520,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.15</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">60.0000</TD>
+<TD class="decimal">60.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -542,17 +546,17 @@
 <TD class="integer">0</TD>
 <TD class="integer">5</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">-0.1</TD>
+<TD class="decimal">-0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -568,10 +572,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>Yes</TD>
 <TD>2</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -594,10 +598,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.4</TD>
+<TD class="decimal">0.40</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">20.0000</TD>
+<TD class="decimal">20.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -620,10 +624,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.3</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">46.6667</TD>
+<TD class="decimal">46.67</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -646,10 +650,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">25</TD>
 <TD class="integer">5</TD>
-<TD class="integer">-0.2</TD>
+<TD class="decimal">-0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">-25.0000</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -672,10 +676,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
-<TD class="integer">0.3</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">30.0000</TD>
+<TD class="decimal">30.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -698,10 +702,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">20</TD>
 <TD class="integer">12</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -710,7 +714,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 </TR>
 <TR>
@@ -724,13 +728,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.1</TD>
+<TD class="decimal">0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">60.0000</TD>
+<TD class="decimal">60.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -750,13 +754,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.3</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">33.3333</TD>
+<TD class="decimal">33.33</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -776,10 +780,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -802,15 +806,15 @@
 <TD class="integer">0</TD>
 <TD class="integer">20</TD>
 <TD class="integer">20</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
 <TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -828,13 +832,13 @@
 <TD class="integer">15</TD>
 <TD class="integer">5</TD>
 <TD class="integer">15</TD>
-<TD class="integer">-0.1</TD>
+<TD class="decimal">-0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -854,13 +858,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">20</TD>
 <TD class="integer">20</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
 <TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
 <TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -880,12 +884,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-10</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -906,10 +910,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">20</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -932,13 +936,13 @@
 <TD class="integer">15</TD>
 <TD class="integer">5</TD>
 <TD class="integer">15</TD>
-<TD class="integer">-0.1</TD>
+<TD class="decimal">-0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -958,12 +962,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -984,13 +988,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1010,12 +1014,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">20</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1036,12 +1040,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">20</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1062,13 +1066,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">20</TD>
 <TD class="integer">20</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
 <TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
 <TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1088,13 +1092,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.15</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">66.6667</TD>
+<TD class="decimal">66.67</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1114,13 +1118,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.7</TD>
+<TD class="decimal">0.70</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">54.2857</TD>
+<TD class="decimal">54.29</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1140,10 +1144,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-2</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1166,10 +1170,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1192,10 +1196,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-2</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1218,10 +1222,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1244,10 +1248,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1270,15 +1274,15 @@
 <TD class="integer">15</TD>
 <TD class="integer">5</TD>
 <TD class="integer">15</TD>
-<TD class="integer">-0.15</TD>
+<TD class="decimal">-0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1296,10 +1300,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1322,10 +1326,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1348,10 +1352,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1374,10 +1378,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1400,7 +1404,7 @@
 <TD class="integer">0</TD>
 <TD class="integer">10</TD>
 <TD class="integer">6</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
 <TD class="decimal">N/A</TD>
@@ -1426,10 +1430,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1452,10 +1456,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-2</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1478,10 +1482,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>Yes</TD>
 <TD>4</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1504,10 +1508,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">0.3</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">66.6667</TD>
+<TD class="decimal">66.67</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1530,10 +1534,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">15</TD>
 <TD class="integer">15</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">75.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1556,15 +1560,15 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1582,13 +1586,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1608,13 +1612,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-1</TD>
-<TD class="integer">0.6</TD>
+<TD class="decimal">0.60</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">46.6667</TD>
+<TD class="decimal">46.67</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1634,10 +1638,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">15</TD>
 <TD class="integer">15</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">75.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1660,10 +1664,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-10</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1686,10 +1690,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1712,12 +1716,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1738,12 +1742,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1764,13 +1768,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">5</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">125.0000</TD>
+<TD class="decimal">125.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1790,13 +1794,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">100</TD>
 <TD class="integer">-10</TD>
-<TD class="integer">-0.1</TD>
+<TD class="decimal">-0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1816,13 +1820,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.15</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">33.3333</TD>
+<TD class="decimal">33.33</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1842,10 +1846,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-10</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1854,7 +1858,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 </TR>
 <TR>
@@ -1868,13 +1872,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">2</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.15</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">33.3333</TD>
+<TD class="decimal">33.33</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1894,10 +1898,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">45</TD>
 <TD class="integer">8</TD>
-<TD class="integer">-0.2</TD>
+<TD class="decimal">-0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">-25.0000</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1920,10 +1924,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.1</TD>
+<TD class="decimal">0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">60.0000</TD>
+<TD class="decimal">60.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1931,7 +1935,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -1946,13 +1950,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-1</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1972,10 +1976,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-1</TD>
-<TD class="integer">0.15</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">53.3333</TD>
+<TD class="decimal">53.33</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -1983,7 +1987,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -1998,13 +2002,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">4</TD>
 <TD class="integer">10</TD>
-<TD class="integer">0.15</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">13.3333</TD>
+<TD class="decimal">66.67</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2024,10 +2028,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>Yes</TD>
 <TD>4</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2050,10 +2054,10 @@
 <TD class="integer">30</TD>
 <TD class="integer">-20</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">-1</TD>
+<TD class="decimal">-1.00</TD>
 <TD>Yes</TD>
 <TD>N/A</TD>
-<TD class="decimal">-10.0000</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2076,13 +2080,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.7</TD>
+<TD class="decimal">0.70</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">57.1429</TD>
+<TD class="decimal">57.14</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2102,10 +2106,10 @@
 <TD class="integer">15</TD>
 <TD class="integer">5</TD>
 <TD class="integer">10</TD>
-<TD class="integer">-0.1</TD>
+<TD class="decimal">-0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2128,10 +2132,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">-0.1</TD>
+<TD class="decimal">-0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">-20.0000</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2139,7 +2143,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -2154,10 +2158,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>Yes</TD>
 <TD>2</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2180,10 +2184,10 @@
 <TD class="integer">30</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2206,10 +2210,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2232,10 +2236,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-1</TD>
-<TD class="integer">0.1</TD>
+<TD class="decimal">0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">100.0000</TD>
+<TD class="decimal">100.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2258,10 +2262,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-1</TD>
-<TD class="integer">0.15</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">80.0000</TD>
+<TD class="decimal">80.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2284,13 +2288,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">40</TD>
 <TD class="integer">20</TD>
-<TD class="integer">0.1</TD>
+<TD class="decimal">0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">200.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2310,14 +2314,14 @@
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.15</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">40.0000</TD>
+<TD class="decimal">40.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2336,14 +2340,14 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-2</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">50.0000</TD>
+<TD class="decimal">50.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2362,14 +2366,14 @@
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.15</TD>
+<TD class="decimal">0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">33.3333</TD>
+<TD class="decimal">33.33</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2388,14 +2392,14 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-2</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">115.0000</TD>
+<TD class="decimal">115.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2414,10 +2418,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.4</TD>
+<TD class="decimal">0.40</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">30.0000</TD>
+<TD class="decimal">30.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2425,7 +2429,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -2440,13 +2444,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-1</TD>
-<TD class="integer">0.5</TD>
+<TD class="decimal">0.50</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">56.0000</TD>
+<TD class="decimal">56.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2466,10 +2470,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">5</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">70.0000</TD>
+<TD class="decimal">70.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2492,10 +2496,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2518,13 +2522,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-1</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2544,13 +2548,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.4</TD>
+<TD class="decimal">0.40</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">55.0000</TD>
+<TD class="decimal">55.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2570,10 +2574,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">10</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.1</TD>
+<TD class="decimal">0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">20.0000</TD>
+<TD class="decimal">20.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2596,10 +2600,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-10</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2622,12 +2626,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2648,10 +2652,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-10</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2674,10 +2678,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">4</TD>
-<TD class="integer">0.1</TD>
+<TD class="decimal">0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">120.0000</TD>
+<TD class="decimal">120.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2700,13 +2704,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">5</TD>
-<TD class="integer">0.5</TD>
+<TD class="decimal">0.50</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">60.0000</TD>
+<TD class="decimal">60.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2726,12 +2730,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">8</TD>
-<TD class="integer">-0.1</TD>
+<TD class="decimal">-0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2752,16 +2756,16 @@
 <TD class="integer">30</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">-1</TD>
+<TD class="decimal">-1.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">-5.0000</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2778,10 +2782,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.3</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">233.3333</TD>
+<TD class="decimal">233.33</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2804,13 +2808,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">6</TD>
-<TD class="integer">0.05</TD>
+<TD class="decimal">0.05</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">200.0000</TD>
+<TD class="decimal">200.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2830,10 +2834,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>Yes</TD>
 <TD>2</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2856,10 +2860,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">-0.15</TD>
+<TD class="decimal">-0.15</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">-53.3333</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2867,7 +2871,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -2882,13 +2886,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">105.0000</TD>
+<TD class="decimal">105.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2908,10 +2912,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-1</TD>
-<TD class="integer">0.3</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">26.6667</TD>
+<TD class="decimal">26.67</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2934,12 +2938,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2960,10 +2964,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">1</TD>
-<TD class="integer">0.4</TD>
+<TD class="decimal">0.40</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">30.0000</TD>
+<TD class="decimal">30.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -2971,7 +2975,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -2986,10 +2990,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-2</TD>
-<TD class="integer">0.8</TD>
+<TD class="decimal">0.80</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">35.0000</TD>
+<TD class="decimal">35.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3012,10 +3016,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>Yes</TD>
 <TD>2</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3038,10 +3042,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">45</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">-0.2</TD>
+<TD class="decimal">-0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">-30.0000</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3064,12 +3068,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">30</TD>
 <TD class="integer">60</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
 <TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3090,10 +3094,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">0.05</TD>
+<TD class="decimal">0.05</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">60.0000</TD>
+<TD class="decimal">60.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3116,10 +3120,10 @@
 <TD class="integer">30</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">-0.5</TD>
+<TD class="decimal">-0.50</TD>
 <TD>Yes</TD>
 <TD>N/A</TD>
-<TD class="decimal">-20.0000</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3142,13 +3146,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">40</TD>
 <TD class="integer">20</TD>
-<TD class="integer">0.1</TD>
+<TD class="decimal">0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">200.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3168,12 +3172,12 @@
 <TD class="integer">30</TD>
 <TD class="integer">-20</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">-1</TD>
+<TD class="decimal">-1.00</TD>
 <TD>Yes</TD>
 <TD>N/A</TD>
-<TD class="decimal">-10.0000</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3194,10 +3198,10 @@
 <TD class="integer">30</TD>
 <TD class="integer">-20</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">-5</TD>
+<TD class="decimal">-5.00</TD>
 <TD>Yes</TD>
 <TD>N/A</TD>
-<TD class="decimal">-2.0000</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3220,12 +3224,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">10</TD>
 <TD class="integer">3</TD>
-<TD class="integer">0.25</TD>
+<TD class="decimal">0.25</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">48.0000</TD>
+<TD class="decimal">48.00</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3246,10 +3250,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">1</TD>
-<TD class="integer">0.3</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">33.3333</TD>
+<TD class="decimal">33.33</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3272,10 +3276,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3298,10 +3302,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3309,7 +3313,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -3324,10 +3328,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3335,7 +3339,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -3350,10 +3354,10 @@
 <TD class="integer">30</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3361,7 +3365,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -3376,10 +3380,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3402,10 +3406,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>Yes</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3428,10 +3432,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>Yes</TD>
 <TD>3</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3454,13 +3458,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">5</TD>
 <TD class="integer">10</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
 <TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3480,10 +3484,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-5</TD>
-<TD class="integer">0.7</TD>
+<TD class="decimal">0.70</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">40.0000</TD>
+<TD class="decimal">40.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3506,10 +3510,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-1</TD>
-<TD class="integer">0.5</TD>
+<TD class="decimal">0.50</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">50.0000</TD>
+<TD class="decimal">50.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3517,7 +3521,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -3532,10 +3536,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-8</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3558,10 +3562,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">1</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>Yes</TD>
 <TD>3</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3584,10 +3588,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">15</TD>
 <TD class="integer">15</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">75.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3595,7 +3599,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -3610,13 +3614,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">5</TD>
 <TD class="integer">2</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">30.0000</TD>
+<TD class="decimal">30.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3636,10 +3640,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">85.0000</TD>
+<TD class="decimal">85.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3647,7 +3651,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -3662,10 +3666,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">8</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3688,10 +3692,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">15</TD>
 <TD class="integer">18</TD>
-<TD class="integer">0.3</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">60.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3699,7 +3703,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 </TR>
@@ -3714,13 +3718,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.3</TD>
+<TD class="decimal">0.30</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">33.3333</TD>
+<TD class="decimal">33.33</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3740,7 +3744,7 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
 <TD class="decimal">N/A</TD>
@@ -3750,7 +3754,7 @@
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3766,13 +3770,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">-13</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">115.0000</TD>
+<TD class="decimal">115.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3792,10 +3796,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">20</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3818,13 +3822,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">90.0000</TD>
+<TD class="decimal">90.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3844,13 +3848,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">18</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">65.0000</TD>
+<TD class="decimal">90.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3870,13 +3874,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">75.0000</TD>
+<TD class="decimal">75.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3896,13 +3900,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">6</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">75.0000</TD>
+<TD class="decimal">75.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3922,13 +3926,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">5</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">75.0000</TD>
+<TD class="decimal">75.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3948,13 +3952,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">3</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">65.0000</TD>
+<TD class="decimal">65.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -3974,13 +3978,13 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">18</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">65.0000</TD>
+<TD class="decimal">90.00</TD>
 <TD>All</TD>
 <TD>No</TD>
-<TD>No</TD>
+<TD>Yes</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -4000,10 +4004,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">0</TD>
 <TD class="integer">2</TD>
-<TD class="integer">0.2</TD>
+<TD class="decimal">0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">40.0000</TD>
+<TD class="decimal">40.00</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -4026,10 +4030,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">25</TD>
 <TD class="integer">25</TD>
-<TD class="integer">-0.2</TD>
+<TD class="decimal">-0.20</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">-25.0000</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -4052,10 +4056,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">40</TD>
 <TD class="integer">20</TD>
-<TD class="integer">0.1</TD>
+<TD class="decimal">0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">200.00</TD>
 <TD>Dev</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -4078,10 +4082,10 @@
 <TD class="integer">0</TD>
 <TD class="integer">2</TD>
 <TD class="integer">0</TD>
-<TD class="integer">0</TD>
+<TD class="decimal">0.00</TD>
 <TD>Yes</TD>
 <TD>1</TD>
-<TD class="decimal">Only Food</TD>
+<TD class="decimal">N/A</TD>
 <TD>All</TD>
 <TD>No</TD>
 <TD>No</TD>
@@ -4104,12 +4108,12 @@
 <TD class="integer">0</TD>
 <TD class="integer">30</TD>
 <TD class="integer">15</TD>
-<TD class="integer">0.1</TD>
+<TD class="decimal">0.10</TD>
 <TD>No</TD>
 <TD>N/A</TD>
-<TD class="decimal">Only Wellness</TD>
+<TD class="decimal">150.00</TD>
 <TD>All</TD>
-<TD>Yes</TD>
+<TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
 <TD>No</TD>
