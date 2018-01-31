@@ -9,7 +9,7 @@
                 version="1.0" extension-element-prefixes="exslt math dyn my func str">
 				
 	<xsl:param name="language" select="'NONE'"/>
-	<xsl:output method="html" omit-xml-declaration="yes" indent="yes"/>
+	<xsl:output method="html" omit-xml-declaration="yes" indent="no"/>
 	<xsl:strip-space elements="*"/>
 
 	<xsl:key name="property" match="//property" use="@name"/>
@@ -44,6 +44,21 @@
 			</xsl:when>
 			<xsl:otherwise>
 				<func:result select="'All'"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</func:function>
+
+	<func:function name="my:getDescriptionKey">
+		<xsl:param name="node"/>
+		<xsl:choose>
+			<xsl:when test="$node/property[@name='DescriptionKey']">
+				<func:result select="$node/property[@name='DescriptionKey']/@value"/>
+			</xsl:when>
+			<xsl:when test="$node/property[@name='Extends']">
+				<func:result select="my:creativeMode($node/../*[@name=$node/property[@name='Extends']/@value])"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<func:result select="'No Description'"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</func:function>
@@ -129,6 +144,27 @@
 		<xsl:param name="itemName"/>
 		<func:result select="$foods[@name=$itemName]"/>
 	</func:function>
+
+	<func:function name="my:recipeList">
+		<xsl:param name="theseRecipes"/>
+		<func:result>
+			<xsl:text disable-output-escaping="yes">&lt;figcaption&gt;</xsl:text>
+			<xsl:value-of select="count($theseRecipes)"/><xsl:text> recipes:</xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/figcaption&gt;</xsl:text>
+			<xsl:for-each select="$theseRecipes">
+				<xsl:text disable-output-escaping="yes">&lt;ul&gt;</xsl:text>
+				<xsl:for-each select="ingredient">
+					<xsl:text disable-output-escaping="yes">&lt;li&gt;</xsl:text>
+					<xsl:value-of select="@count"/><xsl:text> </xsl:text><xsl:value-of select="@name"/>
+					<xsl:text disable-output-escaping="yes">&lt;/li&gt;</xsl:text>
+				</xsl:for-each>
+				<xsl:text disable-output-escaping="yes">&lt;/ul&gt;</xsl:text>
+				<xsl:if test="not(position()=last())">
+					<xsl:text disable-output-escaping="yes">&lt;hr/&gt;</xsl:text>
+				</xsl:if>
+			</xsl:for-each>
+		</func:result>
+	</func:function>
 	
 	<xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
 	<xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
@@ -196,7 +232,7 @@
 	<xsl:variable name="craftAreas" select="$recipes/recipes/recipe[@craft_area and count(. | key('craftArea', @craft_area)[1]) = 1]"/>
 	<xsl:variable name="foodCraftAreas">
 		<xsl:if test="$recipes/recipes/recipe[not(@craft_area) and my:isFood(@name)]">
-			<craftArea name="Hand" desc="Things crafted in your own inventory"/>
+			<craftArea name="Hand" desc="Things crafted in your own inventory" key="Hand"/>
 		</xsl:if>
 		<xsl:for-each select="$craftAreas">
 			<xsl:sort select="my:translate(@craft_area)"/>
@@ -238,8 +274,38 @@
 	<xsl:template match="/">
 		<HTML>
 			<HEAD>
-				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/css/theme.blue.css"/>
+				<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/cupertino/jquery-ui.css" type="text/css"/>
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/css/theme.blue.css" type="text/css"/>
 				<STYLE>
+				    .tablesorter-blue-header {
+						font: 12px/18px Arial, Sans-serif;
+						font-weight: bold;
+						color: #000;
+						background-color: #99bfe6;
+						border-collapse: collapse;
+						padding: 4px;
+						text-shadow: 0 1px 0 rgba(204, 204, 204, 0.7);
+					}
+					
+					.tablesorter-blue-td {
+						color: #3d3d3d;
+						background-color: #fff;
+						padding: 4px;
+						vertical-align: top;
+					}
+					
+					.tablesorter-blue-override {
+						width: 100%;
+						background-color: #fff;
+						background-image: none;
+						margin: 10px 0 15px;
+						text-align: left;
+						border-spacing: 0;
+						border: #cdcdcd 1px solid;
+						border-width: 1px 0 0 1px;
+
+					}
+
 					.CellWithComment{
 						position:relative;
 					}
@@ -261,7 +327,7 @@
 						transition: opacity 1s;
 					}
 
-					.CellWithComment:hover span.CellComment{
+					.CellWithComment:hover div.CellComment{
 						display:block;
 						opacity: 1;
 					}
@@ -275,6 +341,10 @@
 						border-width: 5px;
 						border-style: solid;
 						border-color: transparent transparent black transparent;
+					}
+					
+					.dialog {
+						display:none;
 					}
 					
 					td.integer { text-align: right; }
@@ -389,8 +459,15 @@
 					integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 					crossorigin="anonymous">
 				</script>
+				<script
+					src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+					integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+					crossorigin="anonymous">
+				</script>
+				
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/js/jquery.tablesorter.min.js"/>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/js/jquery.tablesorter.widgets.min.js"/>
+				
 				<script>
 					$(function() {
 
@@ -440,7 +517,24 @@
 							  });
 						}
 
-					});
+					}); 
+					
+					// Toggle collapse on collapse class elements, with a elements of permalink class on table rows. Not in use.
+					//animating = false;
+					//clicked = false;
+					//$('.collapsible').hide();
+					//$('a.permalink').click(function(){
+					//	var $el = $(this);
+					//	setTimeout(function(){
+					//		if (!animating &amp;&amp; !clicked) {
+					//			animating = true;
+					//			$el.closest('tr').find('.collapsible').slideToggle();
+					//			setTimeout(function(){ animating = false; }, 200);
+					//		}
+					//	}, 200);
+					//	return false;
+					//});
+
 				</script>
 			</HEAD>
 			<BODY>
@@ -454,9 +548,9 @@
 									<xsl:when test="@name='Creative Mode'">
 										<TH class="name CellWithComment" data-value="All|Player">
 											<xsl:value-of select="@name"/>
-											<span class="CellComment">
+											<div class="CellComment">
 												<xsl:value-of select="@desc" disable-output-escaping="yes"/>
-											</span>
+											</div>
 										</TH>
 									</xsl:when>
 									<xsl:when test="@class">
@@ -465,17 +559,17 @@
 												<xsl:value-of select="concat('name CellWithComment ', @class)"/>
 											</xsl:attribute>
 											<xsl:value-of select="@name"/>
-											<span class="CellComment">
+											<div class="CellComment">
 												<xsl:value-of select="@desc" disable-output-escaping="yes"/>
-											</span>
+											</div>
 										</TH>
 									</xsl:when>
 									<xsl:otherwise>
 										<TH class="name CellWithComment">
 											<xsl:value-of select="@name"/>
-											<span class="CellComment">
+											<div class="CellComment">
 												<xsl:value-of select="@desc" disable-output-escaping="yes"/>
-											</span>
+											</div>
 										</TH>
 									</xsl:otherwise>
 								</xsl:choose>
@@ -488,16 +582,16 @@
 							<xsl:variable name="this" select="."/>
 							<TR>
 								<!-- Name -->
-								<xsl:variable name="nameDesc" select="concat(@name, 'Desc')"/>
-								<xsl:variable name="comment" select="my:translate($nameDesc)"/>
+								<xsl:variable name="descriptionKey" select="my:getDescriptionKey($this)"/>
+								<xsl:variable name="comment" select="my:translate($descriptionKey)"/>
 								<TD class="name CellWithComment">
 									<xsl:value-of select="my:translate(@name)"/>
-									<span class="CellComment">
-										[<xsl:value-of select="@name"/>]
-										<xsl:if test="not($comment=$nameDesc)">
+									<div class="CellComment">
+										<xsl:text>[</xsl:text><xsl:value-of select="@name"/><xsl:text>]</xsl:text>
+										<xsl:if test="not($descriptionKey='No Description') and not ($comment=$descriptionKey)">
 										<xsl:text> </xsl:text><xsl:value-of select="str:replace($comment, '\n', '&lt;br/>')" disable-output-escaping="yes"/>
 										</xsl:if>
-									</span>
+									</div>
 								</TD>
 								
 								<!-- Gain_* -->
@@ -574,15 +668,47 @@
 								
 								<!-- Craft areas -->
 								<xsl:for-each select="exslt:node-set($foodCraftAreas)/*">
+									<xsl:variable name="craftAreaName" select="@name"/>
 									<xsl:variable name="craftArea" select="@key"/>
+									<xsl:variable name="dialogId" select="concat($craftArea, '-', $this/@name)"/>
 									<xsl:for-each select="$recipes">
 										<TD>
 											<xsl:choose>
 												<xsl:when test="$craftArea='Hand' and key('recipe', $this/@name)[not(@craft_area)]">
-													<xsl:text>Yes</xsl:text>
+													<xsl:variable name="theseRecipes" select="key('recipe', $this/@name)[not(@craft_area)]"/>
+													<a href="#" class="permalink">
+														<xsl:attribute name="target-dialog">
+															<xsl:value-of select="concat('#', $dialogId)"/>
+														</xsl:attribute>
+														<xsl:text>Yes</xsl:text>
+													</a>
+													<div class="dialog">
+														<xsl:attribute name="title">
+															<xsl:text>Recipes for </xsl:text><xsl:value-of select="my:translate($this/@name)"/><xsl:text> at </xsl:text><xsl:value-of select="$craftAreaName"/>
+														</xsl:attribute>
+														<xsl:attribute name="id">
+															<xsl:value-of select="$dialogId"/> 
+														</xsl:attribute>
+														<xsl:value-of select="my:recipeList($theseRecipes)" disable-output-escaping="yes"/>
+													</div>
 												</xsl:when>
 												<xsl:when test="key('recipe', $this/@name)[@craft_area=$craftArea]">
-													<xsl:text>Yes</xsl:text>
+													<xsl:variable name="theseRecipes" select="key('recipe', $this/@name)[@craft_area=$craftArea]"/>
+													<a href="#" class="permalink">
+														<xsl:attribute name="target-dialog">
+															<xsl:value-of select="concat('#', $dialogId)"/>
+														</xsl:attribute>
+														<xsl:text>Yes</xsl:text>
+													</a>
+													<div class="dialog">
+														<xsl:attribute name="title">
+															<xsl:text>Recipes for </xsl:text><xsl:value-of select="my:translate($this/@name)"/><xsl:text> at </xsl:text><xsl:value-of select="$craftAreaName"/>
+														</xsl:attribute>
+														<xsl:attribute name="id">
+															<xsl:value-of select="$dialogId"/> 
+														</xsl:attribute>
+														<xsl:value-of select="my:recipeList($theseRecipes)" disable-output-escaping="yes"/>
+													</div>
 												</xsl:when>
 												<xsl:otherwise>
 													<xsl:text>No</xsl:text>
@@ -595,6 +721,22 @@
 						</xsl:for-each>
 					</TBODY>
 				</TABLE>
+				<script>
+					$(".dialog")
+						.dialog({ autoOpen: false, show:true, hide: true })
+						.dialog({ classes: {
+							"ui-dialog": "tablesorter-blue-override",
+							"ui-dialog-titlebar": "tablesorter-blue-header",
+							"ui-dialog-content": "tablesorter-blue-td",
+						}
+					});
+					$('a.permalink').click(function(){
+						var $el = $(this);
+						$($el.attr('target-dialog')).dialog({
+							position: { my: "center top", at: "center bottom+25%", of: $el }
+						}).dialog("open");
+					});
+				</script>
 			</BODY>
 		</HTML>
 	</xsl:template>
