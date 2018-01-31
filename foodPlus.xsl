@@ -350,7 +350,7 @@
 
 					th .CellComment::after {
 						left: 50%;
-						margin-left: 0;
+						margin-left: -10px;
 					}
 					
 					th:last-child .CellComment {
@@ -364,6 +364,7 @@
 						top: 50%;
 						left: 100%; /* To the right of the tooltip */
 						margin-top: -5px;
+						margin-left: 0;
 						border-color: transparent transparent transparent black;
 					}
 					
@@ -384,6 +385,7 @@
 					
 					td.integer { text-align: right; }
 					td.decimal { text-align: right; white-space: nowrap; }
+					th.name { text-align: center; }
 					td.name { text-align: left; white-space: nowrap; }
 				
 					/* TABLE BACKGROUND color (match the original theme) */
