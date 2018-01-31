@@ -322,7 +322,7 @@
 						border-color:#fff;
 						padding:3px;
 						top: 100%;
-						left:20px;
+						left: 20px;
 						opacity: 0;
 						transition: opacity 1s;
 					}
@@ -343,37 +343,39 @@
 						border-color: transparent transparent black transparent;
 					}
 					
-					.CellComment-last {
-						display:none;
-						position:absolute; 
-						z-index:100;
-						border:1px;
-						background-color: black;
-						color: #fff;
-						border-style:solid;
-						border-width:1px;
-						border-color:#fff;
-						padding:3px;
-						bottom: 100%;
-						left:20px;
-						opacity: 0;
-						transition: opacity 1s;
+					th .CellComment {
+						width: 200%;
+						left: -50%;
 					}
 
-					.CellWithComment:hover div.CellComment-last {
-						display:block;
-						opacity: 1;
+					th .CellComment::after {
+						left: 50%;
+						margin-left: 0;
 					}
 					
-					.CellComment-last::after {
-						content: " ";
-						position: absolute;
+					th:last-child .CellComment {
+						top: 25%;
+						width: 200%;
+						right: 105%;
+						left: auto;
+					}
+
+					th:last-child .CellComment::after {
+						top: 50%;
+						left: 100%; /* To the right of the tooltip */
+						margin-top: -5px;
+						border-color: transparent transparent transparent black;
+					}
+					
+					tr:last-child .CellComment {
+						top: auto;
+						bottom: 100%;
+					}
+
+					tr:last-child .CellComment::after {
 						top: 100%;  /* At the bottom of the tooltip */
-						left: 20px;
-						margin-left: -5px;
-						border-width: 5px;
-						border-style: solid;
-						border-color: transparent transparent black transparent;
+						bottom: auto;
+						border-color: black transparent transparent transparent;
 					}
 					
 					.dialog {
@@ -620,24 +622,12 @@
 								<xsl:variable name="comment" select="my:translate($descriptionKey)"/>
 								<TD class="name CellWithComment">
 									<xsl:value-of select="my:translate(@name)"/>
-									<xsl:choose>
-										<xsl:when test="position()=last()">
-											<div class="CellComment-last">
-												<xsl:text>[</xsl:text><xsl:value-of select="@name"/><xsl:text>]</xsl:text>
-												<xsl:if test="not($descriptionKey='No Description') and not ($comment=$descriptionKey)">
-												<xsl:text> </xsl:text><xsl:value-of select="str:replace($comment, '\n', '&lt;br/>')" disable-output-escaping="yes"/>
-												</xsl:if>
-											</div>
-										</xsl:when>
-										<xsl:otherwise>
-											<div class="CellComment">
-												<xsl:text>[</xsl:text><xsl:value-of select="@name"/><xsl:text>]</xsl:text>
-												<xsl:if test="not($descriptionKey='No Description') and not ($comment=$descriptionKey)">
-												<xsl:text> </xsl:text><xsl:value-of select="str:replace($comment, '\n', '&lt;br/>')" disable-output-escaping="yes"/>
-												</xsl:if>
-											</div>
-										</xsl:otherwise>
-									</xsl:choose>
+									<div class="CellComment">
+										<xsl:text>[</xsl:text><xsl:value-of select="@name"/><xsl:text>]</xsl:text>
+										<xsl:if test="not($descriptionKey='No Description') and not ($comment=$descriptionKey)">
+										<xsl:text> </xsl:text><xsl:value-of select="str:replace($comment, '\n', '&lt;br/>')" disable-output-escaping="yes"/>
+										</xsl:if>
+									</div>
 								</TD>
 								
 								<!-- Gain_* -->
