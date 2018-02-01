@@ -155,7 +155,7 @@
 				<xsl:text disable-output-escaping="yes">&lt;ul&gt;</xsl:text>
 				<xsl:for-each select="ingredient">
 					<xsl:text disable-output-escaping="yes">&lt;li&gt;</xsl:text>
-					<xsl:value-of select="@count"/><xsl:text> </xsl:text><xsl:value-of select="@name"/>
+					<xsl:value-of select="@count"/><xsl:text> </xsl:text><xsl:value-of select="my:translate(@name)"/>
 					<xsl:text disable-output-escaping="yes">&lt;/li&gt;</xsl:text>
 				</xsl:for-each>
 				<xsl:text disable-output-escaping="yes">&lt;/ul&gt;</xsl:text>
