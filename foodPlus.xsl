@@ -13,7 +13,11 @@
 	<xsl:param name="language" select="'English'"/>
 	<xsl:output method="html" omit-xml-declaration="yes" indent="no"/>
 	<xsl:strip-space elements="*"/>
-
+	
+	<xsl:variable name="dummy-startup-messages">
+		<xsl:message>Parameter 'language' set to '<xsl:value-of select="$language"/>'</xsl:message>
+	</xsl:variable>
+	
 	<xsl:key name="property" match="//property" use="@name"/>
 	<xsl:key name="recipe" match="/recipes/recipe" use="@name"/>
 	<xsl:key name="craftArea" match="/recipes/recipe" use="@craft_area"/>
