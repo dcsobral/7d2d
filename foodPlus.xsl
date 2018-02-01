@@ -6,9 +6,11 @@
 				xmlns:func="http://exslt.org/functions"
 				xmlns:str="http://exslt.org/strings"
 				xmlns:my="http://www.w3.org/2001/XMLSchema"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:noNamespaceSchemaLocation="xslt.xsd"
                 version="1.0" extension-element-prefixes="exslt math dyn my func str">
 				
-	<xsl:param name="language" select="'NONE'"/>
+	<xsl:param name="language" select="'English'"/>
 	<xsl:output method="html" omit-xml-declaration="yes" indent="no"/>
 	<xsl:strip-space elements="*"/>
 
@@ -145,27 +147,6 @@
 		<func:result select="$foods[@name=$itemName]"/>
 	</func:function>
 
-	<func:function name="my:recipeList">
-		<xsl:param name="theseRecipes"/>
-		<func:result>
-			<xsl:text disable-output-escaping="yes">&lt;figcaption&gt;</xsl:text>
-			<xsl:value-of select="count($theseRecipes)"/><xsl:text> recipes:</xsl:text>
-			<xsl:text disable-output-escaping="yes">&lt;/figcaption&gt;</xsl:text>
-			<xsl:for-each select="$theseRecipes">
-				<xsl:text disable-output-escaping="yes">&lt;ul&gt;</xsl:text>
-				<xsl:for-each select="ingredient">
-					<xsl:text disable-output-escaping="yes">&lt;li&gt;</xsl:text>
-					<xsl:value-of select="@count"/><xsl:text> </xsl:text><xsl:value-of select="my:translate(@name)"/>
-					<xsl:text disable-output-escaping="yes">&lt;/li&gt;</xsl:text>
-				</xsl:for-each>
-				<xsl:text disable-output-escaping="yes">&lt;/ul&gt;</xsl:text>
-				<xsl:if test="not(position()=last())">
-					<xsl:text disable-output-escaping="yes">&lt;hr/&gt;</xsl:text>
-				</xsl:if>
-			</xsl:for-each>
-		</func:result>
-	</func:function>
-	
 	<xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
 	<xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
 	<func:function name="my:tolower">
@@ -727,7 +708,9 @@
 														<xsl:attribute name="id">
 															<xsl:value-of select="$dialogId"/> 
 														</xsl:attribute>
-														<xsl:value-of select="my:recipeList($theseRecipes)" disable-output-escaping="yes"/>
+														<xsl:call-template name="printRecipes">
+															<xsl:with-param name="recipeList" select="$theseRecipes"/>
+														</xsl:call-template>
 													</div>
 												</xsl:when>
 												<xsl:when test="key('recipe', $this/@name)[@craft_area=$craftArea]">
@@ -745,7 +728,9 @@
 														<xsl:attribute name="id">
 															<xsl:value-of select="$dialogId"/> 
 														</xsl:attribute>
-														<xsl:value-of select="my:recipeList($theseRecipes)" disable-output-escaping="yes"/>
+														<xsl:call-template name="printRecipes">
+															<xsl:with-param name="recipeList" select="$theseRecipes"/>
+														</xsl:call-template>
 													</div>
 												</xsl:when>
 												<xsl:otherwise>
@@ -777,5 +762,21 @@
 				</script>
 			</BODY>
 		</HTML>
+	</xsl:template>
+	<xsl:template name="printRecipes">
+		<xsl:param name="recipeList"/>
+		<figcaption><xsl:value-of select="count($recipeList)"/><xsl:text> recipes:</xsl:text></figcaption>
+		<xsl:for-each select="$recipeList">
+			<ul>
+				<xsl:for-each select="ingredient">
+					<li>
+						<xsl:value-of select="@count"/><xsl:text> </xsl:text><xsl:value-of select="my:translate(@name)"/>
+					</li>
+				</xsl:for-each>
+			</ul>
+			<xsl:if test="not(position()=last())">
+				<hr/>
+			</xsl:if>
+		</xsl:for-each>
 	</xsl:template>
 </xsl:stylesheet>
