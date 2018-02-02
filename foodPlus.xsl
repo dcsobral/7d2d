@@ -778,6 +778,9 @@
 					</li>
 				</xsl:for-each>
 			</ul>
+			<xsl:if test="@count>1">
+				<xsl:text>Yields </xsl:text><xsl:value-of select="@count"/><xsl:text> units</xsl:text>
+			</xsl:if>
 			<xsl:if test="not(position()=last())">
 				<hr/>
 			</xsl:if>
