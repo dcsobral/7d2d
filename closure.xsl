@@ -14,35 +14,31 @@
 				<xsl:param name="nodes"/>
 				<xsl:param name="closureQuery"/>
 				
+	<xsl:output method="html" omit-xml-declaration="yes" indent="no"/>
+
+	<!--
+					<xsl:message><xsl:value-of select="$pos"/>:<xsl:for-each select="ancestor-or-self::*"><xsl:value-of select="name(.)"/>/</xsl:for-each><xsl:for-each select="attribute::*"><xsl:value-of select="name(.)"/>="<xsl:value-of select="."/>"</xsl:for-each></xsl:message>
+	-->
+	
 	<func:function name="my:closure">
 		<xsl:param name="nodeset"/>
 		<xsl:param name="query"/>
-		<xsl:variable name="partial" select="my:closureHelper($nodeset, $query, 1)"/>
-		<xsl:choose>
-			<xsl:when test="count($partial)=0">
-				<func:result select="$partial"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:message>Recursing (partial count <xsl:value-of select="count($partial)"/>)</xsl:message>
-				<func:result select="$partial|my:closure($partial,$query)"/>
-			</xsl:otherwise>
-		</xsl:choose>
-	</func:function>
-	
-	<func:function name="my:closureHelper">
-		<xsl:param name="nodeset"/>
-		<xsl:param name="query"/>
-		<xsl:param name="pos"/>
+		<xsl:param name="partial" select="/.."/>
+		<xsl:param name="pos" select="1"/>
 		<xsl:for-each select="$nodeset">
 			<xsl:if test="position()=$pos">
-				<xsl:message><xsl:value-of select="$pos"/>:<xsl:for-each select="ancestor-or-self::*"><xsl:value-of select="name(.)"/>/</xsl:for-each><xsl:for-each select="attribute::*"><xsl:value-of select="name(.)"/>="<xsl:value-of select="."/>"</xsl:for-each></xsl:message>
+				<xsl:variable name="queryResult" select="dyn:evaluate($query)"/>
+				<xsl:variable name="nextPartial" select="$partial|$queryResult"/>
 				<xsl:choose>
+					<xsl:when test="position()=last() and count($nextPartial)=0">
+						<func:result select="$nextPartial"/>
+					</xsl:when>
 					<xsl:when test="position()=last()">
-						<func:result select="dyn:evaluate($query)"/>
+						<func:result select="$nextPartial|my:closure($nextPartial, $query)"/>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:variable name="next" select="$pos+1"/>
-						<func:result select="dyn:evaluate($query)|my:closureHelper($nodeset, $query, $next)"/>
+						<func:result select="my:closure($nodeset, $query, $nextPartial, $next)"/>
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:if>
