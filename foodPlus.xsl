@@ -225,6 +225,29 @@
 		<func:result select="$foods[@name=$itemName]"/>
 	</func:function>
 	
+	<func:function name="my:isPlentiful">
+		<xsl:param name="name"/>
+		<func:result select="starts-with($name, 'unit_') or $name='rockSmall' or $name='crushedSand' or $name='coal' or $name='snowBall' or $name='yuccaFibers'"/>
+	</func:function>
+
+	<func:function name="my:buffsOf">
+		<xsl:param name="item"/>
+		<xsl:message><xsl:value-of select="my:printNode($item)"/></xsl:message>
+		<func:result>
+			<xsl:for-each select="$item/property[property[@name='Class']/@value='Eat']/property[@name='Buff']">
+				<xsl:message>Eats: <xsl:value-of select="my:printNode(.)"/></xsl:message>
+				<xsl:for-each select="str:tokenize(@value, ',')">
+					<xsl:message>Buffs: <xsl:value-of select="my:printNode(.)"/></xsl:message>
+					<xsl:message>Text: <xsl:value-of select="text()"/></xsl:message>
+					<xsl:message>Translation: <xsl:value-of select="my:translate(text())"/></xsl:message>
+					<xsl:if test="not(text()=my:translate(text()))">
+						<xsl:value-of select="my:translate(text())"/><xsl:text>&#10;</xsl:text>
+					</xsl:if>
+				</xsl:for-each>
+			</xsl:for-each>
+		</func:result>
+	</func:function>
+	
 	<func:function name="my:baseCost">
 		<xsl:param name="item"/>
 		<func:result>
@@ -258,15 +281,15 @@
 										</xsl:choose>
 									</xsl:element>
 								</xsl:when>
-								<xsl:when test="starts-with($item/@name, 'unit_')">
+								<xsl:when test="my:isPlentiful($item/@name)">
 									<xsl:element name="source">
-										<xsl:attribute name="desc"><xsl:text>through mining</xsl:text></xsl:attribute>
+										<xsl:attribute name="desc"><xsl:text>in large quantities</xsl:text></xsl:attribute>
 										<xsl:value-of select="1"/>
 									</xsl:element>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:element name="source">
-										<xsl:attribute name="desc"><xsl:text>from the environment</xsl:text></xsl:attribute>
+										<xsl:attribute name="desc"><xsl:text>in average quantities</xsl:text></xsl:attribute>
 										<xsl:value-of select="10"/>
 									</xsl:element>
 								</xsl:otherwise>
@@ -325,12 +348,31 @@
     <xsl:variable name="greenThumb" select="$progression//perk[@name='Green Thumb']/recipe"/>
 	<xsl:variable name="seeds" select="$blocks/blocks/block[my:isPlant(.)]|$items/items/item[my:isPlant(.)]"/>
     <xsl:variable name="seedRecipes" select="$recipes/recipes/recipe[my:isSeed(@name)]"/>
-	<xsl:variable name="ingredientQuery">
-		($recipes/recipes/recipe[@name=current()/@name]/ingredient[not(@name=$accumulator/@name)])[1]
-	</xsl:variable>
-	<xsl:variable name="ingredients" select="my:closure($foods, $ingredientQuery)"/>
 	
 	<!-- Derived data -->
+	<func:function name="my:ingredientCombine">
+		<xsl:param name="accumulator"/>
+		<xsl:param name="ingredients"/>
+		<xsl:choose>
+			<xsl:when test="count($ingredients)=0">
+				<func:result select="$accumulator"/>
+			</xsl:when>
+			<xsl:when test="$accumulator[@name=$ingredients[1]/@name]">
+				<func:result select="my:ingredientCombine($accumulator, $ingredients[position()>1])"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<func:result select="my:ingredientCombine($accumulator|$ingredients[1], $ingredients[position()>1])"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</func:function>
+	<xsl:variable name="ingredientCombine">
+		my:ingredientCombine($accumulator, $queryResult)
+	</xsl:variable>
+	<xsl:variable name="ingredientQuery">
+		$recipes/recipes/recipe[@name=current()/@name]/ingredient[not(@name=$accumulator/@name)]
+	</xsl:variable>
+	<xsl:variable name="ingredients" select="my:fold($foods, $ingredientQuery, /.., $ingredientCombine)"/>
+	
 	<xsl:variable name="gains">
 		<xsl:for-each select="//property[starts-with(@name,'Gain_') and count(. | key('property', @name)[1]) = 1]">
 			<xsl:sort select="@name"/>
@@ -359,7 +401,7 @@
 	<xsl:variable name="craftAreas" select="$recipes/recipes/recipe[@craft_area and count(. | key('craftArea', @craft_area)[1]) = 1]"/>
 	<xsl:variable name="foodCraftAreas">
 		<xsl:if test="$recipes/recipes/recipe[not(@craft_area) and my:isFood(@name)]">
-			<craftArea name="Hand" desc="Things crafted in your own inventory" key="Hand"/>
+			<craftArea name="Hand" desc="Things crafted in your own inventory" key="Hand" class="filter-select"/>
 		</xsl:if>
 		<xsl:for-each select="$craftAreas">
 			<xsl:sort select="my:translate(@craft_area)"/>
@@ -393,6 +435,7 @@
 		<x name="Harvested?" desc="Plants, animal products, minerals." class="filter-select"/>
 		<x name="Green Thumb Level" desc="Green Thumb level required to make seeds for it." class="mixed"/>
 		<x name="Wellness Efficiency" desc="Measure of how much wellness is gained by unit of food or water. The smaller the value, the more you gain wellness before being &quot;full&quot;. Only computed for positive wellness." class="mixed"/>
+		<x name="Buffs" desc="Special bonuses or penalties that result from eating or drinking it." class="filter-select"/>
 		<x name="Creative Mode" desc="Where it appears on the creative menu.&lt;BR/>Options are All, Player, Dev and None."/>
 	</xsl:variable>
 
@@ -837,7 +880,36 @@
 										</xsl:otherwise>
 									</xsl:choose>
 								</TD>
-									
+
+								<!-- Buffs -->
+								<TD>
+									<xsl:variable name="buffs" select="my:buffsOf($this)"/>
+									<xsl:variable name="dialogId" select="concat('buff-', $this/@name)"/>
+									<xsl:choose>
+										<xsl:when test="$buffs=''">
+											<xsl:text>No</xsl:text>
+										</xsl:when>
+										<xsl:otherwise>
+											<a href="#" class="permalink">
+												<xsl:attribute name="target-dialog">
+													<xsl:value-of select="concat('#', $dialogId)"/>
+												</xsl:attribute>
+												<xsl:text>Yes</xsl:text>
+											</a>
+											<div class="dialog">
+												<xsl:attribute name="title">
+													<xsl:value-of select="my:translate($this/@name)"/>
+													<xsl:text> Buffs</xsl:text>
+												</xsl:attribute>
+												<xsl:attribute name="id">
+													<xsl:value-of select="$dialogId"/>
+												</xsl:attribute>
+												<xsl:value-of select="$buffs"/>
+											</div>
+										</xsl:otherwise>
+									</xsl:choose>
+								</TD>
+								
 								<!-- Creative Mode -->
 								<TD>
 									<xsl:value-of select="my:creativeMode($this)"/>
@@ -902,12 +974,12 @@
 						</xsl:for-each>
 					</TBODY>
 				</TABLE>
-				<DIV onclick="$(this).find('.collapsed').toggle();">
-					Ingredient List
+				<DIV>
+					<SPAN onclick="$(this).closest('div').find('.collapsed').toggle();">Ingredient List</SPAN>
 					<DIV class="collapsed" hidden="true">
 						<DL>
 							<xsl:for-each select="$ingredients">
-								<xsl:sort select="@name"/>
+								<xsl:sort select="my:translate(@name)"/>
 								<DT><xsl:value-of select="my:translate(@name)"/></DT>
 								<DD>
 									<xsl:variable name="cost" select="exslt:node-set(my:baseCost(.))"/>
