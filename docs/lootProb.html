@@ -1,0 +1,4453 @@
+<HTML xmlns:my="http://www.w3.org/2001/XMLSchema">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/css/theme.blue.css" type="text/css">
+<STYLE>
+					.tablesorter {
+						width: auto;
+					}
+					
+				    .tablesorter-blue-header {
+						font: 12px/18px Arial, Sans-serif;
+						font-weight: bold;
+						color: #000;
+						background-color: #99bfe6;
+						border-collapse: collapse;
+						padding: 4px;
+						text-shadow: 0 1px 0 rgba(204, 204, 204, 0.7);
+					}
+					
+					.tablesorter-blue-td {
+						color: #3d3d3d;
+						background-color: #fff;
+						padding: 4px;
+						vertical-align: top;
+					}
+					
+					.tablesorter-blue-override {
+						width: 100%;
+						background-color: #fff;
+						background-image: none;
+						margin: 10px 0 15px;
+						text-align: left;
+						border-spacing: 0;
+						border: #cdcdcd 1px solid;
+						border-width: 1px 0 0 1px;
+
+					}
+
+					.CellWithComment{
+						position:relative;
+					}
+
+					.CellComment{
+						display:none;
+						position:absolute; 
+						z-index:100;
+						border:1px;
+						background-color: black;
+						color: #fff;
+						border-style:solid;
+						border-width:1px;
+						border-color:#fff;
+						padding:3px;
+						top: 100%;
+						left: 20px;
+						opacity: 0;
+						transition: opacity 1s;
+					}
+
+					.CellWithComment:hover div.CellComment{
+						display:block;
+						opacity: 1;
+					}
+					
+					.CellComment::after {
+						content: " ";
+						position: absolute;
+						bottom: 100%;  /* At the top of the tooltip */
+						left: 20px;
+						margin-left: -5px;
+						border-width: 5px;
+						border-style: solid;
+						border-color: transparent transparent black transparent;
+					}
+					
+					th {
+						width: 80%;
+					}
+					
+					th .CellComment {
+						width: 200%;
+						left: -50%;
+					}
+
+					th .CellComment::after {
+						left: 50%;
+						margin-left: -10px;
+					}
+					
+					th:last-child .CellComment {
+						top: 25%;
+						width: 200%;
+						right: 105%;
+						left: auto;
+					}
+
+					th:last-child .CellComment::after {
+						top: 50%;
+						left: 100%; /* To the right of the tooltip */
+						margin-top: -5px;
+						margin-left: 0;
+						border-color: transparent transparent transparent black;
+					}
+					
+					tr:last-child .CellComment {
+						top: auto;
+						bottom: 100%;
+					}
+
+					tr:last-child .CellComment::after {
+						top: 100%;  /* At the bottom of the tooltip */
+						bottom: auto;
+						border-color: black transparent transparent transparent;
+					}
+					
+					.dialog {
+						display:none;
+					}
+					
+					td.integer { text-align: right; }
+					td.decimal { text-align: right; white-space: nowrap; }
+					th.name { text-align: center; }
+					td.name { text-align: left; white-space: nowrap; }
+					
+					dl {
+					  display: grid;
+					  grid-template-columns: max-content auto;
+					}
+
+					dt {
+					  grid-column-start: 1;
+					}
+
+					dd {
+					  grid-column-start: 2;
+					}
+				
+					/* TABLE BACKGROUND color (match the original theme) */
+					table.hover-highlight td:before,
+					table.focus-highlight td:before {
+					  background: #fff;
+					}
+
+					/* ODD ZEBRA STRIPE color (needs zebra widget) */
+					.hover-highlight .odd td:before, .hover-highlight .odd th:before,
+					.focus-highlight .odd td:before, .focus-highlight .odd th:before {
+					  background: #ebf2fa;
+					}
+					/* EVEN ZEBRA STRIPE color (needs zebra widget) */
+					.hover-highlight .even td:before, .hover-highlight .even th:before,
+					.focus-highlight .even td:before, .focus-highlight .even th:before {
+					  background-color: #fff;
+					}
+
+					/* FOCUS ROW highlight color (touch devices) */
+					.focus-highlight td:focus::before, .focus-highlight th:focus::before {
+					  background-color: lightblue;
+					}
+
+					/* FOCUS CELL highlight color */
+					.focus-highlight th:focus, .focus-highlight td:focus,
+					.focus-highlight .even th:focus, .focus-highlight .even td:focus,
+					.focus-highlight .odd th:focus, .focus-highlight .odd td:focus {
+					  background-color: #d9d9d9;
+					  color: #333;
+					}
+
+					/* HOVER ROW highlight colors */
+					table.hover-highlight tbody > tr:hover > td, /* override tablesorter theme row hover */
+					table.hover-highlight tbody > tr.odd:hover > td,
+					table.hover-highlight tbody > tr.even:hover > td {
+					  background-color: #ffa;
+					}
+
+					/* ************************************************* */
+					/* **** No need to modify the definitions below **** */
+					/* ************************************************* */
+					.focus-highlight td:focus::after, .focus-highlight th:focus::after,
+					.hover-highlight td:hover::after, .hover-highlight th:hover::after {
+					  content: '';
+					  position: absolute;
+					  width: 100%;
+					  height: 999em;
+					  left: 0;
+					  top: -555em;
+					  z-index: -1;
+					}
+					.focus-highlight td:focus::before, .focus-highlight th:focus::before {
+					  content: '';
+					  position: absolute;
+					  width: 999em;
+					  height: 100%;
+					  left: -555em;
+					  top: 0;
+					  z-index: -2;
+					}
+					/* required styles */
+					.hover-highlight,
+					.focus-highlight {
+					  overflow: hidden;
+					}
+					.hover-highlight td, .hover-highlight th,
+					.focus-highlight td, .focus-highlight th {
+					  position: relative;
+					  outline: 0;
+					}
+					/* override the tablesorter theme styling */
+					table.hover-highlight, table.hover-highlight tbody > tr > td,
+					table.focus-highlight, table.focus-highlight tbody > tr > td,
+					/* override zebra styling */
+					table.hover-highlight tbody tr.even > th,
+					table.hover-highlight tbody tr.even > td,
+					table.hover-highlight tbody tr.odd > th,
+					table.hover-highlight tbody tr.odd > td,
+					table.focus-highlight tbody tr.even > th,
+					table.focus-highlight tbody tr.even > td,
+					table.focus-highlight tbody tr.odd > th,
+					table.focus-highlight tbody tr.odd > td {
+					  background: transparent;
+					}
+					/* table background positioned under the highlight */
+					table.hover-highlight td:before,
+					table.focus-highlight td:before {
+					  content: '';
+					  position: absolute;
+					  width: 100%;
+					  height: 100%;
+					  left: 0;
+					  top: 0;
+					  z-index: -3;
+					}
+				</STYLE>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/js/jquery.tablesorter.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/js/jquery.tablesorter.widgets.min.js"></script><script>
+					$(function() {
+
+					  // Extend the themes to change any of the default class names
+					  $.extend($.tablesorter.themes.jui, {
+						table        : 'ui-widget ui-widget-content ui-corner-all',
+						caption      : 'ui-widget-content',
+						header       : 'ui-widget-header ui-corner-all ui-state-default',
+						sortNone     : '',
+						sortAsc      : '',
+						sortDesc     : '',
+						active       : 'ui-state-active',
+						hover        : 'ui-state-hover',
+						icons        : 'ui-icon',
+						iconSortNone : 'ui-icon-carat-2-n-s ui-icon-caret-2-n-s',
+						iconSortAsc  : 'ui-icon-carat-1-n ui-icon-caret-1-n',
+						iconSortDesc : 'ui-icon-carat-1-s ui-icon-caret-1-s',
+						filterRow    : '',
+						footerRow    : '',
+						footerCells  : '',
+						even         : 'ui-widget-content',
+						odd          : 'ui-state-default'
+					  });
+
+					  $("table").tablesorter({
+						theme : 'blue',
+						headerTemplate : '{content} {icon}',
+						sortList : [[1,1], [0,0]],
+						widgets : ['zebra', 'stickyHeaders'],
+						widgetOptions : {
+						  filter_defaultAttrib : 'data-value',
+						  zebra   : ["even", "odd"],
+						  filter_functions: {
+							".mixed" : {
+								"Present"      : function(e, n, f, i, $r, c, data) { return !isNaN(e); },
+								"N/A"          : function(e, n, f, i, $r, c, data) { return isNaN(e); },
+							},
+						  },
+						}
+					  });
+					  
+						if ( $('.focus-highlight').length ) {
+							$('.focus-highlight').find('td, th')
+							  .attr('tabindex', '1')
+							  // add touch device support
+							  .on('touchstart', function() {
+								$(this).focus();
+							  });
+						}
+
+					}); 
+					
+					// Toggle collapse on collapse class elements, with a elements of permalink class on table rows. Not in use.
+					//animating = false;
+					//clicked = false;
+					//$('.collapsible').hide();
+					//$('a.permalink').click(function(){
+					//	var $el = $(this);
+					//	setTimeout(function(){
+					//		if (!animating && !clicked) {
+					//			animating = true;
+					//			$el.closest('tr').find('.collapsible').slideToggle();
+					//			setTimeout(function(){ animating = false; }, 200);
+					//		}
+					//	}, 200);
+					//	return false;
+					//});
+				</script>
+</HEAD>
+<BODY>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 1 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Fertilizer</TD>
+<TD class="decimal">0.0109</TD>
+</TR>
+<TR>
+<TD class="name">Paint</TD>
+<TD class="decimal">0.0218</TD>
+</TR>
+<TR>
+<TD class="name">Paint Brush</TD>
+<TD class="decimal">0.0109</TD>
+</TR>
+<TR>
+<TD class="name">Nails</TD>
+<TD class="decimal">0.2037</TD>
+</TR>
+<TR>
+<TD class="name">Twine</TD>
+<TD class="decimal">0.2037</TD>
+</TR>
+<TR>
+<TD class="name">Tarp</TD>
+<TD class="decimal">0.2037</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 2 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 3 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Bottled Murky Water</TD>
+<TD class="decimal">0.0425</TD>
+</TR>
+<TR>
+<TD class="name">Bottled Water</TD>
+<TD class="decimal">0.0425</TD>
+</TR>
+<TR>
+<TD class="name">Can of Soda</TD>
+<TD class="decimal">0.0837</TD>
+</TR>
+<TR>
+<TD class="name">Twine</TD>
+<TD class="decimal">0.0837</TD>
+</TR>
+<TR>
+<TD class="name">Glass Jar</TD>
+<TD class="decimal">0.0837</TD>
+</TR>
+<TR>
+<TD class="name">Plastic Bottle</TD>
+<TD class="decimal">0.0837</TD>
+</TR>
+<TR>
+<TD class="name">Box of Nails</TD>
+<TD class="decimal">0.0837</TD>
+</TR>
+<TR>
+<TD class="name">Sugar</TD>
+<TD class="decimal">0.0837</TD>
+</TR>
+<TR>
+<TD class="name">Nails</TD>
+<TD class="decimal">0.0837</TD>
+</TR>
+<TR>
+<TD class="name">Weed</TD>
+<TD class="decimal">0.0086</TD>
+</TR>
+<TR>
+<TD class="name">Vinegar</TD>
+<TD class="decimal">0.0837</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 4 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Bottled Water</TD>
+<TD class="decimal">0.0543</TD>
+</TR>
+<TR>
+<TD class="name">Glass Jar</TD>
+<TD class="decimal">0.1087</TD>
+</TR>
+<TR>
+<TD class="name">Plastic Bottle</TD>
+<TD class="decimal">0.1087</TD>
+</TR>
+<TR>
+<TD class="name">Golden Egg</TD>
+<TD class="decimal">0.0001</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 5 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Cooking Grill</TD>
+<TD class="decimal">0.0354</TD>
+</TR>
+<TR>
+<TD class="name">Cooking Pot</TD>
+<TD class="decimal">0.0152</TD>
+</TR>
+<TR>
+<TD class="name">Iron</TD>
+<TD class="decimal">0.1010</TD>
+</TR>
+<TR>
+<TD class="name">Empty Can</TD>
+<TD class="decimal">0.1010</TD>
+</TR>
+<TR>
+<TD class="name">Charcoal</TD>
+<TD class="decimal">0.0505</TD>
+</TR>
+<TR>
+<TD class="name">Lump of Coal</TD>
+<TD class="decimal">0.0505</TD>
+</TR>
+<TR>
+<TD class="name">Charred Meat</TD>
+<TD class="decimal">0.1010</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 6 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Painting: Wall Coverings</TD>
+<TD class="decimal">0.0722</TD>
+</TR>
+<TR>
+<TD class="name">Glue</TD>
+<TD class="decimal">0.0722</TD>
+</TR>
+<TR>
+<TD class="name">Duct Tape</TD>
+<TD class="decimal">0.0722</TD>
+</TR>
+<TR>
+<TD class="name">Nails</TD>
+<TD class="decimal">0.0722</TD>
+</TR>
+<TR>
+<TD class="name">Flashlight</TD>
+<TD class="decimal">0.0206</TD>
+</TR>
+<TR>
+<TD class="name">Ink Pen</TD>
+<TD class="decimal">0.0037</TD>
+</TR>
+<TR>
+<TD class="name">Ink</TD>
+<TD class="decimal">0.0722</TD>
+</TR>
+<TR>
+<TD class="name">Twine</TD>
+<TD class="decimal">0.0722</TD>
+</TR>
+<TR>
+<TD class="name">Box of Nails</TD>
+<TD class="decimal">0.0722</TD>
+</TR>
+<TR>
+<TD class="name">Sewing Kit</TD>
+<TD class="decimal">0.0037</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 7 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 8 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Bottled Water</TD>
+<TD class="decimal">0.0654</TD>
+</TR>
+<TR>
+<TD class="name">Can of Soda</TD>
+<TD class="decimal">0.1277</TD>
+</TR>
+<TR>
+<TD class="name">Paint</TD>
+<TD class="decimal">0.0199</TD>
+</TR>
+<TR>
+<TD class="name">Twine</TD>
+<TD class="decimal">0.1277</TD>
+</TR>
+<TR>
+<TD class="name">Glass Jar</TD>
+<TD class="decimal">0.1277</TD>
+</TR>
+<TR>
+<TD class="name">Plastic Bottle</TD>
+<TD class="decimal">0.1277</TD>
+</TR>
+<TR>
+<TD class="name">Weed</TD>
+<TD class="decimal">0.0239</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 9 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 10 (0)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Cobweb</TD>
+<TD class="decimal">0.0000</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 11 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Compound Bow</TD>
+<TD class="decimal">0.0271</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.0886</TD>
+</TR>
+<TR>
+<TD class="name">Weed</TD>
+<TD class="decimal">0.1556</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 14 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.1587</TD>
+</TR>
+<TR>
+<TD class="name">Duct Tape</TD>
+<TD class="decimal">0.1587</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.1587</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 15 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Facial Piercings</TD>
+<TD class="decimal">0.0184</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 16 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 17 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Sham Sandwich</TD>
+<TD class="decimal">0.2101</TD>
+</TR>
+<TR>
+<TD class="name">Flashlight</TD>
+<TD class="decimal">0.1077</TD>
+</TR>
+<TR>
+<TD class="name">Military Vest</TD>
+<TD class="decimal">0.0437</TD>
+</TR>
+<TR>
+<TD class="name">Military Fiber</TD>
+<TD class="decimal">0.0088</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 18 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Cloth Fragment</TD>
+<TD class="decimal">0.3333</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 19 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Mining Helmet</TD>
+<TD class="decimal">0.0169</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 20 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 21 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.1923</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 22 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Paint</TD>
+<TD class="decimal">0.0152</TD>
+</TR>
+<TR>
+<TD class="name">Paint Brush</TD>
+<TD class="decimal">0.0004</TD>
+</TR>
+<TR>
+<TD class="name">Painting: Metal</TD>
+<TD class="decimal">0.0023</TD>
+</TR>
+<TR>
+<TD class="name">Twine</TD>
+<TD class="decimal">0.0759</TD>
+</TR>
+<TR>
+<TD class="name">Box of Nails</TD>
+<TD class="decimal">0.0759</TD>
+</TR>
+<TR>
+<TD class="name">Tarp</TD>
+<TD class="decimal">0.0759</TD>
+</TR>
+<TR>
+<TD class="name">Glue</TD>
+<TD class="decimal">0.0759</TD>
+</TR>
+<TR>
+<TD class="name">Duct Tape</TD>
+<TD class="decimal">0.0759</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 25 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Egg</TD>
+<TD class="decimal">0.3616</TD>
+</TR>
+<TR>
+<TD class="name">Feather</TD>
+<TD class="decimal">0.8102</TD>
+</TR>
+<TR>
+<TD class="name">Golden Egg</TD>
+<TD class="decimal">0.0017</TD>
+</TR>
+<TR>
+<TD class="name">Stick</TD>
+<TD class="decimal">0.2296</TD>
+</TR>
+<TR>
+<TD class="name">A human turd</TD>
+<TD class="decimal">0.0810</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 34 (3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Lockpick</TD>
+<TD class="decimal">0.0740</TD>
+</TR>
+<TR>
+<TD class="name">Compound Bow</TD>
+<TD class="decimal">0.0226</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 35 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Scrap Plastics</TD>
+<TD class="decimal">0.0420</TD>
+</TR>
+<TR>
+<TD class="name">Jar of Honey</TD>
+<TD class="decimal">0.0168</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 36 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Bottled Murky Water</TD>
+<TD class="decimal">0.0450</TD>
+</TR>
+<TR>
+<TD class="name">Flashlight</TD>
+<TD class="decimal">0.0302</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 37 (0)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Cobweb</TD>
+<TD class="decimal">0.0000</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 38 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Bottled Water</TD>
+<TD class="decimal">0.0853</TD>
+</TR>
+<TR>
+<TD class="name">Can of Soda</TD>
+<TD class="decimal">0.0853</TD>
+</TR>
+<TR>
+<TD class="name">Old Sham Sandwich</TD>
+<TD class="decimal">0.0853</TD>
+</TR>
+<TR>
+<TD class="name">Painkillers</TD>
+<TD class="decimal">0.0853</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 39 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 40 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Ammo Supply Box</TD>
+<TD class="decimal">0.3086</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 41 (0)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 42 (2,4)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.0242</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 43 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.0869</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.1704</TD>
+</TR>
+<TR>
+<TD class="name">Glue</TD>
+<TD class="decimal">0.1704</TD>
+</TR>
+<TR>
+<TD class="name">Duct Tape</TD>
+<TD class="decimal">0.1704</TD>
+</TR>
+<TR>
+<TD class="name">Gun Powder</TD>
+<TD class="decimal">0.1704</TD>
+</TR>
+<TR>
+<TD class="name">Padlock</TD>
+<TD class="decimal">0.1039</TD>
+</TR>
+<TR>
+<TD class="name">Sewing Kit</TD>
+<TD class="decimal">0.0089</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 44 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.1065</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.0319</TD>
+</TR>
+<TR>
+<TD class="name">Painkillers</TD>
+<TD class="decimal">0.0053</TD>
+</TR>
+<TR>
+<TD class="name">Glue</TD>
+<TD class="decimal">0.1065</TD>
+</TR>
+<TR>
+<TD class="name">Duct Tape</TD>
+<TD class="decimal">0.1065</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 45 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 46 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 47 (0)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Cobweb</TD>
+<TD class="decimal">0.0000</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 48 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Bottled Water</TD>
+<TD class="decimal">0.1092</TD>
+</TR>
+<TR>
+<TD class="name">Can of Soda</TD>
+<TD class="decimal">0.1092</TD>
+</TR>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.1092</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.7173</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 49 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.2331</TD>
+</TR>
+<TR>
+<TD class="name">Painting: Faux</TD>
+<TD class="decimal">0.0233</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 50 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Mechanical Parts</TD>
+<TD class="decimal">0.0245</TD>
+</TR>
+<TR>
+<TD class="name">Scrap Plastics</TD>
+<TD class="decimal">0.0366</TD>
+</TR>
+<TR>
+<TD class="name">Lockpick</TD>
+<TD class="decimal">0.0245</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 51 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Scrap Plastics</TD>
+<TD class="decimal">0.1248</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 52 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 53 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 54 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Scrap Plastics</TD>
+<TD class="decimal">0.1574</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 55 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.0538</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.1666</TD>
+</TR>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.9564</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 56 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Taza's Stone Axe</TD>
+<TD class="decimal">0.4000</TD>
+</TR>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.4000</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.2000</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 57 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Stick of Dynamite (Ammo)</TD>
+<TD class="decimal">0.2343</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 58 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 59 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Sham Sandwich</TD>
+<TD class="decimal">0.1460</TD>
+</TR>
+<TR>
+<TD class="name">Can of Ham</TD>
+<TD class="decimal">0.1460</TD>
+</TR>
+<TR>
+<TD class="name">Moldy Bread</TD>
+<TD class="decimal">0.1460</TD>
+</TR>
+<TR>
+<TD class="name">Jar of Honey</TD>
+<TD class="decimal">0.0153</TD>
+</TR>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.0603</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 60 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 61 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Compound Bow</TD>
+<TD class="decimal">0.0148</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 62 (0)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 63 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Herbal Antibiotics</TD>
+<TD class="decimal">0.3226</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 64 (30,300)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 65 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Grain Alcohol</TD>
+<TD class="decimal">0.0423</TD>
+</TR>
+<TR>
+<TD class="name">Scrap Plastics</TD>
+<TD class="decimal">0.0629</TD>
+</TR>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.0629</TD>
+</TR>
+<TR>
+<TD class="name">Cloth Fragment</TD>
+<TD class="decimal">0.0629</TD>
+</TR>
+<TR>
+<TD class="name">Duct Tape</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Military Fiber</TD>
+<TD class="decimal">0.1034</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 66 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 67 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 68 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 69 (2,4)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 70 (3,5)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.3590</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.1952</TD>
+</TR>
+<TR>
+<TD class="name">Ink</TD>
+<TD class="decimal">0.0418</TD>
+</TR>
+<TR>
+<TD class="name">Lockpick</TD>
+<TD class="decimal">0.0418</TD>
+</TR>
+<TR>
+<TD class="name">Raw Diamond</TD>
+<TD class="decimal">0.0211</TD>
+</TR>
+<TR>
+<TD class="name">Silver Nugget</TD>
+<TD class="decimal">0.0376</TD>
+</TR>
+<TR>
+<TD class="name">Paint</TD>
+<TD class="decimal">0.3590</TD>
+</TR>
+<TR>
+<TD class="name">Gold Nugget</TD>
+<TD class="decimal">0.0127</TD>
+</TR>
+<TR>
+<TD class="name">Compound Bow</TD>
+<TD class="decimal">0.0418</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 71 (0,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Spiked Club</TD>
+<TD class="decimal">0.4656</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 72 (0,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 73 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Rocket (Ammo)</TD>
+<TD class="decimal">0.0273</TD>
+</TR>
+<TR>
+<TD class="name">Night Vision Goggles</TD>
+<TD class="decimal">0.0545</TD>
+</TR>
+<TR>
+<TD class="name">Military Fiber</TD>
+<TD class="decimal">0.2727</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 74 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 75 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Rotting Flesh</TD>
+<TD class="decimal">0.4385</TD>
+</TR>
+<TR>
+<TD class="name">Large Bone</TD>
+<TD class="decimal">0.1274</TD>
+</TR>
+<TR>
+<TD class="name">Fertilizer</TD>
+<TD class="decimal">0.0133</TD>
+</TR>
+<TR>
+<TD class="name">Gold Nugget</TD>
+<TD class="decimal">0.0133</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 76 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Lump of Coal</TD>
+<TD class="decimal">0.4545</TD>
+</TR>
+<TR>
+<TD class="name">Large Bone</TD>
+<TD class="decimal">0.0455</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 77 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 78 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 79 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">White Football Jersey</TD>
+<TD class="decimal">0.2006</TD>
+</TR>
+<TR>
+<TD class="name">Blue Skirt</TD>
+<TD class="decimal">0.2459</TD>
+</TR>
+<TR>
+<TD class="name">Running Shoes</TD>
+<TD class="decimal">0.2459</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 80 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">White Hooded Sweatshirt</TD>
+<TD class="decimal">0.0767</TD>
+</TR>
+<TR>
+<TD class="name">Black Denim Pants</TD>
+<TD class="decimal">0.0767</TD>
+</TR>
+<TR>
+<TD class="name">Running Shoes</TD>
+<TD class="decimal">0.1492</TD>
+</TR>
+<TR>
+<TD class="name">Mechanical Parts</TD>
+<TD class="decimal">0.2176</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 81 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Stick of Dynamite (Ammo)</TD>
+<TD class="decimal">0.0585</TD>
+</TR>
+<TR>
+<TD class="name">Leather Poncho</TD>
+<TD class="decimal">0.0585</TD>
+</TR>
+<TR>
+<TD class="name">Blue Denim Pants</TD>
+<TD class="decimal">0.0585</TD>
+</TR>
+<TR>
+<TD class="name">Cowboy Boots</TD>
+<TD class="decimal">0.0585</TD>
+</TR>
+<TR>
+<TD class="name">Black Cowboy Boots</TD>
+<TD class="decimal">0.0585</TD>
+</TR>
+<TR>
+<TD class="name">Cigar</TD>
+<TD class="decimal">0.0585</TD>
+</TR>
+<TR>
+<TD class="name">Grain Alcohol</TD>
+<TD class="decimal">0.0412</TD>
+</TR>
+<TR>
+<TD class="name">Bottled Water</TD>
+<TD class="decimal">0.0585</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.0585</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 83 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">SWAT Helmet</TD>
+<TD class="decimal">0.0618</TD>
+</TR>
+<TR>
+<TD class="name">Black Goth Pants</TD>
+<TD class="decimal">0.0618</TD>
+</TR>
+<TR>
+<TD class="name">Black Goth Boots</TD>
+<TD class="decimal">0.0618</TD>
+</TR>
+<TR>
+<TD class="name">Shades</TD>
+<TD class="decimal">0.0063</TD>
+</TR>
+<TR>
+<TD class="name">Black Shades</TD>
+<TD class="decimal">0.0312</TD>
+</TR>
+<TR>
+<TD class="name">Beer</TD>
+<TD class="decimal">0.0618</TD>
+</TR>
+<TR>
+<TD class="name">Grain Alcohol</TD>
+<TD class="decimal">0.0618</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.0618</TD>
+</TR>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.0618</TD>
+</TR>
+<TR>
+<TD class="name">Antibiotics</TD>
+<TD class="decimal">0.0157</TD>
+</TR>
+<TR>
+<TD class="name">Painkillers</TD>
+<TD class="decimal">0.0618</TD>
+</TR>
+<TR>
+<TD class="name">Lockpick</TD>
+<TD class="decimal">0.0063</TD>
+</TR>
+<TR>
+<TD class="name">Iron Reinforced Club</TD>
+<TD class="decimal">0.0618</TD>
+</TR>
+<TR>
+<TD class="name">Barbed Club</TD>
+<TD class="decimal">0.0163</TD>
+</TR>
+<TR>
+<TD class="name">Spiked Club</TD>
+<TD class="decimal">0.0094</TD>
+</TR>
+<TR>
+<TD class="name">Hunting Knife</TD>
+<TD class="decimal">0.0618</TD>
+</TR>
+<TR>
+<TD class="name">Machete</TD>
+<TD class="decimal">0.0113</TD>
+</TR>
+<TR>
+<TD class="name">First Aid Kit</TD>
+<TD class="decimal">0.0618</TD>
+</TR>
+<TR>
+<TD class="name">Minibikes For Dumbshits</TD>
+<TD class="decimal">0.0032</TD>
+</TR>
+<TR>
+<TD class="name">Minibikes For Smartshits</TD>
+<TD class="decimal">0.0032</TD>
+</TR>
+<TR>
+<TD class="name">Minibikes For Toughshits</TD>
+<TD class="decimal">0.0032</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 84 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.2037</TD>
+</TR>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.1059</TD>
+</TR>
+<TR>
+<TD class="name">Scrap Plastics</TD>
+<TD class="decimal">0.0326</TD>
+</TR>
+<TR>
+<TD class="name">Blood Draw Kit</TD>
+<TD class="decimal">0.0326</TD>
+</TR>
+<TR>
+<TD class="name">Painkillers</TD>
+<TD class="decimal">0.1059</TD>
+</TR>
+<TR>
+<TD class="name">Vitamins</TD>
+<TD class="decimal">0.1059</TD>
+</TR>
+<TR>
+<TD class="name">Herbal Antibiotics</TD>
+<TD class="decimal">0.0272</TD>
+</TR>
+<TR>
+<TD class="name">Feather</TD>
+<TD class="decimal">0.1059</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 85 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Iron Garden Hoe</TD>
+<TD class="decimal">0.0286</TD>
+</TR>
+<TR>
+<TD class="name">Iron Shovel</TD>
+<TD class="decimal">0.0096</TD>
+</TR>
+<TR>
+<TD class="name">Beer</TD>
+<TD class="decimal">0.1800</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 86 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.3810</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 87 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.0207</TD>
+</TR>
+<TR>
+<TD class="name">Scrap Plastics</TD>
+<TD class="decimal">0.0156</TD>
+</TR>
+<TR>
+<TD class="name">Cloth Fragment</TD>
+<TD class="decimal">0.1016</TD>
+</TR>
+<TR>
+<TD class="name">Leather</TD>
+<TD class="decimal">0.1016</TD>
+</TR>
+<TR>
+<TD class="name">Duct Tape</TD>
+<TD class="decimal">0.0514</TD>
+</TR>
+<TR>
+<TD class="name">Forged Steel</TD>
+<TD class="decimal">0.0207</TD>
+</TR>
+<TR>
+<TD class="name">Forged Iron</TD>
+<TD class="decimal">0.0259</TD>
+</TR>
+<TR>
+<TD class="name">Iron</TD>
+<TD class="decimal">0.1016</TD>
+</TR>
+<TR>
+<TD class="name">Repair Kit</TD>
+<TD class="decimal">0.1016</TD>
+</TR>
+<TR>
+<TD class="name">Mechanical Parts</TD>
+<TD class="decimal">0.0514</TD>
+</TR>
+<TR>
+<TD class="name">Electrical Parts</TD>
+<TD class="decimal">0.0514</TD>
+</TR>
+<TR>
+<TD class="name">Electronic Components</TD>
+<TD class="decimal">0.0310</TD>
+</TR>
+<TR>
+<TD class="name">Headlight</TD>
+<TD class="decimal">0.0514</TD>
+</TR>
+<TR>
+<TD class="name">Handlebars</TD>
+<TD class="decimal">0.0310</TD>
+</TR>
+<TR>
+<TD class="name">Football Helmet</TD>
+<TD class="decimal">0.0310</TD>
+</TR>
+<TR>
+<TD class="name">Claw Hammer</TD>
+<TD class="decimal">0.0238</TD>
+</TR>
+<TR>
+<TD class="name">Wrench</TD>
+<TD class="decimal">0.0238</TD>
+</TR>
+<TR>
+<TD class="name">Crowbar</TD>
+<TD class="decimal">0.0156</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 88 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.0756</TD>
+</TR>
+<TR>
+<TD class="name">Scrap Plastics</TD>
+<TD class="decimal">0.0756</TD>
+</TR>
+<TR>
+<TD class="name">Duct Tape</TD>
+<TD class="decimal">0.0756</TD>
+</TR>
+<TR>
+<TD class="name">Forged Steel</TD>
+<TD class="decimal">0.0607</TD>
+</TR>
+<TR>
+<TD class="name">Forged Iron</TD>
+<TD class="decimal">0.0756</TD>
+</TR>
+<TR>
+<TD class="name">Iron</TD>
+<TD class="decimal">0.0756</TD>
+</TR>
+<TR>
+<TD class="name">Rebar Frame</TD>
+<TD class="decimal">0.0756</TD>
+</TR>
+<TR>
+<TD class="name">Nails</TD>
+<TD class="decimal">0.0756</TD>
+</TR>
+<TR>
+<TD class="name">Wood</TD>
+<TD class="decimal">0.0756</TD>
+</TR>
+<TR>
+<TD class="name">Glue</TD>
+<TD class="decimal">0.0756</TD>
+</TR>
+<TR>
+<TD class="name">Paint</TD>
+<TD class="decimal">0.1485</TD>
+</TR>
+<TR>
+<TD class="name">Paint Brush</TD>
+<TD class="decimal">0.0756</TD>
+</TR>
+<TR>
+<TD class="name">Wire Tool</TD>
+<TD class="decimal">0.0191</TD>
+</TR>
+<TR>
+<TD class="name">Claw Hammer</TD>
+<TD class="decimal">0.0191</TD>
+</TR>
+<TR>
+<TD class="name">Wrench</TD>
+<TD class="decimal">0.0191</TD>
+</TR>
+<TR>
+<TD class="name">Steel Pickaxe</TD>
+<TD class="decimal">0.0191</TD>
+</TR>
+<TR>
+<TD class="name">Steel Garden Hoe</TD>
+<TD class="decimal">0.0191</TD>
+</TR>
+<TR>
+<TD class="name">Steel Fireaxe</TD>
+<TD class="decimal">0.0191</TD>
+</TR>
+<TR>
+<TD class="name">Steel Shovel</TD>
+<TD class="decimal">0.0191</TD>
+</TR>
+<TR>
+<TD class="name">Iron Sledgehammer</TD>
+<TD class="decimal">0.0191</TD>
+</TR>
+<TR>
+<TD class="name">Sickle</TD>
+<TD class="decimal">0.0191</TD>
+</TR>
+<TR>
+<TD class="name">Crowbar</TD>
+<TD class="decimal">0.0115</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 89 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.2554</TD>
+</TR>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.0901</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 90 (0)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Cobweb</TD>
+<TD class="decimal">0.0000</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 91 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Iron</TD>
+<TD class="decimal">0.1450</TD>
+</TR>
+<TR>
+<TD class="name">Brass</TD>
+<TD class="decimal">0.0737</TD>
+</TR>
+<TR>
+<TD class="name">Lead</TD>
+<TD class="decimal">0.0737</TD>
+</TR>
+<TR>
+<TD class="name">Broken Glass</TD>
+<TD class="decimal">0.0737</TD>
+</TR>
+<TR>
+<TD class="name">Small Stone</TD>
+<TD class="decimal">0.0737</TD>
+</TR>
+<TR>
+<TD class="name">Lump of Clay</TD>
+<TD class="decimal">0.0737</TD>
+</TR>
+<TR>
+<TD class="name">Raw Iron</TD>
+<TD class="decimal">0.1450</TD>
+</TR>
+<TR>
+<TD class="name">Short Iron Pipe</TD>
+<TD class="decimal">0.0737</TD>
+</TR>
+<TR>
+<TD class="name">Forged Iron</TD>
+<TD class="decimal">0.1450</TD>
+</TR>
+<TR>
+<TD class="name">Forged Steel</TD>
+<TD class="decimal">0.0737</TD>
+</TR>
+<TR>
+<TD class="name">Anvil</TD>
+<TD class="decimal">0.0737</TD>
+</TR>
+<TR>
+<TD class="name">Nails</TD>
+<TD class="decimal">0.0737</TD>
+</TR>
+<TR>
+<TD class="name">Iron Arrowhead</TD>
+<TD class="decimal">0.0737</TD>
+</TR>
+<TR>
+<TD class="name">Steel Arrowhead</TD>
+<TD class="decimal">0.0737</TD>
+</TR>
+<TR>
+<TD class="name">Wood</TD>
+<TD class="decimal">0.1450</TD>
+</TR>
+<TR>
+<TD class="name">Lump of Coal</TD>
+<TD class="decimal">0.0737</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 92 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Iron</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Broken Glass</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Short Iron Pipe</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Forged Iron</TD>
+<TD class="decimal">0.1039</TD>
+</TR>
+<TR>
+<TD class="name">Forged Steel</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Nails</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Iron Arrowhead</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Steel Arrowhead</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Wood</TD>
+<TD class="decimal">0.1039</TD>
+</TR>
+<TR>
+<TD class="name">Scrap Plastics</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Mechanical Parts</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Electrical Parts</TD>
+<TD class="decimal">0.0264</TD>
+</TR>
+<TR>
+<TD class="name">Electronic Components</TD>
+<TD class="decimal">0.0106</TD>
+</TR>
+<TR>
+<TD class="name">Bullet Casing</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Bullet Tip</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Gun Powder</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Car Air Filter</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Candy Tin Can</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Hub Cap</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Cloth Fragment</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Duct Tape</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Feather</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Lead Fishing Weight</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Glue</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Oil</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+<TR>
+<TD class="name">Spring</TD>
+<TD class="decimal">0.0526</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 93 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Small Stone</TD>
+<TD class="decimal">0.1267</TD>
+</TR>
+<TR>
+<TD class="name">Lump of Clay</TD>
+<TD class="decimal">0.1267</TD>
+</TR>
+<TR>
+<TD class="name">Rotting Flesh</TD>
+<TD class="decimal">0.1267</TD>
+</TR>
+<TR>
+<TD class="name">Nitrate Powder</TD>
+<TD class="decimal">0.1267</TD>
+</TR>
+<TR>
+<TD class="name">Crushed Sand</TD>
+<TD class="decimal">0.1267</TD>
+</TR>
+<TR>
+<TD class="name">Oil Shale</TD>
+<TD class="decimal">0.1267</TD>
+</TR>
+<TR>
+<TD class="name">Dirt Fragment</TD>
+<TD class="decimal">0.1267</TD>
+</TR>
+<TR>
+<TD class="name">Cement</TD>
+<TD class="decimal">0.1267</TD>
+</TR>
+<TR>
+<TD class="name">Concrete Mix</TD>
+<TD class="decimal">0.1267</TD>
+</TR>
+<TR>
+<TD class="name">Cobblestone Rocks</TD>
+<TD class="decimal">0.1267</TD>
+</TR>
+<TR>
+<TD class="name">Bricks</TD>
+<TD class="decimal">0.1267</TD>
+</TR>
+<TR>
+<TD class="name">Fertilizer</TD>
+<TD class="decimal">0.0643</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 94 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Wood</TD>
+<TD class="decimal">0.1215</TD>
+</TR>
+<TR>
+<TD class="name">Paint</TD>
+<TD class="decimal">0.0616</TD>
+</TR>
+<TR>
+<TD class="name">Gun Powder</TD>
+<TD class="decimal">0.0616</TD>
+</TR>
+<TR>
+<TD class="name">Chrysanthemum</TD>
+<TD class="decimal">0.0616</TD>
+</TR>
+<TR>
+<TD class="name">Cotton</TD>
+<TD class="decimal">0.0616</TD>
+</TR>
+<TR>
+<TD class="name">Goldenrod Flower</TD>
+<TD class="decimal">0.0616</TD>
+</TR>
+<TR>
+<TD class="name">Corn Meal</TD>
+<TD class="decimal">0.0616</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 95 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Compound Bow</TD>
+<TD class="decimal">0.0684</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 96 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.0865</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 97 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Lead</TD>
+<TD class="decimal">0.4750</TD>
+</TR>
+<TR>
+<TD class="name">Lead Car Battery</TD>
+<TD class="decimal">0.0250</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 98 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Iron</TD>
+<TD class="decimal">0.4750</TD>
+</TR>
+<TR>
+<TD class="name">Small Engine</TD>
+<TD class="decimal">0.0250</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 99 (0)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 100 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 101 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 102 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 103 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 104 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 105 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 106 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 107 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 108 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 109 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 110 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 111 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 112 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 113 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 114 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 115 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 116 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 117 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 120 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 121 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 124 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 125 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 126 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 127 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 128 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 129 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 130 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 131 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 132 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 133 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 150 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 151 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 152 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 154 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Military Vest</TD>
+<TD class="decimal">0.0730</TD>
+</TR>
+<TR>
+<TD class="name">Military Fiber</TD>
+<TD class="decimal">0.0148</TD>
+</TR>
+<TR>
+<TD class="name">Ink</TD>
+<TD class="decimal">0.3407</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 156 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 158 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 159 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 160 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 161 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 162 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Mining Helmet</TD>
+<TD class="decimal">0.0011</TD>
+</TR>
+<TR>
+<TD class="name">Beer</TD>
+<TD class="decimal">0.0298</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.0298</TD>
+</TR>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.0298</TD>
+</TR>
+<TR>
+<TD class="name">Antibiotics</TD>
+<TD class="decimal">0.0045</TD>
+</TR>
+<TR>
+<TD class="name">Painkillers</TD>
+<TD class="decimal">0.0105</TD>
+</TR>
+<TR>
+<TD class="name">Lockpick</TD>
+<TD class="decimal">0.0030</TD>
+</TR>
+<TR>
+<TD class="name">Hunting Knife</TD>
+<TD class="decimal">0.0105</TD>
+</TR>
+<TR>
+<TD class="name">First Aid Kit</TD>
+<TD class="decimal">0.0075</TD>
+</TR>
+<TR>
+<TD class="name">Painting: Wall Coverings</TD>
+<TD class="decimal">0.0298</TD>
+</TR>
+<TR>
+<TD class="name">Ink Pen</TD>
+<TD class="decimal">0.0015</TD>
+</TR>
+<TR>
+<TD class="name">Ink</TD>
+<TD class="decimal">0.0298</TD>
+</TR>
+<TR>
+<TD class="name">Rolling Paper</TD>
+<TD class="decimal">0.0054</TD>
+</TR>
+<TR>
+<TD class="name">Weed</TD>
+<TD class="decimal">0.0054</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 163 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Mining Helmet</TD>
+<TD class="decimal">0.0067</TD>
+</TR>
+<TR>
+<TD class="name">Beer</TD>
+<TD class="decimal">0.1128</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.1847</TD>
+</TR>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.1847</TD>
+</TR>
+<TR>
+<TD class="name">Antibiotics</TD>
+<TD class="decimal">0.0288</TD>
+</TR>
+<TR>
+<TD class="name">Painkillers</TD>
+<TD class="decimal">0.0665</TD>
+</TR>
+<TR>
+<TD class="name">Scooby Snacks</TD>
+<TD class="decimal">0.1490</TD>
+</TR>
+<TR>
+<TD class="name">Lockpick</TD>
+<TD class="decimal">0.0192</TD>
+</TR>
+<TR>
+<TD class="name">Flashlight</TD>
+<TD class="decimal">0.1847</TD>
+</TR>
+<TR>
+<TD class="name">Rolling Paper</TD>
+<TD class="decimal">0.0345</TD>
+</TR>
+<TR>
+<TD class="name">Weed</TD>
+<TD class="decimal">0.0345</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 164 (1,4)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Compound Bow</TD>
+<TD class="decimal">0.0663</TD>
+</TR>
+<TR>
+<TD class="name">Ink</TD>
+<TD class="decimal">0.3791</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 165 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 166 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 167 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 168 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 169 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 170 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 171 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 172 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 173 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 174 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Beer</TD>
+<TD class="decimal">0.7769</TD>
+</TR>
+<TR>
+<TD class="name">Painkillers</TD>
+<TD class="decimal">0.4457</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 175 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">White Skirt</TD>
+<TD class="decimal">0.1765</TD>
+</TR>
+<TR>
+<TD class="name">Joint</TD>
+<TD class="decimal">0.0274</TD>
+</TR>
+<TR>
+<TD class="name">Weed</TD>
+<TD class="decimal">0.7321</TD>
+</TR>
+<TR>
+<TD class="name">Beer</TD>
+<TD class="decimal">0.1765</TD>
+</TR>
+<TR>
+<TD class="name">Painkillers</TD>
+<TD class="decimal">0.1765</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 176 (2,4)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Raw Diamond</TD>
+<TD class="decimal">0.1916</TD>
+</TR>
+<TR>
+<TD class="name">Silver Nugget</TD>
+<TD class="decimal">0.3546</TD>
+</TR>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.4264</TD>
+</TR>
+<TR>
+<TD class="name">Knowledge Point</TD>
+<TD class="decimal">0.2765</TD>
+</TR>
+<TR>
+<TD class="name">Repeating Crossbow</TD>
+<TD class="decimal">0.0507</TD>
+</TR>
+<TR>
+<TD class="name">Compound Bow</TD>
+<TD class="decimal">0.0507</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 179 (2,5)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Scrap Plastics</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Rebar Frame</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Glue</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Paint</TD>
+<TD class="decimal">0.0632</TD>
+</TR>
+<TR>
+<TD class="name">Sickle</TD>
+<TD class="decimal">0.0179</TD>
+</TR>
+<TR>
+<TD class="name">Cloth Fragment</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Leather</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Duct Tape</TD>
+<TD class="decimal">0.0355</TD>
+</TR>
+<TR>
+<TD class="name">Repair Kit</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Mechanical Parts</TD>
+<TD class="decimal">0.0355</TD>
+</TR>
+<TR>
+<TD class="name">Electrical Parts</TD>
+<TD class="decimal">0.0355</TD>
+</TR>
+<TR>
+<TD class="name">Electronic Components</TD>
+<TD class="decimal">0.0214</TD>
+</TR>
+<TR>
+<TD class="name">Crowbar</TD>
+<TD class="decimal">0.0108</TD>
+</TR>
+<TR>
+<TD class="name">Iron</TD>
+<TD class="decimal">0.1359</TD>
+</TR>
+<TR>
+<TD class="name">Brass</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Lead</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Broken Glass</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Raw Iron</TD>
+<TD class="decimal">0.1359</TD>
+</TR>
+<TR>
+<TD class="name">Short Iron Pipe</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Forged Iron</TD>
+<TD class="decimal">0.0179</TD>
+</TR>
+<TR>
+<TD class="name">Forged Steel</TD>
+<TD class="decimal">0.0179</TD>
+</TR>
+<TR>
+<TD class="name">Nails</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Wood</TD>
+<TD class="decimal">0.1359</TD>
+</TR>
+<TR>
+<TD class="name">Lump of Coal</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Small Stone</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Lump of Clay</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Nitrate Powder</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Crushed Sand</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Oil Shale</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Dirt Fragment</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Cement</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Concrete Mix</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Cobblestone Rocks</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Bricks</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Fertilizer</TD>
+<TD class="decimal">0.0355</TD>
+</TR>
+<TR>
+<TD class="name">Bulletproof Glass Block</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">White River Flagpole</TD>
+<TD class="decimal">0.0014</TD>
+</TR>
+<TR>
+<TD class="name">Bar Stool</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Generator Bank</TD>
+<TD class="decimal">0.0065</TD>
+</TR>
+<TR>
+<TD class="name">Battery Bank</TD>
+<TD class="decimal">0.0065</TD>
+</TR>
+<TR>
+<TD class="name">Warehouse Outdoor Light</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Simple Light</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Silver Dome Light</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Fluorescent Light</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Industrial Light</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Old Outdoor Light</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Electric Timer Relay</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Electric Wire Relay</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Motion Sensor</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Switch</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Solar Cell</TD>
+<TD class="decimal">0.0050</TD>
+</TR>
+<TR>
+<TD class="name">Wood Frame</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+<TR>
+<TD class="name">Tarp</TD>
+<TD class="decimal">0.0700</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 180 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Scrap Plastics</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Rebar Frame</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Glue</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Paint</TD>
+<TD class="decimal">0.0276</TD>
+</TR>
+<TR>
+<TD class="name">Sickle</TD>
+<TD class="decimal">0.0077</TD>
+</TR>
+<TR>
+<TD class="name">Cloth Fragment</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Leather</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Duct Tape</TD>
+<TD class="decimal">0.0154</TD>
+</TR>
+<TR>
+<TD class="name">Repair Kit</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Mechanical Parts</TD>
+<TD class="decimal">0.0154</TD>
+</TR>
+<TR>
+<TD class="name">Electrical Parts</TD>
+<TD class="decimal">0.0154</TD>
+</TR>
+<TR>
+<TD class="name">Electronic Components</TD>
+<TD class="decimal">0.0092</TD>
+</TR>
+<TR>
+<TD class="name">Crowbar</TD>
+<TD class="decimal">0.0046</TD>
+</TR>
+<TR>
+<TD class="name">Iron</TD>
+<TD class="decimal">0.0609</TD>
+</TR>
+<TR>
+<TD class="name">Brass</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Lead</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Broken Glass</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Raw Iron</TD>
+<TD class="decimal">0.0609</TD>
+</TR>
+<TR>
+<TD class="name">Short Iron Pipe</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Forged Iron</TD>
+<TD class="decimal">0.0077</TD>
+</TR>
+<TR>
+<TD class="name">Forged Steel</TD>
+<TD class="decimal">0.0077</TD>
+</TR>
+<TR>
+<TD class="name">Nails</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Wood</TD>
+<TD class="decimal">0.0609</TD>
+</TR>
+<TR>
+<TD class="name">Lump of Coal</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Small Stone</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Lump of Clay</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Nitrate Powder</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Crushed Sand</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Oil Shale</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Dirt Fragment</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Cement</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Concrete Mix</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Cobblestone Rocks</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Bricks</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Fertilizer</TD>
+<TD class="decimal">0.0154</TD>
+</TR>
+<TR>
+<TD class="name">Bulletproof Glass Block</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">White River Flagpole</TD>
+<TD class="decimal">0.0006</TD>
+</TR>
+<TR>
+<TD class="name">Bar Stool</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Generator Bank</TD>
+<TD class="decimal">0.0028</TD>
+</TR>
+<TR>
+<TD class="name">Battery Bank</TD>
+<TD class="decimal">0.0028</TD>
+</TR>
+<TR>
+<TD class="name">Warehouse Outdoor Light</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Simple Light</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Silver Dome Light</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Fluorescent Light</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Industrial Light</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Old Outdoor Light</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Electric Timer Relay</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Electric Wire Relay</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Motion Sensor</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Switch</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Solar Cell</TD>
+<TD class="decimal">0.0022</TD>
+</TR>
+<TR>
+<TD class="name">Wood Frame</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+<TR>
+<TD class="name">Tarp</TD>
+<TD class="decimal">0.0307</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 181 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Mining Helmet</TD>
+<TD class="decimal">0.0117</TD>
+</TR>
+<TR>
+<TD class="name">Antibiotics</TD>
+<TD class="decimal">0.0503</TD>
+</TR>
+<TR>
+<TD class="name">Painkillers</TD>
+<TD class="decimal">0.1173</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 182 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Mining Helmet</TD>
+<TD class="decimal">0.0018</TD>
+</TR>
+<TR>
+<TD class="name">SWAT Helmet</TD>
+<TD class="decimal">0.0520</TD>
+</TR>
+<TR>
+<TD class="name">Beer</TD>
+<TD class="decimal">0.0520</TD>
+</TR>
+<TR>
+<TD class="name">Grain Alcohol</TD>
+<TD class="decimal">0.0520</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.0520</TD>
+</TR>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.0520</TD>
+</TR>
+<TR>
+<TD class="name">Antibiotics</TD>
+<TD class="decimal">0.0078</TD>
+</TR>
+<TR>
+<TD class="name">Painkillers</TD>
+<TD class="decimal">0.0182</TD>
+</TR>
+<TR>
+<TD class="name">Lockpick</TD>
+<TD class="decimal">0.0052</TD>
+</TR>
+<TR>
+<TD class="name">Iron Reinforced Club</TD>
+<TD class="decimal">0.0520</TD>
+</TR>
+<TR>
+<TD class="name">Barbed Club</TD>
+<TD class="decimal">0.0130</TD>
+</TR>
+<TR>
+<TD class="name">Spiked Club</TD>
+<TD class="decimal">0.0078</TD>
+</TR>
+<TR>
+<TD class="name">Hunting Knife</TD>
+<TD class="decimal">0.0182</TD>
+</TR>
+<TR>
+<TD class="name">Machete</TD>
+<TD class="decimal">0.0078</TD>
+</TR>
+<TR>
+<TD class="name">First Aid Kit</TD>
+<TD class="decimal">0.0130</TD>
+</TR>
+<TR>
+<TD class="name">Minibikes For Dumbshits</TD>
+<TD class="decimal">0.0042</TD>
+</TR>
+<TR>
+<TD class="name">Minibikes For Smartshits</TD>
+<TD class="decimal">0.0026</TD>
+</TR>
+<TR>
+<TD class="name">Minibikes For Toughshits</TD>
+<TD class="decimal">0.0010</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 183 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Mining Helmet</TD>
+<TD class="decimal">0.0184</TD>
+</TR>
+<TR>
+<TD class="name">Rocket (Ammo)</TD>
+<TD class="decimal">0.0772</TD>
+</TR>
+<TR>
+<TD class="name">Night Vision Goggles</TD>
+<TD class="decimal">0.1503</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 184 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Mining Helmet</TD>
+<TD class="decimal">0.0292</TD>
+</TR>
+<TR>
+<TD class="name">Flashlight</TD>
+<TD class="decimal">0.1250</TD>
+</TR>
+<TR>
+<TD class="name">Old Radio</TD>
+<TD class="decimal">0.0125</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 185 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Cobweb</TD>
+<TD class="decimal">0.5000</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 186 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 187 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 188 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Mining Helmet</TD>
+<TD class="decimal">0.0263</TD>
+</TR>
+<TR>
+<TD class="name">Night Vision Goggles</TD>
+<TD class="decimal">0.2109</TD>
+</TR>
+<TR>
+<TD class="name">Military Fiber</TD>
+<TD class="decimal">0.2740</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 189 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Fertilizer</TD>
+<TD class="decimal">0.0320</TD>
+</TR>
+<TR>
+<TD class="name">Paint</TD>
+<TD class="decimal">0.0635</TD>
+</TR>
+<TR>
+<TD class="name">Paint Brush</TD>
+<TD class="decimal">0.0320</TD>
+</TR>
+<TR>
+<TD class="name">Mining Helmet</TD>
+<TD class="decimal">0.0224</TD>
+</TR>
+<TR>
+<TD class="name">Night Vision Goggles</TD>
+<TD class="decimal">0.0019</TD>
+</TR>
+<TR>
+<TD class="name">Military Fiber</TD>
+<TD class="decimal">0.2990</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 190 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 191 (0,1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">A human turd</TD>
+<TD class="decimal">0.2500</TD>
+</TR>
+<TR>
+<TD class="name">Soy Milk</TD>
+<TD class="decimal">0.2500</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 192 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Electrical Parts</TD>
+<TD class="decimal">0.0201</TD>
+</TR>
+<TR>
+<TD class="name">Glass Jar</TD>
+<TD class="decimal">0.1290</TD>
+</TR>
+<TR>
+<TD class="name">Plastic Bottle</TD>
+<TD class="decimal">0.1290</TD>
+</TR>
+<TR>
+<TD class="name">Tenderizer</TD>
+<TD class="decimal">0.0201</TD>
+</TR>
+<TR>
+<TD class="name">Butcher's Knife</TD>
+<TD class="decimal">0.0334</TD>
+</TR>
+<TR>
+<TD class="name">Skillet</TD>
+<TD class="decimal">0.0334</TD>
+</TR>
+<TR>
+<TD class="name">Empty Can</TD>
+<TD class="decimal">0.1290</TD>
+</TR>
+<TR>
+<TD class="name">Short Iron Pipe</TD>
+<TD class="decimal">0.1890</TD>
+</TR>
+<TR>
+<TD class="name">Clay Bowl</TD>
+<TD class="decimal">0.1290</TD>
+</TR>
+<TR>
+<TD class="name">Dinner Plate</TD>
+<TD class="decimal">0.1290</TD>
+</TR>
+<TR>
+<TD class="name">Skillet</TD>
+<TD class="decimal">0.0135</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 193 (0,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Grain Alcohol</TD>
+<TD class="decimal">0.1574</TD>
+</TR>
+<TR>
+<TD class="name">Military Fiber</TD>
+<TD class="decimal">0.3588</TD>
+</TR>
+<TR>
+<TD class="name">Anti Radiation Pill</TD>
+<TD class="decimal">0.1574</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 199 (0)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 194 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Mining Helmet</TD>
+<TD class="decimal">0.0047</TD>
+</TR>
+<TR>
+<TD class="name">Old Radio</TD>
+<TD class="decimal">0.0007</TD>
+</TR>
+<TR>
+<TD class="name">Electrical Parts</TD>
+<TD class="decimal">0.0202</TD>
+</TR>
+<TR>
+<TD class="name">Glass Jar</TD>
+<TD class="decimal">0.1297</TD>
+</TR>
+<TR>
+<TD class="name">Plastic Bottle</TD>
+<TD class="decimal">0.1297</TD>
+</TR>
+<TR>
+<TD class="name">Butcher's Knife</TD>
+<TD class="decimal">0.0336</TD>
+</TR>
+<TR>
+<TD class="name">Empty Can</TD>
+<TD class="decimal">0.1297</TD>
+</TR>
+<TR>
+<TD class="name">Short Iron Pipe</TD>
+<TD class="decimal">0.1901</TD>
+</TR>
+<TR>
+<TD class="name">Paint</TD>
+<TD class="decimal">0.0269</TD>
+</TR>
+<TR>
+<TD class="name">Paint Brush</TD>
+<TD class="decimal">0.0007</TD>
+</TR>
+<TR>
+<TD class="name">Painting: Metal</TD>
+<TD class="decimal">0.0041</TD>
+</TR>
+<TR>
+<TD class="name">Twine</TD>
+<TD class="decimal">0.1297</TD>
+</TR>
+<TR>
+<TD class="name">Box of Nails</TD>
+<TD class="decimal">0.1297</TD>
+</TR>
+<TR>
+<TD class="name">Small Engine</TD>
+<TD class="decimal">0.1297</TD>
+</TR>
+<TR>
+<TD class="name">Lead Car Battery</TD>
+<TD class="decimal">0.1297</TD>
+</TR>
+<TR>
+<TD class="name">Minibike Wheels</TD>
+<TD class="decimal">0.1297</TD>
+</TR>
+<TR>
+<TD class="name">LED Goggles</TD>
+<TD class="decimal">0.0269</TD>
+</TR>
+<TR>
+<TD class="name">Mole Goggles</TD>
+<TD class="decimal">0.0269</TD>
+</TR>
+<TR>
+<TD class="name">Crowbar</TD>
+<TD class="decimal">0.0202</TD>
+</TR>
+<TR>
+<TD class="name">Tire Iron</TD>
+<TD class="decimal">0.0336</TD>
+</TR>
+<TR>
+<TD class="name">Tarp</TD>
+<TD class="decimal">0.1297</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 177 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 195 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 196 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 198 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 200 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 201 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 202 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 203 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 204 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 205 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 206 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 207 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 208 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 209 ()</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 210 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.0195</TD>
+</TR>
+<TR>
+<TD class="name">Mining Helmet</TD>
+<TD class="decimal">0.0291</TD>
+</TR>
+<TR>
+<TD class="name">Antibiotics</TD>
+<TD class="decimal">0.0291</TD>
+</TR>
+<TR>
+<TD class="name">Compound Bow</TD>
+<TD class="decimal">0.0291</TD>
+</TR>
+<TR>
+<TD class="name">Ink</TD>
+<TD class="decimal">0.1833</TD>
+</TR>
+<TR>
+<TD class="name">Forged Steel</TD>
+<TD class="decimal">0.0386</TD>
+</TR>
+<TR>
+<TD class="name">Forged Iron</TD>
+<TD class="decimal">0.0482</TD>
+</TR>
+<TR>
+<TD class="name">Claw Hammer</TD>
+<TD class="decimal">0.0444</TD>
+</TR>
+<TR>
+<TD class="name">Wrench</TD>
+<TD class="decimal">0.0444</TD>
+</TR>
+<TR>
+<TD class="name">Crowbar</TD>
+<TD class="decimal">0.0291</TD>
+</TR>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.0291</TD>
+</TR>
+<TR>
+<TD class="name">Knowledge Point</TD>
+<TD class="decimal">0.0291</TD>
+</TR>
+<TR>
+<TD class="name">Diamond Handlebars</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">Diamond Minibike Wheels</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">Diamond Small Engine</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">Superior Battery</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">Strengthened Minibike Chassis</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">Diamond Minibike Chassis</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">Strengthened Minibike Seat</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">Diamond Minibike Seat</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">Strengthened Minibike Handlebars</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">Diamond Minibike Handlebars</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">ECO Small Engine</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">Economic Battery</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">Diamond Padlock</TD>
+<TD class="decimal">0.0049</TD>
+</TR>
+<TR>
+<TD class="name">Anti Radiation Pill</TD>
+<TD class="decimal">0.0098</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 211 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Compound Bow</TD>
+<TD class="decimal">0.0129</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 212 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Compound Bow</TD>
+<TD class="decimal">0.0489</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 213 (1,3)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Compound Bow</TD>
+<TD class="decimal">0.0489</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 214 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 215 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 216 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 217 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.3880</TD>
+</TR>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.1371</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 218 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.1739</TD>
+</TR>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.1643</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 219 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.4383</TD>
+</TR>
+<TR>
+<TD class="name">Paper</TD>
+<TD class="decimal">0.1565</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 220 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 221 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY><TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.1429</TD>
+</TR></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 222 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Sham Sandwich</TD>
+<TD class="decimal">0.1832</TD>
+</TR>
+<TR>
+<TD class="name">Flashlight</TD>
+<TD class="decimal">0.0936</TD>
+</TR>
+<TR>
+<TD class="name">Military Vest</TD>
+<TD class="decimal">0.0379</TD>
+</TR>
+<TR>
+<TD class="name">Military Fiber</TD>
+<TD class="decimal">0.0076</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 223 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Sham Sandwich</TD>
+<TD class="decimal">0.1707</TD>
+</TR>
+<TR>
+<TD class="name">Flashlight</TD>
+<TD class="decimal">0.0871</TD>
+</TR>
+<TR>
+<TD class="name">Military Vest</TD>
+<TD class="decimal">0.0353</TD>
+</TR>
+<TR>
+<TD class="name">Military Fiber</TD>
+<TD class="decimal">0.0071</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 224 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY></TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 225 (1)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Rocket (Ammo)</TD>
+<TD class="decimal">0.0242</TD>
+</TR>
+<TR>
+<TD class="name">Night Vision Goggles</TD>
+<TD class="decimal">0.0484</TD>
+</TR>
+<TR>
+<TD class="name">Military Fiber</TD>
+<TD class="decimal">0.2419</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 226 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">White Hooded Sweatshirt</TD>
+<TD class="decimal">0.1225</TD>
+</TR>
+<TR>
+<TD class="name">Black Denim Pants</TD>
+<TD class="decimal">0.1225</TD>
+</TR>
+<TR>
+<TD class="name">Running Shoes</TD>
+<TD class="decimal">0.2380</TD>
+</TR>
+<TR>
+<TD class="name">Mechanical Parts</TD>
+<TD class="decimal">0.3464</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 227 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">White Football Jersey</TD>
+<TD class="decimal">0.2474</TD>
+</TR>
+<TR>
+<TD class="name">Blue Skirt</TD>
+<TD class="decimal">0.3045</TD>
+</TR>
+<TR>
+<TD class="name">Running Shoes</TD>
+<TD class="decimal">0.3045</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 228 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Stick of Dynamite (Ammo)</TD>
+<TD class="decimal">0.0899</TD>
+</TR>
+<TR>
+<TD class="name">Leather Poncho</TD>
+<TD class="decimal">0.0899</TD>
+</TR>
+<TR>
+<TD class="name">Blue Denim Pants</TD>
+<TD class="decimal">0.0899</TD>
+</TR>
+<TR>
+<TD class="name">Cowboy Boots</TD>
+<TD class="decimal">0.0899</TD>
+</TR>
+<TR>
+<TD class="name">Black Cowboy Boots</TD>
+<TD class="decimal">0.0899</TD>
+</TR>
+<TR>
+<TD class="name">Cigar</TD>
+<TD class="decimal">0.0899</TD>
+</TR>
+<TR>
+<TD class="name">Grain Alcohol</TD>
+<TD class="decimal">0.0633</TD>
+</TR>
+<TR>
+<TD class="name">Bottled Water</TD>
+<TD class="decimal">0.0899</TD>
+</TR>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.0899</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 229 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.2965</TD>
+</TR>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.1539</TD>
+</TR>
+<TR>
+<TD class="name">Scrap Plastics</TD>
+<TD class="decimal">0.0474</TD>
+</TR>
+<TR>
+<TD class="name">Blood Draw Kit</TD>
+<TD class="decimal">0.0474</TD>
+</TR>
+<TR>
+<TD class="name">Painkillers</TD>
+<TD class="decimal">0.1539</TD>
+</TR>
+<TR>
+<TD class="name">Vitamins</TD>
+<TD class="decimal">0.1539</TD>
+</TR>
+<TR>
+<TD class="name">Herbal Antibiotics</TD>
+<TD class="decimal">0.0395</TD>
+</TR>
+<TR>
+<TD class="name">Feather</TD>
+<TD class="decimal">0.1539</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 230 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Iron Garden Hoe</TD>
+<TD class="decimal">0.0391</TD>
+</TR>
+<TR>
+<TD class="name">Iron Shovel</TD>
+<TD class="decimal">0.0131</TD>
+</TR>
+<TR>
+<TD class="name">Beer</TD>
+<TD class="decimal">0.2478</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 231 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.1658</TD>
+</TR>
+<TR>
+<TD class="name">Anti Radiation Pill</TD>
+<TD class="decimal">0.0567</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 232 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.1191</TD>
+</TR>
+<TR>
+<TD class="name">Antibiotics</TD>
+<TD class="decimal">0.0604</TD>
+</TR>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.0604</TD>
+</TR>
+<TR>
+<TD class="name">Knowledge Point</TD>
+<TD class="decimal">0.0604</TD>
+</TR>
+<TR>
+<TD class="name">Diamond Padlock</TD>
+<TD class="decimal">0.0102</TD>
+</TR>
+<TR>
+<TD class="name">Anti Radiation Pill</TD>
+<TD class="decimal">0.0203</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE class="tablesorter hover-highlight focus-highlight">
+<CAPTION>Container 233 (1,2)</CAPTION>
+<THEAD><TR>
+<TH class="name">Item</TH>
+<TH class="name">Chance</TH>
+</TR></THEAD>
+<TBODY>
+<TR>
+<TD class="name">Old Cash</TD>
+<TD class="decimal">0.1022</TD>
+</TR>
+<TR>
+<TD class="name">Antibiotics</TD>
+<TD class="decimal">0.0517</TD>
+</TR>
+<TR>
+<TD class="name">Duke's Casino Token</TD>
+<TD class="decimal">0.0517</TD>
+</TR>
+<TR>
+<TD class="name">Knowledge Point</TD>
+<TD class="decimal">0.0517</TD>
+</TR>
+<TR>
+<TD class="name">Anti Radiation Pill</TD>
+<TD class="decimal">0.0174</TD>
+</TR>
+<TR>
+<TD class="name">Infected Blood</TD>
+<TD class="decimal">0.0517</TD>
+</TR>
+<TR>
+<TD class="name">Blue Ice</TD>
+<TD class="decimal">0.0174</TD>
+</TR>
+<TR>
+<TD class="name">Blood Bag</TD>
+<TD class="decimal">0.0855</TD>
+</TR>
+<TR>
+<TD class="name">Syringe</TD>
+<TD class="decimal">0.1188</TD>
+</TR>
+<TR>
+<TD class="name">Rotting Flesh</TD>
+<TD class="decimal">0.0855</TD>
+</TR>
+<TR>
+<TD class="name">Large Bone</TD>
+<TD class="decimal">0.0855</TD>
+</TR>
+</TBODY>
+</TABLE>
+<script>
+					$(".dialog")
+						.dialog({ autoOpen: false, show:true, hide: true })
+						.dialog({ classes: {
+							"ui-dialog": "tablesorter-blue-override",
+							"ui-dialog-titlebar": "tablesorter-blue-header",
+							"ui-dialog-content": "tablesorter-blue-td",
+						}
+					});
+					$('a.permalink').click(function(){
+						var $el = $(this);
+						$($el.attr('target-dialog')).dialog({
+							position: { my: "center top", at: "center bottom+25%", of: $el }
+						}).dialog("open");
+					});
+
+					animating = false;
+					clicked = false;
+					$('.collapsible').hide();
+					$('dd').click(function(){
+						var $el = $(this);
+						setTimeout(function(){
+							if (!animating && !clicked) {
+								animating = true;
+								$el.find('.collapsible').slideToggle();
+								setTimeout(function(){ animating = false; }, 200);
+							}
+						}, 200);
+						return false;
+					});
+				</script>
+</BODY>
+</HTML>
