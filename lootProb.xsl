@@ -32,6 +32,11 @@
 		</func:result>
 	</func:function>
 
+	<func:function name="my:isNumber">
+		<xsl:param name="text"/>
+		<func:result select="number($text)=$text"/>
+	</func:function>
+	
 	<func:function name="my:translate">
 		<xsl:param name="key"/>
 		<func:result>
@@ -69,14 +74,6 @@
 		<xsl:param name="min"/>
 		<xsl:param name="max"/>
 		<xsl:param name="chance"/>
-		<xsl:if test="number($min)!=$min or number($max)!=$max or number($chance)!=$chance">
-			<xsl:message terminate="yes">
-				Min: <xsl:value-of select="$min"/>
-				Max: <xsl:value-of select="$max"/>
-				Chance: <xsl:value-of select="$chance"/>
-				Curr Node: <xsl:value-of select="my:printNode(.)"/>
-			</xsl:message>
-		</xsl:if>
 		<xsl:choose>
 			<xsl:when test="$min=$max">
 				<func:result select="math:power($chance, $min)"/>
@@ -89,6 +86,7 @@
 	</func:function>
 	
 	<func:function name="my:chance">
+		<xsl:param name="baseChance"/>
 		<xsl:param name="prob"/>
 		<xsl:param name="min"/>
 		<xsl:param name="max"/>
@@ -99,8 +97,20 @@
 				<func:result select="1"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:variable name="baseChance" select="$prob div $count"/>
-				<xsl:variable name="noEventChance" select="1 - $baseChance"/>
+				<xsl:if test="not(my:isNumber($min) and my:isNumber($max) and my:isNumber($prob) and my:isNumber($count) and my:isNumber($baseChance))">
+					<xsl:message terminate="yes">
+						Error: NaN instead of number
+						Base: <xsl:value-of select="$baseChance"/>
+						Prob: <xsl:value-of select="$prob"/>
+						Min: <xsl:value-of select="$min"/>
+						Max: <xsl:value-of select="$max"/>
+						Count: <xsl:value-of select="$count"/>
+						isAll: <xsl:value-of select="$isAll"/>
+						Curr Node: <xsl:value-of select="my:printNode(.)"/>
+					</xsl:message>
+				</xsl:if>
+				<xsl:variable name="chanceInGroup" select="$baseChance * $prob div $count"/>
+				<xsl:variable name="noEventChance" select="1 - $chanceInGroup"/>
 				<xsl:variable name="combinedChance" select="my:combinedChance($min, $max, $noEventChance)"/>
 				<xsl:variable name="averagedChance" select="$combinedChance div ($max - $min + 1)"/>
 				<xsl:variable name="positiveChance" select="1 - $averagedChance"/>
@@ -516,6 +526,7 @@
 						<xsl:with-param name="max" select="$max"/>
 						<xsl:with-param name="itemCount" select="$itemCount"/>
 						<xsl:with-param name="isAll" select="$countString='all'"/>
+						<xsl:with-param name="baseChance" select="1"/>
 					</xsl:call-template>
 				</xsl:for-each>
 			</TBODY>
@@ -527,16 +538,19 @@
 		<xsl:param name="max"/>
 		<xsl:param name="itemCount"/>
 		<xsl:param name="isAll"/>
+		<xsl:param name="baseChance"/>
+		<!-- FIXME: lootprobtemplate must be taken into account -->
+		<xsl:variable name="chance" select="my:chance($baseChance, my:prob(.), $min, $max, $itemCount, $isAll)"/>
 		<xsl:choose>
 			<xsl:when test="@name">
-				<xsl:variable name="chance" select="my:chance(my:prob(.), $min, $max, $itemCount, $isAll)"/>
 				<TR>
 					<TD class="name"><xsl:value-of select="my:translate(@name)"/></TD>
-					<TD class="decimal"><xsl:value-of select="format-number($chance * 100, '0.000')"/>%</TD>
+					<TD class="decimal"><xsl:value-of select="format-number($chance, '0.0000')"/></TD>
 				</TR>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:message>Group <xsl:value-of select="@group"/></xsl:message>
+				<!-- FIXME: Both item's count and lootgroup count should be taken into consideration -->
 				<xsl:variable name="group" select="/lootcontainers/lootgroup[@name=current()/@group][1]"/>
 				<xsl:variable name="countString" select="my:getOrDefault($group/@count, '1')"/>
 				<xsl:variable name="count" select="str:tokenize($countString, ',')"/>
@@ -546,10 +560,11 @@
 				<xsl:variable name="groupItemCount" select="my:count($groupItems)"/>
 				<xsl:for-each select="$groupItems">
 					<xsl:call-template name="row">
-						<xsl:with-param name="min" select="$groupMin * $min"/>
-						<xsl:with-param name="max" select="$groupMax * $max"/>
-						<xsl:with-param name="itemCount" select="$groupItemCount * $itemCount"/>
+						<xsl:with-param name="min" select="$groupMin"/>
+						<xsl:with-param name="max" select="$groupMax"/>
+						<xsl:with-param name="itemCount" select="$groupItemCount"/>
 						<xsl:with-param name="isAll" select="$countString='all'"/>
+						<xsl:with-param name="baseChance" select="$chance"/>
 					</xsl:call-template>
 				</xsl:for-each>
 			</xsl:otherwise>
