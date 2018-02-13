@@ -470,34 +470,20 @@
 			<BODY>
 						<xsl:apply-templates match="lootcontainer"/>
 				<script>
-					$(".dialog")
-						.dialog({ autoOpen: false, show:true, hide: true })
-						.dialog({ classes: {
-							"ui-dialog": "tablesorter-blue-override",
-							"ui-dialog-titlebar": "tablesorter-blue-header",
-							"ui-dialog-content": "tablesorter-blue-td",
-						}
-					});
-					$('a.permalink').click(function(){
-						var $el = $(this);
-						$($el.attr('target-dialog')).dialog({
-							position: { my: "center top", at: "center bottom+25%", of: $el }
-						}).dialog("open");
-					});
+					$('.row').each(function() {
+					  var thisId = $(this).find('.id').text();
+					  var sumVal = parseFloat($(this).find('.val').text());
 
-					animating = false;
-					clicked = false;
-					$('.collapsible').hide();
-					$('dd').click(function(){
-						var $el = $(this);
-						setTimeout(function(){
-							if (!animating &amp;&amp; !clicked) {
-								animating = true;
-								$el.find('.collapsible').slideToggle();
-								setTimeout(function(){ animating = false; }, 200);
-							}
-						}, 200);
-						return false;
+					  var $rowsToGroup = $(this).nextAll('tr').filter(function() {
+						return $(this).find('.id').text() === thisId;
+					  });
+
+					  $rowsToGroup.each(function() {
+						sumVal += parseFloat($(this).find('.val').text());
+						$(this).remove();
+					  });
+
+					  $(this).find('.val').text(sumVal.toFixed(4));
 					});
 				</script>
 			</BODY>
@@ -543,9 +529,9 @@
 		<xsl:variable name="chance" select="my:chance($baseChance, my:prob(.), $min, $max, $itemCount, $isAll)"/>
 		<xsl:choose>
 			<xsl:when test="@name">
-				<TR>
-					<TD class="name"><xsl:value-of select="my:translate(@name)"/></TD>
-					<TD class="decimal"><xsl:value-of select="format-number($chance, '0.0000')"/></TD>
+				<TR class="row">
+					<TD class="name id"><xsl:value-of select="my:translate(@name)"/></TD>
+					<TD class="decimal val"><xsl:value-of select="format-number($chance, '0.0000')"/></TD>
 				</TR>
 			</xsl:when>
 			<xsl:otherwise>
