@@ -54,6 +54,31 @@
 		</func:result>
 	</func:function>
 	
+	<func:function name="my:listOf">
+		<xsl:param name="nodes"/>
+		<func:result>
+			<xsl:for-each select="$nodes">
+				<xsl:value-of select="my:translate(@name)"/>
+				<xsl:if test="position()!=last()">
+					<xsl:text>, </xsl:text>
+				</xsl:if>
+			</xsl:for-each>
+		</func:result>
+	</func:function>
+	
+	<func:function name="my:blocksFor">
+		<xsl:param name="id"/>
+		<xsl:variable name="filteredBlocks" select="$blocks[@value=$id]/.."/>
+		<xsl:variable name="result" select="my:listOf($filteredBlocks)"/>
+		<func:result select="$result"/>
+	</func:function>
+	
+	<func:function name="my:entitiesFor">
+		<xsl:param name="id"/>
+		<xsl:variable name="result" select="my:listOf($entities[@value=$id]/..)"/>
+		<func:result select="$result"/>
+	</func:function>
+	
 	<func:function name="my:getOrDefault">
 		<xsl:param name="string"/>
 		<xsl:param name="default"/>
@@ -150,6 +175,8 @@
 	</func:function>
 	
 	<xsl:variable name="localization" select="document('Localization.xml')"/>
+	<xsl:variable name="blocks" select="document('blocks.xml')/blocks/block/property[@name='LootList']"/>
+	<xsl:variable name="entities" select="document('entityclasses.xml')/entity_classes/entity_class/property[@name='LootListOnDeath']"/>
 
 	<xsl:template match="/lootcontainers">
 		<HTML>
@@ -485,6 +512,22 @@
 
 					  $(this).find('.val').text(sumVal.toFixed(4));
 					});
+					
+					animating = false;
+					clicked = false;
+					$('.collapsible').hide();
+					$('caption').click(function(){
+						var $el = $(this);
+						setTimeout(function(){
+							if (!animating &amp;&amp; !clicked) {
+								animating = true;
+								$el.find('.collapsible').slideToggle();
+								setTimeout(function(){ animating = false; }, 200);
+							}
+						}, 200);
+						return false;
+					});
+
 				</script>
 			</BODY>
 		</HTML>
@@ -497,7 +540,15 @@
 		<xsl:variable name="max" select="math:max($count)"/>
 		<xsl:variable name="items" select="item"/>
 		<TABLE class="tablesorter hover-highlight focus-highlight">
-			<CAPTION>Container <xsl:value-of select="@id"/> (<xsl:value-of select="$countString"/>)</CAPTION>
+			<CAPTION>Container <xsl:value-of select="@id"/> (<xsl:value-of select="$countString"/>)
+				<DIV class="collapsible">
+					<xsl:text>Blocks:</xsl:text>
+					<xsl:value-of select="my:blocksFor(@id)"/>
+					<br/>
+					<xsl:text>Entities:</xsl:text>
+					<xsl:value-of select="my:entitiesFor(@id)"/>
+				</DIV>
+			</CAPTION>
 			<THEAD>
 				<TR>
 					<TH class="name">Item</TH>
