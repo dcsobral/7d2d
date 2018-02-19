@@ -174,6 +174,139 @@
 		</xsl:choose>
 	</func:function>
 	
+	<func:function name="my:source">
+		<xsl:param name="group"/>
+		<xsl:variable name="source" select="concat(name($group), ' ', $group/@*[1])"/>
+		<func:result select="$source"/>
+	</func:function>
+	
+	<func:function name="my:allContainers">
+		<xsl:param name="containers"/>
+		<xsl:param name="accumulator"/>
+		<xsl:param name="lookup"/>
+		<xsl:param name="index" select="1"/>
+		<xsl:variable name="container" select="$containers[$index]"/>
+		<xsl:variable name="next" select="$index+1"/>
+		<xsl:variable name="partial" select="exslt:node-set(my:containerProbabilities($container, 1, $lookup))"/>
+		<xsl:variable name="nextAcc" select="$accumulator|$partial"/>
+		<xsl:choose>
+			<xsl:when test="$index=count($containers)">
+				<func:result select="$nextAcc"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:variable name="result" select="my:allContainers($containers, $nextAcc, $lookup, $next)"/>
+				<func:result select="$result"/>
+			</xsl:otherwise>
+		</xsl:choose>
+		
+	</func:function>
+	
+	<func:function name="my:allGroups">
+		<xsl:param name="groups"/>
+		<xsl:param name="accumulator"/>
+		<xsl:param name="index" select="1"/>
+		<xsl:variable name="group" select="$groups[$index]"/>
+		<xsl:variable name="next" select="$index+1"/>
+		<xsl:variable name="partial" select="exslt:node-set(my:groupProbabilities($group, 1, $accumulator))"/>
+		<xsl:variable name="nextAcc" select="$accumulator|$partial"/>
+		<xsl:choose>
+			<xsl:when test="$index=count($groups)">
+				<func:result select="$nextAcc"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:variable name="result" select="my:allGroups($groups, $nextAcc, $next)"/>
+				<func:result select="$result"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</func:function>
+
+	<func:function name="my:containerProbabilities">
+		<xsl:param name="container"/>
+		<xsl:param name="baseChance"/>
+		<xsl:param name="lookup"/>
+		<func:result>
+			<container id="{$container/@id}">
+				<xsl:copy-of select="exslt:node-set(my:setProbabilities($container, $baseChance, $lookup))"/>
+			</container>
+		</func:result>
+	</func:function>
+	
+	<func:function name="my:groupProbabilities">
+		<xsl:param name="group"/>
+		<xsl:param name="baseChance"/>
+		<xsl:param name="lookup"/>
+		<func:result>
+			<group name="{$group/@name}">
+				<xsl:copy-of select="exslt:node-set(my:setProbabilities($group, $baseChance, $lookup))"/>
+			</group>
+		</func:result>
+	</func:function>
+	
+	<func:function name="my:setProbabilities">
+		<xsl:param name="group"/>
+		<xsl:param name="baseChance"/>
+		<xsl:param name="lookup"/>
+		<xsl:variable name="countString" select="my:getOrDefault($group/@count, '1')"/>
+		<xsl:variable name="count" select="str:tokenize($countString, ',')"/>
+		<xsl:variable name="min" select="math:min($count)"/>
+		<xsl:variable name="max" select="math:max($count)"/>
+		<xsl:variable name="items" select="$group/item"/>
+		<xsl:variable name="itemCount" select="my:count($items)"/>
+		<xsl:variable name="isAll" select="$countString='all'"/>
+		<xsl:variable name="source" select="my:source($group)"/>
+		<func:result>
+			<xsl:for-each select="$items">
+				<!-- FIXME: lootprobtemplate must be taken into account -->
+				<xsl:variable name="chance" select="my:chance($baseChance, my:prob(.), $min, $max, $itemCount, $isAll)"/>
+				<xsl:choose>
+					<xsl:when test="@name">
+						<item name="{@name}" desc="{my:translate(@name)}" chance="{$chance}" source="{$source}"/>
+					</xsl:when>
+					<xsl:when test="@group">
+						<xsl:variable name="nestedGroup" select="exslt:node-set(my:nestedGroup(@group, $chance, $lookup))"/>
+						<xsl:copy-of select="$nestedGroup"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:message terminate="yes">
+							Unknown node type: <xsl:value-of select="my:printNode(.)"/>
+							Location: <xsl:value-of select="$source"/>
+						</xsl:message>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:for-each>
+		</func:result>
+	</func:function>
+
+	<func:function name="my:nestedGroup">
+		<xsl:param name="groupName"/>
+		<xsl:param name="chance"/>
+		<xsl:param name="lookup"/>
+		<xsl:variable name="group" select="$lookup/group[@name=$groupName]"/>
+		<func:result>
+			<xsl:for-each select="$group/*">
+				<xsl:copy>
+					<xsl:attribute name="name">
+						<xsl:value-of select="@name"/>
+					</xsl:attribute>
+					<xsl:attribute name="desc">
+						<xsl:value-of select="@desc"/>
+					</xsl:attribute>
+					<xsl:attribute name="chance">
+						<xsl:value-of select="$chance * @chance"/>
+					</xsl:attribute>
+					<xsl:attribute name="source">
+						<xsl:value-of select="@source"/>
+					</xsl:attribute>
+				</xsl:copy>
+			</xsl:for-each>
+		</func:result>
+	</func:function>
+	
+	<func:function name="my:summarize">
+		<xsl:param name="container"/>
+		<func:result select="$container"/>
+	</func:function>
+	
 	<xsl:variable name="localization" select="document('Localization.xml')"/>
 	<xsl:variable name="blocks" select="document('blocks.xml')/blocks/block/property[@name='LootList']"/>
 	<xsl:variable name="entities" select="document('entityclasses.xml')/entity_classes/entity_class/property[@name='LootListOnDeath']"/>
@@ -255,7 +388,7 @@
 					}
 					
 					th {
-						width: 80%;
+						width: auto;
 					}
 					
 					th .CellComment {
@@ -452,18 +585,11 @@
 					  $("table").tablesorter({
 						theme : 'blue',
 						headerTemplate : '{content} {icon}',
-						sortList : [[1,1], [0,0]],
-						widgets : ['zebra', 'stickyHeaders'],
+						widgets : ['filter', 'zebra', 'stickyHeaders'],
 						widgetOptions : {
 						  filter_defaultAttrib : 'data-value',
 						  zebra   : ["even", "odd"],
-						  filter_functions: {
-							".mixed" : {
-								"Present"      : function(e, n, f, i, $r, c, data) { return !isNaN(e); },
-								"N/A"          : function(e, n, f, i, $r, c, data) { return isNaN(e); },
-							},
-						  },
-						}
+						},
 					  });
 					  
 						if ( $('.focus-highlight').length ) {
@@ -495,28 +621,53 @@
 				</script>
 			</HEAD>
 			<BODY>
-						<xsl:apply-templates match="lootcontainer"/>
+				<xsl:variable name="lookup" select="my:allGroups(/lootcontainers/lootgroup, /..)"/>
+				<xsl:variable name="result" select="my:allContainers(/lootcontainers/lootcontainer, /.., $lookup)"/>
+				<TABLE class="tablesorter hover-highlight focus-highlight">
+					<CAPTION>Loot Chance of At Least One of</CAPTION>
+					<THEAD>
+						<TR>
+							<TH class="name">Item</TH>
+							<TH class="name">Container</TH>
+							<TH class="name">Chance</TH>
+						</TR>
+					</THEAD>
+					<TBODY>
+						<xsl:for-each select="$result/container">
+							<xsl:variable name="id" select="@id"/>
+							<xsl:variable name="summary" select="my:summarize(.)"/>
+							<xsl:for-each select="$summary/item">
+								<TR class="row">
+									<TD class="name collapsing">
+										<xsl:value-of select="@desc"/>
+										<br/>
+										<xsl:value-of select="@source"/>
+									</TD>
+									<TD class="integer">
+										<xsl:value-of select="$id"/>
+										<!--
+										<DIV class="collapsible">
+											<xsl:text>Blocks:</xsl:text>
+											<xsl:value-of select="my:blocksFor($id)"/>
+											<br/>
+											<xsl:text>Entities:</xsl:text>
+											<xsl:value-of select="my:entitiesFor($id)"/>
+										</DIV>
+										-->
+									</TD>
+									<TD class="decimal">
+										<xsl:value-of select="format-number(@chance * 100, '0.00')"/>
+									</TD>
+								</TR>
+							</xsl:for-each>
+						</xsl:for-each>
+					</TBODY>
+				</TABLE>
 				<script>
-					$('.row').each(function() {
-					  var thisId = $(this).find('.id').text();
-					  var sumVal = parseFloat($(this).find('.val').text());
-
-					  var $rowsToGroup = $(this).nextAll('tr').filter(function() {
-						return $(this).find('.id').text() === thisId;
-					  });
-
-					  $rowsToGroup.each(function() {
-						sumVal += parseFloat($(this).find('.val').text());
-						$(this).remove();
-					  });
-
-					  $(this).find('.val').text(sumVal.toFixed(4));
-					});
-					
 					animating = false;
 					clicked = false;
 					$('.collapsible').hide();
-					$('caption').click(function(){
+					$('td .collapsing').click(function(){
 						var $el = $(this);
 						setTimeout(function(){
 							if (!animating &amp;&amp; !clicked) {
@@ -533,12 +684,45 @@
 		</HTML>
 	</xsl:template>
 	
+</xsl:stylesheet>
+
+<!--
+	<func:function name="my:lootContainers">
+		<func:result>
+			<lootcontainers>
+				<xsl:for-each select="/lootcontainers/lootcontainer">
+					<xsl:message><xsl:value-of select="my:printNode(.)"/></xsl:message>
+					<lootcontainer id="{@id}">
+						<xsl:variable name="groupProbabilities" select="exslt:node-set(my:groupProbabilities(., 1))"/>
+						<xsl:copy-of select="$groupProbabilities"/>
+					</lootcontainer>
+				</xsl:for-each>
+			</lootcontainers>
+		</func:result>
+	</func:function>
+	
+	<func:function name="my:lootGroups">
+		<func:result>
+			<lootgroups>
+				<xsl:for-each select="/lootcontainers/lootgroup">
+					<xsl:message><xsl:value-of select="my:printNode(.)"/></xsl:message>
+					<lootgroup name="{@name}">
+						<xsl:variable name="groupProbabilities" select="exslt:node-set(my:groupProbabilities(., 1))"/>
+						<xsl:copy-of select="$groupProbabilities"/>
+					</lootgroup>
+				</xsl:for-each>
+			</lootgroups>
+		</func:result>
+	</func:function>
+	
+	<xsl:variable name="result" select="exslt:node-set(my:lootGroups())"/>
 	<xsl:template match="lootcontainer">
 		<xsl:variable name="countString" select="my:getOrDefault(@count, '1')"/>
 		<xsl:variable name="count" select="str:tokenize($countString, ',')"/>
 		<xsl:variable name="min" select="math:min($count)"/>
 		<xsl:variable name="max" select="math:max($count)"/>
 		<xsl:variable name="items" select="item"/>
+		<xsl:variable name="itemCount" select="my:count($items)"/>
 		<TABLE class="tablesorter hover-highlight focus-highlight">
 			<CAPTION>Container <xsl:value-of select="@id"/> (<xsl:value-of select="$countString"/>)
 				<DIV class="collapsible">
@@ -556,7 +740,6 @@
 				</TR>
 			</THEAD>
 			<TBODY>
-				<xsl:variable name="itemCount" select="my:count($items)"/>
 				<xsl:for-each select="$items">
 					<xsl:call-template name="row">
 						<xsl:with-param name="min" select="$min"/>
@@ -576,7 +759,6 @@
 		<xsl:param name="itemCount"/>
 		<xsl:param name="isAll"/>
 		<xsl:param name="baseChance"/>
-		<!-- FIXME: lootprobtemplate must be taken into account -->
 		<xsl:variable name="chance" select="my:chance($baseChance, my:prob(.), $min, $max, $itemCount, $isAll)"/>
 		<xsl:choose>
 			<xsl:when test="@name">
@@ -587,24 +769,10 @@
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:message>Group <xsl:value-of select="@group"/></xsl:message>
-				<!-- FIXME: Both item's count and lootgroup count should be taken into consideration -->
-				<xsl:variable name="group" select="/lootcontainers/lootgroup[@name=current()/@group][1]"/>
-				<xsl:variable name="countString" select="my:getOrDefault($group/@count, '1')"/>
-				<xsl:variable name="count" select="str:tokenize($countString, ',')"/>
-				<xsl:variable name="groupMin" select="math:min($count)"/>
-				<xsl:variable name="groupMax" select="math:max($count)"/>
-				<xsl:variable name="groupItems" select="$group/item"/>
-				<xsl:variable name="groupItemCount" select="my:count($groupItems)"/>
-				<xsl:for-each select="$groupItems">
-					<xsl:call-template name="row">
-						<xsl:with-param name="min" select="$groupMin"/>
-						<xsl:with-param name="max" select="$groupMax"/>
-						<xsl:with-param name="itemCount" select="$groupItemCount"/>
-						<xsl:with-param name="isAll" select="$countString='all'"/>
-						<xsl:with-param name="baseChance" select="$chance"/>
-					</xsl:call-template>
-				</xsl:for-each>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-</xsl:stylesheet>
+
+
+
+-->
