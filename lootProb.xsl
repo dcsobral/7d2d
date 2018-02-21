@@ -604,7 +604,7 @@
 						theme : 'blue',
 						headerTemplate : '{content} {icon}',
 						resort: false,
-						sortList: [ [2,0], [4,1], [0, 0] ],
+						// sortList: [ [2,0], [4,1], [0, 0] ],
 						widgets : ['saveSort', 'filter', 'zebra', 'stickyHeaders'],
 						widgetOptions : {
 						  filter_saveFilters : true,
@@ -618,6 +618,7 @@
 							$('table')
 								.trigger('filterResetSaved')                  // clear saved filters
 								.trigger('saveSortReset')                     // clear saved sort
+								.trigger('filterReset')                       // reset current filters
 								.trigger("sortReset")                         // reset current table sort
 								.trigger('pageAndSize', [1, 30])              // set page to 1 and size to 30
 								.trigger('update', [[[2,0], [4,1], [0, 0]]]); // reset sort order
@@ -656,7 +657,7 @@
 					</select>
 					<select class="gotoPage" title="Select page number"></select>
 					<button type="button reset">Reset</button>
-					<span id="loading">Loading: <progress value="0" max="100"/></span>
+					<span id="loading">Loading <span id="numItems">0</span> entries: <progress value="0" max="100"/></span>
 				</DIV>
 				<TABLE class="tablesorter hover-highlight focus-highlight">
 					<CAPTION>Loot Chance of At Least One of</CAPTION>
@@ -709,9 +710,13 @@
 					</xsl:for-each>
 					<xsl:text>
 					function performTask(items, numToProcess, processItem) {
+						$('#progress').attr('max', data.length);
+						$('#numItems').text(data.length);
 						var pos = 0;
 						var $table = $( 'table' );
 						var $tbody = $table.find('tbody');
+						var currFilters = $.tablesorter.getFilters( $table );
+						$table.trigger('filterReset');
 						function iteration() {
 							var j = Math.min(pos + numToProcess, items.length);
 							for (var i = pos; i &lt; j; i++) {
@@ -720,18 +725,19 @@
 							}
 							pos += numToProcess;
 							if (pos &lt; items.length) {
-								$table.trigger('update', [false]);
-								$(".progress").value = 100 * pos / items.length;
+								if ($.tablesorter.getFilters($table))
+									$table.trigger('filterReset');
+								$('#progress').val(pos);
 								setTimeout(iteration, 1);
 							} else {
-								$table.trigger('update', [[[2,0], [4,1], [0, 0]]]);
-								$(".progress").hide();
+								$.tablesorter.setFilters($table, currFilters);
+								$table.trigger('update', [true]);
+								$('#progress').hide();
 							}
 						}
 						iteration();
 					}
-
-					performTask(data, 100);
+					performTask(data, 10);
 					</xsl:text>
 				</xsl:element>
 			</BODY>
