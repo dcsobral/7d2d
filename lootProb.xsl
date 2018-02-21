@@ -657,7 +657,7 @@
 					</select>
 					<select class="gotoPage" title="Select page number"></select>
 					<button type="button reset">Reset</button>
-					<span id="loading">Loading <span id="numItems">0</span> entries: <progress value="0" max="100"/></span>
+					<span id="loading">Loading <span id="numItems">0</span> entries: <progress id="progress" value="0" max="100"/></span>
 				</DIV>
 				<TABLE class="tablesorter hover-highlight focus-highlight">
 					<CAPTION>Loot Chance of At Least One of</CAPTION>
@@ -677,11 +677,12 @@
 					<xsl:variable name="apos">'</xsl:variable>
 					<xsl:variable name="aposEscaped">\'</xsl:variable>
 					<xsl:text>var data = [];&#10;</xsl:text>
+					<xsl:text>var count = 0;&#10;</xsl:text>
 					<xsl:for-each select="$result/container">
 						<xsl:variable name="id" select="@id"/>
 						<xsl:variable name="summary" select="my:summarize(.)"/>
 						<xsl:for-each select="$summary/item">
-							<xsl:text>data.push('</xsl:text>
+							<xsl:text>data[count++]='</xsl:text>
 							<xsl:element name="TR">
 								<xsl:attribute name="class"><xsl:text>row</xsl:text></xsl:attribute>
 								<xsl:element name="TD">
@@ -705,7 +706,7 @@
 									<xsl:text> %</xsl:text>
 								</xsl:element>
 							</xsl:element>
-							<xsl:text>');&#10;</xsl:text>
+							<xsl:text>';&#10;</xsl:text>
 						</xsl:for-each>
 					</xsl:for-each>
 					<xsl:text>
@@ -732,7 +733,7 @@
 							} else {
 								$.tablesorter.setFilters($table, currFilters);
 								$table.trigger('update', [true]);
-								$('#progress').hide();
+								$('#loading').hide();
 							}
 						}
 						iteration();
