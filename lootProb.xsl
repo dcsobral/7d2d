@@ -638,7 +638,6 @@
 				</script>
 			</HEAD>
 			<BODY>
-				<button type="button reset">Reset</button>
 				<xsl:variable name="lookup" select="my:allGroups(/lootcontainers/lootgroup, /..)"/>
 				<xsl:variable name="result" select="my:allContainers(/lootcontainers/lootcontainer, /.., $lookup)"/>
 				<DIV class="pager">
@@ -656,6 +655,8 @@
 						<option value="200">200</option> 
 					</select>
 					<select class="gotoPage" title="Select page number"></select>
+					<button type="button reset">Reset</button>
+					<span id="loading">Loading: <progress value="0" max="100"/></span>
 				</DIV>
 				<TABLE class="tablesorter hover-highlight focus-highlight">
 					<CAPTION>Loot Chance of At Least One of</CAPTION>
@@ -673,15 +674,13 @@
 				</TABLE>
 				<xsl:element name="script">
 					<xsl:variable name="apos">'</xsl:variable>
-					<xsl:variable name="aposEscaped">&amp;apos;</xsl:variable>
-					<xsl:text>&#10;var $table = $( 'table' ), config = $table[ 0 ].config;&#10;</xsl:text>
-					<xsl:text>var $tbody = $table.find('tbody');&#10;</xsl:text>
-					<xsl:text>var $row;&#10;</xsl:text>
+					<xsl:variable name="aposEscaped">\'</xsl:variable>
+					<xsl:text>var data = [];&#10;</xsl:text>
 					<xsl:for-each select="$result/container">
 						<xsl:variable name="id" select="@id"/>
 						<xsl:variable name="summary" select="my:summarize(.)"/>
 						<xsl:for-each select="$summary/item">
-							<xsl:text>$row = $('</xsl:text>
+							<xsl:text>data.push('</xsl:text>
 							<xsl:element name="TR">
 								<xsl:attribute name="class"><xsl:text>row</xsl:text></xsl:attribute>
 								<xsl:element name="TD">
@@ -706,10 +705,34 @@
 								</xsl:element>
 							</xsl:element>
 							<xsl:text>');&#10;</xsl:text>
-							<xsl:text>$tbody.append($row).trigger( 'addRows', [ $row ] );&#10;</xsl:text>
 						</xsl:for-each>
 					</xsl:for-each>
-					<xsl:text>$table.trigger('update', [[[2,0], [4,1], [0, 0]]]);</xsl:text>
+					<xsl:text>
+					function performTask(items, numToProcess, processItem) {
+						var pos = 0;
+						var $table = $( 'table' );
+						var $tbody = $table.find('tbody');
+						function iteration() {
+							var j = Math.min(pos + numToProcess, items.length);
+							for (var i = pos; i &lt; j; i++) {
+								var $row = $(items[i]);
+								$tbody.append($row).trigger( 'addRows', [ $row ] );
+							}
+							pos += numToProcess;
+							if (pos &lt; items.length) {
+								$table.trigger('update', [false]);
+								$(".progress").value = 100 * pos / items.length;
+								setTimeout(iteration, 1);
+							} else {
+								$table.trigger('update', [[[2,0], [4,1], [0, 0]]]);
+								$(".progress").hide();
+							}
+						}
+						iteration();
+					}
+
+					performTask(data, 100);
+					</xsl:text>
 				</xsl:element>
 			</BODY>
 		</HTML>
