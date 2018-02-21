@@ -8,7 +8,7 @@
 				xmlns:my="http://www.w3.org/2001/XMLSchema"
                 version="1.0" extension-element-prefixes="exslt math dyn func str">
 	<xsl:param name="language" select="'English'"/>
-	<xsl:output omit-xml-declaration="no" indent="yes"/>
+	<xsl:output omit-xml-declaration="no" indent="no"/>
 	<xsl:strip-space elements="*"/>
 	
 	<xsl:variable name="dummy-startup-messages">
@@ -315,7 +315,8 @@
 		<HTML>
 			<HEAD>
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.min.css" type="text/css"/>
-				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/css/theme.blue.css" type="text/css"/>
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/css/theme.blue.css" type="text/css"/>
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/css/jquery.tablesorter.pager.min.css" type="text/css"/>
 				<STYLE>
 					.tablesorter {
 						width: auto;
@@ -555,8 +556,9 @@
 					crossorigin="anonymous">
 				</script>
 				
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/js/jquery.tablesorter.min.js"/>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/js/jquery.tablesorter.widgets.min.js"/>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/js/jquery.tablesorter.min.js"/>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/js/extras/jquery.tablesorter.pager.min.js"/>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/js/jquery.tablesorter.widgets.min.js"/>
 				
 				<script>
 					$(function() {
@@ -564,7 +566,7 @@
 					  // Extend the themes to change any of the default class names
 					  $.extend($.tablesorter.themes.jui, {
 						table        : 'ui-widget ui-widget-content ui-corner-all',
-						caption      : 'ui-widget-content',
+						caption      : 'ui-widget-header ui-corner-all ui-state-default',
 						header       : 'ui-widget-header ui-corner-all ui-state-default',
 						sortNone     : '',
 						sortAsc      : '',
@@ -581,198 +583,137 @@
 						even         : 'ui-widget-content',
 						odd          : 'ui-state-default'
 					  });
+					  
+					  var pagerOptions = {
+						container: $(".pager"),
+						// output string - default is '{page}/{totalPages}';
+						// possible variables: {size}, {page}, {totalPages}, {filteredPages}, {startRow}, {endRow}, {filteredRows} and {totalRows}
+						// also {page:input} and {startRow:input} will add a modifiable input in place of the value
+						output: '{startRow} - {endRow} / {filteredRows} ({totalRows})',
+						fixedHeight: true,
+						// remove rows from the table to speed up the sort of large tables.
+						// setting this to false, only hides the non-visible rows; needed if you plan to add/remove rows with the pager enabled.
+						removeRows: false,
+						size: 40,
+						cssGoto: '.gotoPage',
+						savePages: true,
+						storageKey:'tablesorter-lootprob',
+					  };
 
 					  $("table").tablesorter({
 						theme : 'blue',
 						headerTemplate : '{content} {icon}',
-						widgets : ['filter', 'zebra', 'stickyHeaders'],
+						resort: false,
+						sortList: [ [2,0], [4,1], [0, 0] ],
+						widgets : ['saveSort', 'filter', 'zebra', 'stickyHeaders'],
 						widgetOptions : {
-						  filter_defaultAttrib : 'data-value',
+						  filter_saveFilters : true,
 						  zebra   : ["even", "odd"],
 						},
-					  });
+					  }).tablesorterPager(pagerOptions);
 					  
-						if ( $('.focus-highlight').length ) {
-							$('.focus-highlight').find('td, th')
+					    $('button').click(function(){
+							$.tablesorter.storage( $('table'), 'tablesorter-pager', '' );   // clear page/size
+							$.tablesorter.storage( $('table'), 'tablesorter-filters', '' ); // clear filters
+							$('table')
+								.trigger('filterResetSaved')                  // clear saved filters
+								.trigger('saveSortReset')                     // clear saved sort
+								.trigger("sortReset")                         // reset current table sort
+								.trigger('pageAndSize', [1, 30])              // set page to 1 and size to 30
+								.trigger('update', [[[2,0], [4,1], [0, 0]]]); // reset sort order
+							return false;
+						  });
+
+					  
+					  if ( $('.focus-highlight').length ) {
+						  $('.focus-highlight').find('td, th')
 							  .attr('tabindex', '1')
 							  // add touch device support
 							  .on('touchstart', function() {
 								$(this).focus();
-							  });
-						}
+						  });
+					  }
 
 					}); 
-					
-					// Toggle collapse on collapse class elements, with a elements of permalink class on table rows. Not in use.
-					//animating = false;
-					//clicked = false;
-					//$('.collapsible').hide();
-					//$('a.permalink').click(function(){
-					//	var $el = $(this);
-					//	setTimeout(function(){
-					//		if (!animating &amp;&amp; !clicked) {
-					//			animating = true;
-					//			$el.closest('tr').find('.collapsible').slideToggle();
-					//			setTimeout(function(){ animating = false; }, 200);
-					//		}
-					//	}, 200);
-					//	return false;
-					//});
 				</script>
 			</HEAD>
 			<BODY>
+				<button type="button reset">Reset</button>
 				<xsl:variable name="lookup" select="my:allGroups(/lootcontainers/lootgroup, /..)"/>
 				<xsl:variable name="result" select="my:allContainers(/lootcontainers/lootcontainer, /.., $lookup)"/>
+				<DIV class="pager">
+					<img src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/css/images/first.png" class="first"/> 
+					<img src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/css/images/prev.png" class="prev"/> 
+					<span class="pagedisplay"></span> <!-- this can be any element, including an input --> 
+					<img src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/css/images/next.png" class="next"/> 
+					<img src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/css/images/last.png" class="last"/> 
+					<select class="pagesize" title="Select page size"> 
+						<option value="10">10</option> 
+						<option value="20">20</option> 
+						<option selected="selected" value="30">30</option> 
+						<option value="40">40</option> 
+						<option value="100">100</option> 
+						<option value="200">200</option> 
+					</select>
+					<select class="gotoPage" title="Select page number"></select>
+				</DIV>
 				<TABLE class="tablesorter hover-highlight focus-highlight">
 					<CAPTION>Loot Chance of At Least One of</CAPTION>
 					<THEAD>
 						<TR>
 							<TH class="name">Item</TH>
+							<TH class="name">Source</TH>
 							<TH class="name">Container</TH>
-							<TH class="name">Chance</TH>
+							<TH class="name">Blocks and Entities</TH>
+							<TH class="name sorter-digit">Chance</TH>
 						</TR>
 					</THEAD>
 					<TBODY>
-						<xsl:for-each select="$result/container">
-							<xsl:variable name="id" select="@id"/>
-							<xsl:variable name="summary" select="my:summarize(.)"/>
-							<xsl:for-each select="$summary/item">
-								<TR class="row">
-									<TD class="name collapsing">
-										<xsl:value-of select="@desc"/>
-										<br/>
-										<xsl:value-of select="@source"/>
-									</TD>
-									<TD class="integer">
-										<xsl:value-of select="$id"/>
-										<!--
-										<DIV class="collapsible">
-											<xsl:text>Blocks:</xsl:text>
-											<xsl:value-of select="my:blocksFor($id)"/>
-											<br/>
-											<xsl:text>Entities:</xsl:text>
-											<xsl:value-of select="my:entitiesFor($id)"/>
-										</DIV>
-										-->
-									</TD>
-									<TD class="decimal">
-										<xsl:value-of select="format-number(@chance * 100, '0.00')"/>
-									</TD>
-								</TR>
-							</xsl:for-each>
-						</xsl:for-each>
 					</TBODY>
 				</TABLE>
-				<script>
-					animating = false;
-					clicked = false;
-					$('.collapsible').hide();
-					$('td .collapsing').click(function(){
-						var $el = $(this);
-						setTimeout(function(){
-							if (!animating &amp;&amp; !clicked) {
-								animating = true;
-								$el.find('.collapsible').slideToggle();
-								setTimeout(function(){ animating = false; }, 200);
-							}
-						}, 200);
-						return false;
-					});
-
-				</script>
+				<xsl:element name="script">
+					<xsl:variable name="apos">'</xsl:variable>
+					<xsl:variable name="aposEscaped">&amp;apos;</xsl:variable>
+					<xsl:text>&#10;var $table = $( 'table' ), config = $table[ 0 ].config;&#10;</xsl:text>
+					<xsl:text>var $tbody = $table.find('tbody');&#10;</xsl:text>
+					<xsl:text>var $row;&#10;</xsl:text>
+					<xsl:for-each select="$result/container">
+						<xsl:variable name="id" select="@id"/>
+						<xsl:variable name="summary" select="my:summarize(.)"/>
+						<xsl:for-each select="$summary/item">
+							<xsl:text>$row = $('</xsl:text>
+							<xsl:element name="TR">
+								<xsl:attribute name="class"><xsl:text>row</xsl:text></xsl:attribute>
+								<xsl:element name="TD">
+									<xsl:value-of select="str:replace(@desc, $apos, $aposEscaped)"/>
+								</xsl:element>
+								<xsl:element name="TD">
+									<xsl:value-of select="@source"/>
+								</xsl:element>
+								<xsl:element name="TD">
+									<xsl:attribute name="class">integer</xsl:attribute>
+									<xsl:value-of select="$id"/>
+								</xsl:element>
+								<xsl:element name="TD">
+									<xsl:value-of select="str:replace(my:blocksFor($id), $apos, $aposEscaped)"/>
+									<xsl:text> / </xsl:text>
+									<xsl:value-of select="str:replace(my:entitiesFor($id), $apos, $aposEscaped)"/>
+								</xsl:element>
+								<xsl:element name="TD">
+									<xsl:attribute name="class"><xsl:text>decimal</xsl:text></xsl:attribute>
+									<xsl:value-of select="format-number(@chance * 100, '0.000000')"/>
+									<xsl:text> %</xsl:text>
+								</xsl:element>
+							</xsl:element>
+							<xsl:text>');&#10;</xsl:text>
+							<xsl:text>$tbody.append($row).trigger( 'addRows', [ $row ] );&#10;</xsl:text>
+						</xsl:for-each>
+					</xsl:for-each>
+					<xsl:text>$table.trigger('update', [[[2,0], [4,1], [0, 0]]]);</xsl:text>
+				</xsl:element>
 			</BODY>
 		</HTML>
 	</xsl:template>
 	
 </xsl:stylesheet>
 
-<!--
-	<func:function name="my:lootContainers">
-		<func:result>
-			<lootcontainers>
-				<xsl:for-each select="/lootcontainers/lootcontainer">
-					<xsl:message><xsl:value-of select="my:printNode(.)"/></xsl:message>
-					<lootcontainer id="{@id}">
-						<xsl:variable name="groupProbabilities" select="exslt:node-set(my:groupProbabilities(., 1))"/>
-						<xsl:copy-of select="$groupProbabilities"/>
-					</lootcontainer>
-				</xsl:for-each>
-			</lootcontainers>
-		</func:result>
-	</func:function>
-	
-	<func:function name="my:lootGroups">
-		<func:result>
-			<lootgroups>
-				<xsl:for-each select="/lootcontainers/lootgroup">
-					<xsl:message><xsl:value-of select="my:printNode(.)"/></xsl:message>
-					<lootgroup name="{@name}">
-						<xsl:variable name="groupProbabilities" select="exslt:node-set(my:groupProbabilities(., 1))"/>
-						<xsl:copy-of select="$groupProbabilities"/>
-					</lootgroup>
-				</xsl:for-each>
-			</lootgroups>
-		</func:result>
-	</func:function>
-	
-	<xsl:variable name="result" select="exslt:node-set(my:lootGroups())"/>
-	<xsl:template match="lootcontainer">
-		<xsl:variable name="countString" select="my:getOrDefault(@count, '1')"/>
-		<xsl:variable name="count" select="str:tokenize($countString, ',')"/>
-		<xsl:variable name="min" select="math:min($count)"/>
-		<xsl:variable name="max" select="math:max($count)"/>
-		<xsl:variable name="items" select="item"/>
-		<xsl:variable name="itemCount" select="my:count($items)"/>
-		<TABLE class="tablesorter hover-highlight focus-highlight">
-			<CAPTION>Container <xsl:value-of select="@id"/> (<xsl:value-of select="$countString"/>)
-				<DIV class="collapsible">
-					<xsl:text>Blocks:</xsl:text>
-					<xsl:value-of select="my:blocksFor(@id)"/>
-					<br/>
-					<xsl:text>Entities:</xsl:text>
-					<xsl:value-of select="my:entitiesFor(@id)"/>
-				</DIV>
-			</CAPTION>
-			<THEAD>
-				<TR>
-					<TH class="name">Item</TH>
-					<TH class="name">Chance</TH>
-				</TR>
-			</THEAD>
-			<TBODY>
-				<xsl:for-each select="$items">
-					<xsl:call-template name="row">
-						<xsl:with-param name="min" select="$min"/>
-						<xsl:with-param name="max" select="$max"/>
-						<xsl:with-param name="itemCount" select="$itemCount"/>
-						<xsl:with-param name="isAll" select="$countString='all'"/>
-						<xsl:with-param name="baseChance" select="1"/>
-					</xsl:call-template>
-				</xsl:for-each>
-			</TBODY>
-		</TABLE>
-	</xsl:template>
-	
-	<xsl:template name="row">
-		<xsl:param name="min"/>
-		<xsl:param name="max"/>
-		<xsl:param name="itemCount"/>
-		<xsl:param name="isAll"/>
-		<xsl:param name="baseChance"/>
-		<xsl:variable name="chance" select="my:chance($baseChance, my:prob(.), $min, $max, $itemCount, $isAll)"/>
-		<xsl:choose>
-			<xsl:when test="@name">
-				<TR class="row">
-					<TD class="name id"><xsl:value-of select="my:translate(@name)"/></TD>
-					<TD class="decimal val"><xsl:value-of select="format-number($chance, '0.0000')"/></TD>
-				</TR>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:message>Group <xsl:value-of select="@group"/></xsl:message>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-
-
-
--->
