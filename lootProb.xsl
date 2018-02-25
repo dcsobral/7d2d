@@ -302,11 +302,6 @@
 		</func:result>
 	</func:function>
 	
-	<func:function name="my:summarize">
-		<xsl:param name="container"/>
-		<func:result select="$container"/>
-	</func:function>
-	
 	<xsl:variable name="localization" select="document('Localization.xml')"/>
 	<xsl:variable name="blocks" select="document('blocks.xml')/blocks/block/property[@name='LootList']"/>
 	<xsl:variable name="entities" select="document('entityclasses.xml')/entity_classes/entity_class/property[@name='LootListOnDeath']"/>
@@ -314,436 +309,193 @@
 	<xsl:template match="/lootcontainers">
 		<HTML>
 			<HEAD>
-				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.min.css" type="text/css"/>
-				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/css/theme.blue.css" type="text/css"/>
-				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/css/jquery.tablesorter.pager.min.css" type="text/css"/>
+				<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+				<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css"/>
+				<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/3.2.4/css/fixedColumns.dataTables.min.css"/>
+				<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/scroller/1.4.4/css/scroller.dataTables.min.css"/>
+				<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css"/>
 				<STYLE>
-					.tablesorter {
-						width: auto;
-					}
-					
-				    .tablesorter-blue-header {
-						font: 12px/18px Arial, Sans-serif;
-						font-weight: bold;
-						color: #000;
-						background-color: #99bfe6;
-						border-collapse: collapse;
-						padding: 4px;
-						text-shadow: 0 1px 0 rgba(204, 204, 204, 0.7);
-					}
-					
-					.tablesorter-blue-td {
-						color: #3d3d3d;
-						background-color: #fff;
-						padding: 4px;
-						vertical-align: top;
-					}
-					
-					.tablesorter-blue-override {
-						width: 100%;
-						background-color: #fff;
-						background-image: none;
-						margin: 10px 0 15px;
-						text-align: left;
-						border-spacing: 0;
-						border: #cdcdcd 1px solid;
-						border-width: 1px 0 0 1px;
-
-					}
-
-					.CellWithComment{
-						position:relative;
-					}
-
-					.CellComment{
-						display:none;
-						position:absolute; 
-						z-index:100;
-						border:1px;
-						background-color: black;
-						color: #fff;
-						border-style:solid;
-						border-width:1px;
-						border-color:#fff;
-						padding:3px;
-						top: 100%;
-						left: 20px;
-						opacity: 0;
-						transition: opacity 1s;
-					}
-
-					.CellWithComment:hover div.CellComment{
-						display:block;
-						opacity: 1;
-					}
-					
-					.CellComment::after {
-						content: " ";
-						position: absolute;
-						bottom: 100%;  /* At the top of the tooltip */
-						left: 20px;
-						margin-left: -5px;
-						border-width: 5px;
-						border-style: solid;
-						border-color: transparent transparent black transparent;
+					caption: { 
+						text-align: left; 
 					}
 					
 					th {
 						width: auto;
 					}
-					
-					th .CellComment {
-						width: 200%;
-						left: -50%;
+
+					thead th { 
+						text-align: center; 
 					}
 
-					th .CellComment::after {
-						left: 50%;
-						margin-left: -10px;
+					tfoot th { 
+						text-align: left; 
 					}
 					
-					th:last-child .CellComment {
-						top: 25%;
-						width: 200%;
-						right: 105%;
-						left: auto;
+					td.long {
+						font-size: x-small;
 					}
-
-					th:last-child .CellComment::after {
-						top: 50%;
-						left: 100%; /* To the right of the tooltip */
-						margin-top: -5px;
-						margin-left: 0;
-						border-color: transparent transparent transparent black;
-					}
-					
-					tr:last-child .CellComment {
-						top: auto;
-						bottom: 100%;
-					}
-
-					tr:last-child .CellComment::after {
-						top: 100%;  /* At the bottom of the tooltip */
-						bottom: auto;
-						border-color: black transparent transparent transparent;
-					}
-					
-					.dialog {
-						display:none;
-					}
-					
-					td.integer { text-align: right; }
-					td.decimal { text-align: right; white-space: nowrap; }
-					th.name { text-align: center; }
-					td.name { text-align: left; white-space: nowrap; }
-					
-					dl {
-					  display: grid;
-					  grid-template-columns: max-content auto;
-					}
-
-					dt {
-					  grid-column-start: 1;
-					}
-
-					dd {
-					  grid-column-start: 2;
-					}
-				
-					/* TABLE BACKGROUND color (match the original theme) */
-					table.hover-highlight td:before,
-					table.focus-highlight td:before {
-					  background: #fff;
-					}
-
-					/* ODD ZEBRA STRIPE color (needs zebra widget) */
-					.hover-highlight .odd td:before, .hover-highlight .odd th:before,
-					.focus-highlight .odd td:before, .focus-highlight .odd th:before {
-					  background: #ebf2fa;
-					}
-					/* EVEN ZEBRA STRIPE color (needs zebra widget) */
-					.hover-highlight .even td:before, .hover-highlight .even th:before,
-					.focus-highlight .even td:before, .focus-highlight .even th:before {
-					  background-color: #fff;
-					}
-
-					/* FOCUS ROW highlight color (touch devices) */
-					.focus-highlight td:focus::before, .focus-highlight th:focus::before {
-					  background-color: lightblue;
-					}
-
-					/* FOCUS CELL highlight color */
-					.focus-highlight th:focus, .focus-highlight td:focus,
-					.focus-highlight .even th:focus, .focus-highlight .even td:focus,
-					.focus-highlight .odd th:focus, .focus-highlight .odd td:focus {
-					  background-color: #d9d9d9;
-					  color: #333;
-					}
-
-					/* HOVER ROW highlight colors */
-					table.hover-highlight tbody > tr:hover > td, /* override tablesorter theme row hover */
-					table.hover-highlight tbody > tr.odd:hover > td,
-					table.hover-highlight tbody > tr.even:hover > td {
-					  background-color: #ffa;
-					}
-
-					/* ************************************************* */
-					/* **** No need to modify the definitions below **** */
-					/* ************************************************* */
-					.focus-highlight td:focus::after, .focus-highlight th:focus::after,
-					.hover-highlight td:hover::after, .hover-highlight th:hover::after {
-					  content: '';
-					  position: absolute;
-					  width: 100%;
-					  height: 999em;
-					  left: 0;
-					  top: -555em;
-					  z-index: -1;
-					}
-					.focus-highlight td:focus::before, .focus-highlight th:focus::before {
-					  content: '';
-					  position: absolute;
-					  width: 999em;
-					  height: 100%;
-					  left: -555em;
-					  top: 0;
-					  z-index: -2;
-					}
-					/* required styles */
-					.hover-highlight,
-					.focus-highlight {
-					  overflow: hidden;
-					}
-					.hover-highlight td, .hover-highlight th,
-					.focus-highlight td, .focus-highlight th {
-					  position: relative;
-					  outline: 0;
-					}
-					/* override the tablesorter theme styling */
-					table.hover-highlight, table.hover-highlight tbody > tr > td,
-					table.focus-highlight, table.focus-highlight tbody > tr > td,
-					/* override zebra styling */
-					table.hover-highlight tbody tr.even > th,
-					table.hover-highlight tbody tr.even > td,
-					table.hover-highlight tbody tr.odd > th,
-					table.hover-highlight tbody tr.odd > td,
-					table.focus-highlight tbody tr.even > th,
-					table.focus-highlight tbody tr.even > td,
-					table.focus-highlight tbody tr.odd > th,
-					table.focus-highlight tbody tr.odd > td {
-					  background: transparent;
-					}
-					/* table background positioned under the highlight */
-					table.hover-highlight td:before,
-					table.focus-highlight td:before {
-					  content: '';
-					  position: absolute;
-					  width: 100%;
-					  height: 100%;
-					  left: 0;
-					  top: 0;
-					  z-index: -3;
-					}
+						
 				</STYLE>
 				<script
 					src="https://code.jquery.com/jquery-1.12.4.min.js"
 					integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 					crossorigin="anonymous">
 				</script>
-				<script
-					src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-					integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-					crossorigin="anonymous">
-				</script>
 				
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/js/jquery.tablesorter.min.js"/>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/js/extras/jquery.tablesorter.pager.min.js"/>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/js/jquery.tablesorter.widgets.min.js"/>
-				
-				<script>
-					$(function() {
+				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"/>
+				<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"/>
+				<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"/>
+				<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"/>
+				<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"/>
 
-					  // Extend the themes to change any of the default class names
-					  $.extend($.tablesorter.themes.jui, {
-						table        : 'ui-widget ui-widget-content ui-corner-all',
-						caption      : 'ui-widget-header ui-corner-all ui-state-default',
-						header       : 'ui-widget-header ui-corner-all ui-state-default',
-						sortNone     : '',
-						sortAsc      : '',
-						sortDesc     : '',
-						active       : 'ui-state-active',
-						hover        : 'ui-state-hover',
-						icons        : 'ui-icon',
-						iconSortNone : 'ui-icon-carat-2-n-s ui-icon-caret-2-n-s',
-						iconSortAsc  : 'ui-icon-carat-1-n ui-icon-caret-1-n',
-						iconSortDesc : 'ui-icon-carat-1-s ui-icon-caret-1-s',
-						filterRow    : '',
-						footerRow    : '',
-						footerCells  : '',
-						even         : 'ui-widget-content',
-						odd          : 'ui-state-default'
-					  });
-					  
-					  var pagerOptions = {
-						container: $(".pager"),
-						// output string - default is '{page}/{totalPages}';
-						// possible variables: {size}, {page}, {totalPages}, {filteredPages}, {startRow}, {endRow}, {filteredRows} and {totalRows}
-						// also {page:input} and {startRow:input} will add a modifiable input in place of the value
-						output: '{startRow} - {endRow} / {filteredRows} ({totalRows})',
-						fixedHeight: true,
-						// remove rows from the table to speed up the sort of large tables.
-						// setting this to false, only hides the non-visible rows; needed if you plan to add/remove rows with the pager enabled.
-						removeRows: false,
-						size: 40,
-						cssGoto: '.gotoPage',
-						savePages: true,
-						storageKey:'tablesorter-lootprob',
-					  };
-
-					  $("table").tablesorter({
-						theme : 'blue',
-						headerTemplate : '{content} {icon}',
-						resort: false,
-						// sortList: [ [2,0], [4,1], [0, 0] ],
-						widgets : ['saveSort', 'filter', 'zebra', 'stickyHeaders'],
-						widgetOptions : {
-						  filter_saveFilters : true,
-						  zebra   : ["even", "odd"],
-						},
-					  }).tablesorterPager(pagerOptions);
-					  
-					    $('button').click(function(){
-							$.tablesorter.storage( $('table'), 'tablesorter-pager', '' );   // clear page/size
-							$.tablesorter.storage( $('table'), 'tablesorter-filters', '' ); // clear filters
-							$('table')
-								.trigger('filterResetSaved')                  // clear saved filters
-								.trigger('saveSortReset')                     // clear saved sort
-								.trigger('filterReset')                       // reset current filters
-								.trigger("sortReset")                         // reset current table sort
-								.trigger('pageAndSize', [1, 30])              // set page to 1 and size to 30
-								.trigger('update', [[[2,0], [4,1], [0, 0]]]); // reset sort order
-							return false;
-						  });
-
-					  
-					  if ( $('.focus-highlight').length ) {
-						  $('.focus-highlight').find('td, th')
-							  .attr('tabindex', '1')
-							  // add touch device support
-							  .on('touchstart', function() {
-								$(this).focus();
-						  });
-					  }
-
-					}); 
-				</script>
-			</HEAD>
-			<BODY>
+				<script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.4/js/dataTables.fixedColumns.min.js"/>
+				<script type="text/javascript" src="https://cdn.datatables.net/scroller/1.4.4/js/dataTables.scroller.min.js"/>
+				<script type="text/javascript" src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"/>	
+				<xsl:variable name="apos">'</xsl:variable>
+				<xsl:variable name="aposEscaped">\'</xsl:variable>
 				<xsl:variable name="lookup" select="my:allGroups(/lootcontainers/lootgroup, /..)"/>
 				<xsl:variable name="result" select="my:allContainers(/lootcontainers/lootcontainer, /.., $lookup)"/>
-				<DIV class="pager">
-					<img src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/css/images/first.png" class="first"/> 
-					<img src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/css/images/prev.png" class="prev"/> 
-					<span class="pagedisplay"></span> <!-- this can be any element, including an input --> 
-					<img src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/css/images/next.png" class="next"/> 
-					<img src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.5/css/images/last.png" class="last"/> 
-					<select class="pagesize" title="Select page size"> 
-						<option value="10">10</option> 
-						<option value="20">20</option> 
-						<option selected="selected" value="30">30</option> 
-						<option value="40">40</option> 
-						<option value="100">100</option> 
-						<option value="200">200</option> 
-					</select>
-					<select class="gotoPage" title="Select page number"></select>
-					<button type="button reset">Reset</button>
-					<span id="loading">Loading <span id="numItems">0</span> entries: <progress id="progress" value="0" max="100"/></span>
-				</DIV>
-				<TABLE class="tablesorter hover-highlight focus-highlight">
-					<CAPTION>Loot Chance of At Least One of</CAPTION>
-					<THEAD>
-						<TR>
-							<TH class="name">Item</TH>
-							<TH class="name">Source</TH>
-							<TH class="name">Container</TH>
-							<TH class="name">Blocks and Entities</TH>
-							<TH class="name sorter-digit">Chance</TH>
-						</TR>
-					</THEAD>
-					<TBODY>
-					</TBODY>
-				</TABLE>
 				<xsl:element name="script">
-					<xsl:variable name="apos">'</xsl:variable>
-					<xsl:variable name="aposEscaped">\'</xsl:variable>
+					<xsl:text>$(function() {&#10;</xsl:text>
 					<xsl:text>var data = [];&#10;</xsl:text>
 					<xsl:text>var count = 0;&#10;</xsl:text>
 					<xsl:for-each select="$result/container">
 						<xsl:variable name="id" select="@id"/>
-						<xsl:variable name="summary" select="my:summarize(.)"/>
-						<xsl:for-each select="$summary/item">
-							<xsl:text>data[count++]='</xsl:text>
-							<xsl:element name="TR">
-								<xsl:attribute name="class"><xsl:text>row</xsl:text></xsl:attribute>
-								<xsl:element name="TD">
-									<xsl:value-of select="str:replace(@desc, $apos, $aposEscaped)"/>
-								</xsl:element>
-								<xsl:element name="TD">
-									<xsl:value-of select="@source"/>
-								</xsl:element>
-								<xsl:element name="TD">
-									<xsl:attribute name="class">integer</xsl:attribute>
-									<xsl:value-of select="$id"/>
-								</xsl:element>
-								<xsl:element name="TD">
-									<xsl:value-of select="str:replace(my:blocksFor($id), $apos, $aposEscaped)"/>
-									<xsl:text> / </xsl:text>
-									<xsl:value-of select="str:replace(my:entitiesFor($id), $apos, $aposEscaped)"/>
-								</xsl:element>
-								<xsl:element name="TD">
-									<xsl:attribute name="class"><xsl:text>decimal</xsl:text></xsl:attribute>
-									<xsl:value-of select="format-number(@chance * 100, '0.000000')"/>
-									<xsl:text> %</xsl:text>
-								</xsl:element>
-							</xsl:element>
-							<xsl:text>';&#10;</xsl:text>
+						<xsl:for-each select="item">
+							<xsl:text>data[count++]=['</xsl:text>
+							<xsl:value-of select="str:replace(@desc, $apos, $aposEscaped)"/>
+							<xsl:text>', '</xsl:text>
+							<xsl:value-of select="$id"/>
+							<xsl:text>', '</xsl:text>
+							<xsl:value-of select="format-number(@chance * 100, '0.000000')"/>
+							<xsl:text>', '</xsl:text>
+							<xsl:value-of select="@source"/>
+							<xsl:text>', '</xsl:text>
+							<xsl:value-of select="str:replace(my:blocksFor($id), $apos, $aposEscaped)"/>
+							<xsl:text>', '</xsl:text>
+							<xsl:value-of select="str:replace(my:entitiesFor($id), $apos, $aposEscaped)"/>
+							<xsl:text>'];&#10;</xsl:text>
 						</xsl:for-each>
 					</xsl:for-each>
 					<xsl:text>
-					function performTask(items, numToProcess, processItem) {
-						$('#progress').attr('max', data.length);
-						$('#numItems').text(data.length);
-						var pos = 0;
-						var $table = $( 'table' );
-						var $tbody = $table.find('tbody');
-						var currFilters = $.tablesorter.getFilters( $table );
-						$table.trigger('filterReset');
-						function iteration() {
-							var j = Math.min(pos + numToProcess, items.length);
-							for (var i = pos; i &lt; j; i++) {
-								var $row = $(items[i]);
-								$tbody.append($row).trigger( 'addRows', [ $row ] );
-							}
-							pos += numToProcess;
-							if (pos &lt; items.length) {
-								if ($.tablesorter.getFilters($table))
-									$table.trigger('filterReset');
-								$('#progress').val(pos);
-								setTimeout(iteration, 1);
-							} else {
-								$.tablesorter.setFilters($table, currFilters);
-								$table.trigger('update', [true]);
-								$('#loading').hide();
-							}
-						}
-						iteration();
-					}
-					performTask(data, 10);
+							$('table tfoot th').each( function (i) {
+									var title = $('table thead th').eq( $(this).index() ).text();
+									$(this).html( '&lt;input type="text" placeholder="Search '+title+'" data-index="'+i+'" />' );
+								} );
+
+							var table = $('table').DataTable({
+									buttons: [ 
+										{
+											text: 'Reset',
+											action: function ( e, dt, node, config ) {
+												$('input').val('');
+												dt.columns().search('');
+												dt
+													.search('')
+													.order([[ 1, 'asc' ], [ 2, 'desc' ], [0, 'asc'], [3, 'asc']])
+													.draw();
+											}
+										},
+										{
+											extend: 'colvis',
+											text: 'Columns',
+											columns: ':not(.key)',
+											autoClose: true,
+											postfixButtons: [
+													{
+														extend: 'columnVisibility',
+														text: 'Show All',
+														visibility: true,
+														columns: ':not(.key)'
+													},
+											],
+										},
+										{
+											extend: 'collection',
+											text: 'Export',
+											autoClose: true,
+											buttons: [ 'copy', 'csv', 'excel', ],
+										},
+									],
+									columnDefs: [
+											{ className: "dt-body-right", targets: 'number' },
+											{ className: "dt-body-left name", targets: 'name' },
+											{ className: "dt-body-left long", visible: false, targets: 'long' },
+											{ 
+												targets: 'percentage',
+												render: function ( data, type, row ) {
+													return data + ' %';
+												},
+											},
+											{
+												visible: false,
+												searchable: false,
+												targets: 'key',
+												data: function ( row, type, val, meta ) {
+														return row[0]+row[1];
+												},
+											},											
+									],
+									data: data,
+									deferRender: true,
+									dom: 'BfrtSi',
+									fixedColumns:   {
+										leftColumns: 3
+									},
+									order: [[ 1, 'asc' ], [ 2, 'desc' ], [0, 'asc'], [3, 'asc']],
+									paging: true,
+									processing: true,
+									scrollCollapse: true,
+									scroller: true,
+									scrollX: true,
+									scrollY: "80vh",
+									select: true,
+									stateSave: true,
+							});
+
+							// Filter event handler
+							$( table.table().container() ).on( 'keyup', 'tfoot input', function () {
+								table
+									.column( $(this).data('index') )
+									.search( this.value )
+									.draw();
+							} );
+
+						}); 
 					</xsl:text>
 				</xsl:element>
+				<TITLE>Loot Chance of At Least One of</TITLE>
+			</HEAD>
+			<BODY>
+				<TABLE class="compact cell-border nowrap stripe">
+					<CAPTION>Loot Chance of At Least One of</CAPTION>
+					<THEAD>
+						<TR>
+							<TH class="name">Item</TH>
+							<TH class="number">Container</TH>
+							<TH class="number percentage sorter-digit">Chance</TH>
+							<TH class="name">Source</TH>
+							<TH class="long">Blocks</TH>
+							<TH class="long">Entities</TH>
+							<TH class="key">Key</TH>
+						</TR>
+					</THEAD>
+					<TFOOT>
+						<TR>
+							<TH>Item</TH>
+							<TH>Container</TH>
+							<TH>Chance</TH>
+							<TH>Source</TH>
+							<TH>Blocks</TH>
+							<TH>Entities</TH>
+							<TH/>
+						</TR>
+					</TFOOT>
+					<TBODY>
+					</TBODY>
+				</TABLE>
 			</BODY>
 		</HTML>
 	</xsl:template>
-	
 </xsl:stylesheet>
 
