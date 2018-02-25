@@ -54,3 +54,5 @@ fabric.properties
 /docs/docs.iml
 
 .idea/
+
+*.pille
