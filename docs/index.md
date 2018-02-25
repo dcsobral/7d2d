@@ -7,6 +7,8 @@ For now:
 
 * [Ravenhearst's Food&Drinks Table](food.html) - A nice interactive table, generated from 7d2d's XML by
 * [Food&Drinks Table Generator](https://github.com/dcsobral/7d2d/tree/master/7d2d/foodPlus.xsl) - An XSLT that generates the above table automatically from items.xml
+* [Ravenhearst's Loot Probabilities Table](lootingProbabilities.html) - Chances of finding an item on every lootable thing in the game
+* [Loot Probability Table Generator](https://github.com/dcsobral/7d2d/tree/master/7d2d/lootProb.xsl) - An XSLT that generates the above table automatically from loot.xml
 * [Medieval Tower Prefab](https://github.com/dcsobral/7d2d/tree/master/7d2d/Mods/Prefabs/xcostum_medieval_tower/) - A prefab for 7d2d; better grab it from git
 
 All XSLTs provided are XSLT 1.0 with EXSLT extensions (such as provided by libxml2 or xmlstarlet). They should be run
