@@ -11,10 +11,10 @@
     <property name="Condition" value="Normal"/>
     <property name="Age" value="Old"/>
     <property name="AllowedBiomes" value="burnt_forest,snow,pine_forest,forest"/>
-    <property name="AllowedTownships" value="rural,town,wilderness"/>
+    <property name="AllowedTownships" value="rural,wilderness"/>
     <property name="SleeperVolumeStart" value="2,1,4#4,8,4#4,13,3"/>
     <property name="SleeperVolumeSize" value="11,7,11#9,5,10#9,5,10"/>
-    <property name="SleeperVolumeGroup" value="S_LootRoom_Med,S_Default_XS,S_LootRoom_S"/>
-    <property name="SleeperVolumeGameStageAdjust" value=",,"/>
+    <property name="SleeperVolumeGroup" value="S_LootRoom_Med,S_LootRoom_XS,S_LootRoom_S"/>
+    <property name="SleeperVolumeGameStageAdjust" value=",350,"/>
     <property name="SleeperIsLootVolume" value="False,False,False"/>
 </prefab>
