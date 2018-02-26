@@ -356,101 +356,145 @@
 				<xsl:variable name="lookup" select="my:allGroups(/lootcontainers/lootgroup, /..)"/>
 				<xsl:variable name="result" select="my:allContainers(/lootcontainers/lootcontainer, /.., $lookup)"/>
 				<xsl:element name="script">
-					<xsl:text>$(function() {&#10;</xsl:text>
-					<xsl:text>var data = [];&#10;</xsl:text>
-					<xsl:text>var count = 0;&#10;</xsl:text>
+					<xsl:text>
+						var blocks = [];
+						var entities = [];
+						var percentageRendered = $.fn.dataTable.render.number( ',', '.', 4, '', ' %' );
+						$(function() {
+							var containers = [];
+							var count;
+					</xsl:text>
 					<xsl:for-each select="$result/container">
 						<xsl:variable name="id" select="@id"/>
+						<xsl:text>count = 0;&#10;</xsl:text>
+						<xsl:text>containers[</xsl:text>
+						<xsl:value-of select="$id"/>
+						<xsl:text>] = [];</xsl:text>
+						<xsl:text>blocks[</xsl:text>
+						<xsl:value-of select="$id"/>
+						<xsl:text>] = '</xsl:text>
+						<xsl:value-of select="str:replace(my:blocksFor($id), $apos, $aposEscaped)"/>
+						<xsl:text>';</xsl:text>
+						<xsl:text>entities[</xsl:text>
+						<xsl:value-of select="$id"/>
+						<xsl:text>] = '</xsl:text>
+						<xsl:value-of select="str:replace(my:entitiesFor($id), $apos, $aposEscaped)"/>
+						<xsl:text>';</xsl:text>
 						<xsl:for-each select="item">
-							<xsl:text>data[count++]=['</xsl:text>
-							<xsl:value-of select="str:replace(@desc, $apos, $aposEscaped)"/>
-							<xsl:text>', '</xsl:text>
+							<xsl:text>containers[</xsl:text>
 							<xsl:value-of select="$id"/>
-							<xsl:text>', '</xsl:text>
-							<xsl:value-of select="format-number(@chance * 100, '0.000000')"/>
-							<xsl:text>', '</xsl:text>
+							<xsl:text>][count++]=['</xsl:text>
+							<xsl:value-of select="str:replace(@desc, $apos, $aposEscaped)"/>
+							<xsl:text>', </xsl:text>
+							<xsl:value-of select="@chance"/>
+							<xsl:text>, '</xsl:text>
 							<xsl:value-of select="@source"/>
-							<xsl:text>', '</xsl:text>
-							<xsl:value-of select="str:replace(my:blocksFor($id), $apos, $aposEscaped)"/>
-							<xsl:text>', '</xsl:text>
-							<xsl:value-of select="str:replace(my:entitiesFor($id), $apos, $aposEscaped)"/>
 							<xsl:text>'];&#10;</xsl:text>
 						</xsl:for-each>
 					</xsl:for-each>
 					<xsl:text>
+							var data = [];
+							containers.forEach(function (container, id) {
+								var probabilities = new Map();
+								var sources = new Map();
+								container.forEach(function (itemData) {
+									var item = itemData[0];
+									var probability = itemData[1];
+									var source = itemData[2];
+									
+									if (!probabilities.has(itemData[0])) {
+										probabilities.set(item, 0);
+										sources.set(item, new Set());
+									}
+									
+									probabilities.set(item, probabilities.get(item) + probability);
+									sources.set(item, sources.get(item).add(source));
+								});
+								probabilities.forEach(function (probability, item) {
+									data.push([item, id, probability, Array.from(sources.get(item)).join(', ')]);
+								});
+							});
+						
+						
 							$('table tfoot th').each( function (i) {
-									var title = $('table thead th').eq( $(this).index() ).text();
-									$(this).html( '&lt;input type="text" placeholder="Search '+title+'" data-index="'+i+'" />' );
-								} );
+								var title = $('table thead th').eq( $(this).index() ).text();
+								$(this).html( '&lt;input type="text" placeholder="Search '+title+'" data-index="'+i+'" />' );
+							});
 
 							var table = $('table').DataTable({
-									buttons: [ 
-										{
-											text: 'Reset',
-											action: function ( e, dt, node, config ) {
-												$('input').val('');
-												dt.columns().search('');
-												dt
-													.search('')
-													.order([[ 1, 'asc' ], [ 2, 'desc' ], [0, 'asc'], [3, 'asc']])
-													.draw();
-											}
-										},
-										{
-											extend: 'colvis',
-											text: 'Columns',
-											columns: ':not(.key)',
-											autoClose: true,
-											postfixButtons: [
-													{
-														extend: 'columnVisibility',
-														text: 'Show All',
-														visibility: true,
-														columns: ':not(.key)'
-													},
-											],
-										},
-										{
-											extend: 'collection',
-											text: 'Export',
-											autoClose: true,
-											buttons: [ 'copy', 'csv', 'excel', ],
-										},
-									],
-									columnDefs: [
-											{ className: "dt-body-right", targets: 'number' },
-											{ className: "dt-body-left name", targets: 'name' },
-											{ className: "dt-body-left long", visible: false, targets: 'long' },
-											{ 
-												targets: 'percentage',
-												render: function ( data, type, row ) {
-													return data + ' %';
-												},
-											},
-											{
-												visible: false,
-												searchable: false,
-												targets: 'key',
-												data: function ( row, type, val, meta ) {
-														return row[0]+row[1];
-												},
-											},											
-									],
-									data: data,
-									deferRender: true,
-									dom: 'BfrtSi',
-									fixedColumns:   {
-										leftColumns: 3
+								buttons: [ 
+									{
+										text: 'Reset',
+										action: function ( e, dt, node, config ) {
+											$('input').val('');
+											dt.columns().search('');
+											dt
+												.search('')
+												.order([[ 1, 'asc' ], [ 2, 'desc' ], [0, 'asc'], [3, 'asc']])
+												.draw();
+										}
 									},
-									order: [[ 1, 'asc' ], [ 2, 'desc' ], [0, 'asc'], [3, 'asc']],
-									paging: true,
-									processing: true,
-									scrollCollapse: true,
-									scroller: true,
-									scrollX: true,
-									scrollY: "80vh",
-									select: true,
-									stateSave: true,
+									{
+										extend: 'colvis',
+										text: 'Columns',
+										columns: ':not(.key)',
+										autoClose: true,
+										postfixButtons: [
+												{
+													extend: 'columnVisibility',
+													text: 'Show All',
+													visibility: true,
+													columns: ':not(.key)'
+												},
+										],
+									},
+									{
+										extend: 'collection',
+										text: 'Export',
+										autoClose: true,
+										buttons: [ 'copy', 'csv', 'excel', ],
+									},
+								],
+								columnDefs: [
+									{ className: "dt-body-right", targets: 'number' },
+									{ className: "dt-body-left name", targets: 'name' },
+									{ className: "dt-body-left long", visible: false, targets: 'long' },
+									{ 
+										targets: 'percentage',
+										render: function (data, type, row, meta) {
+											return percentageRendered.display(data * 100);
+										},
+									},
+									{
+										targets: 'blocks',
+										data: null,
+										render: function (data, type, row, meta) {
+											return blocks[row[1]];
+										},
+									},
+									{
+										targets: 'entities',
+										data: null,
+										render: function (data, type, row, meta) {
+											return entities[row[1]];
+										},
+									},
+								],
+								data: data,
+								deferRender: true,
+								dom: 'BfrtSi',
+								fixedColumns:   {
+									leftColumns: 3
+								},
+								order: [[ 1, 'asc' ], [ 2, 'desc' ], [0, 'asc'], [3, 'asc']],
+								paging: true,
+								processing: true,
+								scrollCollapse: true,
+								scroller: true,
+								scrollX: true,
+								scrollY: "80vh",
+								select: true,
+								stateSave: true,
 							});
 
 							// Filter event handler
@@ -459,25 +503,22 @@
 									.column( $(this).data('index') )
 									.search( this.value )
 									.draw();
-							} );
-
-						}); 
+							});
+						});
 					</xsl:text>
 				</xsl:element>
 				<TITLE>Loot Chance of At Least One of</TITLE>
 			</HEAD>
 			<BODY>
-				<TABLE class="compact cell-border nowrap stripe">
-					<CAPTION>Loot Chance of At Least One of</CAPTION>
+				<TABLE id="main" class="compact cell-border nowrap stripe">
 					<THEAD>
 						<TR>
 							<TH class="name">Item</TH>
 							<TH class="number">Container</TH>
 							<TH class="number percentage sorter-digit">Chance</TH>
-							<TH class="name">Source</TH>
-							<TH class="long">Blocks</TH>
-							<TH class="long">Entities</TH>
-							<TH class="key">Key</TH>
+							<TH class="long">Source</TH>
+							<TH class="long blocks">Blocks</TH>
+							<TH class="long entities">Entities</TH>
 						</TR>
 					</THEAD>
 					<TFOOT>
@@ -488,7 +529,6 @@
 							<TH>Source</TH>
 							<TH>Blocks</TH>
 							<TH>Entities</TH>
-							<TH/>
 						</TR>
 					</TFOOT>
 					<TBODY>
@@ -498,4 +538,3 @@
 		</HTML>
 	</xsl:template>
 </xsl:stylesheet>
-
