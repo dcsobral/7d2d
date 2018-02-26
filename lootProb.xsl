@@ -360,6 +360,7 @@
 						var blocks = [];
 						var entities = [];
 						var percentageRendered = $.fn.dataTable.render.number( ',', '.', 4, '', ' %' );
+						var numericFields = [];
 						$(function() {
 							var containers = [];
 							var count;
@@ -417,9 +418,30 @@
 						
 						
 							$('table tfoot th').each( function (i) {
-								var title = $('table thead th').eq( $(this).index() ).text();
-								$(this).html( '&lt;input type="text" placeholder="Search '+title+'" data-index="'+i+'" />' );
+								var header = $('table thead th').eq( $(this).index() );
+								var title = header.text();
+								var isNumber = header.hasClass('number');
+								var message = isNumber ? 'N, >N or &lt;N' : 'Search '+title;
+								$(this).html( '&lt;input type="search" placeholder="'+message+'" data-index="'+i+'" />' );
 							});
+							
+							$.fn.dataTableExt.afnFiltering.push(
+								function( oSettings, aData, iDataIndex ) {
+									return numericFields.map( function (field) {
+										var filter = $(field).val();
+										var iData = aData[$(field).data('index')];
+										if (filter == '' || filter == undefined || filter == '>' || filter == '&lt;') {
+											return true;
+										} else if (filter.startsWith('>')) {
+											return iData > filter.substring(1);
+										} else if (filter.startsWith('&lt;')) {
+											return iData &lt; filter.substring(1);
+										} else {
+											return iData == filter;
+										};
+									}).reduce((a,b) => a &amp;&amp; b, true);
+								}
+							);
 
 							var table = $('table').DataTable({
 								buttons: [ 
@@ -498,11 +520,20 @@
 							});
 
 							// Filter event handler
-							$( table.table().container() ).on( 'keyup', 'tfoot input', function () {
-								table
-									.column( $(this).data('index') )
-									.search( this.value )
-									.draw();
+							$( table.table().container() ).on( 'input', 'tfoot input', function () {
+								var index = $(this).data('index');
+								if (!$('table thead th').eq(index).hasClass('number')) {
+									table
+										.column( index )
+										.search( this.value )
+										.draw();
+								} else {
+									numericFields = $('tfoot input').filter(function() {
+										return $('thead th').eq($(this).data('index')).hasClass('number') &amp;&amp; $(this).val() !== '';
+									}).get();
+
+									table.draw();
+								}
 							});
 						});
 					</xsl:text>
