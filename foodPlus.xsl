@@ -38,6 +38,18 @@
 		</xsl:for-each>
 		</func:result>
 	</func:function>
+
+	<func:function name="my:listOf">
+		<xsl:param name="nodes"/>
+		<func:result>
+			<xsl:for-each select="$nodes">
+				<xsl:value-of select="my:translate(@name)"/>
+				<xsl:if test="position()!=last()">
+					<xsl:text>, </xsl:text>
+				</xsl:if>
+			</xsl:for-each>
+		</func:result>
+	</func:function>
 	
 	<func:function name="my:fold">
 		<xsl:param name="nodeset"/>
@@ -184,14 +196,14 @@
 	<func:function name="my:isCrafted">
 		<xsl:param name="item"/>
 		<xsl:for-each select="$recipes">
-			<xsl:variable name="result" select="boolean(key('recipe', $item/@name))"/>
+			<xsl:variable name="result" select="boolean(key('recipe', $item))"/>
 			<func:result select="$result"/>
 		</xsl:for-each>
 	</func:function>
 	
 	<func:function name="my:isHarvested">
 		<xsl:param name="item"/>
-		<func:result select="$harvest[@name=$item/@name] or $exchange[@value=$item/@name] or starts-with($item/@name, 'unit_')"/>
+		<func:result select="$harvest[@name=$item] or $exchange[@value=$item] or starts-with($item, 'unit_')"/>
 	</func:function>
 	
 	<func:function name="my:base">
@@ -232,17 +244,19 @@
 
 	<func:function name="my:buffsOf">
 		<xsl:param name="item"/>
-		<xsl:message><xsl:value-of select="my:printNode($item)"/></xsl:message>
 		<func:result>
-			<xsl:for-each select="$item/property[property[@name='Class']/@value='Eat']/property[@name='Buff']">
-				<xsl:message>Eats: <xsl:value-of select="my:printNode(.)"/></xsl:message>
-				<xsl:for-each select="str:tokenize(@value, ',')">
-					<xsl:message>Buffs: <xsl:value-of select="my:printNode(.)"/></xsl:message>
-					<xsl:message>Text: <xsl:value-of select="text()"/></xsl:message>
-					<xsl:message>Translation: <xsl:value-of select="my:translate(text())"/></xsl:message>
-					<xsl:if test="not(text()=my:translate(text()))">
-						<xsl:value-of select="my:translate(text())"/><xsl:text>&#10;</xsl:text>
-					</xsl:if>
+			<xsl:for-each select="$item//property[@name='Buff']">
+				<xsl:variable name="buffs" select="str:tokenize(@value, ',')"/>
+				<xsl:variable name="probs" select="str:tokenize(../property[@name='Buff_chance']/@value)"/>
+				<xsl:for-each select="$buffs">
+					<buff>
+						<xsl:if test="$probs">
+							<xsl:attribute name="probability">
+								<xsl:value-of select="$probs[position()]"/>
+							</xsl:attribute>
+						</xsl:if>
+						<xsl:value-of select="my:translate(text())"/>
+					</buff>
 				</xsl:for-each>
 			</xsl:for-each>
 		</func:result>
@@ -251,64 +265,83 @@
 	<func:function name="my:baseCost">
 		<xsl:param name="item"/>
 		<func:result>
-			<xsl:element name="item">
-				<xsl:attribute name="name"><xsl:value-of select="$item/@name"/></xsl:attribute>
-				<xsl:attribute name="desc"><xsl:value-of select="my:translate($item/@name)"/></xsl:attribute>
+			<item name="{$item}" desc="{my:translate($item)}">
 				<xsl:choose>
 					<xsl:when test="my:isHarvested($item)">
-						<xsl:element name="action">
-							<xsl:attribute name="desc"><xsl:text>is harvested</xsl:text></xsl:attribute>
-							<xsl:variable name="seed" select="$seedRecipes[ingredient[@name=$item/@name]]/@name"/>
+						<action desc="is harvested">
+							<xsl:variable name="seed" select="$seedRecipes[ingredient[@name=$item]]/@name"/>
 							<xsl:choose>
 								<xsl:when test="boolean($seed)">
-									<xsl:element name="source">
-										<xsl:attribute name="desc"><xsl:text>from plants</xsl:text></xsl:attribute>
+									<source desc="from plants">
 										<xsl:variable name="greenThumbLevel" select="$greenThumb[@name=$seed]/@unlock_level"/>
 										<xsl:choose>
 											<xsl:when test="boolean($greenThumbLevel)">
-													<xsl:element name="skill">
-														<xsl:attribute name="desc">
-															<xsl:text>knowing Green Thumb level </xsl:text>
-															<xsl:value-of select="$greenThumbLevel"/>
-														</xsl:attribute>
+													<skill desc="{concat('knowing Green Thumb level ', $greenThumbLevel*5)}">
 														<xsl:value-of select="$greenThumbLevel*5"/>
-													</xsl:element>
+													</skill>
 											</xsl:when>
 											<xsl:otherwise>
 												<!-- All other seeds such as hops assumed locked as well -->
-												<xsl:value-of select="20"/>
+												20
 											</xsl:otherwise>
 										</xsl:choose>
-									</xsl:element>
+									</source>
 								</xsl:when>
-								<xsl:when test="my:isPlentiful($item/@name)">
-									<xsl:element name="source">
-										<xsl:attribute name="desc"><xsl:text>in large quantities</xsl:text></xsl:attribute>
-										<xsl:value-of select="1"/>
-									</xsl:element>
+								<xsl:when test="my:isPlentiful($item)">
+									<source desc="in large quantities">1</source>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:element name="source">
-										<xsl:attribute name="desc"><xsl:text>in average quantities</xsl:text></xsl:attribute>
-										<xsl:value-of select="10"/>
-									</xsl:element>
+									<source desc="in average quantities">10</source>
 								</xsl:otherwise>
 							</xsl:choose>
-						</xsl:element>
+						</action>
 					</xsl:when>
 					<xsl:when test="my:isCrafted($item)">
 						<!-- To be computed later -->
-						<xsl:value-of select="''"/>
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:element name="action">
-							<xsl:attribute name="desc"><xsl:text>is looted</xsl:text></xsl:attribute>
-							<xsl:value-of select="25"/>
-						</xsl:element>
+						<action desc="is looted">25</action>
 					</xsl:otherwise>
 				</xsl:choose>
-			</xsl:element>
+			</item>
 		</func:result>
+	</func:function>
+	
+	<func:function name="my:difficultyOf">
+		<xsl:param name="item"/>
+		<xsl:param name="seen" select="''"/>
+		<xsl:variable name="baseCost" select="math:min(exslt:node-set(my:baseCost($item)))"/>
+		<xsl:choose>
+			<xsl:when test="contains($seen, concat(':', $item, ':'))">
+				<func:result select="'seen'"/>
+			</xsl:when>
+			<xsl:when test="number($baseCost)=number($baseCost)">
+				<func:result select="$baseCost"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:variable name="nextSeen" select="concat($seen,':',$item,':')"/>
+				<xsl:variable name="query">
+					<xsl:text>my:recipeDifficulty(., '</xsl:text>
+					<xsl:value-of select="$nextSeen"/>
+					<xsl:text>')</xsl:text>
+				</xsl:variable>
+				<xsl:variable name="recipes" select="$recipes/recipes/recipe[@name=$item]"/>
+				<xsl:variable name="costs" select="dyn:map($recipes, $query)"/>
+				<xsl:variable name="cost" select="math:min($costs[number(.)=number(.)])"/>
+				<xsl:if test="not(number($cost)=number($cost))">
+					<xsl:message terminate="yes">Invalid cost for <xsl:value-of select="$item"/></xsl:message>
+				</xsl:if>
+				<func:result select="$cost"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</func:function>
+	
+	<func:function name="my:recipeDifficulty">
+		<xsl:param name="recipe"/>
+		<xsl:param name="seen" select="''"/>
+		<xsl:variable name="costs" select="dyn:map($recipe/ingredient, 'my:difficultyOf(@name, $seen)*@count')"/>
+		<xsl:variable name="cost" select="sum($costs) div number($recipe/@count)"/>
+		<func:result select="$cost"/>
 	</func:function>
 
 	<xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
@@ -345,7 +378,7 @@
 	<xsl:variable name="foods" select="$items/items/item[my:group(.)='Food/Cooking' and my:canBeEaten(.)]"/>
 	<xsl:variable name="harvest" select="$blocks//drop[@event='Harvest']|document('entityclasses.xml')//drop[@event='Harvest']"/>
 	<xsl:variable name="exchange" select="$items//property[@name='Change_item_to']"/>
-    <xsl:variable name="greenThumb" select="$progression//perk[@name='Green Thumb']/recipe"/>
+    <xsl:variable name="greenThumb" select="$progression//perk[@name='Green Thumb' or @name='Advanced Farming']/recipe"/>
 	<xsl:variable name="seeds" select="$blocks/blocks/block[my:isPlant(.)]|$items/items/item[my:isPlant(.)]"/>
     <xsl:variable name="seedRecipes" select="$recipes/recipes/recipe[my:isSeed(@name)]"/>
 	
@@ -435,6 +468,7 @@
 		<x name="Harvested?" desc="Plants, animal products, minerals." class="filter-select"/>
 		<x name="Green Thumb Level" desc="Green Thumb level required to make seeds for it." class="mixed"/>
 		<x name="Wellness Efficiency" desc="Measure of how much wellness is gained by unit of food or water. The smaller the value, the more you gain wellness before being &quot;full&quot;. Only computed for positive wellness." class="mixed"/>
+		<x name="Difficulty" desc="How hard it is to make"/>
 		<x name="Buffs" desc="Special bonuses or penalties that result from eating or drinking it." class="filter-select"/>
 		<x name="Creative Mode" desc="Where it appears on the creative menu.&lt;BR/>Options are All, Player, Dev and None."/>
 	</xsl:variable>
@@ -843,7 +877,7 @@
 								<!-- Harvested -->
 								<TD>
 									<xsl:choose>
-										<xsl:when test="my:isHarvested($this)">
+										<xsl:when test="my:isHarvested($this/@name)">
 											<xsl:text>Yes</xsl:text>
 										</xsl:when>
 										<xsl:otherwise>
@@ -880,6 +914,11 @@
 										</xsl:otherwise>
 									</xsl:choose>
 								</TD>
+								
+								<!-- Difficulty -->
+								<TD class="decimal">
+									<xsl:value-of select="format-number(my:difficultyOf($this/@name), '0.00')"/>
+								</TD>
 
 								<!-- Buffs -->
 								<TD>
@@ -904,7 +943,9 @@
 												<xsl:attribute name="id">
 													<xsl:value-of select="$dialogId"/>
 												</xsl:attribute>
-												<xsl:value-of select="$buffs"/>
+												<xsl:call-template name="printBuffs">
+													<xsl:with-param name="buffs" select="exslt:node-set($buffs)"/>
+												</xsl:call-template>
 											</div>
 										</xsl:otherwise>
 									</xsl:choose>
@@ -982,13 +1023,20 @@
 								<xsl:sort select="my:translate(@name)"/>
 								<DT><xsl:value-of select="my:translate(@name)"/></DT>
 								<DD>
-									<xsl:variable name="cost" select="exslt:node-set(my:baseCost(.))"/>
-									<xsl:value-of select="$cost//*/text()"/>
-									<DIV class="collapsible">
-										<xsl:call-template name="explain">
-											<xsl:with-param name="explanation" select="$cost"/>
-										</xsl:call-template>
-									</DIV>
+									<xsl:variable name="cost" select="exslt:node-set(my:baseCost(@name))"/>
+									<xsl:choose>
+										<xsl:when test="number($cost)=number($cost)">
+											<xsl:value-of select="$cost//*/text()"/>
+											<DIV class="collapsible">
+												<xsl:call-template name="explain">
+													<xsl:with-param name="explanation" select="$cost"/>
+												</xsl:call-template>
+											</DIV>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="my:difficultyOf(@name)"/>
+										</xsl:otherwise>
+									</xsl:choose>
 								</DD>
 							</xsl:for-each>
 						</DL>
@@ -1061,5 +1109,21 @@
 			<xsl:text>: </xsl:text>
 			<xsl:value-of select="text()"/>
 		</xsl:for-each>
+	</xsl:template>
+	
+	<xsl:template name="printBuffs">
+		<xsl:param name="buffs"/>
+			<ul>
+				<xsl:for-each select="$buffs/*">
+					<li>
+						<xsl:value-of select="text()"/>
+						<xsl:if test="@probability">
+							<xsl:text> </xsl:text>
+							<xsl:value-of select="@probability * 100"/>
+							<xsl:text>%</xsl:text>
+						</xsl:if>
+					</li>
+				</xsl:for-each>
+			</ul>
 	</xsl:template>
 </xsl:stylesheet>
