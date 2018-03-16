@@ -375,7 +375,7 @@
 	<xsl:variable name="progression" select="document('progression.xml')"/>
 	<!-- Remove need for this var! -->
 	<xsl:variable name="localization" select="document('Localization.xml')"/>
-	<xsl:variable name="foods" select="$items/items/item[my:group(.)='Food/Cooking' and my:canBeEaten(.)]"/>
+	<xsl:variable name="foods" select="$items/items/item[contains(my:group(.),'Food/Cooking') and my:canBeEaten(.)]"/>
 	<xsl:variable name="harvest" select="$blocks//drop[@event='Harvest']|document('entityclasses.xml')//drop[@event='Harvest']"/>
 	<xsl:variable name="exchange" select="$items//property[@name='Change_item_to']"/>
     <xsl:variable name="greenThumb" select="$progression//perk[@name='Green Thumb' or @name='Advanced Farming']/recipe"/>
