@@ -864,7 +864,7 @@
 								<!-- Crafted -->
 								<TD>
 									<xsl:choose>
-										<xsl:when test="my:isCrafted($this)">
+										<xsl:when test="my:isCrafted($this/@name)">
 											<xsl:text>Yes</xsl:text>
 										</xsl:when>
 										<xsl:otherwise>
