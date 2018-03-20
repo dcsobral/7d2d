@@ -464,7 +464,7 @@
 	</xsl:variable>
 
 	<xsl:variable name="otherFields">
-		<!--<x name="Crafted?"/>-->
+		<x name="Crafted?" desc="Can it be crafted by the player?" class="filter-select"/>
 		<x name="Harvested?" desc="Plants, animal products, minerals." class="filter-select"/>
 		<x name="Green Thumb Level" desc="Green Thumb level required to make seeds for it." class="mixed"/>
 		<x name="Wellness Efficiency" desc="Measure of how much wellness is gained by unit of food or water. The smaller the value, the more you gain wellness before being &quot;full&quot;. Only computed for positive wellness." class="mixed"/>
@@ -861,7 +861,7 @@
 									</xsl:choose>
 								</xsl:for-each>
 								
-								<!-- Crafted
+								<!-- Crafted -->
 								<TD>
 									<xsl:choose>
 										<xsl:when test="my:isCrafted($this)">
@@ -872,7 +872,6 @@
 										</xsl:otherwise>
 									</xsl:choose>
 								</TD>
-								-->
 								
 								<!-- Harvested -->
 								<TD>
