@@ -31,6 +31,22 @@
             </xsl:call-template>
             <xsl:value-of select="'&#10;'"/>
           </xsl:when>
+          <xsl:when test="not($desc)">
+            <xsl:text>NO DESC </xsl:text>
+            <xsl:call-template name="value-of-template">
+              <xsl:with-param name="select" select="$translation"/>
+            </xsl:call-template>
+            <xsl:text>: </xsl:text>
+            <xsl:call-template name="value-of-template">
+              <xsl:with-param name="select" select="$localization/records/record[Key/text()=$name]/English/text()"/>
+            </xsl:call-template>
+            <xsl:text> [</xsl:text>
+            <xsl:call-template name="value-of-template">
+              <xsl:with-param name="select" select="@name"/>
+            </xsl:call-template>
+            <xsl:text>] </xsl:text>
+            <xsl:value-of select="'&#10;'"/>
+          </xsl:when>
         </xsl:choose>
       </xsl:for-each>
     </xsl:for-each>
