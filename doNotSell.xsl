@@ -71,7 +71,7 @@
 			<xsl:attribute name="name"><xsl:text>SellableToTrader</xsl:text></xsl:attribute>
 			<xsl:attribute name="value"><xsl:text>false</xsl:text></xsl:attribute>
 		</xsl:element>
-		<xsl:text>&#10;</xsl:text>
+		<xsl:text>&#10;&#9;</xsl:text>
 	</xsl:template>
 	
 	<xsl:template name="changeSellable">
