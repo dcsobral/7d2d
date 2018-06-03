@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# Requirements:
+#
+# * jq
+# * xmlstarlet
+# * curl
+# * allocs server fixes
+# * BadCompanySM
+# * BadCompanySM-WebUI
+#
+# Must be run inside Data/Config directory, talks to server on localhost.
+#
+# At the very least the script should be edited to add the user and password tokens.
+#
+# xmlstarlet can be replaced by other tools capable of xpath queries.
+
 consoleCommand() {
   curl  --data-urlencode "command=$1" -s --get -s "http://localhost:8082/api/executeconsolecommand?adminuser=user&admintoken=password" | jq ".result|fromjson"
 }
