@@ -1,0 +1,2116 @@
+Prefab apartment_adobe_red_5_flr
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=apartment_adobe_red_5_flr max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":20}
+{"Id":"335","Name":"cntTrash_can01","Count":5}
+{"Id":"337","Name":"cntNightstand","Count":7}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":10}
+{"Id":"557","Name":"cntMunitionsBox","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":4}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":40}
+{"Id":"737","Name":"cntBookcase","Count":6}
+{"Id":"838","Name":"cntCabinet","Count":94}
+{"Id":"840","Name":"cntFridgeTop","Count":20}
+{"Id":"945","Name":"cntWashingMachine","Count":17}
+{"Id":"946","Name":"cntTrashCompactor","Count":8}
+{"Id":"1076","Name":"cntWallOven","Count":20}
+{"Id":"1077","Name":"cntCabinetTop","Count":160}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab apartment_brick_6_flr
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=apartment_brick_6_flr max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":24}
+{"Id":"335","Name":"cntTrash_can01","Count":6}
+{"Id":"337","Name":"cntNightstand","Count":7}
+{"Id":"340","Name":"cntTrashPile01","Count":11}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":10}
+{"Id":"557","Name":"cntMunitionsBox","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":5}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":48}
+{"Id":"737","Name":"cntBookcase","Count":6}
+{"Id":"838","Name":"cntCabinet","Count":115}
+{"Id":"840","Name":"cntFridgeTop","Count":24}
+{"Id":"945","Name":"cntWashingMachine","Count":16}
+{"Id":"946","Name":"cntTrashCompactor","Count":7}
+{"Id":"1076","Name":"cntWallOven","Count":24}
+{"Id":"1077","Name":"cntCabinetTop","Count":192}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab army_barracks_01
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=army_barracks_01
+{"Id":"286","Name":"cntMedicineCabinet","Count":3}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":5}
+{"Id":"337","Name":"cntNightstand","Count":3}
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":4}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"557","Name":"cntMunitionsBox","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"626","Name":"cntLockers","Count":4}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":4}
+{"Id":"944","Name":"cntCabinetOldSink","Count":3}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":3}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":1}
+{"Id":"1246","Name":"cntLootCrateShotgunMessiah","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab bar_sm_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=bar_sm_01
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":5}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"349","Name":"cntFridge","Count":2}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":3}
+{"Id":"1261","Name":"cntBeerCooler","Count":6}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab bar_stripclub_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=bar_stripclub_01
+{"Id":"286","Name":"cntMedicineCabinet","Count":4}
+{"Id":"311","Name":"cntOven","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":6}
+{"Id":"349","Name":"cntFridge","Count":2}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":6}
+{"Id":"838","Name":"cntCabinet","Count":2}
+{"Id":"1261","Name":"cntBeerCooler","Count":8}
+{"Id":"1340","Name":"cntCashRegister","Count":2}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab bar_theater_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=bar_theater_01 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":3}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":5}
+{"Id":"336","Name":"cntBin","Count":2}
+{"Id":"338","Name":"cntSuitcase","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":4}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":5}
+{"Id":"1261","Name":"cntBeerCooler","Count":8}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+{"Id":"1928","Name":"loudspeaker","Count":5}
+Prefab business_red_brick_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_red_brick_01
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":1}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab business_red_brick_02
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_red_brick_02
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+Prefab business_red_brick_03
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_red_brick_03
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"337","Name":"cntNightstand","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"892","Name":"cntCardboardBox","Count":2}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":5}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":2}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab business_red_brick_04
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_red_brick_04
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":2}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":3}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab business_red_brick_05
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_red_brick_05
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":3}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab business_red_brick_06
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_red_brick_06
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab business_red_brick_07
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_red_brick_07
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"892","Name":"cntCardboardBox","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab business_strip_old_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_strip_old_01 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":8}
+{"Id":"311","Name":"cntOven","Count":3}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"336","Name":"cntBin","Count":2}
+{"Id":"337","Name":"cntNightstand","Count":2}
+{"Id":"340","Name":"cntTrashPile01","Count":3}
+{"Id":"349","Name":"cntFridge","Count":6}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":2}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":5}
+{"Id":"542","Name":"cntBirdnest","Count":3}
+{"Id":"623","Name":"cntFileCabinet","Count":11}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"725","Name":"cntBookStoreBookcase","Count":16}
+{"Id":"737","Name":"cntBookcase","Count":10}
+{"Id":"892","Name":"cntCardboardBox","Count":7}
+{"Id":"944","Name":"cntCabinetOldSink","Count":8}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":15}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":10}
+{"Id":"1261","Name":"cntBeerCooler","Count":16}
+{"Id":"1340","Name":"cntCashRegister","Count":6}
+{"Id":"1349","Name":"cntShoppingBasket","Count":5}
+{"Id":"1481","Name":"cntDumpster","Count":2}
+Prefab business_strip_old_02
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_strip_old_02 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":8}
+{"Id":"311","Name":"cntOven","Count":6}
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"336","Name":"cntBin","Count":4}
+{"Id":"337","Name":"cntNightstand","Count":3}
+{"Id":"340","Name":"cntTrashPile01","Count":4}
+{"Id":"349","Name":"cntFridge","Count":7}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":5}
+{"Id":"519","Name":"cntDesk01","Count":3}
+{"Id":"520","Name":"cntDesk02","Count":6}
+{"Id":"542","Name":"cntBirdnest","Count":5}
+{"Id":"623","Name":"cntFileCabinet","Count":10}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":10}
+{"Id":"892","Name":"cntCardboardBox","Count":9}
+{"Id":"944","Name":"cntCabinetOldSink","Count":8}
+{"Id":"945","Name":"cntWashingMachine","Count":2}
+{"Id":"1059","Name":"cntLootCrateLabEquipment","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":21}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":10}
+{"Id":"1260","Name":"cntPillCase","Count":9}
+{"Id":"1261","Name":"cntBeerCooler","Count":23}
+{"Id":"1340","Name":"cntCashRegister","Count":3}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1349","Name":"cntShoppingBasket","Count":3}
+{"Id":"1481","Name":"cntDumpster","Count":2}
+Prefab business_tan_brick_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_tan_brick_01
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":3}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":3}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":2}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab business_tan_brick_02
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_tan_brick_02
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"337","Name":"cntNightstand","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"892","Name":"cntCardboardBox","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":3}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab business_tan_brick_03
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_tan_brick_03
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"337","Name":"cntNightstand","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"892","Name":"cntCardboardBox","Count":2}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":2}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":3}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab business_tan_brick_04
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_tan_brick_04
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"337","Name":"cntNightstand","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"892","Name":"cntCardboardBox","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":2}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+Prefab business_tan_brick_05
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=business_tan_brick_05
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":2}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":2}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab carlot_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=carlot_01 max_count=2
+{"Id":"279","Name":"cntLootCrateCarParts","Count":1}
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"338","Name":"cntSuitcase","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":4}
+{"Id":"434","Name":"cntToilet01","Count":2}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":2}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":4}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":4}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":4}
+Prefab carlot_02
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=carlot_02 max_count=2
+{"Id":"279","Name":"cntLootCrateCarParts","Count":1}
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"338","Name":"cntSuitcase","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":4}
+{"Id":"434","Name":"cntToilet01","Count":2}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":4}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":3}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":2}
+Prefab church_sm_01
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=church_sm_01
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"838","Name":"cntCabinet","Count":2}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1468","Name":"cntCoffin","Count":1}
+Prefab courthouse_med_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=courthouse_med_01 max_count=1
+{"Id":"263","Name":"lootWastelandHelper","Count":1}
+{"Id":"423","Name":"cntBackpack01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":8}
+{"Id":"623","Name":"cntFileCabinet","Count":8}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":3}
+Prefab courthouse_med_02
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=courthouse_med_02 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":6}
+{"Id":"336","Name":"cntBin","Count":8}
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":4}
+{"Id":"519","Name":"cntDesk01","Count":3}
+{"Id":"520","Name":"cntDesk02","Count":3}
+{"Id":"623","Name":"cntFileCabinet","Count":11}
+{"Id":"628","Name":"cntGunSafe","Count":4}
+{"Id":"892","Name":"cntCardboardBox","Count":2}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":4}
+{"Id":"1340","Name":"cntCashRegister","Count":2}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab diner_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=diner_01 max_count=2
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"336","Name":"cntBin","Count":3}
+{"Id":"340","Name":"cntTrashPile01","Count":4}
+{"Id":"349","Name":"cntFridge","Count":2}
+{"Id":"944","Name":"cntCabinetOldSink","Count":3}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":10}
+{"Id":"1261","Name":"cntBeerCooler","Count":4}
+{"Id":"1340","Name":"cntCashRegister","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab diner_02
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=diner_02 max_count=2
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"336","Name":"cntBin","Count":3}
+{"Id":"340","Name":"cntTrashPile01","Count":5}
+{"Id":"349","Name":"cntFridge","Count":2}
+{"Id":"944","Name":"cntCabinetOldSink","Count":3}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":13}
+{"Id":"1261","Name":"cntBeerCooler","Count":4}
+{"Id":"1340","Name":"cntCashRegister","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab factory_lg_01
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=factory_lg_01 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":3}
+{"Id":"520","Name":"cntDesk02","Count":5}
+{"Id":"542","Name":"cntBirdnest","Count":5}
+{"Id":"623","Name":"cntFileCabinet","Count":4}
+{"Id":"626","Name":"cntLockers","Count":8}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"892","Name":"cntCardboardBox","Count":4}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":2}
+Prefab factory_lg_02
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=factory_lg_02 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":3}
+{"Id":"335","Name":"cntTrash_can01","Count":7}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":6}
+{"Id":"542","Name":"cntBirdnest","Count":5}
+{"Id":"623","Name":"cntFileCabinet","Count":6}
+{"Id":"626","Name":"cntLockers","Count":11}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"892","Name":"cntCardboardBox","Count":2}
+{"Id":"944","Name":"cntCabinetOldSink","Count":5}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":3}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":2}
+Prefab fastfood_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=fastfood_01 max_count=2
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":2}
+{"Id":"434","Name":"cntToilet01","Count":3}
+{"Id":"944","Name":"cntCabinetOldSink","Count":3}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":9}
+{"Id":"1261","Name":"cntBeerCooler","Count":4}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":6}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":3}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab fastfood_02
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=fastfood_02 max_count=2
+{"Id":"311","Name":"cntOven","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"349","Name":"cntFridge","Count":2}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":9}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":3}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab fastfood_03
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=fastfood_03 max_count=2
+{"Id":"311","Name":"cntOven","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"349","Name":"cntFridge","Count":2}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":17}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":3}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab fire_station_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=fire_station_01 max_count=1
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"336","Name":"cntBin","Count":7}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"423","Name":"cntBackpack01","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":5}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":3}
+{"Id":"944","Name":"cntCabinetOldSink","Count":3}
+{"Id":"945","Name":"cntWashingMachine","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+{"Id":"2000","Name":"cntCollapsedGeneratorbank","Count":2}
+Prefab fire_station_02
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=fire_station_02 max_count=1
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"336","Name":"cntBin","Count":3}
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"423","Name":"cntBackpack01","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"628","Name":"cntGunSafe","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":4}
+{"Id":"945","Name":"cntWashingMachine","Count":2}
+{"Id":"1076","Name":"cntWallOven","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab football_stadium
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=football_stadium max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":6}
+{"Id":"311","Name":"cntOven","Count":4}
+{"Id":"335","Name":"cntTrash_can01","Count":14}
+{"Id":"336","Name":"cntBin","Count":7}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"349","Name":"cntFridge","Count":5}
+{"Id":"367","Name":"cntWallSafe","Count":2}
+{"Id":"434","Name":"cntToilet01","Count":4}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":4}
+{"Id":"626","Name":"cntLockers","Count":68}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":12}
+{"Id":"838","Name":"cntCabinet","Count":22}
+{"Id":"1340","Name":"cntCashRegister","Count":4}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":3}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":3}
+Prefab funeral_home_01
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=funeral_home_01 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"339","Name":"cntStorageChest","Count":2}
+{"Id":"434","Name":"cntToilet01","Count":2}
+{"Id":"629","Name":"cntGraniteSink","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1103","Name":"cntMorticianDrawer","Count":5}
+{"Id":"1104","Name":"cntFurnaceDrawer","Count":2}
+{"Id":"1468","Name":"cntCoffin","Count":10}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab gas_station1
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=gas_station1 max_count=1
+{"Id":"279","Name":"cntLootCrateCarParts","Count":1}
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"350","Name":"cntGasPump","Count":2}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1331","Name":"cntLootCrateWorkingStiffs","Count":1}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab gas_station2
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=gas_station2 max_count=1
+{"Id":"279","Name":"cntLootCrateCarParts","Count":1}
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"338","Name":"cntSuitcase","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"350","Name":"cntGasPump","Count":3}
+{"Id":"542","Name":"cntBirdnest","Count":3}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":3}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab gas_station3
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=gas_station3 max_count=1
+{"Id":"279","Name":"cntLootCrateCarParts","Count":1}
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"349","Name":"cntFridge","Count":2}
+{"Id":"350","Name":"cntGasPump","Count":2}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab gas_station4
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=gas_station4 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"338","Name":"cntSuitcase","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"350","Name":"cntGasPump","Count":3}
+{"Id":"434","Name":"cntToilet01","Count":2}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":2}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":4}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab gas_station5
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=gas_station5 max_count=1
+{"Id":"279","Name":"cntLootCrateCarParts","Count":1}
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":4}
+{"Id":"350","Name":"cntGasPump","Count":8}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":4}
+{"Id":"542","Name":"cntBirdnest","Count":5}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":2}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"629","Name":"cntGraniteSink","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"838","Name":"cntCabinet","Count":2}
+{"Id":"892","Name":"cntCardboardBox","Count":1}
+{"Id":"1077","Name":"cntCabinetTop","Count":3}
+{"Id":"1261","Name":"cntBeerCooler","Count":4}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1347","Name":"cntShoppingCart","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab hospital_01_rg
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=hospital_01_rg max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":6}
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"336","Name":"cntBin","Count":25}
+{"Id":"337","Name":"cntNightstand","Count":13}
+{"Id":"340","Name":"cntTrashPile01","Count":11}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"429","Name":"cntPurse01","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":8}
+{"Id":"623","Name":"cntFileCabinet","Count":8}
+{"Id":"629","Name":"cntGraniteSink","Count":28}
+{"Id":"838","Name":"cntCabinet","Count":30}
+{"Id":"892","Name":"cntCardboardBox","Count":2}
+{"Id":"945","Name":"cntWashingMachine","Count":3}
+{"Id":"946","Name":"cntTrashCompactor","Count":3}
+{"Id":"1077","Name":"cntCabinetTop","Count":4}
+{"Id":"1260","Name":"cntPillCase","Count":42}
+{"Id":"1261","Name":"cntBeerCooler","Count":26}
+{"Id":"1340","Name":"cntCashRegister","Count":2}
+{"Id":"1347","Name":"cntShoppingCart","Count":3}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":5}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab hotel_new_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=hotel_new_01 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":12}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"336","Name":"cntBin","Count":12}
+{"Id":"337","Name":"cntNightstand","Count":2}
+{"Id":"340","Name":"cntTrashPile01","Count":3}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":12}
+{"Id":"519","Name":"cntDesk01","Count":14}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":12}
+{"Id":"838","Name":"cntCabinet","Count":16}
+{"Id":"945","Name":"cntWashingMachine","Count":4}
+{"Id":"1077","Name":"cntCabinetTop","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab hotel_ostrich
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=hotel_ostrich max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":16}
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"336","Name":"cntBin","Count":8}
+{"Id":"367","Name":"cntWallSafe","Count":2}
+{"Id":"519","Name":"cntDesk01","Count":7}
+{"Id":"623","Name":"cntFileCabinet","Count":5}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":43}
+{"Id":"838","Name":"cntCabinet","Count":39}
+{"Id":"840","Name":"cntFridgeTop","Count":18}
+{"Id":"892","Name":"cntCardboardBox","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":3}
+{"Id":"1076","Name":"cntWallOven","Count":22}
+{"Id":"1077","Name":"cntCabinetTop","Count":35}
+{"Id":"1261","Name":"cntBeerCooler","Count":8}
+{"Id":"1340","Name":"cntCashRegister","Count":4}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":2}
+Prefab hotel_roadside_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=hotel_roadside_01 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":16}
+{"Id":"335","Name":"cntTrash_can01","Count":6}
+{"Id":"336","Name":"cntBin","Count":12}
+{"Id":"337","Name":"cntNightstand","Count":16}
+{"Id":"338","Name":"cntSuitcase","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":2}
+{"Id":"434","Name":"cntToilet01","Count":16}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"626","Name":"cntLockers","Count":6}
+{"Id":"944","Name":"cntCabinetOldSink","Count":16}
+{"Id":"945","Name":"cntWashingMachine","Count":4}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab hotel_roadside_02
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=hotel_roadside_02 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":20}
+{"Id":"335","Name":"cntTrash_can01","Count":6}
+{"Id":"336","Name":"cntBin","Count":17}
+{"Id":"337","Name":"cntNightstand","Count":20}
+{"Id":"338","Name":"cntSuitcase","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":2}
+{"Id":"434","Name":"cntToilet01","Count":20}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"626","Name":"cntLockers","Count":10}
+{"Id":"944","Name":"cntCabinetOldSink","Count":20}
+{"Id":"945","Name":"cntWashingMachine","Count":6}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab houseranchblue1
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=houseranchblue1
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"337","Name":"cntNightstand","Count":4}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":3}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+Prefab houseranchtan1
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=houseranchtan1
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"337","Name":"cntNightstand","Count":2}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":3}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":3}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab houseranchtan2
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=houseranchtan2
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"337","Name":"cntNightstand","Count":2}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":3}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":5}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab houseranchwhite1
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=houseranchwhite1
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"337","Name":"cntNightstand","Count":4}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":5}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":5}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+Prefab house_new_01
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=house_new_01
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":1}
+{"Id":"838","Name":"cntCabinet","Count":1}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1076","Name":"cntWallOven","Count":1}
+Prefab house_new_02
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=house_new_02
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":2}
+{"Id":"629","Name":"cntGraniteSink","Count":1}
+{"Id":"838","Name":"cntCabinet","Count":2}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1076","Name":"cntWallOven","Count":1}
+{"Id":"1077","Name":"cntCabinetTop","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+Prefab house_new_03
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=house_new_03
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":1}
+{"Id":"838","Name":"cntCabinet","Count":2}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":2}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1076","Name":"cntWallOven","Count":1}
+{"Id":"1077","Name":"cntCabinetTop","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab house_new_04
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=house_new_04
+{"Id":"274","Name":"cntGarageStorage","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"336","Name":"cntBin","Count":6}
+{"Id":"337","Name":"cntNightstand","Count":16}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":5}
+{"Id":"737","Name":"cntBookcase","Count":4}
+{"Id":"838","Name":"cntCabinet","Count":7}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":2}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":3}
+{"Id":"1076","Name":"cntWallOven","Count":2}
+{"Id":"1077","Name":"cntCabinetTop","Count":9}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab house_new_05
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=house_new_05
+{"Id":"274","Name":"cntGarageStorage","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"336","Name":"cntBin","Count":12}
+{"Id":"337","Name":"cntNightstand","Count":14}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":3}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":6}
+{"Id":"838","Name":"cntCabinet","Count":7}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":2}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":6}
+{"Id":"1076","Name":"cntWallOven","Count":2}
+{"Id":"1077","Name":"cntCabinetTop","Count":9}
+{"Id":"1261","Name":"cntBeerCooler","Count":4}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+Prefab house_new_06
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=house_new_06
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"336","Name":"cntBin","Count":3}
+{"Id":"337","Name":"cntNightstand","Count":12}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":5}
+{"Id":"838","Name":"cntCabinet","Count":3}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":2}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1076","Name":"cntWallOven","Count":4}
+{"Id":"1077","Name":"cntCabinetTop","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab house_new_mansion_01
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=house_new_mansion_01
+{"Id":"286","Name":"cntMedicineCabinet","Count":5}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"337","Name":"cntNightstand","Count":2}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":4}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"838","Name":"cntCabinet","Count":12}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1076","Name":"cntWallOven","Count":1}
+{"Id":"1077","Name":"cntCabinetTop","Count":6}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+Prefab house_new_mansion_02
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=house_new_mansion_02
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"337","Name":"cntNightstand","Count":1}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"838","Name":"cntCabinet","Count":6}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1076","Name":"cntWallOven","Count":1}
+{"Id":"1077","Name":"cntCabinetTop","Count":8}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+Prefab house_new_mansion_03
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=house_new_mansion_03
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"337","Name":"cntNightstand","Count":2}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":4}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"838","Name":"cntCabinet","Count":7}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":2}
+{"Id":"1076","Name":"cntWallOven","Count":1}
+{"Id":"1077","Name":"cntCabinetTop","Count":6}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+Prefab installation_red_mesa
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=installation_red_mesa max_count=1
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"336","Name":"cntBin","Count":10}
+{"Id":"337","Name":"cntNightstand","Count":6}
+{"Id":"338","Name":"cntSuitcase","Count":3}
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":2}
+{"Id":"520","Name":"cntDesk02","Count":7}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"557","Name":"cntMunitionsBox","Count":3}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"626","Name":"cntLockers","Count":10}
+{"Id":"628","Name":"cntGunSafe","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":4}
+{"Id":"892","Name":"cntCardboardBox","Count":49}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":10}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":8}
+{"Id":"1183","Name":"cntLootCrateShamway","Count":2}
+{"Id":"1257","Name":"cntStorageGenericInsecure","Count":1}
+{"Id":"1331","Name":"cntLootCrateWorkingStiffs","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":4}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":4}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab junkyard_lg_01
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=junkyard_lg_01
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":3}
+{"Id":"331","Name":"cntChest01","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":6}
+{"Id":"336","Name":"cntBin","Count":3}
+{"Id":"338","Name":"cntSuitcase","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":5}
+{"Id":"349","Name":"cntFridge","Count":4}
+{"Id":"350","Name":"cntGasPump","Count":2}
+{"Id":"434","Name":"cntToilet01","Count":2}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"892","Name":"cntCardboardBox","Count":3}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"945","Name":"cntWashingMachine","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":3}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":2}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab junkyard_med_01
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=junkyard_med_01
+{"Id":"311","Name":"cntOven","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"336","Name":"cntBin","Count":2}
+{"Id":"340","Name":"cntTrashPile01","Count":4}
+{"Id":"349","Name":"cntFridge","Count":3}
+{"Id":"350","Name":"cntGasPump","Count":2}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":2}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":2}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":2}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab mailbox1
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=mailbox1 prob=0.25
+{"Id":"327","Name":"cntMailbox","Count":1}
+Prefab mp_waste_bldg_01_red
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_01_red
+{"Id":"263","Name":"lootWastelandHelper","Count":1}
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":4}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":5}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+Prefab mp_waste_bldg_01_tan
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_01_tan
+{"Id":"263","Name":"lootWastelandHelper","Count":3}
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":3}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":4}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab mp_waste_bldg_01_white
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_01_white
+{"Id":"263","Name":"lootWastelandHelper","Count":3}
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":4}
+{"Id":"623","Name":"cntFileCabinet","Count":4}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab mp_waste_bldg_02_red
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_02_red
+{"Id":"263","Name":"lootWastelandHelper","Count":7}
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":5}
+{"Id":"542","Name":"cntBirdnest","Count":3}
+{"Id":"623","Name":"cntFileCabinet","Count":3}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab mp_waste_bldg_02_tan
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_02_tan
+{"Id":"263","Name":"lootWastelandHelper","Count":5}
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"366","Name":"cntDeskSafe","Count":2}
+{"Id":"520","Name":"cntDesk02","Count":4}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":3}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab mp_waste_bldg_03_red
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_03_red
+{"Id":"263","Name":"lootWastelandHelper","Count":2}
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"338","Name":"cntSuitcase","Count":1}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":4}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":3}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab mp_waste_bldg_03_tan
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_03_tan
+{"Id":"263","Name":"lootWastelandHelper","Count":3}
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"338","Name":"cntSuitcase","Count":1}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":5}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":4}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab mp_waste_bldg_03_white
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_03_white
+{"Id":"263","Name":"lootWastelandHelper","Count":4}
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"338","Name":"cntSuitcase","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":4}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":2}
+Prefab mp_waste_bldg_04_grey
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_04_grey
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+Prefab mp_waste_bldg_04_red
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_04_red
+{"Id":"263","Name":"lootWastelandHelper","Count":2}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+Prefab mp_waste_bldg_04_tan
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_04_tan
+{"Id":"263","Name":"lootWastelandHelper","Count":1}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab mp_waste_bldg_04_white
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_04_white
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab mp_waste_bldg_05_grey
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_05_grey
+{"Id":"263","Name":"lootWastelandHelper","Count":1}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":3}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+Prefab mp_waste_bldg_06_grey
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_bldg_06_grey
+{"Id":"263","Name":"lootWastelandHelper","Count":5}
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"520","Name":"cntDesk02","Count":2}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":3}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab mp_waste_bldg_governer_08
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=mp_waste_bldg_governer_08 max_count=1
+{"Id":"263","Name":"lootWastelandHelper","Count":7}
+{"Id":"367","Name":"cntWallSafe","Count":2}
+{"Id":"520","Name":"cntDesk02","Count":4}
+{"Id":"623","Name":"cntFileCabinet","Count":3}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab mp_waste_sewer_hole_1
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=mp_waste_sewer_hole_1
+{"Id":"628","Name":"cntGunSafe","Count":1}
+Prefab parking_garage_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=parking_garage_01
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"340","Name":"cntTrashPile01","Count":5}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":6}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":4}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab parking_lot_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=parking_lot_01
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab parking_lot_02
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=parking_lot_02
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":3}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab parking_lot_03
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=parking_lot_03
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":3}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":3}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab police_station1
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=police_station1 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"337","Name":"cntNightstand","Count":1}
+{"Id":"338","Name":"cntSuitcase","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":3}
+{"Id":"519","Name":"cntDesk01","Count":2}
+{"Id":"557","Name":"cntMunitionsBox","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":4}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"626","Name":"cntLockers","Count":4}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"838","Name":"cntCabinet","Count":10}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":2}
+{"Id":"1076","Name":"cntWallOven","Count":1}
+{"Id":"1077","Name":"cntCabinetTop","Count":6}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab post_office_med_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=post_office_med_01 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"336","Name":"cntBin","Count":2}
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"367","Name":"cntWallSafe","Count":10}
+{"Id":"520","Name":"cntDesk02","Count":4}
+{"Id":"623","Name":"cntFileCabinet","Count":3}
+{"Id":"628","Name":"cntGunSafe","Count":2}
+{"Id":"892","Name":"cntCardboardBox","Count":10}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab post_office_sm_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=post_office_sm_01 max_count=1
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"367","Name":"cntWallSafe","Count":3}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":4}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab prison_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=prison_01 max_count=1
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":2}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"945","Name":"cntWashingMachine","Count":2}
+{"Id":"1246","Name":"cntLootCrateShotgunMessiah","Count":1}
+Prefab sawmill_01_snow
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=sawmill_01_snow max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":9}
+{"Id":"337","Name":"cntNightstand","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":3}
+{"Id":"588","Name":"cntTreeStump","Count":14}
+{"Id":"623","Name":"cntFileCabinet","Count":3}
+{"Id":"624","Name":"cntCooler","Count":3}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":4}
+{"Id":"944","Name":"cntCabinetOldSink","Count":3}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":2}
+Prefab school_01
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=school_01 min_count=1 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":9}
+{"Id":"335","Name":"cntTrash_can01","Count":8}
+{"Id":"336","Name":"cntBin","Count":14}
+{"Id":"340","Name":"cntTrashPile01","Count":4}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":32}
+{"Id":"519","Name":"cntDesk01","Count":17}
+{"Id":"623","Name":"cntFileCabinet","Count":18}
+{"Id":"624","Name":"cntCooler","Count":2}
+{"Id":"626","Name":"cntLockers","Count":98}
+{"Id":"629","Name":"cntGraniteSink","Count":10}
+{"Id":"737","Name":"cntBookcase","Count":32}
+{"Id":"838","Name":"cntCabinet","Count":5}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":1}
+{"Id":"1076","Name":"cntWallOven","Count":1}
+{"Id":"1077","Name":"cntCabinetTop","Count":6}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":3}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":3}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab school_daycare_01
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=school_daycare_01 min_count=1 max_count=1
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":4}
+{"Id":"737","Name":"cntBookcase","Count":13}
+{"Id":"838","Name":"cntCabinet","Count":23}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"1076","Name":"cntWallOven","Count":2}
+{"Id":"1077","Name":"cntCabinetTop","Count":8}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab school_k6_01
+rwgmixer/prefab_rules/prefab_rule name=residentialNewGroup/prefab name=school_k6_01 min_count=1 max_count=1
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"336","Name":"cntBin","Count":7}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":11}
+{"Id":"623","Name":"cntFileCabinet","Count":3}
+{"Id":"626","Name":"cntLockers","Count":35}
+{"Id":"737","Name":"cntBookcase","Count":11}
+{"Id":"944","Name":"cntCabinetOldSink","Count":6}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":4}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":6}
+{"Id":"1261","Name":"cntBeerCooler","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+{"Id":"2008","Name":"speaker","Count":2}
+Prefab settlement_01
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=settlement_01
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"434","Name":"cntToilet01","Count":2}
+{"Id":"520","Name":"cntDesk02","Count":2}
+{"Id":"624","Name":"cntCooler","Count":2}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":5}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":8}
+{"Id":"1260","Name":"cntPillCase","Count":6}
+{"Id":"1261","Name":"cntBeerCooler","Count":8}
+{"Id":"1340","Name":"cntCashRegister","Count":2}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+Prefab settlement_trader_01
+rwgmixer/prefab_rules/prefab_rule name=traderGroup/prefab name=settlement_trader_01
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"626","Name":"cntLockers","Count":4}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":1}
+{"Id":"1924","Name":"flagPoleWhiteRiver","Count":1}
+{"Id":"1928","Name":"loudspeaker","Count":2}
+Prefab settlement_trader_02
+rwgmixer/prefab_rules/prefab_rule name=traderGroup/prefab name=settlement_trader_02
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"1924","Name":"flagPoleWhiteRiver","Count":1}
+{"Id":"1928","Name":"loudspeaker","Count":1}
+Prefab settlement_trader_03
+rwgmixer/prefab_rules/prefab_rule name=traderGroup/prefab name=settlement_trader_03
+{"Id":"367","Name":"cntWallSafe","Count":3}
+{"Id":"626","Name":"cntLockers","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+{"Id":"1924","Name":"flagPoleWhiteRiver","Count":1}
+{"Id":"1928","Name":"loudspeaker","Count":1}
+Prefab settlement_trader_04
+rwgmixer/prefab_rules/prefab_rule name=traderGroup/prefab name=settlement_trader_04
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"336","Name":"cntBin","Count":2}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"434","Name":"cntToilet01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"838","Name":"cntCabinet","Count":2}
+{"Id":"1077","Name":"cntCabinetTop","Count":2}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+{"Id":"1924","Name":"flagPoleWhiteRiver","Count":1}
+{"Id":"1928","Name":"loudspeaker","Count":1}
+Prefab settlement_trader_05
+rwgmixer/prefab_rules/prefab_rule name=traderGroup/prefab name=settlement_trader_05
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"331","Name":"cntChest01","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"557","Name":"cntMunitionsBox","Count":2}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":3}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":3}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":1}
+{"Id":"1331","Name":"cntLootCrateWorkingStiffs","Count":1}
+{"Id":"1924","Name":"flagPoleWhiteRiver","Count":1}
+{"Id":"1928","Name":"loudspeaker","Count":1}
+Prefab sign_73_north
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=sign_73_north
+Prefab sign_73_south
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=sign_73_south
+Prefab sign_albuquerque
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=sign_albuquerque
+Prefab sign_phoenix
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=sign_phoenix
+Prefab sign_slow
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=sign_slow
+Prefab sign_speed_25
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=sign_speed_25
+Prefab sign_speed_35
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=sign_speed_35
+Prefab sign_speed_45
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=sign_speed_45
+Prefab skate_park_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=skate_park_01 max_count=1
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":7}
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab skyscraper_01
+rwgmixer/prefab_rules/prefab_rule name=skyscrapers/prefab name=skyscraper_01 max_count=1 prob=50
+{"Id":"311","Name":"cntOven","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":17}
+{"Id":"336","Name":"cntBin","Count":46}
+{"Id":"340","Name":"cntTrashPile01","Count":12}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":5}
+{"Id":"423","Name":"cntBackpack01","Count":5}
+{"Id":"429","Name":"cntPurse01","Count":2}
+{"Id":"519","Name":"cntDesk01","Count":60}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"557","Name":"cntMunitionsBox","Count":5}
+{"Id":"623","Name":"cntFileCabinet","Count":35}
+{"Id":"624","Name":"cntCooler","Count":11}
+{"Id":"628","Name":"cntGunSafe","Count":3}
+{"Id":"629","Name":"cntGraniteSink","Count":15}
+{"Id":"725","Name":"cntBookStoreBookcase","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":15}
+{"Id":"838","Name":"cntCabinet","Count":6}
+{"Id":"840","Name":"cntFridgeTop","Count":13}
+{"Id":"892","Name":"cntCardboardBox","Count":31}
+{"Id":"944","Name":"cntCabinetOldSink","Count":22}
+{"Id":"946","Name":"cntTrashCompactor","Count":5}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":2}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":14}
+{"Id":"1076","Name":"cntWallOven","Count":18}
+{"Id":"1077","Name":"cntCabinetTop","Count":16}
+{"Id":"1183","Name":"cntLootCrateShamway","Count":3}
+{"Id":"1222","Name":"cntLootCrateConstructionSupplies","Count":7}
+{"Id":"1261","Name":"cntBeerCooler","Count":6}
+{"Id":"1331","Name":"cntLootCrateWorkingStiffs","Count":6}
+{"Id":"1340","Name":"cntCashRegister","Count":2}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1452","Name":"randomCarsHelper","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":3}
+{"Id":"1481","Name":"cntDumpster","Count":6}
+{"Id":"1928","Name":"loudspeaker","Count":3}
+{"Id":"2000","Name":"cntCollapsedGeneratorbank","Count":2}
+Prefab skyscraper_02
+rwgmixer/prefab_rules/prefab_rule name=skyscrapers/prefab name=skyscraper_02 max_count=1 prob=50
+{"Id":"278","Name":"cntLootCrateBookstore","Count":6}
+{"Id":"335","Name":"cntTrash_can01","Count":6}
+{"Id":"336","Name":"cntBin","Count":8}
+{"Id":"340","Name":"cntTrashPile01","Count":6}
+{"Id":"349","Name":"cntFridge","Count":4}
+{"Id":"367","Name":"cntWallSafe","Count":3}
+{"Id":"429","Name":"cntPurse01","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":13}
+{"Id":"520","Name":"cntDesk02","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":10}
+{"Id":"626","Name":"cntLockers","Count":18}
+{"Id":"628","Name":"cntGunSafe","Count":4}
+{"Id":"629","Name":"cntGraniteSink","Count":6}
+{"Id":"725","Name":"cntBookStoreBookcase","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":49}
+{"Id":"838","Name":"cntCabinet","Count":3}
+{"Id":"840","Name":"cntFridgeTop","Count":3}
+{"Id":"944","Name":"cntCabinetOldSink","Count":12}
+{"Id":"946","Name":"cntTrashCompactor","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":8}
+{"Id":"1076","Name":"cntWallOven","Count":3}
+{"Id":"1261","Name":"cntBeerCooler","Count":1}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1452","Name":"randomCarsHelper","Count":4}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+{"Id":"2000","Name":"cntCollapsedGeneratorbank","Count":2}
+Prefab skyscraper_03
+rwgmixer/prefab_rules/prefab_rule name=skyscrapers/prefab name=skyscraper_03 max_count=1 prob=50
+{"Id":"335","Name":"cntTrash_can01","Count":13}
+{"Id":"336","Name":"cntBin","Count":36}
+{"Id":"340","Name":"cntTrashPile01","Count":10}
+{"Id":"349","Name":"cntFridge","Count":3}
+{"Id":"367","Name":"cntWallSafe","Count":9}
+{"Id":"429","Name":"cntPurse01","Count":7}
+{"Id":"519","Name":"cntDesk01","Count":37}
+{"Id":"520","Name":"cntDesk02","Count":24}
+{"Id":"557","Name":"cntMunitionsBox","Count":2}
+{"Id":"623","Name":"cntFileCabinet","Count":31}
+{"Id":"624","Name":"cntCooler","Count":1}
+{"Id":"626","Name":"cntLockers","Count":8}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":12}
+{"Id":"719","Name":"cntLootCrateHero","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":10}
+{"Id":"838","Name":"cntCabinet","Count":10}
+{"Id":"840","Name":"cntFridgeTop","Count":6}
+{"Id":"892","Name":"cntCardboardBox","Count":68}
+{"Id":"944","Name":"cntCabinetOldSink","Count":37}
+{"Id":"945","Name":"cntWashingMachine","Count":9}
+{"Id":"946","Name":"cntTrashCompactor","Count":2}
+{"Id":"1059","Name":"cntLootCrateLabEquipment","Count":3}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":12}
+{"Id":"1075","Name":"cntCabinetOldTop","Count":8}
+{"Id":"1076","Name":"cntWallOven","Count":2}
+{"Id":"1077","Name":"cntCabinetTop","Count":11}
+{"Id":"1105","Name":"cntGreenDrawer","Count":52}
+{"Id":"1183","Name":"cntLootCrateShamway","Count":1}
+{"Id":"1260","Name":"cntPillCase","Count":44}
+{"Id":"1261","Name":"cntBeerCooler","Count":5}
+{"Id":"1331","Name":"cntLootCrateWorkingStiffs","Count":1}
+{"Id":"1340","Name":"cntCashRegister","Count":2}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1452","Name":"randomCarsHelper","Count":2}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+{"Id":"2008","Name":"speaker","Count":6}
+Prefab skyscraper_04
+rwgmixer/prefab_rules/prefab_rule name=skyscrapers/prefab name=skyscraper_04 max_count=1 prob=50
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"423","Name":"cntBackpack01","Count":3}
+{"Id":"429","Name":"cntPurse01","Count":3}
+{"Id":"520","Name":"cntDesk02","Count":2}
+{"Id":"557","Name":"cntMunitionsBox","Count":2}
+{"Id":"624","Name":"cntCooler","Count":4}
+{"Id":"1331","Name":"cntLootCrateWorkingStiffs","Count":7}
+{"Id":"1452","Name":"randomCarsHelper","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":2}
+Prefab store_autoparts_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_autoparts_01 max_count=1
+{"Id":"279","Name":"cntLootCrateCarParts","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"336","Name":"cntBin","Count":3}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":3}
+{"Id":"520","Name":"cntDesk02","Count":5}
+{"Id":"623","Name":"cntFileCabinet","Count":5}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":6}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":2}
+Prefab store_bank_lg_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_bank_lg_01
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"336","Name":"cntBin","Count":5}
+{"Id":"367","Name":"cntWallSafe","Count":15}
+{"Id":"519","Name":"cntDesk01","Count":4}
+{"Id":"629","Name":"cntGraniteSink","Count":1}
+{"Id":"1340","Name":"cntCashRegister","Count":5}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":3}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab store_book_lg_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_book_lg_01 prob=0.4
+{"Id":"278","Name":"cntLootCrateBookstore","Count":1}
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":3}
+{"Id":"623","Name":"cntFileCabinet","Count":3}
+{"Id":"629","Name":"cntGraniteSink","Count":1}
+{"Id":"725","Name":"cntBookStoreBookcase","Count":72}
+{"Id":"838","Name":"cntCabinet","Count":7}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":3}
+{"Id":"1077","Name":"cntCabinetTop","Count":7}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":3}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab store_book_sm_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_book_sm_01 prob=0.6
+{"Id":"278","Name":"cntLootCrateBookstore","Count":2}
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":3}
+{"Id":"629","Name":"cntGraniteSink","Count":2}
+{"Id":"725","Name":"cntBookStoreBookcase","Count":32}
+{"Id":"838","Name":"cntCabinet","Count":10}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":2}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab store_grocery_lg_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_grocery_lg_01 prob=0.4
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":6}
+{"Id":"336","Name":"cntBin","Count":2}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":5}
+{"Id":"629","Name":"cntGraniteSink","Count":2}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"838","Name":"cntCabinet","Count":5}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"1183","Name":"cntLootCrateShamway","Count":6}
+{"Id":"1260","Name":"cntPillCase","Count":11}
+{"Id":"1261","Name":"cntBeerCooler","Count":12}
+{"Id":"1340","Name":"cntCashRegister","Count":4}
+{"Id":"1347","Name":"cntShoppingCart","Count":6}
+{"Id":"1349","Name":"cntShoppingBasket","Count":2}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab store_grocery_sm_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_grocery_sm_01 prob=0.6
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":3}
+{"Id":"629","Name":"cntGraniteSink","Count":1}
+{"Id":"838","Name":"cntCabinet","Count":1}
+{"Id":"1183","Name":"cntLootCrateShamway","Count":3}
+{"Id":"1261","Name":"cntBeerCooler","Count":8}
+{"Id":"1340","Name":"cntCashRegister","Count":2}
+{"Id":"1347","Name":"cntShoppingCart","Count":4}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab store_gun_lg_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_gun_lg_01 prob=0.4
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":5}
+{"Id":"623","Name":"cntFileCabinet","Count":4}
+{"Id":"626","Name":"cntLockers","Count":8}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":2}
+{"Id":"838","Name":"cntCabinet","Count":11}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":2}
+{"Id":"1347","Name":"cntShoppingCart","Count":2}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab store_gun_sm_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_gun_sm_01 prob=0.6
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":6}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":5}
+{"Id":"629","Name":"cntGraniteSink","Count":2}
+{"Id":"838","Name":"cntCabinet","Count":2}
+{"Id":"1246","Name":"cntLootCrateShotgunMessiah","Count":1}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1347","Name":"cntShoppingCart","Count":2}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab store_hardware_lg_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_hardware_lg_01 prob=0.4
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":7}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":9}
+{"Id":"629","Name":"cntGraniteSink","Count":2}
+{"Id":"838","Name":"cntCabinet","Count":2}
+{"Id":"1261","Name":"cntBeerCooler","Count":6}
+{"Id":"1331","Name":"cntLootCrateWorkingStiffs","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":3}
+{"Id":"1347","Name":"cntShoppingCart","Count":8}
+{"Id":"1349","Name":"cntShoppingBasket","Count":7}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab store_hardware_sm_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_hardware_sm_01 prob=0.6
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":5}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":5}
+{"Id":"629","Name":"cntGraniteSink","Count":2}
+{"Id":"838","Name":"cntCabinet","Count":2}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1331","Name":"cntLootCrateWorkingStiffs","Count":1}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1347","Name":"cntShoppingCart","Count":2}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab store_laundry_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_laundry_01 max_count=1
+{"Id":"335","Name":"cntTrash_can01","Count":5}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"429","Name":"cntPurse01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":3}
+{"Id":"945","Name":"cntWashingMachine","Count":68}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1452","Name":"randomCarsHelper","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab store_pawn_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=store_pawn_01 max_count=1
+{"Id":"331","Name":"cntChest01","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"337","Name":"cntNightstand","Count":2}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"349","Name":"cntFridge","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"429","Name":"cntPurse01","Count":2}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"542","Name":"cntBirdnest","Count":1}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":1}
+{"Id":"944","Name":"cntCabinetOldSink","Count":3}
+{"Id":"945","Name":"cntWashingMachine","Count":1}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":4}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":4}
+{"Id":"1347","Name":"cntShoppingCart","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab store_pharmacy_sm_01
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_pharmacy_sm_01
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":4}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":3}
+{"Id":"623","Name":"cntFileCabinet","Count":4}
+{"Id":"629","Name":"cntGraniteSink","Count":2}
+{"Id":"838","Name":"cntCabinet","Count":10}
+{"Id":"1059","Name":"cntLootCrateLabEquipment","Count":1}
+{"Id":"1260","Name":"cntPillCase","Count":45}
+{"Id":"1261","Name":"cntBeerCooler","Count":4}
+{"Id":"1340","Name":"cntCashRegister","Count":3}
+{"Id":"1347","Name":"cntShoppingCart","Count":3}
+{"Id":"1349","Name":"cntShoppingBasket","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab store_salon
+rwgmixer/prefab_rules/prefab_rule name=commercialGroup/prefab name=store_salon max_count=1
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"336","Name":"cntBin","Count":12}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"519","Name":"cntDesk01","Count":1}
+{"Id":"623","Name":"cntFileCabinet","Count":1}
+{"Id":"629","Name":"cntGraniteSink","Count":4}
+{"Id":"737","Name":"cntBookcase","Count":4}
+{"Id":"945","Name":"cntWashingMachine","Count":3}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab street_light_01
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=street_light_01 prob=0.25
+Prefab street_light_02
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=street_light_02 prob=0.25
+Prefab theater_01
+rwgmixer/prefab_rules/prefab_rule name=downtownGroup/prefab name=theater_01 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":2}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"336","Name":"cntBin","Count":5}
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"367","Name":"cntWallSafe","Count":2}
+{"Id":"519","Name":"cntDesk01","Count":3}
+{"Id":"623","Name":"cntFileCabinet","Count":6}
+{"Id":"626","Name":"cntLockers","Count":8}
+{"Id":"629","Name":"cntGraniteSink","Count":5}
+{"Id":"737","Name":"cntBookcase","Count":2}
+{"Id":"838","Name":"cntCabinet","Count":2}
+{"Id":"840","Name":"cntFridgeTop","Count":1}
+{"Id":"892","Name":"cntCardboardBox","Count":1}
+{"Id":"1076","Name":"cntWallOven","Count":1}
+{"Id":"1077","Name":"cntCabinetTop","Count":4}
+{"Id":"1261","Name":"cntBeerCooler","Count":2}
+{"Id":"1340","Name":"cntCashRegister","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab tree_burntpine_01
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=tree_burntpine_01
+Prefab tree_burntpine_02
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=tree_burntpine_02
+Prefab tree_burntpine_03
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=tree_burntpine_03
+Prefab utility_celltower_01
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=utility_celltower_01 max_count=2
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab utility_celltower_02
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=utility_celltower_02 max_count=1
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"336","Name":"cntBin","Count":1}
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab utility_electric_co_01
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=utility_electric_co_01
+{"Id":"335","Name":"cntTrash_can01","Count":2}
+{"Id":"340","Name":"cntTrashPile01","Count":5}
+{"Id":"520","Name":"cntDesk02","Count":3}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"592","Name":"cntBackpackDropped","Count":1}
+{"Id":"626","Name":"cntLockers","Count":4}
+{"Id":"892","Name":"cntCardboardBox","Count":9}
+{"Id":"1331","Name":"cntLootCrateWorkingStiffs","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":3}
+{"Id":"1481","Name":"cntDumpster","Count":2}
+Prefab utility_refinery_01
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=utility_refinery_01 max_count=1
+{"Id":"286","Name":"cntMedicineCabinet","Count":1}
+{"Id":"335","Name":"cntTrash_can01","Count":3}
+{"Id":"336","Name":"cntBin","Count":7}
+{"Id":"340","Name":"cntTrashPile01","Count":10}
+{"Id":"350","Name":"cntGasPump","Count":2}
+{"Id":"366","Name":"cntDeskSafe","Count":2}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":4}
+{"Id":"623","Name":"cntFileCabinet","Count":7}
+{"Id":"626","Name":"cntLockers","Count":2}
+{"Id":"944","Name":"cntCabinetOldSink","Count":2}
+{"Id":"1074","Name":"cntCabinetOldBottom","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":2}
+Prefab utility_waterworks_01
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=utility_waterworks_01 max_count=1
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"336","Name":"cntBin","Count":3}
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"542","Name":"cntBirdnest","Count":2}
+{"Id":"626","Name":"cntLockers","Count":6}
+{"Id":"892","Name":"cntCardboardBox","Count":1}
+{"Id":"1453","Name":"cntCar03SedanDamage0","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":2}
+Prefab vacant_lot_med_01
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=vacant_lot_med_01
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":2}
+Prefab vacant_lot_med_02
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=vacant_lot_med_02
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":2}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab vacant_lot_sm_01
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=vacant_lot_sm_01
+{"Id":"340","Name":"cntTrashPile01","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+Prefab vacant_lot_sm_02
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=vacant_lot_sm_02
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"1454","Name":"cntCar03SedanDamage1","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab waste_rubble_bldg_01
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=waste_rubble_bldg_01
+{"Id":"335","Name":"cntTrash_can01","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+Prefab waste_rubble_bldg_02
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=waste_rubble_bldg_02
+{"Id":"944","Name":"cntCabinetOldSink","Count":1}
+Prefab waste_rubble_bldg_03
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=waste_rubble_bldg_03
+{"Id":"626","Name":"cntLockers","Count":1}
+Prefab waste_rubble_bldg_04
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=waste_rubble_bldg_04
+{"Id":"263","Name":"lootWastelandHelper","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"624","Name":"cntCooler","Count":1}
+Prefab waste_rubble_bldg_05
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=waste_rubble_bldg_05
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":2}
+Prefab waste_rubble_bldg_06
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=waste_rubble_bldg_06
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"737","Name":"cntBookcase","Count":2}
+Prefab waste_rubble_bldg_07
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=waste_rubble_bldg_07
+{"Id":"263","Name":"lootWastelandHelper","Count":1}
+{"Id":"423","Name":"cntBackpack01","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"628","Name":"cntGunSafe","Count":1}
+{"Id":"1246","Name":"cntLootCrateShotgunMessiah","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab waste_rubble_bldg_08
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=waste_rubble_bldg_08
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+{"Id":"1481","Name":"cntDumpster","Count":1}
+Prefab waste_rubble_bldg_09
+rwgmixer/prefab_rules/prefab_rule name=industrialGroup/prefab name=waste_rubble_bldg_09
+{"Id":"366","Name":"cntDeskSafe","Count":1}
+{"Id":"367","Name":"cntWallSafe","Count":1}
+{"Id":"520","Name":"cntDesk02","Count":1}
+Prefab water_tower_03
+rwgmixer/prefab_rules/prefab_rule name=detailFillerGroup/prefab name=water_tower_03
+{"Id":"340","Name":"cntTrashPile01","Count":2}
+Prefab xcustom_medieval_tower
+rwgmixer/prefab_rules/prefab_rule name=residentialOldGroup/prefab name=xcustom_medieval_tower
+rwgmixer/prefab_rules/prefab_rule name=ruralGroup/prefab name=xcustom_medieval_tower
+rwgmixer/prefab_rules/prefab_rule name=wildernessGroup/prefab name=xcustom_medieval_tower
+{"Id":"267","Name":"animalGore","Count":1}
+{"Id":"331","Name":"cntChest01","Count":1}
+{"Id":"701","Name":"GoreBlock1Prefab","Count":1}
+{"Id":"1256","Name":"cntStorageGeneric","Count":2}
