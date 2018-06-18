@@ -28,7 +28,7 @@ rwgInfo() {
 }
 
 lootableBlocks() {
-  xmlstarlet sel -t -m / -o "[" -m "//block[property[@name='LootList']]" -o '"' -v @id -o '"' --if "not(position()=last())" -o ", " -b -b -o "]" -n blocks.xml
+  xmlstarlet sel -t -m / -o "[" -m '//block[property[@name="LootList"] or property[@name="Extends"]/@value=//block[property[@name="LootList"]]/@name or property[@class="UpgradeBlock" and property[@name="ToBlock"][@value=//block[property[@name="LootList"]]/@name]] or property[@name="DowngradeBlock"][@value=//block[property[@name="LootList"]]/@name]]' -o '"' -v @id -o '"' --if "not(position()=last())" -o ", " -b -b -o "]" -n blocks.xml
 }
 
 LOOTABLE_BLOCKS="$(lootableBlocks)"
