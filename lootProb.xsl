@@ -545,7 +545,7 @@
 					<THEAD>
 						<TR>
 							<TH class="name">Item</TH>
-							<TH class="number">Container</TH>
+							<TH class="number">Loot List</TH>
 							<TH class="number percentage sorter-digit">Chance</TH>
 							<TH class="long">Source</TH>
 							<TH class="long blocks">Blocks</TH>
@@ -555,7 +555,7 @@
 					<TFOOT>
 						<TR>
 							<TH>Item</TH>
-							<TH>Container</TH>
+							<TH>Loot List</TH>
 							<TH>Chance</TH>
 							<TH>Source</TH>
 							<TH>Blocks</TH>
