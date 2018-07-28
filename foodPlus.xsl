@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-                xmlns:exslt="http://exslt.org/common" 
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:exslt="http://exslt.org/common"
 				xmlns:math="http://exslt.org/math"
 				xmlns:dyn="http://exslt.org/dynamic"
 				xmlns:func="http://exslt.org/functions"
 				xmlns:str="http://exslt.org/strings"
 				xmlns:my="http://www.w3.org/2001/XMLSchema"
                 version="1.0" extension-element-prefixes="exslt math dyn my func str">
-				
+
 	<xsl:param name="language" select="'English'"/>
 	<xsl:output method="html" omit-xml-declaration="yes" indent="no"/>
 	<xsl:strip-space elements="*"/>
-	
+
 	<xsl:variable name="dummy-startup-messages">
 		<xsl:message>Parameter 'language' set to '<xsl:value-of select="$language"/>'</xsl:message>
 	</xsl:variable>
-	
+
 	<xsl:key name="property" match="//property" use="@name"/>
 	<xsl:key name="recipe" match="/recipes/recipe" use="@name"/>
 	<xsl:key name="craftArea" match="/recipes/recipe" use="@craft_area"/>
@@ -50,7 +50,7 @@
 			</xsl:for-each>
 		</func:result>
 	</func:function>
-	
+
 	<func:function name="my:fold">
 		<xsl:param name="nodeset"/>
 		<xsl:param name="query"/>
@@ -91,7 +91,7 @@
 		<xsl:param name="node"/>
 		<func:result select="exslt:node-set(my:appendNodeHelper($nodeset, $node))"/>
 	</func:function>
-	
+
 	<func:function name="my:appendNodeHelper">
 		<xsl:param name="nodeset"/>
 		<xsl:param name="node"/>
@@ -104,19 +104,19 @@
 			</xml>
 		</func:result>
 	</func:function>
-	
+
 	<func:function name="my:scan">
 		<xsl:param name="nodeset"/>
 		<xsl:param name="query"/>
 		<func:result select="my:fold($nodeset, $query, /.., 'my:appendNode($accumulator, $queryResult)')"/>
 	</func:function>
-	
+
 	<func:function name="my:closure">
 		<xsl:param name="nodeset"/>
 		<xsl:param name="query"/>
 		<func:result select="my:fold($nodeset, $query, /.., '$accumulator|$queryResult')"/>
 	</func:function>
-	
+
 	<func:function name="my:group">
 		<xsl:param name="node"/>
 		<xsl:choose>
@@ -200,12 +200,12 @@
 			<func:result select="$result"/>
 		</xsl:for-each>
 	</func:function>
-	
+
 	<func:function name="my:isHarvested">
 		<xsl:param name="item"/>
 		<func:result select="$harvest[@name=$item] or $exchange[@value=$item] or starts-with($item, 'unit_')"/>
 	</func:function>
-	
+
 	<func:function name="my:base">
 		<xsl:param name="node"/>
 		<xsl:for-each select="$node[1]">
@@ -220,7 +220,7 @@
 			</xsl:choose>
 		</xsl:for-each>
 	</func:function>
-	
+
 	<func:function name="my:isPlant">
 		<xsl:param name="node"/>
 		<xsl:variable name="base" select="my:base($node)"/>
@@ -231,12 +231,12 @@
 		<xsl:param name="blockName"/>
 		<func:result select="$seeds[@name=$blockName]"/>
 	</func:function>
-	
+
 	<func:function name="my:isFood">
 		<xsl:param name="itemName"/>
 		<func:result select="$foods[@name=$itemName]"/>
 	</func:function>
-	
+
 	<func:function name="my:isPlentiful">
 		<xsl:param name="name"/>
 		<func:result select="starts-with($name, 'unit_') or $name='rockSmall' or $name='crushedSand' or $name='coal' or $name='snowBall' or $name='yuccaFibers'"/>
@@ -261,7 +261,7 @@
 			</xsl:for-each>
 		</func:result>
 	</func:function>
-	
+
 	<func:function name="my:baseCost">
 		<xsl:param name="item"/>
 		<func:result>
@@ -306,7 +306,7 @@
 			</item>
 		</func:result>
 	</func:function>
-	
+
 	<func:function name="my:difficultyOf">
 		<xsl:param name="item"/>
 		<xsl:param name="seen" select="''"/>
@@ -335,7 +335,7 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</func:function>
-	
+
 	<func:function name="my:recipeDifficulty">
 		<xsl:param name="recipe"/>
 		<xsl:param name="seen" select="''"/>
@@ -350,7 +350,7 @@
 		<xsl:param name="text"/>
 		<func:result select="translate($text, $uppercase, $lowercase)"/>
 	</func:function>
-	
+
 	<func:function name="my:translate">
 		<xsl:param name="key"/>
 		<func:result>
@@ -381,7 +381,7 @@
     <xsl:variable name="greenThumb" select="$progression//perk[@name='Green Thumb' or @name='Advanced Farming']/recipe"/>
 	<xsl:variable name="seeds" select="$blocks/blocks/block[my:isPlant(.)]|$items/items/item[my:isPlant(.)]"/>
     <xsl:variable name="seedRecipes" select="$recipes/recipes/recipe[my:isSeed(@name)]"/>
-	
+
 	<!-- Derived data -->
 	<func:function name="my:ingredientCombine">
 		<xsl:param name="accumulator"/>
@@ -405,7 +405,7 @@
 		$recipes/recipes/recipe[@name=current()/@name]/ingredient[not(@name=$accumulator/@name)]
 	</xsl:variable>
 	<xsl:variable name="ingredients" select="my:fold($foods, $ingredientQuery, /.., $ingredientCombine)"/>
-	
+
 	<xsl:variable name="gains">
 		<xsl:for-each select="//property[starts-with(@name,'Gain_') and count(. | key('property', @name)[1]) = 1]">
 			<xsl:sort select="@name"/>
@@ -490,14 +490,14 @@
 						padding: 4px;
 						text-shadow: 0 1px 0 rgba(204, 204, 204, 0.7);
 					}
-					
+
 					.tablesorter-blue-td {
 						color: #3d3d3d;
 						background-color: #fff;
 						padding: 4px;
 						vertical-align: top;
 					}
-					
+
 					.tablesorter-blue-override {
 						width: 100%;
 						background-color: #fff;
@@ -516,7 +516,7 @@
 
 					.CellComment{
 						display:none;
-						position:absolute; 
+						position:absolute;
 						z-index:100;
 						border:1px;
 						background-color: black;
@@ -535,7 +535,7 @@
 						display:block;
 						opacity: 1;
 					}
-					
+
 					.CellComment::after {
 						content: " ";
 						position: absolute;
@@ -546,7 +546,7 @@
 						border-style: solid;
 						border-color: transparent transparent black transparent;
 					}
-					
+
 					th .CellComment {
 						width: 200%;
 						left: -50%;
@@ -556,7 +556,7 @@
 						left: 50%;
 						margin-left: -10px;
 					}
-					
+
 					th:last-child .CellComment {
 						top: 25%;
 						width: 200%;
@@ -571,7 +571,7 @@
 						margin-left: 0;
 						border-color: transparent transparent transparent black;
 					}
-					
+
 					tr:last-child .CellComment {
 						top: auto;
 						bottom: 100%;
@@ -582,16 +582,16 @@
 						bottom: auto;
 						border-color: black transparent transparent transparent;
 					}
-					
+
 					.dialog {
 						display:none;
 					}
-					
+
 					td.integer { text-align: right; }
 					td.decimal { text-align: right; white-space: nowrap; }
 					th.name { text-align: center; }
 					td.name { text-align: left; white-space: nowrap; }
-					
+
 					dl {
 					  display: grid;
 					  grid-template-columns: max-content auto;
@@ -604,7 +604,7 @@
 					dd {
 					  grid-column-start: 2;
 					}
-				
+
 					/* TABLE BACKGROUND color (match the original theme) */
 					table.hover-highlight td:before,
 					table.focus-highlight td:before {
@@ -718,10 +718,10 @@
 					integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
 					crossorigin="anonymous">
 				</script>
-				
+
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/js/jquery.tablesorter.min.js"/>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/js/jquery.tablesorter.widgets.min.js"/>
-				
+
 				<script><![CDATA[
 					$(function() {
 
@@ -761,7 +761,7 @@
 						  },
 						}
 					  });
-					  
+
 						if ( $('.focus-highlight').length ) {
 							$('.focus-highlight').find('td, th')
 							  .attr('tabindex', '1')
@@ -771,8 +771,8 @@
 							  });
 						}
 
-					}); 
-					
+					});
+
 					// Toggle collapse on collapse class elements, with a elements of permalink class on table rows. Not in use.
 					//animating = false;
 					//clicked = false;
@@ -847,7 +847,7 @@
 										</xsl:if>
 									</div>
 								</TD>
-								
+
 								<!-- Gain_* -->
 								<xsl:for-each select="exslt:node-set($gains)/*">
 									<xsl:variable name="gain" select="my:getGain($this, @key)"/>
@@ -860,7 +860,7 @@
 										</xsl:otherwise>
 									</xsl:choose>
 								</xsl:for-each>
-								
+
 								<!-- Crafted -->
 								<TD>
 									<xsl:choose>
@@ -872,7 +872,7 @@
 										</xsl:otherwise>
 									</xsl:choose>
 								</TD>
-								
+
 								<!-- Harvested -->
 								<TD>
 									<xsl:choose>
@@ -884,7 +884,7 @@
 										</xsl:otherwise>
 									</xsl:choose>
 								</TD>
-								
+
 								<!-- GreenThumb level -->
 								<TD>
 									<xsl:variable name="seed" select="$seedRecipes[ingredient[@name=$this/@name]]/@name"/>
@@ -897,7 +897,7 @@
 										</xsl:otherwise>
 									</xsl:choose>
 								</TD>
-								
+
 								<!-- Food/Wellness -->
 								<TD class="decimal">
 									<xsl:variable name="food" select="my:getGain($this, 'Gain_food')"/>
@@ -913,7 +913,7 @@
 										</xsl:otherwise>
 									</xsl:choose>
 								</TD>
-								
+
 								<!-- Difficulty -->
 								<TD class="decimal">
 									<xsl:value-of select="format-number(my:difficultyOf($this/@name), '0.00')"/>
@@ -949,12 +949,12 @@
 										</xsl:otherwise>
 									</xsl:choose>
 								</TD>
-								
+
 								<!-- Creative Mode -->
 								<TD>
 									<xsl:value-of select="my:creativeMode($this)"/>
 								</TD>
-								
+
 								<!-- Craft areas -->
 								<xsl:for-each select="exslt:node-set($foodCraftAreas)/*">
 									<xsl:variable name="craftAreaName" select="@name"/>
@@ -976,7 +976,7 @@
 															<xsl:text>Recipes for </xsl:text><xsl:value-of select="my:translate($this/@name)"/><xsl:text> at </xsl:text><xsl:value-of select="$craftAreaName"/>
 														</xsl:attribute>
 														<xsl:attribute name="id">
-															<xsl:value-of select="$dialogId"/> 
+															<xsl:value-of select="$dialogId"/>
 														</xsl:attribute>
 														<xsl:call-template name="printRecipes">
 															<xsl:with-param name="recipeList" select="$theseRecipes"/>
@@ -996,7 +996,7 @@
 															<xsl:text>Recipes for </xsl:text><xsl:value-of select="my:translate($this/@name)"/><xsl:text> at </xsl:text><xsl:value-of select="$craftAreaName"/>
 														</xsl:attribute>
 														<xsl:attribute name="id">
-															<xsl:value-of select="$dialogId"/> 
+															<xsl:value-of select="$dialogId"/>
 														</xsl:attribute>
 														<xsl:call-template name="printRecipes">
 															<xsl:with-param name="recipeList" select="$theseRecipes"/>
@@ -1075,7 +1075,7 @@
 			</BODY>
 		</HTML>
 	</xsl:template>
-	
+
 	<xsl:template name="printRecipes">
 		<xsl:param name="recipeList"/>
 		<figcaption><xsl:value-of select="count($recipeList)"/><xsl:text> recipes:</xsl:text></figcaption>
@@ -1095,7 +1095,7 @@
 			</xsl:if>
 		</xsl:for-each>
 	</xsl:template>
-	
+
 	<xsl:template name="explain">
 		<xsl:param name="explanation"/>
 		<xsl:for-each select="$explanation//*[text()]">
@@ -1109,7 +1109,7 @@
 			<xsl:value-of select="text()"/>
 		</xsl:for-each>
 	</xsl:template>
-	
+
 	<xsl:template name="printBuffs">
 		<xsl:param name="buffs"/>
 			<ul>
