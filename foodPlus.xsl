@@ -480,7 +480,7 @@
 			<HEAD>
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.min.css" type="text/css"/>
 				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/css/theme.blue.css" type="text/css"/>
-				<STYLE>
+				<STYLE><![CDATA[
 				    .tablesorter-blue-header {
 						font: 12px/18px Arial, Sans-serif;
 						font-weight: bold;
@@ -707,7 +707,7 @@
 					  top: 0;
 					  z-index: -3;
 					}
-				</STYLE>
+				]]></STYLE>
 				<script
 					src="https://code.jquery.com/jquery-1.12.4.min.js"
 					integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
@@ -722,7 +722,7 @@
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/js/jquery.tablesorter.min.js"/>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.4/js/jquery.tablesorter.widgets.min.js"/>
 				
-				<script>
+				<script><![CDATA[
 					$(function() {
 
 					  // Extend the themes to change any of the default class names
@@ -780,7 +780,7 @@
 					//$('a.permalink').click(function(){
 					//	var $el = $(this);
 					//	setTimeout(function(){
-					//		if (!animating &amp;&amp; !clicked) {
+					//		if (!animating && !clicked) {
 					//			animating = true;
 					//			$el.closest('tr').find('.collapsible').slideToggle();
 					//			setTimeout(function(){ animating = false; }, 200);
@@ -788,7 +788,7 @@
 					//	}, 200);
 					//	return false;
 					//});
-				</script>
+				]]></script>
 			</HEAD>
 			<BODY>
 				<TABLE class="tablesorter hover-highlight focus-highlight">
