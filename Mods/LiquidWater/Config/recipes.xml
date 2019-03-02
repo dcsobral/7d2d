@@ -1,0 +1,7 @@
+<config>
+	<append xpath="/recipes">
+		<recipe name="liquidWater_bucketEmptyLiquidWater" count="1" craft_area="workbench">
+			<ingredient name="resourceForgedSteel" count="50"/>
+		</recipe>
+	</append>
+</config>

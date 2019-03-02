@@ -1,0 +1,70 @@
+<config>
+	<append xpath="/blocks">
+		<block name="liquidWater_terrLiquidStone">
+			<property name="Extends" value="terrStone"/>
+			<property name="Weight" value="0"/>
+			<property name="Class" value="LiquidMoving"/>
+			<property name="LiquidStatic" value="liquidWater_terrLiquidStoneStatic"/>
+			<property name="CustomIconTint" value="5e4545"/>
+			<property name="CustomIcon" value="bucketRiverWater"/>
+			<property name="Map.Color" value="20,20,120"/>
+			<drop event="Harvest" name="resourceRockSmall" count="0" tag="oreWoodHarvest"/>
+			<drop event="Harvest" name="resourceIronFragment" count="0" tag="oreWoodHarvest"/>
+			<drop event="Destroy" count="0"/>
+			<drop event="Fall" name="resourceRockSmall" count="0"/>
+			<drop event="Fall" name="resourceIronFragment" count="0"/>
+			<drop event="Fall" name="terrDestroyedStone" count="0"/>
+		</block>
+		<block name="liquidWater_terrLiquidStoneStatic">
+			<property name="CreativeMode" value="Dev"/>
+			<property name="Extends" value="terrStone"/>
+			<property name="Weight" value="0"/>
+			<property name="Class" value="UpgradeRated"/>
+			<property name="UpgradeRated.ToBlock" value="waterStaticBucket"/>
+			<property name="UpgradeRated.Rate" value="2"/>
+			<property name="CustomIconTint" value="5e4545"/>
+			<property name="CustomIcon" value="bucketRiverWater"/>
+			<property name="Map.Color" value="20,20,120"/>
+			<drop event="Harvest" name="resourceRockSmall" count="0" tag="oreWoodHarvest"/>
+			<drop event="Harvest" name="resourceIronFragment" count="0" tag="oreWoodHarvest"/>
+			<drop event="Destroy" count="0"/>
+			<drop event="Fall" name="resourceRockSmall" count="0"/>
+			<drop event="Fall" name="resourceIronFragment" count="0"/>
+			<drop event="Fall" name="terrDestroyedStone" count="0"/>
+			<drop event="Fall" name="waterStaticBucket" count="1" stick_chance="1"/>
+		</block>
+		<block name="liquidWater_waterLiquidPOI">
+			<property name="CreativeMode" value="Dev"/>
+			<property name="CustomIcon" value="bucketRiverWater"/>
+			<property name="CustomIconTint" value="0031c6"/>
+			<property name="Class" value="LiquidMoving"/>
+			<property name="LiquidStatic" value="terrWaterPOI"/>
+			<property name="Material" value="Mwater"/>
+			<property name="Shape" value="Water"/>
+			<property name="Mesh" value="water"/>
+			<property name="Model" value="water_full"/>
+			<property name="Texture" value="223"/>
+			<property name="Map.Color" value="20,20,120"/>
+			<property name="Map.Color" value="119,136,204"/>
+			<property name="Collide" value="melee,bullet,arrow,rocket"/>
+			<property name="FilterTags" value="fterrain"/>
+		</block>
+		<block name="liquidWater_waterLiquid">
+			<property name="CreativeMode" value="Dev"/>
+			<property name="CustomIcon" value="bucketRiverWater"/>
+			<property name="CustomIconTint" value="7a8aba"/>
+			<property name="Class" value="LiquidMoving"/>
+			<property name="LiquidStatic" value="water"/>
+			<property name="Count" value="1"/>
+			<property name="Material" value="Mwater"/>
+			<property name="Shape" value="Water"/>
+			<property name="Mesh" value="water"/>
+			<property name="Model" value="water_full"/>
+			<property name="Texture" value="223"/>
+			<property name="Map.Color" value="20,20,120"/>
+			<property name="Map.Color" value="119,136,204"/>
+			<property name="Collide" value="melee,bullet,arrow,rocket"/>
+			<property name="FilterTags" value="fterrain"/>
+		</block>
+	</append>
+</config>

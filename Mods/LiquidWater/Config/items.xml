@@ -1,0 +1,46 @@
+<config>
+	<append xpath="/items">
+		<item name="liquidWater_bucketEmptyLiquidWater">
+			<property name="CustomIcon" value="bucketEmpty"/>
+			<property name="CustomIconTint" value="7a8aba"/>
+			<property name="HoldType" value="34"/>
+			<property name="Meshfile" value="Items/Crafting/Metal/IronBucket"/>
+			<property name="DropMeshfile" value="Items/Misc/sack_droppedPrefab"/>
+			<property name="Material" value="Mmetal"/>
+			<property name="Stacknumber" value="1"/>
+			<property name="EconomicValue" value="84"/>
+			<property class="Action0">
+				<property name="Class" value="BailLiquid"/>
+				<property name="Delay" value="0.35"/>
+				<property name="Sound_start" value="bucketbail_water"/>
+			</property>
+			<property class="Action1"> <!-- UseAction -->
+				<property name="Class" value="ExchangeItem"/>
+				<property name="Delay" value="0.35"/>
+				<property name="Change_item_to" value="liquidWater_bucketLiquidWater"/>
+				<property name="Do_block_action" value="deplete3"/>
+				<property name="Focused_blockname_1" value="water"/>
+				<property name="Sound_start" value="bucketfill_water"/>
+			</property>
+			<property name="Group" value="Tools/Traps"/>
+		</item>
+		<item name="liquidWater_bucketLiquidWater">
+			<property name="CustomIcon" value="bucketRiverWater"/>
+			<property name="CustomIconTint" value="7a8aba"/>
+			<property name="HoldType" value="34"/>
+			<property name="Meshfile" value="Items/Crafting/Metal/IronBucketWaterPrefab"/>
+			<property name="DropMeshfile" value="Items/Misc/sack_droppedPrefab"/>
+			<property name="Material" value="Mmetal"/>
+			<property name="Stacknumber" value="1"/>
+			<property name="EconomicValue" value="88"/>
+			<property class="Action1"> <!-- UseAction -->
+				<property name="Class" value="PlaceAsBlock"/>
+				<property name="Delay" value="0.5"/>
+				<property name="Blockname" value="liquidWater_terrLiquidStone"/>
+				<property name="Change_item_to" value="liquidWater_bucketEmptyLiquidWater"/>
+				<property name="Sound_start" value="bucketplace_water"/>
+			</property>
+			<property name="Group" value="Tools/Traps"/>
+		</item>
+	</append>
+</config>

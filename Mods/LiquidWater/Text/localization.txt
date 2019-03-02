@@ -1,0 +1,13 @@
+Key,Source,Context,Changes,English,French,German,Klingon,Spanish,Polish
+liquidWater_terrLiquidStone,blocks,Block,KgNone,Liquid Stone,,,,,
+liquidWater_terrLiquidStoneDesc,blocks,Block,KgNone,A stone block that spreads out and then turns into water.,,,,,
+liquidWater_terrLiquidStoneStatic,blocks,Block,KgNone,Liquid Stone Static,,,,,
+liquidWater_terrLiquidStoneStaticDesc,blocks,Block,KgNone,A stone block that turns into water.,,,,,
+liquidWater_waterLiquidPOI,blocks,Block,KgNone,Liquid Water POI,,,,,
+liquidWater_waterLiquidPOIDesc,blocks,Block,KgNone,Spreading Water Block (POI),,,,,
+liquidWater_waterLiquid,blocks,Block,KgNone,Liquid Water,,,,,
+liquidWater_waterLiquidDesc,blocks,Block,KgNone,Spreading Water Block,,,,,
+liquidWater_bucketEmptyLiquidWater,items,Item,KgNone,Pool Sized Bucket,,,,,
+liquidWater_bucketEmptyLiquidWaterDesc,items,Item,KgNone,A bucket that fills with so much water that it can fill a pool!,,,,,
+liquidWater_bucketLiquidWater,items,Item,KgNone,Full Pool Sized Bucket,,,,,
+liquidWater_bucketLiquidWaterDesc,items,Item,KgNone,Enough water to fill a pool!,,,,,
