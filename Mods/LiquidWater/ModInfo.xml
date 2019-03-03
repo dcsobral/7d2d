@@ -5,6 +5,6 @@
 		<Description value="Spreading water blocks." />
 		<Author value="dcsobral" />
 		<Version value="1.0" />
-		<Website value="N/A" />
+    <Website value="https://github.com/dcsobral/7d2d/tree/master/Mods/LiquidWater" />
 	</ModInfo>
 </xml>
