@@ -1,2 +1,2 @@
 https://github.com/dcsobral/7d2d/tree/master/Mods
-https://gitlab.com/dcsobral/bigcities/tree/master/Mods
+https://gitlab.com/dcsobral/bigcities
