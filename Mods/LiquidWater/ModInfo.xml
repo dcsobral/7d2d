@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xml>
 	<ModInfo>
-		<Name value="Liquid Water" />
+		<Name value="LiquidWater" />
 		<Description value="Spreading water blocks." />
 		<Author value="dcsobral" />
 		<Version value="1.0" />
