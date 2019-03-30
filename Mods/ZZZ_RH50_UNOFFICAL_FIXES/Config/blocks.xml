@@ -20,19 +20,27 @@
 	<append xpath="/blocks/block[@name='goreBlockHumanCorpse']">
 		<drop event="Harvest" name="resourcePotassiumNitratePowder" count="4,8" tag="butcherHarvest"/>
 		<drop event="Destroy" name="resourceFemur" count="1,2" tag="allHarvest"/>
-		</append>
+	</append>
 	
 	<remove xpath="/blocks/block[@name='goreBlockHumanBones']/drop[@event='Destroy']"/>
 	<append xpath="/blocks/block[@name='goreBlockHumanBones']">
 		<drop event="Harvest" name="resourcePotassiumNitratePowder" count="2,4" tag="butcherHarvest"/>
 		<drop event="Destroy" name="resourceFemur" count="1,2" tag="allHarvest"/>
-		</append>
+	</append>
 	
 	<set xpath="/blocks/block[@name='trapSpikesWoodDmg2']/property[@class='UpgradeBlock']/property[@name='ToBlock']/@value">trapSpikesWoodDmg0</set>
 	
 	<set xpath="/blocks/block[@name='guppyAutoWorkbench']/property[@name='Extends']/@value">workbench</set>
 	
 	<remove xpath="/blocks/block[@name='survivalCampfire']/property[@class='Workstation']/property[@name='Collide']"/>
+	
+	<!-- Fix repair on Old Stone Well -->
+	<append xpath="/blocks/block[@name='Old Stone Well']">
+		<property class="RepairItems">
+			<property name="resourceRockSmall" value="200"/>
+			<property name="resourceWood" value="400"/>
+		</property>
+	</append>
 	
 	<!-- Fix a16 repair materials -->
 	<set xpath="/blocks/block/property[@class='RepairItems']/property[@name='scrapIron']/@name">resourceScrapIron</set>
