@@ -1,0 +1,7 @@
+<configs>
+	<append xpath="/entity_classes/entity_class[@name='animalTemplateHostile']">
+		<property name="AIGroupCircle" value="1"/>
+	</append>
+	
+	<set xpath="/entity_classes/entity_class/property[@name='SurfaceCategory']/@value">wood</set>
+</configs>

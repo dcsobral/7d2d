@@ -1,0 +1,96 @@
+<configs>
+	<append xpath="/buffs/buff[@name='god']/effect_group">
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="200"/>
+	</append>
+	
+	<remove xpath="/buffs/buff[@name='buffStatusCheck']/effect_group[1]/requirement"/>
+	<remove xpath="/buffs/buff[@name='buffStatusCheck']/effect_group[1]/triggered_effect"/>
+	<append xpath="/buffs/buff[@name='buffStatusCheck']/effect_group[1]">
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffA17b7patch">
+			<requirement name="CVarCompare" cvar="$A17b7patch" operation="LT" value="1"/>
+		</triggered_effect>
+	</append>
+	
+	<set xpath="/buffs/buff[@name='buffStatusCheck']/effect_group[2]/triggered_effect[@trigger='onSelfBuffUpdate']/requirement[@name='StatComparePercModMaxToMax'][@stat='Stamina'][@value='0.2']/@value">0.5</set>
+	<set xpath="/buffs/buff[@name='buffStatusCheck']/effect_group[2]/triggered_effect[@trigger='onSelfBuffUpdate']/requirement[@name='StatComparePercModMaxToMax'][@stat='Stamina'][@value='0.1']/@value">0.25</set>
+	<set xpath="/buffs/buff[@name='buffStatusCheck']/effect_group[2]/triggered_effect[@trigger='onSelfBuffUpdate']/requirement[@name='StatComparePercCurrentToMax'][@stat='Water'][@value='0.2']/@value">0.5</set>
+	<set xpath="/buffs/buff[@name='buffStatusCheck']/effect_group[2]/triggered_effect[@trigger='onSelfBuffUpdate']/requirement[@name='StatComparePercCurrentToMax'][@stat='Water'][@value='0.1']/@value">0.25</set>
+	
+	<append xpath="/buffs/buff[@name='buffStatusCheck']/effect_group[2]">
+		<!-- Tracking leveling / level up -->
+		<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffLevelUpTracking">
+			<requirement name="PlayerLevel" target="self" operation="GT" value="@$LastPlayerLevel"/>
+		</triggered_effect>	
+	</append>
+	
+	<insertAfter xpath="/buffs/buff[@name='buffStatusCheck']">
+		<buff name="buffA17b7patch" hidden="true" remove_on_death="false">
+			<stack_type value="ignore"/>
+			<duration value=".8"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$A17b7patch" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffHealHealth"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffHealHealthMax"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffHealStaminaMax"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffHealWaterMax"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffWaterStaminaRegen"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveAllNegativeBuffs" target="self"/>
+
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$foodAmountAdd" operation="set" value="55"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$waterAmountAdd" operation="set" value="55"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$foodAmount" operation="set" value="45"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$waterAmount" operation="set" value="45"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffProcessConsumables"/>
+			</effect_group>
+		</buff>
+
+		<buff name="buffLevelUpTracking" hidden="true" remove_on_death="false">
+			<stack_type value="ignore"/>
+			<duration value="20"/>
+			<update_rate value=".1"/>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$LastPlayerLevel" operation="add" value="1">
+					<requirement name="PlayerLevel" target="self" operation="GT" value="@$LastPlayerLevel"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$xpFromLootThisLevel" operation="set" value="@_xpFromLoot"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$xpFromHarvestingThisLevel" operation="set" value="@_xpFromHarvesting"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$xpFromKillThisLevel" operation="set" value="@_xpFromKill"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$xpFromLootThisLevel" operation="subtract" value="@$xpFromLootLast"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$xpFromHarvestingThisLevel" operation="subtract" value="@$xpFromHarvestingLast"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$xpFromKillThisLevel" operation="subtract" value="@$xpFromKillLast"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="LogMessage" message="XP gained during the last level:"/>
+				<triggered_effect trigger="onSelfBuffStart" action="CVarLogValue" target="self" cvar="$xpFromLootThisLevel"/>
+				<triggered_effect trigger="onSelfBuffStart" action="CVarLogValue" target="self" cvar="$xpFromHarvestingThisLevel"/>
+				<triggered_effect trigger="onSelfBuffStart" action="CVarLogValue" target="self" cvar="$xpFromKillThisLevel"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$xpFromLootLast" operation="set" value="@_xpFromLoot"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$xpFromHarvestingLast" operation="set" value="@_xpFromHarvesting"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$xpFromKillLast" operation="set" value="@_xpFromKill"/>
+
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$xpFromLootThisLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$xpFromHarvestingThisLevel" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$xpFromKillThisLevel" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+	</insertAfter>
+	
+	<append xpath="/buffs/buff[@name='buffInjuryBleeding']/effect_group">
+		<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$bleedCounter" operation="set" value="0"/>
+		<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="0"/>
+	</append>
+	
+	<append xpath="/buffs/buff[@name='buffElementWet']/effect_group[1]">
+		<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$WetTempModifierActive" operation="set" value="0"/>
+	</append>
+
+	<set xpath="/buffs/buff[@name='buffIsOnFire']/effect_group/triggered_effect[@action='AttachParticleEffectToEntity']/@local_offset">0,-.2,0</set>
+	
+	<setattribute xpath="/buffs/buff[@name='buffIsOnFire']/effect_group/triggered_effect[@action='AttachParticleEffectToEntity']" name="parent_transform">Hips</setattribute>
+	
+	<append xpath="/buffs/buff[@name='buffRadiation3']/effect_group">
+		<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="RadiationSignal" operation="set" value="0"/>
+	</append>
+</configs>

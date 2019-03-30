@@ -1,0 +1,20 @@
+<configs>
+	<set xpath="/progression/perks/perk[@name='perkDeepCuts']/effect_group/passive_effect[@name='DismemberChance']/@operation">base_add</set>
+	<set xpath="/progression/perks/perk[@name='perkMasterChef']/effect_group/passive_effect[@name='RecipeTagUnlocked'][@level='3,5']/@tags">foodShamChowder,foodGardenSalad,,foodHoboStew,foodFishTacos,foodTunaSandwich,Rusty Frying Pan,Wine Cask,Dairy Churn,Butcher Knife,foodBoiledCabbage</set>
+	<set xpath="/progression/perks/perk[@name='perkHealingFactor']/effect_group/passive_effect[@name='HealthChangeOT'][@level='1']">0.016</set>
+	<set xpath="/progression/perks/perk[@name='perkHealingFactor']/effect_group/passive_effect[@name='HealthChangeOT'][@level='2']">0.049</set>
+	<set xpath="/progression/perks/perk[@name='perkHealingFactor']/effect_group/passive_effect[@name='HealthChangeOT'][@level='3']">0.083</set>
+	<set xpath="/progression/perks/perk[@name='perkHealingFactor']/effect_group/passive_effect[@name='HealthChangeOT'][@level='4']">0.149</set>
+	<set xpath="/progression/perks/perk[@name='perkHealingFactor']/effect_group/passive_effect[@name='HealthChangeOT'][@level='5']">0.233</set>
+	<set xpath="/progression/perks/perk[@name='perkParkour']/effect_group/passive_effect[@name='StaminaLoss']/@value">-.1</set>
+	<set xpath="/progression/perks/perk[@name='perkParkour']/effect_group/passive_effect[@name='StaminaLoss']/@level">1</set>
+	<append xpath="/progression/perks/perk[@name='perkParkour']/effect_group">
+		<passive_effect name="StaminaLoss" operation="perc_add" value="-.2,-.2" level="2,5" tags="jumping"/>
+	</append>
+	<set xpath="/progression/perks/perk[@name='perkLuckyLooter']/effect_group/passive_effect[@name='ScavengingTime'][@level='1']/@level">1,5</set>
+	<set xpath="/progression/perks/perk[@name='perkLuckyLooter']/effect_group/passive_effect[@name='ScavengingTime'][@level='2']/@level">2,5</set>
+	<set xpath="/progression/perks/perk[@name='perkLuckyLooter']/effect_group/passive_effect[@name='ScavengingTime'][@level='3']/@level">3,5</set>
+	<set xpath="/progression/perks/perk[@name='perkLuckyLooter']/effect_group/passive_effect[@name='ScavengingTime'][@level='4']/@level">4,5</set>
+	<set xpath="/progression/perks/perk[@name='perkLuckyLooter']/effect_group/passive_effect[@name='ScavengingTime'][@level='5']/@level">5,5</set>
+	<set xpath="/progression/perks/perk[@name='perkAdvancedFirearms']/effect_group/passive_effect[@name='RecipeTagUnlocked'][@level='2,5']/@tags">Mac 10,Double Barrel Shotgun,FN FAL,223 Bullet,Glock 40,40cal Bullet,1911,45ACP Bullet,AR15,5.56mm Bullet,MP5,Mossberg 590A1</set>
+</configs>

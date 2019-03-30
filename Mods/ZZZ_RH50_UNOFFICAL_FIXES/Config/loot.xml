@@ -1,0 +1,55 @@
+<configs>
+	<set xpath="/lootcontainers/lootgroup[@name='AllGunParts']/item[@group='MayicGunParts']/@prob">0.1</set>
+	<append xpath="/lootcontainers/lootgroup[@name='junk']">
+		<item name="resourceFemur" count="1,2" prob="0.05"/>
+	</append>
+	<append xpath="/lootcontainers/lootgroup[@name='clothes']">
+		<item name="gothBootsBlack" prob=".3"/>
+		<item name="gothicPants" prob=".3"/>	
+	</append>
+	<append xpath="/lootcontainers/lootgroup[@name='questTools']">
+		<item name="meleeToolHoeIron" loot_prob_template="GradeALoot"/>
+		<item name="meleeToolGrasscutter" loot_prob_template="GradeALoot"/>
+		<item name="meleeToolLockpick" count="2,4" loot_prob_template="GradeBLoot"/>
+		<item name="CCTVLinkTool" loot_prob_template="GradeCLoot"/>
+		<item name="khelldonCrowbar" loot_prob_template="GradeCLoot"/>
+	</append>
+	<append xpath="/lootcontainers/lootgroup[@name='questMelee']">
+		<item name="meleeBaton" loot_prob_template="GradeBLoot"/>
+		<item name="meleeAluminumBat" loot_prob_template="GradeCLoot"/>
+		<item name="meleeToolButcherKnife" loot_prob_template="GradeALoot"/>
+		<item name="meleeToolMachete1" loot_prob_template="GradeCLoot"/>
+		<item name="meleeWoodBat" loot_prob_template="GradeALoot"/>
+	</append>
+	<append xpath="/lootcontainers/lootgroup[@name='questAmmo']">
+		<item name="5.56x45mm Bullet" count="15,30" loot_prob_template="GradeBLoot"/>
+		<item name="5.56mm Bullet" count="15,30" loot_prob_template="GradeBLoot"/>
+		<item name="223 Bullet" count="8,16" loot_prob_template="GradeBLoot"/>
+		<item name="7.62x39mm Bullet" count="8,16" loot_prob_template="GradeCLoot"/>
+		<item name="7.62x51mm Bullet" count="8,16" loot_prob_template="GradeCLoot"/>
+		<item name="40cal Bullet" count="8,16" loot_prob_template="GradeCLoot"/>
+		<item name="45ACP Bullet" count="8,16" loot_prob_template="GradeCLoot"/>
+		<item name="38 Bullet" count="15,30" loot_prob_template="GradeBLoot"/>
+		<item name="20 Gauge Shell" count="8,16" loot_prob_template="GradeCLoot"/>
+		<item name="9x19mm Bullet" count="10,30" loot_prob_template="GradeCLoot"/>
+		<item name="10mm Bullet" count="10,30" loot_prob_template="GradeBLoot"/>
+		<item name="40mm Explosive" count="2,8" loot_prob_template="GradeCLoot"/>
+		<item name="Explosive Bullet" count="2,8" loot_prob_template="GradeCLoot"/>
+	</append>
+	<append xpath="/lootcontainers/lootcontainer[@id='13']">
+		<item name="resourceTwine" count="1,5" prob="0.05"/>
+	</append>
+	<append xpath="/lootcontainers/lootcontainer[@id='18']">
+		<item name="resourceTwine" count="1,5" prob="0.05"/>
+	</append>
+	<remove xpath="/lootcontainers/lootcontainer[@id='41']/item[@group='MayicGuns']"/>
+	<append xpath="/lootcontainers/lootcontainer[@id='41']">
+		<item group="MayicGuns" count="1" prob="0.07"/>
+		<item name="resourceGunPowder" count="10,50"/>
+		<item name="resourceBulletCasing" count="10,30"/>
+		<item name="resourceBulletTip" count="10,30"/>
+	</append>
+	<append xpath="/lootcontainers/lootcontainer[@id='42']">
+		<item name="oldCash" count="10,450" prob="0.1"/>
+	</append>
+</configs>

@@ -1,0 +1,3 @@
+<configs>
+	<set xpath="/item_modifiers/item_modifier[contains(@name,'MuffledConnectors')]/@modifier_tags">stealth</set>
+</configs>

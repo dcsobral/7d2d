@@ -1,0 +1,5 @@
+<configs>
+	<append xpath="/ui_display_info/crafting_category_display/crafting_category_list[@display_type='blender']">
+		<crafting_category name='Chemicals' icon="ui_game_symbol_water" display_name="lblCategoryChemicals"/>
+	</append>
+</configs>

@@ -1,0 +1,50 @@
+<configs>
+	<set xpath="/items/item[@name='meleeCandyCaneShiv']/effect_group[@name='Power Attack']/triggered_effect/requirement[@name='RandomRoll']/@value">80</set>
+	<set xpath="/items/item[@name='meleeToolHuntingKnife']/effect_group[@name='Power Attack']/triggered_effect/requirement[@name='RandomRoll']/@value">80</set>
+	<set xpath="/items/item[@name='meleeClubWood']/effect_group[@name='Power Attack']/triggered_effect/requirement[@name='RandomRoll']/@value">80</set>
+	<set xpath="/items/item[@name='meleeClubIron']/effect_group[@name='Power Attack']/triggered_effect/requirement[@name='RandomRoll']/@value">80</set>
+	<set xpath="/items/item[@name='meleeCandyCaneClub']/effect_group[@name='Power Attack']/triggered_effect/requirement[@name='RandomRoll']/@value">80</set>
+	<set xpath="/items/item[@name='meleeToolMachete']/effect_group[@name='Power Attack']/triggered_effect/requirement[@name='RandomRoll']/@value">80</set>
+	<set xpath="/items/item[@name='meleeToolPickaxeIron']/effect_group[@name='Power Attack']/triggered_effect/requirement[@name='RandomRoll']/@value">80</set>
+	<set xpath="/items/item[@name='meleeToolSledgehammer']/effect_group[@name='Power Attack']/triggered_effect/requirement[@name='RandomRoll']/@value">80</set>
+	<remove xpath="/items/item[@name='meleeToolFireaxeIron']/triggered_effect"/>
+	<append xpath="/items/item[@name='meleeToolFireaxeIron']/effect_group[@name='Power Attack']">
+		<triggered_effect trigger="onSelfSecondaryActionStart" action="PlaySound" target="self" sound="player1painlg">
+			<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="80"/>
+			<requirement name="IsMale" target="self"/>
+		</triggered_effect>
+		<triggered_effect trigger="onSelfSecondaryActionStart" action="PlaySound" target="self" sound="player2painlg">
+			<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="80"/>
+			<requirement name="IsMale" target="self" invert="true"/>
+		</triggered_effect>
+	</append>
+	<remove xpath="/items/item[@name='meleeToolFireaxeSteel']/triggered_effect"/>
+	<append xpath="/items/item[@name='meleeToolFireaxeSteel']/effect_group[@name='Power Attack']">
+		<triggered_effect trigger="onSelfSecondaryActionStart" action="PlaySound" target="self" sound="player2painlg">
+			<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="80"/>
+			<requirement name="IsMale" target="self" invert="true"/>
+		</triggered_effect>
+	</append>
+	<set xpath="/items/item[@name='meleeToolPickaxeSteel']/effect_group[@name='Power Attack']/triggered_effect/requirement[@name='RandomRoll']/@value">80</set>
+	<set xpath="/items/item[@name='shades']/effect_group/passive_effect[@name='AttributeLevel']/@tags">attArcher</set>
+	<set xpath="/items/item[@name='nerdGlasses']/effect_group/display_value[@name='dCraftingTier']/@value">10</set>
+	<append xpath="/items/item[@name='resourceAnimalFat']">
+		<property name="SellableToTrader" value="false"/>
+	</append>
+	<remove xpath="/items/item[@name='resourceAnimalFat']/effect_group/triggered_effect"/>
+	<append xpath="/items/item[@name='resourceAnimalFat']/effect_group">
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="1"/>
+		<!-- <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodPerkDisplay" operation="add" value="@foodSatiationPSec"/> -->
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="1"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="self" buff="buffProcessConsumables"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="self" buff="buffIllFoodPoisoning0">
+			<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="30"/>
+		</triggered_effect>
+		<display_value name="FoodPoisoningRisk" value=".5"/>
+	</append>
+	<set xpath="/items/item[@name='meleeToolHammerOfGodAdmin']/effect_group[@name='Power Attack']/triggered_effect/requirement[@name='RandomRoll']/@value">80</set>
+	<set xpath="/items/item[@name='gunFlamethrower']/property[@name='Tags']/@value">flamethrower</set>
+	<append xpath="/items/item[@name='Animal Feed']">
+		<property name='DescriptionKey' value='animalFeedDesc'/>
+	</append>
+</configs>

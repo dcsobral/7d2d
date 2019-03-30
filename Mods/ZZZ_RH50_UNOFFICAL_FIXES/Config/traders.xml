@@ -1,0 +1,23 @@
+<configs>
+	<append xpath="/traders/trader_item_groups/trader_item_group[@name='clothes']">
+		<item name="gothBootsBlack" prob=".3"/>
+		<item name="gothicPants" prob=".3"/>
+	</append>
+	<set xpath="/traders/trader_item_groups/trader_item_group[@name='preparedFood']/item[@name='foodBlueberryPie']/@count">1</set>
+	<set xpath="/traders/trader_item_groups/trader_item_group[@name='preparedFood']/item[@name='foodMeatStew']/@count">1</set>
+	<set xpath="/traders/trader_item_groups/trader_item_group[@name='foodAll']/item[@group='cannedfood']/@count">1</set>
+	<set xpath="/traders/trader_item_groups/trader_item_group[@name='foodAll']/item[@group='preparedDrink']/@count">1</set>
+	<append xpath="/traders/trader_item_groups">
+		<trader_item_group name="foodVending">
+			<item group="cannedfood" count="1"/>
+			<item group="preparedDrink" count="1"/>
+			<!--todo add a18 candy -->
+		</trader_item_group>		
+	</append>
+	<append xpath="/traders/trader_item_groups/trader_item_group[@name='generalResources']">
+		<item name="resourceAcid" count="1" prob="0.6"/>
+	</append>
+	<set xpath="/traders/trader_item_groups/trader_item_group[@name='traderAlways']/item[@group='foodAll']/@count">1,3</set>
+	<set xpath="/traders/trader_info[@id='4']/trader_items/item[@group='foodAll']/@group">foodVending</set>
+</configs>
+	
