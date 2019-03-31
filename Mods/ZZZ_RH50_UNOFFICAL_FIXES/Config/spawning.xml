@@ -1,0 +1,4 @@
+<configs>
+	<set xpath="/spawning/biome[@name='plains']/spawn[@entitygroup='EnemyAnimalsForest']/@entitygroup">EnemyAnimalsPlains</set>
+	<set xpath="/spawning/biome[@name='plains']/spawn[@entitygroup='FriendlyAnimalsForest']/@entitygroup">FriendlyAnimalsPlains</set>
+</configs>
