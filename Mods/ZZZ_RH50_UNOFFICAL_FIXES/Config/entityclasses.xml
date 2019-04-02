@@ -3,5 +3,5 @@
 		<property name="AIGroupCircle" value="1"/>
 	</append>
 	
-	<set xpath="/entity_classes/entity_class/property[@name='SurfaceCategory']/@value">wood</set>
+	<set xpath="/entity_classes/entity_class/property[@name='SurfaceCategory'][@value='resourceWood']">wood</set>
 </configs>

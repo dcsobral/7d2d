@@ -3,6 +3,13 @@
 	<set xpath="/recipes/recipe[@name='foodTunaSandwich'][@craft_area='campfire']/@craft_area">oldCampfire</set>
 	<remove xpath="/recipes/recipe[@name='foodOmelet'][@craft_area='campfire']"/>
 	<remove xpath="/recipes/recipe[@name='foodOmelet'][@craft_area='oldCampfire']"/>
+	<append xpath="/recipes">
+		<recipe name="foodOmelet" count="1" craft_area="oldCampfire">
+			<!--Element appended by: "Ravenhearst_ZOldCampfire"-->
+			<ingredient name="foodEgg" count="2"/>
+			<ingredient name="resourceAnimalFat" count="2"/>
+		</recipe>		
+	</append>
 	<remove xpath="/recipes/recipe[@name='Boiled Fish']"/>
 	<append xpath="/recipes">
 		<recipe name="Boiled Fish" count="1" craft_area="oldCampfire">
@@ -19,13 +26,6 @@
 	</append>
 	<append xpath="/recipes/recipe[@name='cntStorageCustomSecure2']">
 		<ingredient name="ironHinge" count="2"/>
-	</append>
-	<append xpath="/recipes">
-		<recipe name="foodOmelet" count="1" craft_area="oldCampfire">
-			<!--Element appended by: "Ravenhearst_ZOldCampfire"-->
-			<ingredient name="foodEgg" count="2"/>
-			<ingredient name="resourceAnimalFat" count="2"/>
-		</recipe>		
 	</append>
 	<remove xpath="/recipes/recipe[@name='Rustic Smoker']/ingredient[@name='resourceForgedIron']"/>
 	<append xpath="/recipes/recipe[@name='Rustic Smoker']">
