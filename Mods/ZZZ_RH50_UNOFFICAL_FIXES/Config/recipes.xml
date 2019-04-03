@@ -8,7 +8,7 @@
 			<!--Element appended by: "Ravenhearst_ZOldCampfire"-->
 			<ingredient name="foodEgg" count="2"/>
 			<ingredient name="resourceAnimalFat" count="2"/>
-		</recipe>		
+		</recipe>
 	</append>
 	<remove xpath="/recipes/recipe[@name='Boiled Fish']"/>
 	<append xpath="/recipes">
