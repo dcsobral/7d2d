@@ -58,7 +58,7 @@
 			<property name="resourceWood" value="4"/>
 		</property>
 	</append>
-	
+
 	<!-- Fix video player, music box, by relocating birds nests -->
-	<set xpath="/blocks/block[property[@name='LootList'][@value='25']]/@value">208</set>
+	<set xpath="/blocks/block/property[@name='LootList'][@value='25']/@value">208</set>
 </configs>
