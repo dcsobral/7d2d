@@ -46,4 +46,17 @@
 	<set xpath="/blocks/block/property[@class='RepairItems']/property[@name='scrapIron']/@name">resourceScrapIron</set>
 	<set xpath="/blocks/block/property[@class='RepairItems']/property[@name='forgedIron']/@name">resourceForgedIron</set>
 	<set xpath="/blocks/block/property[@class='RepairItems']/property[@name='forgedSteel']/@name">resourceForgedSteel</set>
+	
+	<!-- Fix repair on various thumpers -->
+	<append xpath="/blocks/block[@name='Level_1_Thumper_Rewards_Sealed[T]']">
+		<property class="RepairItems">
+			<property name="resourceWood" value="4"/>
+		</property>
+	</append>
+	<append xpath="/blocks/block[@name='Level_1_Thumper_Rewards_Opened[T]']">
+		<property class="RepairItems">
+			<property name="resourceWood" value="4"/>
+		</property>
+	</append>
+	
 </configs>
