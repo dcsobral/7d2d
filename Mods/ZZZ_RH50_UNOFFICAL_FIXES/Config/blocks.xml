@@ -6,34 +6,34 @@
 	<set xpath="/blocks/block[@name='autoTurret']/property[@name='EntityDamage']/@value">32</set>
 
 	<set xpath="/blocks/block[@name='autoTurretSteelCased']/property[@name='EntityDamage']/@value">32</set>
-	
+
 	<set xpath="/blocks/block[@name='shotgunTurret']/property[@name='EntityDamage']/@value">9</set>
 	<set xpath="/blocks/block[@name='shotgunTurret']/property[@name='RayCount']/@value">8</set>
 
 	<remove xpath="/blocks/block[@name='scrapIronFrameCNRFull']/property[@name='CanPickup']"/>
-	
+
 	<append xpath="/blocks/block[@name='goreBlockAnimal']">
 		<drop event="Harvest" name="resourcePotassiumNitratePowder" count="4,8" tag="butcherHarvest"/>
 	</append>
-	
+
 	<remove xpath="/blocks/block[@name='goreBlockHumanCorpse']/drop[@event='Destroy']"/>
 	<append xpath="/blocks/block[@name='goreBlockHumanCorpse']">
 		<drop event="Harvest" name="resourcePotassiumNitratePowder" count="4,8" tag="butcherHarvest"/>
 		<drop event="Destroy" name="resourceFemur" count="1,2" tag="allHarvest"/>
 	</append>
-	
+
 	<remove xpath="/blocks/block[@name='goreBlockHumanBones']/drop[@event='Destroy']"/>
 	<append xpath="/blocks/block[@name='goreBlockHumanBones']">
 		<drop event="Harvest" name="resourcePotassiumNitratePowder" count="2,4" tag="butcherHarvest"/>
 		<drop event="Destroy" name="resourceFemur" count="1,2" tag="allHarvest"/>
 	</append>
-	
+
 	<set xpath="/blocks/block[@name='trapSpikesWoodDmg2']/property[@class='UpgradeBlock']/property[@name='ToBlock']/@value">trapSpikesWoodDmg0</set>
-	
+
 	<set xpath="/blocks/block[@name='guppyAutoWorkbench']/property[@name='Extends']/@value">workbench</set>
-	
+
 	<remove xpath="/blocks/block[@name='survivalCampfire']/property[@class='Workstation']/property[@name='Collide']"/>
-	
+
 	<!-- Fix repair on Old Stone Well -->
 	<append xpath="/blocks/block[@name='Old Stone Well']">
 		<property class="RepairItems">
@@ -41,7 +41,7 @@
 			<property name="resourceWood" value="400"/>
 		</property>
 	</append>
-	
+
 	<!-- Fix a16 repair materials -->
 	<set xpath="/blocks/block/property[@class='RepairItems']/property[@name='scrapIron']/@name">resourceScrapIron</set>
 	<set xpath="/blocks/block/property[@class='RepairItems']/property[@name='forgedIron']/@name">resourceForgedIron</set>
@@ -56,6 +56,16 @@
 	<append xpath="/blocks/block[@name='Level_1_Thumper_Rewards_Opened[T]']">
 		<property class="RepairItems">
 			<property name="resourceWood" value="4"/>
+		</property>
+	</append>
+
+	<!-- Fix repair on platform -->
+	<append xpath="/blocks/block[@name='platform']">
+		<property class="RepairItems">
+			<property name="resourceConcreteMix" count="75"/>
+			<property name="resourceSpring" count="3"/>
+			<property name="resourceMechanicalParts" count="9"/>
+			<property name="resourceElectricParts" count="3"/>
 		</property>
 	</append>
 
