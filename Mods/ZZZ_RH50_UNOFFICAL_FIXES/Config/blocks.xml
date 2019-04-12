@@ -62,10 +62,10 @@
 	<!-- Fix repair on platform -->
 	<append xpath="/blocks/block[@name='platform']">
 		<property class="RepairItems">
-			<property name="resourceConcreteMix" count="75"/>
-			<property name="resourceSpring" count="3"/>
-			<property name="resourceMechanicalParts" count="9"/>
-			<property name="resourceElectricParts" count="3"/>
+			<property name="resourceConcreteMix" value="75"/>
+			<property name="resourceSpring" value="3"/>
+			<property name="resourceMechanicalParts" value="9"/>
+			<property name="resourceElectricParts" value="3"/>
 		</property>
 	</append>
 
