@@ -71,4 +71,8 @@
 
 	<!-- Fix video player, music box, by relocating birds nests -->
 	<set xpath="/blocks/block/property[@name='LootList'][@value='25']/@value">208</set>
+	
+	<!-- Fix Christmas Tree -->
+	<set xpath="/blocks/block[@name='christmasTree1']/property[@class='UpgradeBlock']/property[@name='ToBlock']/@value">christmasTree2</set>
+	<set xpath="/blocks/block[@name='christmasTree2']/property[@class='UpgradeBlock']/property[@name='ToBlock']/@value">christmasTree3</set>
 </configs>
