@@ -4,4 +4,19 @@
 	</append>
 	
 	<set xpath="/entity_classes/entity_class/property[@name='SurfaceCategory'][@value='resourceWood']">wood</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppyMilitaryTruck']/property[@name='LootListAlive']">81</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppyBigRig']/property[@name='LootListAlive']">82</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppyMilitaryCar']/property[@name='LootListAlive']">80</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppyPickup']/property[@name='LootListAlive']">79</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppyHotRod']/property[@name='LootListAlive']">78</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppyMotorCycle']/property[@name='LootListAlive']">77</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppyMotorCycle2']/property[@name='LootListAlive']">77</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppySedan']/property[@name='LootListAlive']">80</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppyVan']/property[@name='LootListAlive']">79</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppyFireTruck']/property[@name='LootListAlive']">81</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppyAmbulance']/property[@name='LootListAlive']">81</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppyAmbulanceDamaged']/property[@name='LootListAlive']">81</set>
+	<set xpath="/entity_classes/entity_class[@name='vehicleGuppyPoliceCar']/property[@name='LootListAlive']">80</set>
+	<set xpath="/entity_classes/entity_class[@name='HDHQ_SchoolBus']/property[@name='LootListAlive']">81</set>
+	<set xpath="/entity_classes/entity_class[@name='HDHQ_APC']/property[@name='LootListAlive']">79</set>
 </configs>
