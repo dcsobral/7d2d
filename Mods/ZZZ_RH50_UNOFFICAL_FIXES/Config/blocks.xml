@@ -75,4 +75,74 @@
 	<!-- Fix Christmas Tree -->
 	<set xpath="/blocks/block[@name='christmasTree1']/property[@class='UpgradeBlock']/property[@name='ToBlock']/@value">christmasTree2</set>
 	<set xpath="/blocks/block[@name='christmasTree2']/property[@class='UpgradeBlock']/property[@name='ToBlock']/@value">christmasTree3</set>
+	
+	<!-- 5.13 -->
+	<append xpath="/blocks/block[@name='cntCar03SedanDamage1']">
+		<drop event="Harvest" name="resourcePiston" count="1" prob="0.15" tag="vehicleHarvest">
+			<!--Element inserted by: "Ravenhearst_ComplexVehicles"-->
+		</drop>
+	</append>
+	
+	<set xpath="/blocks/block[@name='cntRHVintageCloset']/drop[@event='Destroy'][@name='cntRHVintageCloset']/@count">1</set>
+	<set xpath="/blocks/block[@name='cntRHOldMetalShelves']/drop[@event='Destroy'][@name='cntRHOldMetalShelves']/@count">1</set>
+	<set xpath="/blocks/block[@name='cntRHWoodenCupboard01']/drop[@event='Destroy'][@name='cntRHWoodenCupboard01']/@count">1</set>
+	
+	<append xpath="/blocks/block[@name='trapsRainBarrel']">
+		<property name="DisplayInfo" value="Description"/>
+	</append>
+	<set xpath="/blocks/block[@name='trapsRainBarrel']/property[@name='DescriptionKey']/@value">trapsRainBarrelDesc</set>
+	<append xpath="/blocks/block[@name='trapsRainCatcherCollecting']">
+		<property name="DisplayInfo" value="Description"/>
+	</append>
+	<set xpath="/blocks/block[@name='trapsRainCatcherCollecting']/property[@name='DescriptionKey']/@value">trapsRainCatcherCollectingDesc</set>
+	<set xpath="/blocks/block[@name='trapsRainCatcherCollecting']/property[@name='PlantGrowing.GrowthRate']/@value">120.0</set>
+	<set xpath="/blocks/block[@name='trapsRainCatcherCollecting']/property[@name='PlantGrowing.FertileLevel']/@value">0</set>
+	<append xpath="/blocks/block[@name='trapsRainCatcherFull']">
+		<property name="DisplayInfo" value="Description"/>
+	</append>
+	<set xpath="/blocks/block[@name='trapsRainCatcherFull']/property[@name='DescriptionKey']/@value">trapsRainCatcherFullDesc</set>
+	
+	<set xpath="/blocks/block[@name='KitchenTableSmall']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='KitchenTableMedium']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='ClassicRoundTable']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='SofaCotton']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='SofaLeather']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Couch']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='ModernArmchair']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='ClassicArmchair']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='BarChair']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Bathroom_Toilet01']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Bathroom_Toilet02']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Bathroom_Toilet04']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Bathroom_Bathub01']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Dining_Set']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Kitchen_Hoods']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Double_Bed']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Bedside_Table']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Office_ArmChair01']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Office_ArmChair03']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Office_ArmChair04']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Office_Table01']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Office_Table02']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Office_WasteBin02']/property[@name='CanPickup']/@value">false</set>
+	<set xpath="/blocks/block[@name='Tv_Furniture']/property[@name='CanPickup']/@value">false</set>
+	
+	<set xpath="/blocks/block[@name='Frigde_Func']/property[@name='Class']/@value">SecureLoot</set>
+	<remove xpath="/blocks/block[@name='Frigde_Func']/property[@name='Tag'][@value='Door']"/>
+	<append xpath="/blocks/block[@name='Frigde_Func']">
+		<property name="LootList" value="187"/>
+	</append>
+	<append xpath="/blocks/block[@name='Kitchen_CabinetDown']">
+		<property name="Class" value="SecureLoot"/>
+		<property name="LootList" value="190"/>
+	</append>
+	<append xpath="/blocks/block[@name='Kitchen_CabinetUp']">
+		<property name="Class" value="SecureLoot"/>
+		<property name="LootList" value="190"/>
+	</append>
+	<append xpath="/blocks/block[@name='Kitchen_Sink']">
+		<property name="Class" value="SecureLoot"/>
+		<property name="LootList" value="190"/>
+	</append>
+
 </configs>

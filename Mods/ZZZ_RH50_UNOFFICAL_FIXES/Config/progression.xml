@@ -18,4 +18,9 @@
 	<set xpath="/progression/perks/perk[@name='perkLuckyLooter']/effect_group/passive_effect[@name='ScavengingTime'][@level='5']/@level">5,5</set>
 	<set xpath="/progression/perks/perk[@name='perkAdvancedFirearms']/effect_group/passive_effect[@name='RecipeTagUnlocked'][@level='2,5']/@tags">Mac 10,Double Barrel Shotgun,FN FAL,223 Bullet,Glock 40,40cal Bullet,1911,45ACP Bullet,AR15,5.56mm Bullet,MP5,Mossberg 590A1</set>
 	<set xpath="/progression/perks/perk[@name='perkAdvancedFirearms']/effect_group/passive_effect[@name='RecipeTagUnlocked'][@level='3,5']/@tags">M4A1,MP 40,SCAR,5.56x45mm Bullet,Spaz12,20 Gauge Shell,M1A1 Thompson,M16,SR25,7.62x51mm Bullet,AK47,7.62x39mm Bullet,Rust AK</set>
+	
+	<!-- 5.13 -->
+	<set xpath="//effect_group/requirement[@name='HoldingItemHasTags'][@tags='Archer']/@tags">perkArchery</set>
+	<append xpath="/progression/perks/perk[@name='perkMasterChef']/effect_group/passive_effect[@name='RecipeTagUnlocked'][@level='4,5']/@tags">,drinkVeggieJuiceSmoothie,drinkFruitJuiceSmoothie</append>
+	<append xpath="/progression/perks/perk[@name='perkHammerForge']/effect_group/passive_effect[@name='RecipeTagUnlocked'][@level='3,5']/@tags">,JunctionBoxfusebox_Player,JunctionBoxPanel_Player,JunctionBoxBlock_Player</append>
 </configs>

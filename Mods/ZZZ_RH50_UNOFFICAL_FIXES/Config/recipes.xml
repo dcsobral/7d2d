@@ -42,4 +42,133 @@
 	<append xpath="/recipes/recipe[@name='Column02x3']">
 		<ingredient name="resourceNail" count="4"/>
 	</append>
+	
+	<!-- 5.13 -->
+	<remove xpath="/recipes/recipe[@name='foodEggBoiled'][@craft_area='oldCampfire']"/>
+	<remove xpath="/recipes/recipe[@name='Grilled Fish'][@craft_area='Grill']"/>
+	<remove xpath="/recipes/recipe[@name='foodGrilledCorn'][@craft_area='Grill']"/>
+	<remove xpath="/recipes/recipe[@name='foodGrilledMushrooms'][@craft_area='Grill']"/>
+	<remove xpath="/recipes/recipe[@name='foodGrilledPotato'][@craft_area='Grill']"/>
+	<remove xpath="/recipes/recipe[@name='Fresh Steak'][@craft_area='Smoker']"/>
+	<remove xpath="/recipes/recipe[@name='Spicy Hot Wings'][@craft_area='Smoker']"/>
+	<remove xpath="/recipes/recipe[@name='Fresh Smoked Sausage'][@craft_area='Smoker']"/>
+	<remove xpath="/recipes/recipe[@name='Fresh BBQ Chicken Legs'][@craft_area='Smoker']"/>
+	<remove xpath="/recipes/recipe[@name='Fresh Cheese Burger'][@craft_area='Smoker']"/>
+	<remove xpath="/recipes/recipe[@name='journalfinal']"/>
+	<append xpath="/recipes/recipe">
+		<recipe name="foodEggBoiled" count="1" craft_area="oldCampfire">
+			<!--Attribute "craft_tool" replaced by: "Ravenhearst_ZOldCampfire"-->
+			<!--Attribute "craft_area" replaced by: "Ravenhearst_ZOldCampfire"-->
+			<ingredient name="foodEgg" count="1"/>
+			<ingredient name="drinkJarBoiledWater" count="1"/>
+		</recipe>
+		<recipe name="resourceGlue" count="1" craft_area="oldCampfire" craft_tool="toolCookingGrill">
+			<!--Attribute "craft_tool" replaced by: "Ravenhearst_ZOldCampfire"-->
+			<!--Attribute "craft_area" replaced by: "Ravenhearst_ZOldCampfire"-->
+			<ingredient name="resourceFemur" count="1"/>
+			<ingredient name="drinkCanRiverWater" count="1"/>
+		</recipe>
+		<recipe name="Grilled Fish" count="1" craft_area="Grill">
+			<!--Element appended by: "ACP_Fishing"-->
+			<ingredient name="Raw Fish" count="5"/>
+		</recipe>
+		<recipe name="journalSection1" count="1" craft_time="10" craft_area="researchDesk">
+			<!--Element appended by: "Ravenhearst_Journals"-->
+			<ingredient name="JournalArchaeologyComplete" count="1"/>
+			<ingredient name="journalAdvancedSurvivalComplete" count="1"/>
+			<ingredient name="journalClassescomplete" count="1"/>
+		</recipe>
+		<recipe name="journalSection2" count="1" craft_time="10" craft_area="researchDesk">
+			<!--Element appended by: "Ravenhearst_Journals"-->
+			<ingredient name="journalFarmingcomplete" count="1"/>
+			<ingredient name="journalFoodcomplete" count="1"/>
+			<ingredient name="journalStationscomplete" count="1"/>
+		</recipe>
+		<recipe name="journalfinal" count="1" craft_time="10" craft_area="researchDesk">
+			<!--Element appended by: "Ravenhearst_Journals"-->
+			<ingredient name="journalSection1" count="1"/>
+			<ingredient name="journalSection2" count="1"/>
+			<ingredient name="journal3" count="1"/>
+		</recipe>
+		<recipe name="Fresh Steak" count="1" craft_time="30" craft_area="Smoker">
+			<ingredient name="Raw Steak" count="1"/>
+			<ingredient name="Fresh Butter" count="1"/>
+		</recipe>
+		<recipe name="Spicy Hot Wings" count="1" craft_time="15" craft_area="Smoker">
+			<ingredient name="Raw Chicken Legs and Wings" count="1"/>
+			<ingredient name="foodHoney" count="1"/>
+			<ingredient name="Jalapeno Pepper" count="1"/>
+			<ingredient name="Spices" count="1"/>
+		</recipe>
+		<recipe name="Fresh Smoked Sausage" count="1" craft_time="15" craft_area="Smoker">
+			<ingredient name="Raw Sausage Link" count="1"/>
+		</recipe>
+		<recipe name="Fresh BBQ Chicken Legs" count="1" craft_time="30" craft_area="Smoker">
+			<ingredient name="Raw Chicken Legs and Wings" count="1"/>
+			<ingredient name="foodHoney" count="1"/>
+			<ingredient name="Herbs" count="1"/>
+			<ingredient name="Spices" count="1"/>
+		</recipe>
+		<recipe name="Fresh Cheese Burger" count="1" craft_time="30" craft_area="Smoker">
+			<ingredient name="Raw Ground Beef" count="1"/>
+			<ingredient name="Cheese" count="1"/>
+			<ingredient name="Bread" count="1"/>
+			<ingredient name="Heirloom Tomatoes" count="1"/>
+			<ingredient name="Iceberg Lettuce" count="1"/>
+		</recipe>
+		<recipe name="foodGrilledCorn" count="1" craft_area="Grill">
+			<!--Attribute "craft_tool" replaced by: "Ravenhearst_ZOldCampfire"-->
+			<!--Element appended by: "Ravenhearst_MoreFood"-->
+			<ingredient name="foodCropCorn" count="2"/>
+			<ingredient name="resourceAnimalFat" count="1"/>
+		</recipe>		
+		<recipe name="foodGrilledMushrooms" count="1" craft_area="Grill">
+			<!--Attribute "craft_tool" replaced by: "Ravenhearst_ZOldCampfire"-->
+			<!--Element appended by: "Ravenhearst_MoreFood"-->
+			<ingredient name="foodCropMushrooms" count="4"/>
+			<ingredient name="resourceAnimalFat" count="1"/>
+		</recipe>		
+		<recipe name="foodGrilledPotato" count="1" craft_area="Grill">
+			<!--Attribute "craft_tool" replaced by: "Ravenhearst_ZOldCampfire"-->
+			<!--Element appended by: "Ravenhearst_MoreFood"-->
+			<ingredient name="foodCropPotato" count="4"/>
+			<ingredient name="resourceAnimalFat" count="1"/>
+		</recipe>
+		<recipe name="drinkJarAppleJuice" count="1" craft_area="blender">
+			<!--Attribute "craft_area" added/overwritten by: "Ravenhearst_ZSmallBench"-->
+			<ingredient name="Red Apples" count="2"/>
+			<ingredient name="drinkJarBoiledWater" count="1"/>
+		</recipe>
+		<recipe name="drinkJarStrawberryJuice" count="1" craft_area="blender">
+			<!--Attribute "craft_area" added/overwritten by: "Ravenhearst_ZSmallBench"-->
+			<ingredient name="Strawberries" count="2"/>
+			<ingredient name="drinkJarBoiledWater" count="1"/>
+		</recipe>
+		<recipe name="drinkFruitJuiceSmoothie" count="1" tags="learnable" craft_area="blender">
+			<!--Attribute "craft_area" added/overwritten by: "Ravenhearst_ZSmallBench"-->
+			<ingredient name="Red Apples" count="4"/>
+			<ingredient name="Vineyard Grapes" count="4"/>
+			<ingredient name="Strawberries" count="4"/>
+			<ingredient name="resourceSnowBall" count="1"/>
+			<ingredient name="drinkJarEmpty" count="1"/>
+		</recipe>
+		<recipe name="drinkJarGrapeJuice" count="1" craft_area="blender">
+			<!--Attribute "craft_area" added/overwritten by: "Ravenhearst_ZSmallBench"-->
+			<ingredient name="Vineyard Grapes" count="2"/>
+			<ingredient name="drinkJarBoiledWater" count="1"/>
+		</recipe>
+		<recipe name="drinkVeggieJuiceSmoothie" count="1" tags="learnable" craft_area="blender">
+			<!--Attribute "craft_area" added/overwritten by: "Ravenhearst_ZSmallBench"-->
+			<ingredient name="foodCropCarrot" count="4"/>
+			<ingredient name="Heirloom Tomatoes" count="4"/>
+			<ingredient name="foodCropCucumber" count="4"/>
+			<ingredient name="resourceSnowBall" count="1"/>
+			<ingredient name="drinkJarEmpty" count="1"/>
+		</recipe>
+
+	</append>
+	<remove xpath="/recipes/recipe[@name='wineBarrel']/ingredient[@name='resourceInsulator']"/>
+	<remove xpath="/recipes/recipe[@name='wineBarrelSet']/ingredient[@name='resourceInsulator']"/>
+	<remove xpath="/recipes/recipe[@name='wineBarrelPlain']/ingredient[@name='resourceInsulator']"/>
+	<remove xpath="/recipes/recipe[@name='concreteBarrier1'][count(ingredient)=2]"/>
 </configs>

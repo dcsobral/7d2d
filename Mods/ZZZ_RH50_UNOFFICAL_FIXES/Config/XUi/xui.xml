@@ -1,0 +1,4 @@
+<configs>
+	<remove xpath="/xui/ruleset/window_group[@name='workstation_Rustic Smoker']/window[@name='windowToolsCampfire']"/>
+	<remove xpath="/xui/ruleset/window_group[@name='workstation_Webber Grill']/window[@name='windowToolsCampfire']"/>
+</configs>
