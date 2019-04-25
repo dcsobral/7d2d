@@ -55,7 +55,7 @@
 	<remove xpath="/recipes/recipe[@name='Fresh BBQ Chicken Legs'][@craft_area='Smoker']"/>
 	<remove xpath="/recipes/recipe[@name='Fresh Cheese Burger'][@craft_area='Smoker']"/>
 	<remove xpath="/recipes/recipe[@name='journalfinal']"/>
-	<append xpath="/recipes/recipe">
+	<append xpath="/recipes">
 		<recipe name="foodEggBoiled" count="1" craft_area="oldCampfire">
 			<!--Attribute "craft_tool" replaced by: "Ravenhearst_ZOldCampfire"-->
 			<!--Attribute "craft_area" replaced by: "Ravenhearst_ZOldCampfire"-->
