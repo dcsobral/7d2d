@@ -103,7 +103,7 @@
   </append>
 
   <remove xpath="/rwgmixer/prefab_rules"/>
-  <append xpath="/rwgmixer"/>
+  <append xpath="/rwgmixer">
     <prefab_rules>
 
       <!-- ****** Testing *****-->
