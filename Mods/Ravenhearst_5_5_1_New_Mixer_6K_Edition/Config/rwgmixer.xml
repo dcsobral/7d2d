@@ -1,0 +1,936 @@
+<config>
+  <remove xpath="/rwgmixer/cell_rules"/>
+  <remove xpath="/rwgmixer/hub_rules"/>
+  <append xpath="/rwgmixer">
+  
+ 	<cell_rules>
+		<cell_rule name="default">
+			<hub_rule name="Rural" prob=".9" />
+			<hub_rule name="TownA" prob=".7" />
+			<hub_rule name="TownB" prob=".7" />
+			<hub_rule name="TownC" prob=".7" />
+
+
+			<wilderness_rule name="default" prob=".9" />
+		</cell_rule>
+	</cell_rules>
+    <hub_rules>
+
+      <hub_rule name="Rural">
+        <downtown_zone_size_perc value="0.45" />
+
+        <prefab_rule name="Rural1" />
+
+        <street_gen level="8" length_multiplier="4">
+          <axiom value="[FCT][-FT][+FI][-FN][+FT][-FI][++FN]" />
+
+          <rule char="T" replace_with="FF-F[+N*K]" />
+          <rule char="I" replace_with="FF+F[-N*K]" />
+          <rule char="N" replace_with="FF-F[-N*K]" />
+          <rule char="K" replace_with="[+FT][-FI][++FN]" />
+          <alt_commands chars="T,I,N,K" />
+        </street_gen>
+      </hub_rule>
+
+      <hub_rule name="TownA">
+        <downtown_zone_size_perc value="0.45" />
+
+        <prefab_rule name="Town1" />
+
+        <street_gen level="20" length_multiplier="10">
+          <axiom value="[FCT][-FT][+FI][-FN][+FT][-FI][++FN]" />
+
+          <rule char="T" replace_with="F+F+FF-F[+N*K]" />
+          <rule char="I" replace_with="F-F-FF+F[-N*K]" />
+          <rule char="N" replace_with="F+F+FF-F[+N*K]" />
+          <rule char="K" replace_with="[+FT][-FI][++FN]" />
+          <alt_commands chars="T,I,N,K" />
+        </street_gen>
+      </hub_rule>
+
+      <hub_rule name="TownB">
+        <downtown_zone_size_perc value="0.45" />
+
+        <prefab_rule name="Town2" />
+
+        <street_gen level="20" length_multiplier="10">
+          <axiom value="[FCT][-FT][+FI][-FN][+FT][-FI][++FN]" />
+
+          <rule char="T" replace_with="F+F+FF-F[+N*K]" />
+          <rule char="I" replace_with="F-F-FF+F[-N*K]" />
+          <rule char="N" replace_with="F+F+FF-F[+N*K]" />
+          <rule char="K" replace_with="[+FT][-FI][++FN]" />
+          <alt_commands chars="T,I,N,K" />
+        </street_gen>
+      </hub_rule>
+
+      <hub_rule name="TownC">
+        <downtown_zone_size_perc value="0.45" />
+
+        <prefab_rule name="Town3" />
+
+        <street_gen level="20" length_multiplier="14">
+          <axiom value="[FCT][-FT][+FI][-FN][+FT][-FI][++FN]" />
+
+          <rule char="T" replace_with="F+F+FF-F[+N*K]" />
+          <rule char="I" replace_with="F-F-FF+F[-N*K]" />
+          <rule char="N" replace_with="F+F+FF-F[+N*K]" />
+          <rule char="K" replace_with="[+FT][-FI][++FN]" />
+          <alt_commands chars="T,I,N,K" />
+        </street_gen>
+      </hub_rule>
+
+      <hub_rule name="CityA">
+        <downtown_zone_size_perc value="0.45" />
+
+        <prefab_rule name="City1" />
+
+        <street_gen level="25" length_multiplier="6">
+          <axiom value="[FFCT][-FFT][+FFI][-FFN][+FFT][-FFI][++FN][F-FF+FF[-T]FF+FF+FFFF-FF-FF[+I]FF-F[+N]" />
+
+          <rule char="T" replace_with="F-FF+FF[-T**]FF+FF+FFFF-FF-FF[+I**]FF-F[+N*K]" />
+          <rule char="I" replace_with="F-FF+FF[-T**]FF+FF+FFFF-FF-FF[+I**]FF-F[+N*K]" />
+          <rule char="N" replace_with="F-FF+FF[-T**]FF+FF+FFFF-FF-FF[+I**]FF-F[+N*K]" />
+          <rule char="K" replace_with="[FFCT][-FFT][+FFI][-FFN][+FFT][-FFI][++FN]" />
+          <alt_commands chars="T,I,N,K" />
+        </street_gen>
+
+      </hub_rule>
+
+
+
+      <hub_rule name="CityB">
+        <downtown_zone_size_perc value="0.45"/>
+        <prefab_rule name="City2"/>
+        <street_gen level="25" length_multiplier="4">
+          <axiom value="[FFCT][-FFT][+FFI][--FFN][+FFT][-FFI][++FN][F-FF+FF[-T]FF+FF+FFFF-FF-FF[+I]FF-F[+N]"/>
+          <rule char="T" replace_with="F-FF+FF[-T**]FF+FF+FFFF-FF-FF[+I**]FF-F[+N*K]"/>
+          <rule char="I" replace_with="F-FF+FF[-T**]FF+FF+FFFF-FF-FF[+I**]FF-F[+N*K]"/>
+          <rule char="N" replace_with="F-FF+FF[-T**]FF+FF+FFFF-FF-FF[+I**]FF-F[+N*K]"/>
+          <rule char="K" replace_with="[FFCT][-FFT][+FFI][--FFN][+FFT][-FFI][++FN]"/>
+          <alt_commands chars="T,I,N,K"/> 
+        </street_gen>
+      </hub_rule>
+
+    </hub_rules>
+  </append>
+
+  <remove xpath="/rwgmixer/prefab_rules"/>
+  <append xpath="/rwgmixer">
+    <prefab_rules>
+
+      <!-- ****** Testing *****-->
+      <prefab_rule name="POITest">
+        <prefab rule="Testing" />	
+
+      </prefab_rule>
+
+
+      <prefab_rule name="Testing"> 
+
+
+
+      </prefab_rule>
+
+      <!-- ****hubs*** -->
+
+      <prefab_rule name="Rural1">
+        <prefab rule="R1" />
+        <prefab rule="R2" />
+        <prefab rule="SmRubble" prob=".58" max_count="1" />
+        <prefab rule="Filler1" prob=".58" max_count="1" />
+        <prefab rule="RHcrops" max_count="2" />
+      </prefab_rule>
+
+      <prefab_rule name="Town1">
+        <prefab rule="T1" />
+        <prefab rule="T2" />
+        <prefab rule="Rubble" prob=".58" max_count="1" />
+        <prefab rule="Filler1" prob=".58" max_count="1" />
+        <prefab rule="Stores" max_count="2" />
+      </prefab_rule>
+
+      <prefab_rule name="Town2">
+        <prefab rule="Skyscrapers" max_count="1" />
+        <prefab rule="CityR1" />
+        <prefab rule="CityC1" />
+        <prefab rule="Rubble" prob=".58" max_count="2" />
+        <prefab rule="Filler1" prob=".58" max_count="2" />
+        <prefab rule="Stores" max_count="7" />
+      </prefab_rule>
+
+      <prefab_rule name="Town3">
+        <prefab rule="Skyscrapers" max_count="1" />
+        <prefab rule="CityR2" />
+        <prefab rule="CityC2" />
+        <prefab rule="Rubble" prob=".58" max_count="1" />
+        <prefab rule="Filler2" prob=".58" max_count="1" />
+        <prefab rule="Stores" max_count="7" />
+      </prefab_rule>
+
+
+      <!--*******Rural******-->
+      <prefab_rule name="R1"> 
+        <prefab name="trailer_park_01" min_count="1" max_count="2" /> 
+        <prefab name="trailer_04" min_count="1" max_count="2" /> 
+        <prefab name="trailer_03" min_count="1" max_count="2" /> 
+        <prefab name="trailer_02" min_count="1" max_count="2" /> 
+        <prefab name="trailer_01" min_count="1" max_count="2" /> 
+        <prefab name="rh5_v16_cabin_snow_hidden_01(by_Sinder)" min_count="1" max_count="2" /> 
+        <prefab name="rh5_v16_cabin_05_lg(by_Sinder)" min_count="1" max_count="2" /> 
+        <prefab name="rh5_v16_cabin_01(by_Sinder)" min_count="1" max_count="2" /> 
+        <prefab name="rh5_Trailerhousemix04(by_SandyBeaches)" min_count="1" max_count="2" /> 
+        <prefab name="rh5_Trailerhousemix03(by_SandyBeaches)" min_count="1" max_count="2" /> 
+        <prefab name="rh5_Trailer(by_Sorrowthief)" min_count="1" max_count="2" /> 
+        <prefab name="rh5_Trailerhousemix01" min_count="1" max_count="2" /> 
+        <prefab name="rh5_Trailerhousemix03" min_count="1" max_count="2" /> 
+
+        <prefab name="house_old_modular_08" min_count="1" max_count="2" /> 
+        <prefab name="house_old_modular_03" min_count="1" max_count="2" /> 
+        <prefab name="house_old_modular_01" min_count="1" max_count="2" /> 
+        <prefab name="garage_04" min_count="1" max_count="2" /> 
+        <prefab name="garage_01" min_count="1" max_count="2" />
+        <prefab name="house_old_bungalow_01" min_count="1" max_count="2" /> 
+        <prefab name="house_old_bungalow_02" min_count="1" max_count="2" /> 
+        <prefab name="house_old_bungalow_03" prob=".009" min_count="1" max_count="2" /> 
+        <prefab name="house_old_bungalow_04" min_count="1" max_count="2" /> 
+        <prefab name="house_old_bungalow_05" min_count="1" max_count="2" /> 
+        <prefab name="house_old_bungalow_06" min_count="1" max_count="2" /> 
+        <prefab name="house_old_bungalow_07" min_count="1" max_count="2" /> 
+        <prefab name="house_old_bungalow_08" min_count="1" max_count="2" /> 
+        <prefab name="house_old_bungalow_09" min_count="1" max_count="2" /> 
+        <prefab name="house_old_bungalow_10" min_count="1" max_count="2" /> 
+        <!--prefab name="house_old_bungalow_11"  max_count="2"/--> 
+        <prefab name="house_old_bungalow_12" min_count="1" max_count="2" /> 
+        <prefab name="barn_03" prob=".009" min_count="1" max_count="2" /> 
+        <prefab name="barn_02" prob=".009" min_count="1" max_count="2" /> 
+        <prefab name="barn_01" prob=".009" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_stables" prob=".58" min_count="1" max_count="2" /> 	
+        <prefab name="rh5_gedzas_base(redo_by_Sinder)" min_count="1" max_count="2" /> 
+        <prefab name="rh5_guard_tower(by_Knightrath)" min_count="1" max_count="2" /> 
+        <prefab name="rh5_guard_tower_notconstructed(by_Knightrath)" min_count="1" max_count="2" /> 
+
+        <!-- <prefab name="rh5_PersianMansion(by_saeid)" min_count="1" max_count="2" prob="0.3" /> -->
+      </prefab_rule>
+
+
+      <prefab_rule name="R2"> 
+        <prefab name="bar_sm_01" min_count="1" max_count="2" /> 
+        <prefab name="bus_stop_01" min_count="1" max_count="2" /> 
+        <prefab name="business_old_01" min_count="1" max_count="2" /> 
+        <prefab name="business_old_02" min_count="1" max_count="2" /> 
+        <prefab name="business_old_03" min_count="1" max_count="2" /> 
+        <prefab name="business_old_04" min_count="1" max_count="2" /> 
+        <prefab name="business_old_05" min_count="1" max_count="2" /> 
+        <prefab name="business_old_06" min_count="1" max_count="2" /> 
+        <prefab name="business_old_07" min_count="1" max_count="2" /> 
+        <prefab name="business_old_08" min_count="1" max_count="2" /> 
+        <prefab name="church_sm_01" min_count="1" max_count="2" /> 
+        <prefab name="diner_01" min_count="1" max_count="2" /> 
+        <prefab name="fastfood_04" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_church" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_gallows" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_graveyard" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_hotel_01" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_hotel_02" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_jail" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_md_shop_01" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_md_shop_02" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_md_shop_03" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_md_shop_04" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_sm_shop_01" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_sm_shop_02" min_count="1" max_count="2" /> 
+        <prefab name="oldwest_sm_shop_03" min_count="1" max_count="2" /> 
+        <prefab name="rh5_Car_Dealership_old(by_P1ut0nium)" min_count="1" max_count="2" /> 
+        <prefab name="rh5_deaddog_saloon(by_Libby)" min_count="1" max_count="2" /> 
+        <prefab name="rh5_gas_station7" min_count="1" max_count="2" />
+        <prefab name="rh5_oldwestBank(by_magoli)" min_count="1" max_count="2" />
+        <!-- <prefab name="rh5_Rangercabin(by_Guppycur)" min_count="1" max_count="2" /> -->			
+        <prefab name="rh5_timbershop(by_magoli)" min_count="1" max_count="2" />
+        <prefab name="rh5_Wooden_Store(by_Guppycur)" min_count="1" max_count="1" />
+        <prefab name="rh5_spanishmission(thecure_redo_by_sinder)"  max_count="2" prob="0.1"  min_repeat_distance="800"/>
+        <prefab name="rh5_DriveIn(by_Wsiegel)"  max_count="2" />
+        <prefab name="rh5_gas_station6" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_InsaneAsylum(by_NAGG)" min_count="1" max_count="1" /> 
+
+      </prefab_rule>
+      <!-- ****** Town *****-->
+      <prefab_rule name="T1">
+        <prefab name="abandoned_house_01" prob=".58" min_count="1" max_count="2" />
+        <prefab name="abandoned_house_04" prob=".58" min_count="1" max_count="2" />
+        <prefab name="abandoned_house_07" prob=".58" min_count="1" max_count="2" />
+        <prefab name="abandoned_house_08" prob=".58" min_count="1" max_count="2" />
+        <prefab name="army_barracks_01" prob=".58" min_count="1" max_count="2" />
+        <prefab name="cemetery_01" prob=".58" min_count="1" max_count="2" />
+        <prefab name="church_graveyard1" prob=".58" min_count="1" max_count="2" />
+        <prefab name="garage_02" prob=".58" min_count="1" max_count="2" />
+        <prefab name="hotel_roadside_01" prob=".58" min_count="1" max_count="2" />
+        <prefab name="hotel_roadside_02" prob=".58" min_count="1" max_count="2" />
+        <prefab name="house_construction_01" prob=".58" min_count="1" max_count="2" />
+        <prefab name="house_construction_02" prob=".58" min_count="1" max_count="2" />
+        <prefab name="house_new_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_new_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_new_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_new_04" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_new_05" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_new_06" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_gambrel_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_gambrel_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_gambrel_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_modular_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_modular_04" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_modular_05" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_modular_06" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_modular_07" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_ranch_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_ranch_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_ranch_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_ranch_04" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_ranch_05" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_ranch_06" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_ranch_07" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_ranch_08" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_ranch_09" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_ranch_10" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="houseburnt1" prob=".58" min_count="1" max_count="2" />
+        <prefab name="houseburnt3" prob=".27" min_count="1" max_count="2" />
+        <prefab name="rh5_burnt_trap_house(by_Knightrath)" prob=".38" min_count="1" max_count="2" />
+        <prefab name="rh5_Apartment(by_Spider)" prob=".58" min_count="1" max_count="1" />
+        <prefab name="rh5_Asylum(by_Wsiegel)" prob=".58" min_count="1" max_count="1" />
+        <prefab name="rh5_collapsed_bldg_01(by_BuLLeTZ)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_CountyJail(by_Volar)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_exfarmstead(by_owl79)" prob=".58" min_count="1" max_count="1" />
+        <prefab name="rh5_Farm(by_BigC90210)" prob=".58"  min_count="1" max_count="1" />
+        <prefab name="rh5_House_AF02R(19x35)(by_Nodabba)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_House_AF04R(15x15)(by_Nodabba)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_house01(byGuppycur)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_house02(byGuppycur)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_house03(byGuppycur)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_house04(byGuppycur)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_house05(byGuppycur)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Motel(by_Limodor)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Sinders_House_vanilla17_v1(by_sinder)" prob=".58"  min_count="1" max_count="1" />
+        <prefab name="rh5_v16_abandoned_house_05(by_Sinder)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Woodhouse(by_Tom)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Vista(by_Makabriel)" min_count="1" max_count="2" prob=".58" />
+
+
+      </prefab_rule>
+
+      <prefab_rule name="T2">
+        <prefab name="business_strip_old_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="carlot_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="diner_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="fastfood_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="fastfood_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="parking_lot_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="post_office_sm_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="prison_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_7EndStore(by_Jackelmyer)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Bank(by_Guppycur)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Bavarian_Bowse_Shop(by_magoli)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Car_Dealership_new(by_p1ut0nium)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_donut_shop(by_bigstep70)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_drivethru(by_bigstep70)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Firedepartment(by_Guppycur)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Info_Center(by_LuckyStar)" prob=".01" min_count="1" max_count="2" />
+        <prefab name="rh5_kwikemart(by_magoli)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_moestaverne(by_magoli)(a17_refurbished_by_WiZ)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Store_Automotive_sm(by_Laz_Man)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_stripclub(by_magoli)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_TheSect_Followers-of-M(by_magoli)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_TownHall(by_Guppycur)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_UnionStation(by_BuLLeTZ)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Wooden_Store(by_Guppycur)" prob=".58" min_count="1" max_count="1" />
+        <prefab name="rh5_GotchaBank(by_Limodor)(a17_refurbished_by_WiZ)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_PetStore(by_Jackelmyer)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_crematory(by_magoli)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Library(by_Genosis)" prob=".48"  min_count="1" max_count="1" />
+        <prefab name="rh5_ir8_center" min_count="1" max_count="2" prob=".58" />
+        <!-- <prefab name="rh5_Desert_Oasis_Casino(by_FallenDice)" prob=".58"  min_count="1" max_count="2" /> -->
+        <prefab name="rh5_TruckStop_Roadhouse(by_stallionsden)" min_count="1" max_count="1"  min_repeat_distance="800"/>		
+        <prefab name="rh5_TruckStop(by_magoli)" min_count="1" max_count="2" />
+        <prefab name="skyscraper_01" prob=".48" min_count="1" max_count="1" />
+        <prefab name="skyscraper_02" prob=".48" min_count="1" max_count="1" />
+        <prefab name="skyscraper_03" prob=".48" min_count="1" max_count="1" />
+        <prefab name="skyscraper_04" prob=".48" min_count="1" max_count="1" />
+        <prefab name="rh5_TruckStop_Garage(by_stallionsden)" min_count="1" max_count="2" />
+        <prefab name="rh5_Storage(by_ShoNuff)" min_count="1" max_count="2" />
+        <prefab name="rh5_TheMill(by_MoNKeYest1)" min_count="1" max_count="2" prob="0.1" />
+      </prefab_rule>
+
+      <!-- ****** City *****-->
+      <prefab_rule name="CityR1">
+        <prefab name="abandoned_house_03new" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="abandoned_house_07new" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="apartment_brick_6_flr" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="garage_06" prob=".58" min_count="1" max_count="2" />
+        <prefab name="garage_07" prob=".58" min_count="1" max_count="2" />
+        <prefab name="hotel_new_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_modern_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_modern_06" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_new_mansion_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_new_mansion_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_mansard_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_mansard_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_mansard_05" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_pyramid_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_pyramid_05" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_spanish_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_tudor_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_tudor_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_tudor_06" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_04" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_07" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_08" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_09" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_11" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="houseburnt2" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Blue_House(by_TopMinder_and_Pille)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="houseburnt5" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Amityville_Horror_House(by_Swolk)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Apartment(by_Gertle)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Apartments_Curtilage_Playground(by_magoli)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Experimentalhouse(by_Tom)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Hightop(by_Curbolt)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_House_AF02P(17x16)(by_Nodabba)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_House_AF05D(14x17)(by_Nodabba)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_House_AF05R(14x17)(by_Nodabba)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_house2(by_Curbolt)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_v16_housebrick1(by_Sinder)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="abandoned_house_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="abandoned_house_06" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_RuinedOfficeBuilding(by_WiZ)" min_count="1" max_count="2" prob=".58" />
+
+
+      </prefab_rule>
+
+      <prefab_rule name="CityC1">
+        <prefab name="bar_stripclub_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="bar_theater_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="business_strip_old_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="carlot_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_cemetery_02(by_sinder)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="church_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="courthouse_med_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="diner_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="factory_lg_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="fastfood_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="fire_station_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="football_stadium" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="funeral_home_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="hospital_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="junkyard_med_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="parking_garage_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="police_station1" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="post_office_med_01" prob=".58" max_count="2" />
+        <prefab name="rh5_3BlockStores(by_Leo_Liuos)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Bank(by_Limodor)" prob=".58" max_count="2" />
+        <prefab name="rh5_Bike_Shop(by_War3zuk)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_BoxingGym(by_KamR)" prob=".58" max_count="2" />
+        <prefab name="rh5_CasinoANKH(by_magoli)" prob=".58" max_count="2" />
+        <prefab name="rh5_Church(by_Guppycur)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_fireworks(by_blackrook)" prob=".58" max_count="2" />
+        <prefab name="rh5_FuneralParlor(by_Zombieman)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_icestadium(by_magoli)" prob=".58" max_count="2" />
+        <prefab name="rh5_LittleLeagueBaseball(by_Curmudgeon)" prob=".58" max_count="2" />
+        <prefab name="rh5_metro_small(by_blackrook)" prob=".58" max_count="2" />
+        <prefab name="rh5_NotreDamn_(by_tehkarma)" prob=".58" max_count="2" />
+        <prefab name="rh5_Plant(by_Wsiegel)" prob=".58" max_count="2" />
+        <prefab name="rh5_seafoodshop(by_Guppycur)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_TomsGarage(by_WiZ)" prob=".58" max_count="2" />
+        <prefab name="rh5_TV_Tower_Restaurant(by_magoli)" prob=".58" max_count="2" />
+        <prefab name="rh5_Warehouse(by_Illidua)" prob=".58" max_count="2" />
+        <prefab name="school_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="school_k6_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="skate_park_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="theatre_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="utility_celltower_01" prob=".58" max_count="2" />
+        <prefab name="utility_waterworks_01" prob=".58" max_count="2" />
+        <prefab name="rh5_Chernobyl(by_Maz_Burt)" prob=".58" max_count="2" />
+        <prefab name="rh5_circus(by_magoli)" prob=".58" max_count="2" />
+        <prefab name="rh5_Skycpraper(by_Peppino)" max_count="1" prob=".58"  />
+        <prefab name="rh5_SkyDiner(by_Tom)" max_count="1" prob=".58"  />		
+        <prefab name="rh5_CanucksCoffee(by_Genosis)" prob=".58"  min_count="1" max_count="2" />			
+        <!-- <prefab name="rh5_School(by_LazMan)" prob="0.25" max_count="2" />	 -->		
+        <prefab name="rh5_ZHigh(by_Volar)" max_count="2" prob="0.4" />
+        <prefab name="rh5_Paintballarena(by_Jackelmyer)" max_count="2" />
+        <prefab name="rh5_Nuclear_Powerplant(by_Rocky)" max_count="2" prob="0.3" />
+        <prefab name="rh5_NSiteMissileSilo(byEphoie)" max_count="2" />
+        <prefab name="rh5_Glass_factory_big(by_Khyber)" max_count="2" prob="0.2" />		
+        <prefab name="rh5_Warehouse(by_Illidua)" max_count="2" prob="0.1" />
+        <prefab name="rh5_strandresort(by_magoli)" max_count="2" />
+        <prefab name="rh5_swimmingbath(by_magoli)(a17_refurbished_by_WiZ)" prob=".58" max_count="2" />
+        <prefab name="rh5_Recycling(by_Limodor)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_gas_station1" max_count="2" />
+        <prefab name="rh5_gas_station3" max_count="2" />
+        <prefab name="rh5_TruckStop_Garage(by_stallionsden)" max_count="2" />
+        <prefab name="skyscraper_01" prob=".48" min_count="1" max_count="1" />
+        <prefab name="skyscraper_02" prob=".48" min_count="1" max_count="1" />
+        <prefab name="skyscraper_03" prob=".48" min_count="1" max_count="1" />
+        <prefab name="skyscraper_04" prob=".48" min_count="1" max_count="1" />
+      </prefab_rule>
+
+
+      <prefab_rule name="CityR2">
+        <prefab name="abandoned_house_01new" min_count="1" max_count="2" />
+        <prefab name="abandoned_house_05new" min_count="1" max_count="2" />
+        <!--prefab name="apartment_adobe_red_5_flr" min_count="1" max_count="2"/-->
+        <prefab name="garage_03" prob=".58" min_count="1" max_count="2" />
+        <prefab name="garage_05" prob=".58" min_count="1" max_count="2" />
+        <prefab name="hotel_ostrich" min_count="1" max_count="2" />
+        <prefab name="house_modern_01" prob=".25" min_count="1" max_count="2" />
+        <prefab name="house_modern_03" prob=".25" min_count="1" max_count="2" />
+        <prefab name="house_new_mansion_02" prob=".25" min_count="1" max_count="2" />
+        <prefab name="house_old_mansard_01" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_mansard_04" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_mansard_06" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_pyramid_02" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_pyramid_03" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_pyramid_04" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_tudor_02" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_tudor_04" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_tudor_05" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_02" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_03" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_05" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_06" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_10" prob="1" min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_12" prob=".25" min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_13" prob="1" min_count="1" max_count="2" />
+        <prefab name="houseburnt3b" min_count="1" max_count="2" />
+        <prefab name="rh5_Alms_house(ex_vanilla_ornate03)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Apartments(by_Batman)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Brownstones_House(by_Laz_Man)" min_count="1" max_count="2" />
+        <prefab name="rh5_Dark_Mausoleum32(by_LuckyStar)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_House_AF03D(37x54)(by_Nodabba)" min_count="1" max_count="2" />
+        <prefab name="rh5_House_AF03P(35x54)(by_Nodabba)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_House_AF04D(15x15)(by_Nodabba)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_House_AF04P(15x15)(by_Nodabba)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_House_AF06D(29x30)(by_Nodabba)" min_count="1" max_count="2" />
+        <prefab name="rh5_house_number14(by_Kam)(a17_refurbished_by_WiZ)" min_count="1" max_count="2" />
+        <prefab name="rh5_v16_housestucco2(by_Sinder)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_v16_housetanpyramid2(by_Sinder)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Villa(by_Limodor)" min_count="1" max_count="2" />
+        <prefab name="abandoned_house_05" min_count="1" max_count="2" />
+        <prefab name="abandoned_house_02" min_count="1" max_count="2" />
+
+
+
+
+        <prefab name="abandoned_house_03new" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="abandoned_house_07new" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="apartment_brick_6_flr" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="garage_06" prob=".58" min_count="1" max_count="2" />
+        <prefab name="garage_07" prob=".58" min_count="1" max_count="2" />
+        <prefab name="hotel_new_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_modern_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_modern_06" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_new_mansion_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_new_mansion_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_mansard_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_mansard_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_mansard_05" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_pyramid_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_pyramid_05" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_spanish_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_tudor_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_tudor_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_tudor_06" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_04" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_07" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_08" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_09" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="house_old_victorian_11" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="houseburnt2" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Blue_House(by_TopMinder_and_Pille)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="houseburnt5" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Amityville_Horror_House(by_Swolk)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Apartment(by_Gertle)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Apartments_Curtilage_Playground(by_magoli)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Experimentalhouse(by_Tom)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Hightop(by_Curbolt)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_House_AF02P(17x16)(by_Nodabba)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_House_AF05D(14x17)(by_Nodabba)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_House_AF05R(14x17)(by_Nodabba)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_house2(by_Curbolt)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_v16_housebrick1(by_Sinder)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="abandoned_house_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="abandoned_house_06" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_RuinedOfficeBuilding(by_WiZ)" min_count="1" max_count="2" prob=".58" />
+
+
+      </prefab_rule>
+
+      <prefab_rule name="CityC2">
+        <prefab name="business_strip_old_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="business_strip_old_04" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="courthouse_med_01" prob=".58" min_count="1" max_count="2" />
+        <prefab name="fire_station_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Apartment_Stores(by_Laz_Man)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_ArtGallery(by_Wsiegel)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Asia_Restaurant_city(by_Redlotus)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_BankOfJax(GotchaBank_a17_remake_by_WiZ)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_bowlingcenter(by_magoli)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Cantine(by_Limodor)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Cell_Tower(by_LuckyStar)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_CityPark(by_Spider)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Firehouse(by_Warsaken)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_FuneralHome(by_Wsiegel)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_LittleLeagueBaseballShelter(by_Curmudgeon)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_MiniMall(by_Spider)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_MonsterFlexGym(by_Swolk)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Office(by_Wsiegel)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Pawnshop(by_magoli)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_StripClub(by_Wsiegel)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Stripmall(by_Guppycur)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_SUBDAY(by_Swolk)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_TacoBele(by_Swolk)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Utility_Combo(by_LuckyStar)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_WWHouse(by_IceJudge)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="school_daycare_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="theater_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="utility_celltower_02" prob=".58" min_count="1" max_count="2" />
+        <prefab name="utility_electric_co_01" prob=".58" min_count="1" max_count="2" />
+        <prefab name="utility_refinery_01" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Nuka_Factory(by_bdubyah)" min_count="1" max_count="2" prob=".25" min_repeat_distance="800"/>
+        <prefab name="rh5_Restaurant(by_Gertle)" min_count="1" max_count="2" />
+        <prefab name="rh5_McDowell_restaurant(by_LazMan)" min_count="1" max_count="2" />
+        <prefab name="rh5_Public_Pool(by_Warsaken)" min_count="1" max_count="2" />			
+        <prefab name="rh5_Science_lab(by_kinklade)" min_count="1" max_count="2" />
+        <prefab name="rh5_rollerskatedisco(by_magoli)" min_count="1" max_count="2" />			
+        <prefab name="rh5_SuperStore(by_Volar)" min_count="1" max_count="2" />
+        <prefab name="rh5_McDonalds(by_BigC90210)" min_count="1" max_count="2" />
+        <prefab name="rh5_gas_station5" min_count="1" max_count="2" />
+        <prefab name="rh5_gas_station9" min_count="1" max_count="2" />
+        <!-- <prefab name="rh5_red_mesa_alpha_labs(by_Pille)" min_count="1" max_count="2" prob=".18" /> -->
+        <prefab name="rh5_GasStation(by_Warsaken)(a17_refurbished_by_WiZ)" min_count="1" max_count="2" />
+
+
+
+        <prefab name="bar_stripclub_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="bar_theater_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="business_strip_old_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="carlot_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_cemetery_02(by_sinder)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="church_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="courthouse_med_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="diner_03" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="factory_lg_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="fastfood_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="fire_station_02" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="funeral_home_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="hospital_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="junkyard_med_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="parking_garage_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="police_station1" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="post_office_med_01" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_3BlockStores(by_Leo_Liuos)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_Bank(by_Limodor)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Bike_Shop(by_War3zuk)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_BoxingGym(by_KamR)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_CasinoANKH(by_magoli)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Church(by_Guppycur)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_FuneralParlor(by_Zombieman)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_icestadium(by_magoli)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_LittleLeagueBaseball(by_Curmudgeon)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_NotreDamn_(by_tehkarma)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Plant(by_Wsiegel)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_seafoodshop(by_Guppycur)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_TomsGarage(by_WiZ)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_TV_Tower_Restaurant(by_magoli)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Warehouse(by_Illidua)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="school_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="school_k6_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="theatre_01" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="utility_celltower_01" prob=".58" min_count="1" max_count="2" />
+        <prefab name="utility_waterworks_01" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_circus(by_magoli)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Skycpraper(by_Peppino)" prob=".28" min_count="1" max_count="1" />
+        <prefab name="rh5_SkyDiner(by_Tom)" prob=".28" min_count="1" max_count="1" />		
+        <prefab name="rh5_CanucksCoffee(by_Genosis)" prob=".58"  min_count="1" max_count="2" />			
+        <!-- <prefab name="rh5_School(by_LazMan)" prob="0.25" min_count="1" max_count="2" />	 -->		
+        <prefab name="rh5_Paintballarena(by_Jackelmyer)" min_count="1" max_count="2" />
+        <prefab name="rh5_NSiteMissileSilo(byEphoie)" min_count="1" max_count="2" />
+        <prefab name="rh5_Glass_factory_big(by_Khyber)" min_count="1" max_count="2" prob="0.2" />		
+        <prefab name="rh5_Warehouse(by_Illidua)" min_count="1" max_count="2" prob="0.1" />
+        <prefab name="rh5_strandresort(by_magoli)" min_count="1" max_count="2" />
+        <prefab name="rh5_swimmingbath(by_magoli)(a17_refurbished_by_WiZ)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Recycling(by_Limodor)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_powerplant(byKam)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_gas_station1" min_count="1" max_count="2" />
+        <prefab name="rh5_gas_station3" min_count="1" max_count="2" />
+        <prefab name="rh5_TruckStop_Garage(by_stallionsden)" min_count="1" max_count="2" />
+
+        <prefab name="skyscraper_01" min_count="1" max_count="1" />
+        <prefab name="skyscraper_02" min_count="1" max_count="1" />
+        <prefab name="skyscraper_03" min_count="1" max_count="1" />
+        <prefab name="skyscraper_04" min_count="1" max_count="1" />
+        <prefab name="rh5_Skycpraper(by_Peppino)" prob=".28" min_count="1" max_count="1" />
+        <prefab name="rh5_SkyDiner(by_Tom)" prob=".28" min_count="1" max_count="1" />
+      </prefab_rule>	
+
+
+
+      <!-- ****** Base *****-->
+
+
+      <prefab_rule name="Stores"> 
+        <prefab name="store_autoparts_01" min_count="1" max_count="2" />
+        <prefab name="store_bank_lg_01" min_count="1" max_count="2" />
+        <prefab name="store_book_lg_01" min_count="1" max_count="2" />
+        <prefab name="store_book_sm_01" min_count="1" max_count="2" />
+        <prefab name="store_grocery_lg_01" min_count="1" max_count="2" />
+        <prefab name="store_grocery_sm_01" min_count="1" max_count="2" />
+        <prefab name="store_gun_lg_01" min_count="1" max_count="2" />
+        <prefab name="store_gun_sm_01" min_count="1" max_count="2" />
+        <prefab name="store_hardware_lg_01" min_count="1" max_count="2" />
+        <prefab name="store_hardware_sm_01" min_count="1" max_count="2" />
+        <prefab name="store_laundry_01" min_count="1" max_count="2" />
+        <prefab name="store_pharmacy_sm_01" min_count="1" max_count="2" />
+        <prefab name="store_salon" min_count="1" max_count="2" />
+        <prefab name="store_pawn_01" min_count="1" max_count="2" />
+      </prefab_rule>
+
+
+      <prefab_rule name="Skyscrapers"> 
+        <prefab name="skyscraper_01" min_count="1" max_count="1" />
+        <prefab name="skyscraper_02" min_count="1" max_count="1" />
+        <prefab name="skyscraper_03" min_count="1" max_count="1" />
+        <prefab name="skyscraper_04" min_count="1" max_count="1" />
+        <prefab name="rh5_Skycpraper(by_Peppino)" prob=".58"  min_count="1" max_count="1" />
+        <prefab name="rh5_SkyDiner(by_Tom)" prob=".58"  min_count="1" max_count="1" />
+      </prefab_rule>
+
+      <prefab_rule name="Rubble"> 
+        <prefab name="mp_waste_cover_01" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_06_grey" prob=".58" max_count="1" />
+        <prefab name="mp_waste_cover_02" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_02" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_07" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_01_tan" prob=".58" max_count="1" />
+        <prefab name="mp_waste_hole_asphalt_01" prob=".58" max_count="1" />
+        <prefab name="mp_waste_sewer_hole_1" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_06" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_04_tan" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_04" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_04_grey" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_highway_01" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_03_tan" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_01" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_03" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_03_red" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_02_red" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_03_white" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_02_tan" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_01_white" prob=".58" max_count="1" />
+        <prefab name="mp_waste_hole_rock_01" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_08" prob=".58" max_count="1" />
+        <prefab name="mp_waste_sewer_hole_2" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_09" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_04_white" prob=".58" max_count="1" />
+        <prefab name="mp_waste_tree_pile_02" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_04_red" prob=".58" max_count="1" />
+        <prefab name="mp_waste_tree_pile_01" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_05_grey" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_01_red" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_05" prob=".58" max_count="1" />
+        <prefab name="mp_waste_bldg_governer_08" prob=".58" max_count="1" />
+
+        <prefab name="rh5_wastelandtrain(by_incrediblejimmy)" prob=".58" max_count="1" />
+      </prefab_rule>
+
+      <prefab_rule name="SmRubble"> 
+        <prefab name="waste_rubble_bldg_01" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_02" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_03" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_04" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_05" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_06" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_07" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_08" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_bldg_09" prob=".58" max_count="1" />
+        <prefab name="waste_rubble_highway_01" prob=".58" max_count="1" />
+        <prefab name="mp_waste_cover_01" max_count="1" prob=".18" />
+        <prefab name="mp_waste_cover_02" max_count="1" prob=".18" />
+        <prefab name="mp_waste_hole_asphalt_01" prob=".58" max_count="1" />
+        <prefab name="mp_waste_hole_rock_01" prob=".58" max_count="1" />
+        <prefab name="mp_waste_sewer_hole_2" prob=".58" max_count="1" />
+        <prefab name="mp_waste_tree_pile_01" prob=".58" max_count="1" />
+        <prefab name="mp_waste_tree_pile_02" prob=".58" max_count="1" />
+        <prefab name="mp_waste_sewer_hole_1" prob=".58" max_count="1" />
+      </prefab_rule>
+
+      <prefab_rule name="Filler1"> 
+        <prefab name="tree_cactus_03" max_count="1" />
+        <prefab name="street_davis" max_count="1" />
+        <prefab name="street_private" max_count="1" />
+        <prefab name="sign_stop" max_count="10" />
+        <prefab name="tree_mountainpinedry" max_count="1" />
+        <prefab name="street_maple_courtland" max_count="1" />
+        <prefab name="streets_tran_and_lang" max_count="1" />
+        <prefab name="street_bell_courtland" max_count="1" />
+        <prefab name="water_tower_01" max_count="1"  />
+        <prefab name="street_apache" max_count="1" />
+        <prefab name="rh5_water_tower_03(by_sinder)" max_count="1" />
+        <prefab name="street_maple" max_count="1" />
+        <prefab name="sign_stop_4way" max_count="1" />
+        <prefab name="tree_bruntpine_cluster_02" max_count="1" />
+        <prefab name="bus_wreck_01" max_count="1" />
+        <prefab name="street_tran_courtland" max_count="1" />
+        <prefab name="streets_essag" max_count="1" />
+        <prefab name="sign_camp_fish" max_count="1" />
+        <prefab name="canyon_car_wreck" max_count="1" />
+        <prefab name="rh5_water_tower_02(by_sinder)" max_count="1" />
+        <prefab name="tree_mountainpine19m" max_count="1" />
+        <prefab name="sign_school_25" max_count="1" />
+        <prefab name="street_coronado" max_count="1" />
+      </prefab_rule>
+
+
+      <prefab_rule name="Filler2"> 
+
+        <prefab name="tree_cactus_02" max_count="1" />
+        <prefab name="street_lake_bell" max_count="1" />
+        <prefab name="tree_mountainpine20m" max_count="1" />
+        <prefab name="street_courtland_coronado" max_count="1" />
+        <prefab name="sign_road_work" max_count="1" />
+        <prefab name="tree_mountainpine08m" max_count="1" />
+        <prefab name="tree_bruntpine_cluster_01" max_count="1" />
+        <prefab name="tree_mountainpine16m" max_count="1" />
+        <prefab name="tree_mountainpine06m" max_count="1" />
+        <prefab name="installation_red_mesa_security" max_count="1" />
+        <prefab name="street_courtland_east_260" max_count="1" />
+        <prefab name="sign_speed_55" max_count="1" />
+        <prefab name="sign_caution" max_count="1" />
+        <prefab name="tree_cactus_01" max_count="1" />
+        <prefab name="sign_hazardous_waste" max_count="1" />
+        <prefab name="tree_mountainpine13m" max_count="1" />
+        <prefab name="street_huenink_courtland" max_count="1" />
+        <prefab name="street_courtland_apache" max_count="1" />
+        <prefab name="cave_05" max_count="1" />
+        <prefab name="oldwest_watertower" max_count="1" />
+      </prefab_rule>
+
+      <prefab_rule name="wildernessGroup">
+        <prefab name="settlement_trader_01" max_count="1" prob="2" min_repeat_distance="600"/>
+        <prefab name="settlement_trader_02" max_count="1" prob="2" min_repeat_distance="600"/>
+        <prefab name="settlement_trader_03" max_count="1" prob="2" min_repeat_distance="600"/>
+        <prefab name="settlement_trader_04" max_count="1" prob="2" min_repeat_distance="600"/>
+        <prefab name="settlement_trader_05" max_count="1" prob="2" min_repeat_distance="600"/>
+        <prefab name="abandoned_house_02new" max_count="1" prob=".27" />
+        <prefab name="abandoned_house_04new" max_count="1" prob=".27" />
+        <prefab name="abandoned_house_06new" max_count="1" prob=".27" />
+        <prefab name="abandoned_house_08new" max_count="1" prob=".27" />
+        <prefab name="army_camp_01" max_count="1" prob=".47" />
+        <prefab name="army_camp_02" max_count="1" prob=".47" />
+        <prefab name="army_camp_03" max_count="1" prob=".47" />
+        <prefab name="bombshelter_lg_01" max_count="2" prob=".47" />
+        <prefab name="bombshelter_md_01" max_count="2" prob=".47" />
+        <prefab name="cabin_01"  />
+        <prefab name="cabin_02"  />
+        <prefab name="cabin_03"  />
+        <prefab name="cabin_04"  />
+        <prefab name="cabin_05"  />
+        <prefab name="cabin_06"  />
+        <prefab name="cabin_07"  />
+        <prefab name="cabin_08"  />
+        <prefab name="cabin_09"  />
+        <prefab name="cabin_10"  />
+        <prefab name="cabin_11"  />
+        <prefab name="cabin_12"  />
+        <prefab name="cabin_13"  />
+        <prefab name="cabin_14"  />
+        <prefab name="cabin_15"  />
+        <prefab name="cave_01" />
+        <prefab name="cave_02" />
+        <prefab name="cave_03" />
+        <prefab name="cave_04" />
+        <prefab name="rh5_saltcave(by_sinder)" />
+        <prefab name="indian_burial_grounds_01" max_count="2" prob=".47" />
+        <prefab name="junkyard_lg_01" max_count="2" prob=".67" />
+        <prefab name="ranger_station1" max_count="2" prob=".67" />
+        <prefab name="rh5_guard_tower(by_Knightrath)" max_count="2" prob=".67" />
+        <prefab name="rh5_guard_tower_notconstructed(by_Knightrath)" max_count="2" prob=".67" />
+        <prefab name="rh5_ancient_tomb(by_bigstep70)" max_count="2" prob=".27" />
+        <prefab name="rh5_burialshrine(by_snake0567)" max_count="2" prob=".27" />
+        <prefab name="rh5_Cabin(by_Sudo)" max_count="2" prob=".67" />
+        <prefab name="rh5_farm_dry_stream(by_Sinder)" max_count="3" prob=".77" />
+        <prefab name="rh5_JarlsEstate(by_Eihwaz)" max_count="2" prob=".37" />
+        <prefab name="rh5_WildHouse(by_Robear)" max_count="2" prob=".37" />
+        <prefab name="factory_lg_01" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Walcart(by_Swolk)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Izea(by_Genosis)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_Windowfactory(by_magoli)" prob=".58" min_count="1" max_count="2" />
+        <prefab name="rh5_gas_station2" max_count="2" prob=".37" />
+        <prefab name="rh5_gas_station4" max_count="2" prob=".37" />
+        <prefab name="rh5_gas_station8" max_count="2" prob=".37" />
+        <prefab name="rh5_Cliff_House(by_War3zuk)" max_count="2" prob=".67" />
+        <prefab name="rh5_CrashedAirplane(by_LazMan)" max_count="2" prob=".27" />
+        <prefab name="rh5_H0bbit(by_Limodor)" max_count="2" prob=".67" />
+        <prefab name="rh5_House_AF01P(19x35)(by_Nodabba)" max_count="2" prob=".37" />
+        <prefab name="rh5_House_AF03R(37x53)(by_Nodabba)" max_count="2" prob=".37" />
+        <prefab name="rh5_House_AF05P(14x19)(by_Nodabba)" max_count="2" prob=".37" />
+        <prefab name="rh5_House_AF06R(29x30)(by_Nodabba)" max_count="2" prob=".37" />
+        <prefab name="rh5_LumberMill(by_IceJudge)" max_count="2" prob=".47" />
+        <prefab name="rh5_rave_factory(by_orak)" min_count="1" max_count="1" prob=".28" />
+        <prefab name="rh5_modernvilla(by_owl79)(a17_refurbished_by_WiZ)" max_count="2" prob=".67" />
+        <prefab name="rh5_Prison(by_Limodur)" max_count="2" prob=".47" />
+        <prefab name="rh5_Safehouse(by_Limodor)" max_count="2" prob=".67" />
+        <prefab name="rh5_powerplant(byKam)" prob=".58" max_count="1" />
+        <prefab name="rh5_fireworks(by_blackrook)" prob=".58" min_count="1" max_count="1" />
+        <prefab name="football_stadium" prob=".58"  min_count="1" max_count="1" />
+        <prefab name="rh5_ZHigh(by_Volar)" min_count="1" max_count="1" prob=".58" />
+        <prefab name="rh5_metro_small(by_blackrook)" prob=".58" min_count="1" max_count="1" />
+        <prefab name="factory_lg_02" prob=".58"  min_count="1" max_count="1" />
+        <prefab name="rh5_Chernobyl(by_Maz_Burt)" prob=".58" min_count="1" max_count="1" />
+        <prefab name="rh5_Nuclear_Powerplant(by_Rocky)" min_count="1" max_count="1" prob=".58" />
+        <prefab name="rh5_Ministers_Tree_House(by_Theis_and_Sinda)" max_count="2" prob=".27" />
+        <prefab name="rh5_Nuka_Factory(by_bdubyah)" min_count="1" max_count="1" prob=".25" min_repeat_distance="700"/>
+        <prefab name="rh5_TheMill(by_MoNKeYest1)" max_count="2" prob=".47" />
+        <prefab name="rh5_wastelandtrain(by_Horst)" max_count="2" prob=".27" />
+        <prefab name="rh5_WulftownA(by_WereWulfen)" max_count="2" prob=".47" />
+        <prefab name="rh5_WulftownCD(by_WereWulfen)" max_count="2" prob=".47" />
+        <prefab name="rh5_ZombieZoo(by_Wsiegel)" max_count="2" prob=".47" />
+        <prefab name="sawmill_01_snow" max_count="2" prob=".47" />
+        <prefab name="snowy_ski_lodge" max_count="2" prob=".47" />
+        <prefab name="survivor_site_01" max_count="1" prob=".37" />
+        <prefab name="survivor_site_02" max_count="1" prob=".37" />
+        <prefab name="survivor_site_03" max_count="1" prob=".37" />
+        <prefab name="survivor_site_04" max_count="1" prob=".37" />
+        <prefab name="survivor_site_05" max_count="1" prob=".37" />
+        <prefab name="survivor_site_06" max_count="1" prob=".37" />
+        <prefab name="survivor_site_07" max_count="1" prob=".37" />
+        <prefab name="survivor_site_08" max_count="1" prob=".37" />
+        <prefab name="rh5_RestArea_Desert(by_Guppycur)" max_count="1" prob=".37" />
+        <prefab name="rh5_house01(byGuppycur)" prob=".58"  min_count="1" max_count="1" />
+        <prefab name="rh5_house02(byGuppycur)" prob=".58"  min_count="1" max_count="1" />
+        <prefab name="rh5_house03(byGuppycur)" prob=".58"  min_count="1" max_count="1" />
+        <prefab name="rh5_house04(byGuppycur)" prob=".58"  min_count="1" max_count="1" />
+        <prefab name="rh5_house05(byGuppycur)" prob=".58"  min_count="1" max_count="1" />
+        <prefab name="rh5_Sinders_House_vanilla17_v1(by_sinder)" prob=".48"  min_count="1" max_count="1" />
+        <prefab name="rh5_v16_abandoned_house_05(by_Sinder)" prob=".58"  min_count="1" max_count="2" />
+        <prefab name="rh5_RocketLaunchPad(by_Saeid)" max_count="1" prob=".47" />
+      </prefab_rule>	
+
+
+      <prefab_rule name="RHcrops">
+        <prefab name="rh5_farm_berrypatch(by_Sinder)" max_count="1" prob="0.35" />
+        <prefab name="rh5_farm_ModdedCrops_carrot(by_Sinder)" max_count="1" prob="0.35" />
+        <prefab name="rh5_farm_ModdedCrops_grass(by_Sinder)" max_count="1" prob="0.35" />
+        <prefab name="rh5_farm_ModdedCrops_mix(by_Sinder)" max_count="1" prob="0.35" />
+        <prefab name="rh5_farm_ModdedCrops_onion(by_Sinder)" max_count="1" prob="0.35" />
+        <prefab name="rh5_Farm(by_BigC90210)" prob="0.35" max_count="1" />
+        <prefab name="rh5_farm_dry_stream(by_Sinder)" max_count="1" prob="0.35" />
+        <prefab name="rh5_Amityville_Horror_House(by_Swolk)" max_count="1" prob="0.35" />
+        <prefab name="rh5_LumberMill(by_IceJudge)" max_count="1" prob="0.35" />
+        <prefab name="barn_01" prob="0.35" max_count="1" />
+
+
+      </prefab_rule>
+
+    </prefab_rules>
+  </append>
+</config>
