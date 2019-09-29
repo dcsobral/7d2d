@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+	<ModInfo>
+		<Name value="RH553_Fixes"/>
+		<Description value="Fix for issues on Ravenhearst 5.5.3"/>
+		<Author value="dcsobral"/>
+		<Version value="1.0"/>
+		<Website value=""/>
+	</ModInfo>
+</xml>

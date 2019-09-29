@@ -1,0 +1,6 @@
+<config>
+  <append xpath="/lootcontainers/lootgroup[@name='cookbooks']">
+    <item name="sandwichBook" />
+  </append>
+</config>
+
