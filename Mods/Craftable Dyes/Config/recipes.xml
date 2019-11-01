@@ -1,0 +1,38 @@
+<Config>
+  <append xpath="/recipes">
+    <recipe name="modDyeYellow" count="1">
+            <ingredient name="resourcePaint" count="20"/>
+            <ingredient name="resourceCropGoldenrodPlant" count="1"/>
+    </recipe>
+    <recipe name="modDyeRed" count="1">
+            <ingredient name="resourcePaint" count="20"/>
+            <ingredient name="resourceCropChrysanthemumPlant" count="1"/>
+    </recipe>
+    <recipe name="modDyeGreen" count="1">
+            <ingredient name="resourcePaint" count="20"/>
+            <ingredient name="resourceYuccaFibers" count="1"/>
+    </recipe>
+    <recipe name="modDyeBlack" count="1">
+            <ingredient name="resourcePaint" count="20"/>
+            <ingredient name="resourceCoal" count="1"/>
+    </recipe>
+    <recipe name="modDyeBlue" count="1">
+            <ingredient name="resourcePaint" count="20"/>
+            <ingredient name="foodCropBlueberries" count="1"/>
+    </recipe>
+    <recipe name="modDyeBrown" count="1">
+            <ingredient name="resourcePaint" count="20"/>
+            <ingredient name="resourceCropCoffeeBeans" count="1"/>
+    </recipe>
+    <recipe name="modDyePink" count="1">
+            <ingredient name="resourcePaint" count="20"/>
+            <ingredient name="resourceCropChrysanthemumPlant" count="1"/>
+            <ingredient name="resourceYuccaFibers" count="1"/>
+            <ingredient name="foodCropBlueberries" count="1"/>
+    </recipe>
+    <recipe name="modDyePurple" count="1">
+            <ingredient name="resourcePaint" count="20"/>
+            <ingredient name="resourceOilShale" count="1"/>
+    </recipe>
+  </append>
+</Config>
