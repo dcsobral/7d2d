@@ -1,0 +1,7 @@
+<Config>
+  <append xpath="/blocks/block[@name='tripwirepost']">
+    <property class="RepairItems">
+      <property name="tripwirepost" value="1" />
+    </property>
+  </append>
+</Config>
