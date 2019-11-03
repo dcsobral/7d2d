@@ -4,6 +4,6 @@
 		<Name value="Craftable Dyes" />
 		<Description value="Makes dye craftable" />
 		<Author value="dcsobral" />
-		<Version value="a18 v1.0" />
+		<Version value="1.0" compatibleWith="A18" />
 	</ModInfo>
 </xml>

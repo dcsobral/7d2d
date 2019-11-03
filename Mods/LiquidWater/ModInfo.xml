@@ -4,7 +4,7 @@
 		<Name value="LiquidWater" />
 		<Description value="Spreading water blocks." />
 		<Author value="dcsobral" />
-		<Version value="1.2" />
+		<Version value="1.2" compatibleWith="A17, untested on A18" />
     <Website value="https://github.com/dcsobral/7d2d/tree/master/Mods/LiquidWater" />
 	</ModInfo>
 </xml>
