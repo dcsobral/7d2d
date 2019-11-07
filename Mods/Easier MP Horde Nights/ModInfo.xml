@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo compatibility="a18">
+		<Name value="Easier MP Horde Nights" />
+		<Description value="Makes group GS never exceed 160% of the higher person in the group." />
+		<Author value="dcsobral" />
+		<Version value="v1.0" compat="A18, A17" />
+	</ModInfo>
+</xml>

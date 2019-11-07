@@ -1,0 +1,3 @@
+<Config>
+  <set xpath="/gamestages/config/@startingWeight">0.7</set>
+</Config>
