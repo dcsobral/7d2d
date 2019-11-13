@@ -1,0 +1,3 @@
+<Config>
+  <remove xpath="//triggered_effect[@effect_name='Drunk'][@action='ModifyScreenEffect']"/>
+</Config>

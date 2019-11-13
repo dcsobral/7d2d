@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="Hair Of The Dog" />
+		<Description value="Removes the display effect from drinking beer." />
+		<Author value="dcsobral" />
+		<Version value="v1.0" compat="a18" />
+	</ModInfo>
+</xml>
