@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="No Glancing Blows" />
+		<Description value="Removes glancing blows from all weapons." />
+		<Author value="dcsobral" />
+		<Version value="v1.0" compat="a18" />
+	</ModInfo>
+</xml>

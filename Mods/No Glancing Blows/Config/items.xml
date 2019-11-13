@@ -1,0 +1,4 @@
+<Config>
+  <set xpath="//property[@name='UseGrazingHits']/@value">false</set>
+</Config>
+
