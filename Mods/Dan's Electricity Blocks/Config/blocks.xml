@@ -1,0 +1,219 @@
+<configs>
+	<append xpath="/blocks" >	
+
+		<block name="JunctionBoxfusebox_Player">
+			<property name="Extends" value="corrugatedMetalNoUpgradeMaster"/>
+			<property name="CustomIcon" value="fusebox"/>
+			<property name="DescriptionKey" value="JunctionBoxfusebox_PlayerDesc"/>
+			<property name="RuntimeSwitch" value="true"/>
+			<property name="Class" value="Switch"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering"/>
+			<property name="Shape" value="Ext3dModel"/>
+			<property name="Texture" value="293"/>
+			<property name="Mesh" value="models"/>
+			<property name="Model" value="Industrial/fusebox" param1="main_mesh"/>
+			<property name="HandleFace" value="South"/>
+			<property name="Material" value="Mmetal_hard"/>
+			<property name="StabilitySupport" value="true"/>
+			<property name="DamageReceived" value="0.5"/>
+			<property name="LightOpacity" value="0"/>
+			<property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+			<property class="RepairItems">
+				<property name="resourceElectricParts" value="1"/>
+				<property name="resourceForgedIron" value="1"/>
+			</property>
+			<property name="RequiredPower" value="0"/>
+			<property name="DisplayType" value="blockElectrical"/>
+			<property name="TriggerType" value="Switch"/>
+			<property name="Group" value="Science"/>
+			<drop event="Harvest" name="resourceElectricParts" count="1,2" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceScrapIron" count="0" tag="allHarvest"/>
+			<drop event="Destroy" name="resourceScrapIron" count="1,20" prob="1"/>
+			<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+			<property name="EconomicValue" value="150"/>
+			<!-- disassemble value -->
+			<property name="FilterTags" value="fdecor,fother,felectrical"/>
+			<property name="SortOrder1" value="70e0"/>
+		</block>
+
+
+		<block name="JunctionBoxPanel_Player">
+			<property name="Extends" value="controlPanelBase01"/>
+			<property name="CustomIcon" value="controlPanelBase02"/>
+			<property name="DescriptionKey" value="JunctionBoxPanel_PlayerDesc"/>
+			<property name="RuntimeSwitch" value="true"/>
+			<property name="Class" value="Switch"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering"/>
+			<property name="Model" value="Industrial/control_panel_base_02" param1="main_mesh"/>
+			<property name="Material" value="Mmetal_hard"/>
+			<property name="Texture" value="293"/>
+			<property name="StabilitySupport" value="true"/>
+			<property name="Shape" value="Ext3dModel"/>
+			<property name="DamageReceived" value="0.5"/>
+			<property class="RepairItems">
+				<property name="resourceElectricParts" value="1"/>
+				<property name="resourceForgedIron" value="1"/>
+			</property>
+			<property name="ModelOffset" value="0,0,0"/>
+			<property name="ImposterDontBlock" value="true"/>
+			<property name="RequiredPower" value="0"/>
+			<property name="DisplayType" value="blockElectrical"/>
+			<property name="TriggerType" value="Switch"/>
+			<property name="Group" value="Science"/>
+			<drop event="Harvest" name="resourceElectricParts" count="1,2" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceScrapIron" count="0" tag="allHarvest"/>
+			<drop event="Harvest" name="resourceMetalPipe" count="0" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceSpring" count="0" tag="salvageHarvest"/>
+			<drop event="Destroy" name="resourceScrapIron" count="1,20" prob="1"/>
+			<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+			<property name="EconomicValue" value="65"/>
+			<property name="TakeDelay" value="5"/>
+		</block>
+
+		<block name="JunctionBoxBlock_Player">
+			<property name="Extends" value="rConcreteMaster"/>
+			<property name="CustomIcon" value="controlPanelBase02"/>
+			<property name="DescriptionKey" value="JunctionBoxBlock_PlayerDesc"/>
+			<property name="Class" value="ElectricWire"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering"/>
+			<property name="Model" value="cube"/>
+			<property name="Material" value="Mmetal"/>
+			<property name="StabilitySupport" value="true"/>
+			<property name="Shape" value="New"/>
+			<!-- It would be nice to have material be "MrConcrete" for the hit points, but this is a metal-looking block -->
+			<property name="MaxDamage" value="5000"/>
+			<property name="DamageReceived" value="0.5"/>
+			<property class="RepairItems">
+				<property name="resourceElectricParts" value="1"/>
+				<property name="resourceConcreteMix" value="1"/>
+			</property>
+			<property name="ModelOffset" value="0,0.5,0"/>
+			<property name="ImposterDontBlock" value="true"/>
+			<property name="DisplayType" value="blockElectrical"/>
+			<property name="RequiredPower" value="2"/>
+			<property name="Group" value="Science"/>
+			<property class="UpgradeBlock">
+				<property name="ToBlock" value="JunctionBoxSteelBlock_Player"/>
+				<property name="Item" value="resourceForgedSteel"/>
+				<property name="ItemCount" value="10"/>
+				<property name="UpgradeHitCount" value="4"/>
+			</property>
+			<property name="CustomUpgradeSound" value="place_block_metal"/>
+			<drop event="Harvest" name="resourceElectricParts" count="1,2" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceScrapIron" count="0" tag="allHarvest"/>
+			<drop event="Harvest" name="resourceMetalPipe" count="0" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceSpring" count="0" tag="salvageHarvest"/>
+			<drop event="Destroy" name="resourceScrapIron" count="1,20" prob="1"/>
+			<drop event="Fall" name="terrDestroyedStone" count="0"/>
+			<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+			<property name="EconomicValue" value="70"/>
+			<property name="TakeDelay" value="5"/>
+		</block>
+
+		<block name="JunctionBoxElectrical_Player">
+			<property name="Extends" value="controlPanelBase01"/>
+			<property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+			<property name="Model" value="Industrial/electrical_box01" param1="main_mesh"/>
+			<property name="DescriptionKey" value="JunctionBoxElectrical_PlayerDesc"/>
+			<property name="CustomIcon" value="electricalBox01"/>
+			<property name="Class" value="ElectricWire"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering"/>
+			<property name="Material" value="Mmetal_hard"/>
+			<property name="Texture" value="293"/>
+			<property name="StabilitySupport" value="true"/>
+			<property name="Shape" value="Ext3dModel"/>
+			<property name="DamageReceived" value="0.5"/>
+			<property class="RepairItems">
+				<property name="resourceElectricParts" value="1"/>
+				<property name="resourceForgedIron" value="1"/>
+			</property>
+			<property name="ModelOffset" value="0,0,0"/>
+			<property name="ImposterDontBlock" value="true"/>
+			<property name="DisplayType" value="blockElectrical"/>
+			<property name="RequiredPower" value="2"/>
+			<property name="Group" value="Science"/>
+			<drop event="Harvest" name="resourceElectricParts" count="1,2" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceScrapIron" count="0" tag="allHarvest"/>
+			<drop event="Harvest" name="resourceMetalPipe" count="0" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceSpring" count="0" tag="salvageHarvest"/>
+			<drop event="Destroy" name="resourceScrapIron" count="1,20" prob="1"/>
+			<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+			<property name="EconomicValue" value="65"/>
+			<property name="TakeDelay" value="5"/>
+		</block>
+
+
+		<block name="JunctionBoxSteelBlock_Player">
+			<property name="Extends" value="steelMaster"/>
+			<property name="CustomIcon" value="controlPanelBase03"/>
+			<property name="DescriptionKey" value="JunctionBoxSteelBlock_PlayerDesc"/>
+			<property name="Class" value="ElectricWire"/>
+			<property name="Model" value="cube"/>
+			<property name="Material" value="Msteel"/>
+			<property name="StabilitySupport" value="true"/>
+			<property name="Shape" value="New"/>
+			<property name="DamageReceived" value="0.5"/>
+			<property class="RepairItems">
+				<property name="resourceElectricParts" value="1"/>
+				<property name="resourceForgedSteel" value="2"/>
+			</property>
+			<property name="ModelOffset" value="0,0.5,0"/>
+			<property name="ImposterDontBlock" value="true"/>
+			<property name="DisplayType" value="blockElectrical"/>
+			<property name="RequiredPower" value="2"/>
+			<property name="Group" value="Science"/>
+			<property name="CustomUpgradeSound" value="place_block_metal"/>
+			<drop event="Harvest" name="resourceElectricParts" count="1,2" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceMetalPipe" count="0" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceSpring" count="0" tag="salvageHarvest"/>
+			<drop event="Destroy" name="resourceScrapIron" count="1,20" prob="1"/>
+			<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+			<property name="EconomicValue" value="75"/>
+			<property name="TakeDelay" value="5"/>
+			<property name="DowngradeBlock" value="JunctionBoxBlock_Player"/>
+		</block>
+
+		<block name="JunctionBoxStainlessBlock_Player">
+			<property name="Extends" value="stainlessSteelMaster"/>
+			<property name="CustomIcon" value="controlPanelBase04"/>
+			<property name="DescriptionKey" value="JunctionBoxStainlessBlock_PlayerDesc"/>
+			<property name="Class" value="ElectricWire"/>
+			<property name="Model" value="cube"/>
+			<property name="Material" value="MstainlessSteel"/>
+			<property name="StabilitySupport" value="true"/>
+			<property name="Shape" value="New"/>
+			<property name="DamageReceived" value="0.5"/>
+			<property class="RepairItems">
+				<property name="resourceElectricParts" value="2"/>
+				<property name="resourceForgedSteel" value="3"/>
+			</property>
+			<property name="ModelOffset" value="0,0.5,0"/>
+			<property name="ImposterDontBlock" value="true"/>
+			<property name="DisplayType" value="blockElectrical"/>
+			<property name="RequiredPower" value="2"/>
+			<property name="Group" value="Science"/>
+			<drop event="Harvest" name="resourceElectricParts" count="1,2" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceMetalPipe" count="0" tag="salvageHarvest"/>
+			<drop event="Harvest" name="resourceSpring" count="0" tag="salvageHarvest"/>
+			<drop event="Destroy" name="resourceScrapIron" count="1,20" prob="1"/>
+			<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+			<property name="EconomicValue" value="75"/>
+			<property name="TakeDelay" value="5"/>
+			<property name="DowngradeBlock" value="JunctionBoxBlock_Player"/>
+		</block>
+
+		<block name="poleTop01_Player">
+			<property name="Extends" value="poleTop01"/>
+			<property name="CustomIcon" value="poleTop01"/>
+			<property name="DescriptionKey" value="poleTop01_PlayerDesc"/>
+			<property name="Class" value="ElectricWire"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering"/>
+			<property name="RequiredPower" value="0"/>
+			<drop event="Harvest" name="resourceElectricParts" count="1,2" tag="salvageHarvest"/>
+		</block>
+
+	</append>
+
+
+
+</configs>

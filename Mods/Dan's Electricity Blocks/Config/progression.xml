@@ -1,0 +1,4 @@
+<configs>
+	<append xpath="//passive_effect[@name='RecipeTagUnlocked'][contains(@tags,'electricwirerelay')]/@tags">,JunctionBoxfusebox_Player,JunctionBoxPanel_Player,JunctionBoxBlock_Player,JunctionBoxElectrical_Player,poleTop01_Player</append>
+</configs>
+
