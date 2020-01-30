@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="Insane Zombies" />
+		<Description value="Multiple zombie damage and hit points by 2.5, and also multiply headshots by 2.5." />
+		<Author value="dcsobral" />
+		<Version value="1.0.1" compat="A18.3" />
+	</ModInfo>
+</xml>
