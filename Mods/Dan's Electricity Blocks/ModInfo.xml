@@ -4,6 +4,6 @@
 		<Name value="Dan's Electricity Blocks" />
 		<Description value="Adds blocks with structural integrity that act as wire relays or switches and hide outgoing wires." />
 		<Author value="dcsobral, Untamedwolf, zilizgarcia1122" />
-		<Version value="1.0.0" compat="A18" />
+		<Version value="1.1.0" compat="A18" />
 	</ModInfo>
 </xml>

@@ -22,7 +22,7 @@
 				<property name="resourceElectricParts" value="1"/>
 				<property name="resourceForgedIron" value="1"/>
 			</property>
-			<property name="RequiredPower" value="0"/>
+			<property name="RequiredPower" value="1"/>
 			<property name="DisplayType" value="blockElectrical"/>
 			<property name="TriggerType" value="Switch"/>
 			<property name="Group" value="Science"/>
@@ -56,7 +56,7 @@
 			</property>
 			<property name="ModelOffset" value="0,0,0"/>
 			<property name="ImposterDontBlock" value="true"/>
-			<property name="RequiredPower" value="0"/>
+			<property name="RequiredPower" value="1"/>
 			<property name="DisplayType" value="blockElectrical"/>
 			<property name="TriggerType" value="Switch"/>
 			<property name="Group" value="Science"/>
