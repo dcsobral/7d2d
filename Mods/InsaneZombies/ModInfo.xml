@@ -2,8 +2,8 @@
 <xml>
 	<ModInfo>
 		<Name value="Insane Zombies" />
-		<Description value="Multiple zombie damage and hit points by 2.5, and also multiply headshots by 2.5." />
+		<Description value="Multiply zombie damage by 2.5, reduce damage to zombies to 20% except on headshots, and make headshots start at 400% damage." />
 		<Author value="dcsobral" />
-		<Version value="1.0.1" compat="A18.3" />
+		<Version value="2.0.0" compat="A18.3" />
 	</ModInfo>
 </xml>
