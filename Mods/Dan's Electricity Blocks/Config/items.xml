@@ -1,0 +1,11 @@
+<Config>
+	<insertAfter xpath="//triggered_effect[@action='ModifyCVar'][@cvar='electricwirerelay'][@operation='set'][@value='1']">
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="JunctionBoxBlock_Player" operation="set" value="1"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="JunctionBoxElectrical_Player" operation="set" value="1"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="poleTop01_Player" operation="set" value="1"/>
+	</insertAfter>
+	<insertAfter xpath="//triggered_effect[@action='ModifyCVar'][@cvar='switch'][@operation='set'][@value='1']">
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="JunctionBoxfusebox_Player" operation="set" value="1"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="JunctionBoxPanel_Player" operation="set" value="1"/>
+	</insertAfter>
+</Config>

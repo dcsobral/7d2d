@@ -7,7 +7,7 @@
 			<property name="DescriptionKey" value="JunctionBoxfusebox_PlayerDesc"/>
 			<property name="RuntimeSwitch" value="true"/>
 			<property name="Class" value="Switch"/>
-			<property name="UnlockedBy" value="perkAdvancedEngineering"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering,switchSchematic"/>
 			<property name="Shape" value="Ext3dModel"/>
 			<property name="Texture" value="293"/>
 			<property name="Mesh" value="models"/>
@@ -43,7 +43,7 @@
 			<property name="DescriptionKey" value="JunctionBoxPanel_PlayerDesc"/>
 			<property name="RuntimeSwitch" value="true"/>
 			<property name="Class" value="Switch"/>
-			<property name="UnlockedBy" value="perkAdvancedEngineering"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering,switchSchematic"/>
 			<property name="Model" value="Industrial/control_panel_base_02" param1="main_mesh"/>
 			<property name="Material" value="Mmetal_hard"/>
 			<property name="Texture" value="293"/>
@@ -75,7 +75,7 @@
 			<property name="CustomIcon" value="controlPanelBase02"/>
 			<property name="DescriptionKey" value="JunctionBoxBlock_PlayerDesc"/>
 			<property name="Class" value="ElectricWire"/>
-			<property name="UnlockedBy" value="perkAdvancedEngineering"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering,generatorbankSchematic"/>
 			<property name="Model" value="cube"/>
 			<property name="Material" value="Mmetal"/>
 			<property name="StabilitySupport" value="true"/>
@@ -117,7 +117,7 @@
 			<property name="DescriptionKey" value="JunctionBoxElectrical_PlayerDesc"/>
 			<property name="CustomIcon" value="electricalBox01"/>
 			<property name="Class" value="ElectricWire"/>
-			<property name="UnlockedBy" value="perkAdvancedEngineering"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering,generatorbankSchematic"/>
 			<property name="Material" value="Mmetal_hard"/>
 			<property name="Texture" value="293"/>
 			<property name="StabilitySupport" value="true"/>
@@ -207,7 +207,7 @@
 			<property name="CustomIcon" value="poleTop01"/>
 			<property name="DescriptionKey" value="poleTop01_PlayerDesc"/>
 			<property name="Class" value="ElectricWire"/>
-			<property name="UnlockedBy" value="perkAdvancedEngineering"/>
+			<property name="UnlockedBy" value="perkAdvancedEngineering,generatorbankSchematic"/>
 			<property name="RequiredPower" value="0"/>
 			<drop event="Harvest" name="resourceElectricParts" count="1,2" tag="salvageHarvest"/>
 		</block>
