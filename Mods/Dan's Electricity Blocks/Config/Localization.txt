@@ -1,15 +1,15 @@
-Key,Source,Context,Changes,English,French,German,Klingon,Spanish,Polish
-JunctionBoxfusebox_Player,blocks,Electrical,KgNone,Fusebox,,,,,
-JunctionBoxfusebox_PlayerDesc,blocks,Electrical,New,Used to trigger electrical events when activated. Wireless.,,,,,
-JunctionBoxPanel_Player,blocks,Electrical,KgNone,Control Panel,,,,,
-JunctionBoxPanel_PlayerDesc,blocks,Electrical,New,Use a sophisticated computer console to turn lights and and off! Wireless.,,,,,
-JunctionBoxBlock_Player,blocks,Electrical,KgNone,Junction Box,,,,,
-JunctionBoxBlock_PlayerDesc,blocks,Electrical,New,Make your walls carry electricty! Consumes 2w but works like a normal reinforced concrete block. Upgrades to steel. Wireless.,,,,,
-JunctionBoxElectrical_Player,blocks,Electrical,KgNone,Wireless Electric Wire Relay,,,,,
-JunctionBoxElectrical_PlayerDesc,blocks,Electrical,New,Used to connect and extend wires between electrical components but hides outgoing wires.,,,,,
-JunctionBoxSteelBlock_Player,blocks,Electrical,KgNone,Steel Junction Box,,,,,
-JunctionBoxSteelBlock_PlayerDesc,blocks,Electrical,New,Make your walls carry electricty! Consumes 2w but works like a normal steel block. Wireless.,,,,,
-JunctionBoxStainlessBlock_Player,blocks,Electrical,KgNone,Stainless Steel Junction Box,,,,,
-JunctionBoxStainlessBlock_PlayerDesc,blocks,Electrical,New,Make your walls carry electricty! Consumes 2w but works like a normal stainless steel block. Wireless.,,,,,
-poleTop01_Player,blocks,Electrical,KgNone,Wireless Electric Wire Relay,,,,,
-poleTop01_PlayerDesc,blocks,Electrical,New,Used to connect and extend wires between electrical components. Does not consume electricity. Wireless.,,,,,
+Key,File,Type,english
+JunctionBoxfusebox_Player,blocks,Electricity,Fusebox
+JunctionBoxfusebox_PlayerDesc,blocks,Electricity,New,Used to trigger Electricity events when activated. Wireless.
+JunctionBoxPanel_Player,blocks,Electricity,Control Panel
+JunctionBoxPanel_PlayerDesc,blocks,Electricity,New,Use a sophisticated computer console to turn lights and and off! Wireless.
+JunctionBoxBlock_Player,blocks,Electricity,Junction Box
+JunctionBoxBlock_PlayerDesc,blocks,Electricity,New,Make your walls carry electricty! Consumes 2w but works like a normal reinforced concrete block. Upgrades to steel. Wireless.
+JunctionBoxElectricity_Player,blocks,Electricity,Wireless Electric Wire Relay
+JunctionBoxElectricity_PlayerDesc,blocks,Electricity,New,Used to connect and extend wires between Electricity components but hides outgoing wires.
+JunctionBoxSteelBlock_Player,blocks,Electricity,Steel Junction Box
+JunctionBoxSteelBlock_PlayerDesc,blocks,Electricity,New,Make your walls carry electricty! Consumes 2w but works like a normal steel block. Wireless.
+JunctionBoxStainlessBlock_Player,blocks,Electricity,Stainless Steel Junction Box
+JunctionBoxStainlessBlock_PlayerDesc,blocks,Electricity,New,Make your walls carry electricty! Consumes 2w but works like a normal stainless steel block. Wireless.
+poleTop01_Player,blocks,Electricity,Wireless Electric Wire Relay
+poleTop01_PlayerDesc,blocks,Electricity,New,Used to connect and extend wires between Electricity components. Does not consume electricity. Wireless.
