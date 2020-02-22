@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="Dan's Craftable Engines" />
+		<Description value="Recipes for Engines" />
+		<Author value="dcsobral" />
+		<Version value="1.0.0" compat="A18.3" />
+	</ModInfo>
+</xml>

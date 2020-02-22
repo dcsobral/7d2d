@@ -1,0 +1,3 @@
+<config>
+	<append xpath="//passive_effect[@name='RecipeTagUnlocked'][contains(@tags,'electricwirerelay')]/@tags">,smallEngine</append>
+</config>

@@ -1,0 +1,14 @@
+<config>
+	<append xpath="/recipes">
+		<recipe name="smallEngine" count="1" craft_area="workbench" tags="perkAdvancedEngineering,learnable">
+			<ingredient name="resourceForgedSteel" count="5"/>
+			<ingredient name="resourceMechanicalParts" count="40"/>
+			<ingredient name="resourceForgedIron" count="40"/>
+			<ingredient name="resourceElectricParts" count="8"/>
+			<ingredient name="resourceOil" count="10"/>
+			<effect_group>
+				<passive_effect name="CraftingIngredientCount" level="0,1,2,3,4" operation="perc_add" value=".5,.5,.5,.3,.15" tags="resourceForgedSteel,resourceMechanicalParts,resourceForgedIron,resourceElectricParts,resourceOil"/>
+			</effect_group>
+		</recipe>
+	</append>
+</config>
