@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="Dan's Better Drawers" />
+		<Description value="Drawers are the sneaky best storage in 7d2d. Make them bigger, and change the annoying sound." />
+		<Author value="dcsobral" />
+		<Version value="1.0.0" compat="A18.3" />
+	</ModInfo>
+</xml>

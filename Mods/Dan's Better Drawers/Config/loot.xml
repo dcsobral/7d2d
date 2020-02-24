@@ -1,0 +1,5 @@
+<config>
+	<set xpath="/lootcontainers/lootcontainer[@id='3']/@size">9,10</set>
+	<set xpath="/lootcontainers/lootcontainer[@id='3']/@sound_open">UseActions/open_file_cabinet</set>
+	<set xpath="/lootcontainers/lootcontainer[@id='3']/@sound_close">UseActions/close_file_cabinet</set>
+</config>
