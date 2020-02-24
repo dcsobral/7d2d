@@ -1,0 +1,3 @@
+<configs>
+  <set xpath="//block[@name='spotlightPlayer']/property[@name='OnlySimpleRotations']/@value">false</set>
+</configs>
