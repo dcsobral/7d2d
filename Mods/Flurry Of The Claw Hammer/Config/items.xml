@@ -1,0 +1,3 @@
+<Config>
+  <append xpath="/items/item[@name='meleeToolClawHammer']/property[@name='Tags']/@value">,perkFlurryOfBlows</append>
+</Config>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="Flurry of The Claw Hammer" />
+		<Description value="Makes the claw hammer be affected by Flurry of Blows" />
+		<Author value="dcsobral" />
+		<Version value="1.0.0" />
+		<Website value="https://dcsobral.github.io/7d2d/" />
+	</ModInfo>
+</xml>
