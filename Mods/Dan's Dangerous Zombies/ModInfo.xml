@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="Dan's Dangerous Zombies" />
+		<Description value="Zombies do Insane-level damage to players on Nomad, but are not bullet sponges." />
+		<Author value="dcsobral" />
+		<Version value="1.0.0" compat="A18.3" />
+	</ModInfo>
+</xml>
