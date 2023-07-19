@@ -6,5 +6,4 @@
   <set xpath="/items/item[starts-with(@name,'meleeHandZombie')]//property[@name='DamageEntity'][@value='20']/@value">50</set>
   <set xpath="/items/item[starts-with(@name,'meleeHandZombie')]//property[@name='DamageEntity'][@value='24']/@value">60</set>
   <set xpath="/items/item[starts-with(@name,'meleeHandZombie')]//property[@name='DamageEntity'][@value='40']/@value">100</set>
-  <set xpath="/items/item[starts-with(@name,'meleeHandZombie')]//property[@name='DamageEntity'][@value='500']/@value">1250</set>
 </Config>
